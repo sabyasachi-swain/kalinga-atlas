@@ -4,7 +4,8 @@
  * point. Draft and reviewed entries are visible only when PUBLIC_SHOW_DRAFTS=true
  * (local preview for reviewers), never in a production build.
  */
-import { Collections, type CollectionName } from './schema';
+import type { z } from 'zod';
+import { Collections, type CollectionName, type Status } from './schema';
 import sources from './sources.json';
 import periods from './periods.json';
 import ports from './ports.json';
@@ -16,31 +17,31 @@ import facts from './facts.json';
 
 const RAW: Record<CollectionName, unknown> = { sources, periods, ports, routes, goods, sites, inscriptions, facts };
 
+type Parsed<K extends CollectionName> = z.infer<(typeof Collections)[K]>;
+
 const showDrafts = import.meta.env.PUBLIC_SHOW_DRAFTS === 'true' && import.meta.env.DEV;
 
-function parse<K extends CollectionName>(name: K) {
+function parse<K extends CollectionName>(name: K): Parsed<K> {
   // Parsing again here is cheap and guarantees pages never see malformed data
   // even if someone bypasses the prebuild validator.
-  return Collections[name].parse(RAW[name]);
+  return Collections[name].parse(RAW[name]) as Parsed<K>;
 }
 
-export function getSources() {
-  return parse('sources');
-}
-
-export function getPeriods() {
-  return parse('periods')
-    .filter((p) => showDrafts || p.status === 'published')
-    .sort((a, b) => a.order - b.order);
-}
-
-function published<T extends { status: string }>(list: T[]): T[] {
+function published<T extends { status: Status }>(list: T[]): T[] {
   return list.filter((e) => showDrafts || e.status === 'published');
 }
 
-export const getPorts = () => published(parse('ports'));
-export const getRoutes = () => published(parse('routes'));
-export const getGoods = () => published(parse('goods'));
-export const getSites = () => published(parse('sites'));
-export const getInscriptions = () => published(parse('inscriptions'));
-export const getFacts = () => published(parse('facts'));
+export function getSources(): Parsed<'sources'> {
+  return parse('sources');
+}
+
+export function getPeriods(): Parsed<'periods'> {
+  return published(parse('periods')).sort((a, b) => a.order - b.order);
+}
+
+export const getPorts = (): Parsed<'ports'> => published(parse('ports'));
+export const getRoutes = (): Parsed<'routes'> => published(parse('routes'));
+export const getGoods = (): Parsed<'goods'> => published(parse('goods'));
+export const getSites = (): Parsed<'sites'> => published(parse('sites'));
+export const getInscriptions = (): Parsed<'inscriptions'> => published(parse('inscriptions'));
+export const getFacts = (): Parsed<'facts'> => published(parse('facts'));
