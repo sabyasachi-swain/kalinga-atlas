@@ -1,0 +1,92 @@
+[
+  {
+    "id": "mauryan",
+    "label": "Mauryan Kalinga",
+    "start_year": -300,
+    "end_year": -185,
+    "summary": "Kalinga is conquered by Ashoka. His edicts at Dhauli and Jaugada are the oldest written records here.",
+    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
+    "status": "draft",
+    "order": 0
+  },
+  {
+    "id": "kharavela",
+    "label": "Kharavela and the Mahameghavahanas",
+    "start_year": -185,
+    "end_year": -1,
+    "summary": "King Kharavela rules from Kalinga. The Hathigumpha inscription tells his story.",
+    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
+    "status": "draft",
+    "order": 1
+  },
+  {
+    "id": "gupta",
+    "label": "Gupta and post-Gupta centuries",
+    "start_year": 300,
+    "end_year": 600,
+    "summary": "Kalinga sits at the edge of the Gupta world while sea trade with the east grows.",
+    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
+    "status": "draft",
+    "order": 2
+  },
+  {
+    "id": "bhauma-kara",
+    "label": "Bhauma-Kara",
+    "start_year": 700,
+    "end_year": 950,
+    "summary": "The Bhauma-Kara rulers govern coastal Odisha. Buddhist centres flourish.",
+    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
+    "status": "draft",
+    "order": 3
+  },
+  {
+    "id": "somavamshi",
+    "label": "Somavamshi",
+    "start_year": 900,
+    "end_year": 1100,
+    "summary": "The Somavamshi kings unite inland and coastal Odisha.",
+    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
+    "status": "draft",
+    "order": 4
+  },
+  {
+    "id": "eastern-ganga",
+    "label": "Eastern Ganga",
+    "start_year": 1078,
+    "end_year": 1434,
+    "summary": "The Eastern Gangas build the great temples of Puri and Konark.",
+    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
+    "status": "draft",
+    "order": 5
+  },
+  {
+    "id": "gajapati",
+    "label": "Gajapati",
+    "start_year": 1434,
+    "end_year": 1541,
+    "summary": "The Gajapati kings rule a large kingdom along the east coast.",
+    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
+    "status": "draft",
+    "order": 6
+  },
+  {
+    "id": "mughal-maratha",
+    "label": "Mughal and Maratha rule",
+    "start_year": 1568,
+    "end_year": 1803,
+    "summary": "Odisha comes under Mughal, then Maratha, control. European traders set up factories on the coast.",
+    "source_refs": [{ "source_id": "haque-1980", "note": "Researcher to confirm page." }, { "source_id": "ray-bc-1981", "note": "Researcher to confirm page." }],
+    "status": "draft",
+    "order": 7
+  },
+  {
+    "id": "british",
+    "label": "British colonial",
+    "start_year": 1803,
+    "end_year": 1900,
+    "summary": "The East India Company takes Odisha. Old ports fade as trade moves to Calcutta.",
+    "source_refs": [{ "source_id": "patra-1971", "note": "Researcher to confirm page." }],
+    "status": "draft",
+    "order": 8
+  }
+]

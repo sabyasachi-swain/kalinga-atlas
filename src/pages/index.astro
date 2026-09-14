@@ -1,0 +1,109 @@
+---
+import Base from '@layouts/Base.astro';
+import EvidenceBadge from '@components/EvidenceBadge.astro';
+import SourcePopover from '@components/SourcePopover.astro';
+import Atlas from '@islands/Atlas';
+import { getPorts, getRoutes, getSites, getPeriods, getGoods, getSources } from '@data/load';
+
+const ports = getPorts();
+const routes = getRoutes();
+const sites = getSites();
+const periods = getPeriods();
+const goods = getGoods();
+const sources = getSources();
+---
+
+<Base
+  title="Kalinga: Ancient Trade Routes"
+  description="Explore how Odisha connected with the world across two millennia, port by port, route by route, century by century."
+>
+  <section class="hero">
+    <h1>Kalinga: Ancient Trade Routes</h1>
+    <p class="lede">
+      Explore how Odisha connected with the world across two millennia, port by port, route by route, century by century.
+    </p>
+  </section>
+
+  <section class="atlas">
+    {
+      periods.length > 0 ? (
+        <Atlas client:visible ports={ports} routes={routes} sites={sites} periods={periods} />
+      ) : (
+        <p class="empty">
+          No published periods yet. Run <code>/phase research</code> in Claude Code, then move entries to
+          <code>status: published</code> after review.
+        </p>
+      )
+    }
+  </section>
+
+  <section id="routes" class="section">
+    <h2>Trade Routes</h2>
+    {routes.length === 0 && <p class="empty">No published routes yet.</p>}
+    <ul class="cards">
+      {routes.map((r) => (
+        <li class="card">
+          <h3>{r.name}</h3>
+          <p>{r.summary}</p>
+          <EvidenceBadge level={r.evidence_level} type={r.evidence_type} />
+          <SourcePopover refs={r.source_refs} sources={sources} />
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="ports" class="section">
+    <h2>Ancient Ports</h2>
+    {ports.length === 0 && <p class="empty">No published ports yet.</p>}
+    <ul class="cards">
+      {ports.map((p) => (
+        <li class="card">
+          <h3>{p.name}</h3>
+          <p>{p.summary}</p>
+          <EvidenceBadge level={p.evidence_level} type={p.evidence_type} />
+          <SourcePopover refs={p.source_refs} sources={sources} />
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="goods" class="section">
+    <h2>Goods &amp; Commodities</h2>
+    {goods.length === 0 && <p class="empty">No published goods yet.</p>}
+    <ul class="cards">
+      {goods.map((g) => (
+        <li class="card">
+          <h3>{g.name}</h3>
+          <p>{g.kid_line}</p>
+          <EvidenceBadge level={g.evidence_level} type={g.evidence_type} />
+          <SourcePopover refs={g.source_refs} sources={sources} />
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="evidence" class="section">
+    <h2>Archaeological Evidence</h2>
+    {sites.length === 0 && <p class="empty">No published sites yet.</p>}
+    <ul class="cards">
+      {sites.map((s) => (
+        <li class="card">
+          <h3>{s.name}</h3>
+          <p>{s.summary}</p>
+          <EvidenceBadge level={s.evidence_level} type={s.evidence_type} />
+          <SourcePopover refs={s.source_refs} sources={sources} />
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: var(--space-12) var(--gutter) var(--space-8); max-width: var(--content-max); margin: 0 auto; }
+  .lede { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
+  .atlas { padding: 0 var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .section { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .empty { color: var(--fg-muted); font-style: italic; }
+  .cards { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); }
+  .card { background: var(--bg-elevated); border-radius: var(--radius-md); padding: var(--space-4); box-shadow: var(--shadow-card); }
+</style>

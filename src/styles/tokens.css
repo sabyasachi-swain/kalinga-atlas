@@ -1,0 +1,171 @@
+/*
+ * Design tokens — Kalinga: Ancient Trade Routes
+ *
+ * Inspiration: nautical charts, palm-leaf manuscripts, inscription rubbings,
+ * museum exhibit lighting. Not the generic "cream + terracotta" default.
+ *
+ * Every colour below has been chosen so text pairs meet WCAG 2.1 AA (4.5:1).
+ * Evidence badges never rely on colour alone: each tier also has a glyph and
+ * a text label (see EvidenceBadge.astro).
+ */
+
+:root {
+  /* ---- Palette ---------------------------------------------------------- */
+  --navy-900: #071528;   /* deepest sea, page background in map mode */
+  --navy-800: #0b1f3a;   /* deep ocean navy, primary dark */
+  --navy-600: #1d3557;   /* mid sea, panels on dark */
+  --parchment-100: #f7f0df; /* aged parchment, light page background */
+  --parchment-200: #f3e9d2; /* parchment cards */
+  --parchment-400: #d9c9a3; /* parchment edge / rules */
+  --laterite-700: #7a2e24; /* laterite red-brown, accents on light */
+  --laterite-500: #8b3a2f;
+  --verdigris-700: #2f6f62; /* verdigris green, deep */
+  --verdigris-500: #3e8a7a;
+  --verdigris-300: #7fc4b3; /* luminous route lines on navy */
+  --gold-600: #a8861b;   /* gold foil on light backgrounds */
+  --gold-400: #c9a227;   /* gold foil on dark backgrounds */
+  --ochre-600: #9a5b1f;
+  --slate-600: #5b6470;
+  --ink-900: #17120c;    /* text on parchment */
+  --ink-600: #4a4036;    /* secondary text on parchment */
+  --white: #fbf8f1;
+
+  /* ---- Semantic ---------------------------------------------------------- */
+  --bg: var(--parchment-100);
+  --bg-elevated: var(--parchment-200);
+  --fg: var(--ink-900);
+  --fg-muted: var(--ink-600);
+  --accent: var(--laterite-700);
+  --accent-2: var(--verdigris-700);
+  --highlight: var(--gold-600);
+  --rule: var(--parchment-400);
+  --focus-ring: 0 0 0 3px var(--gold-400), 0 0 0 5px var(--navy-800);
+
+  /* Map surface (always dark, regardless of page theme) */
+  --map-sea: var(--navy-900);
+  --map-land: #2a2418;
+  --map-land-edge: #5a4b2e;
+  --map-river: #244a63;
+  --map-route: var(--verdigris-300);
+  --map-route-glow: rgba(127, 196, 179, 0.35);
+  --map-port: var(--gold-400);
+  --map-port-glow: rgba(201, 162, 39, 0.45);
+  --map-label: var(--parchment-200);
+
+  /* ---- Evidence tiers (colour + glyph + label, never colour alone) --------- */
+  --tier-confirmed: var(--verdigris-700);
+  --tier-strong: var(--gold-600);
+  --tier-probable: var(--ochre-600);
+  --tier-hypothetical: var(--slate-600);
+  --tier-unverified: var(--laterite-700);
+
+  /* ---- Evidence types (distinct shape glyphs, see EvidenceBadge) ----------- */
+  --type-archaeological: var(--verdigris-700); /* ◆ */
+  --type-scholarly: var(--navy-600);           /* ■ */
+  --type-traditional: var(--laterite-500);     /* ● */
+
+  /* ---- Typography -------------------------------------------------------- */
+  --font-heading: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Sans 3', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-odia: 'Noto Sans Oriya', var(--font-body);
+  --font-mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  --text-xs: 0.8rem;
+  --text-sm: 0.9rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.6rem;
+  --text-2xl: 2.1rem;
+  --text-3xl: 2.8rem;
+  --leading-tight: 1.15;
+  --leading-body: 1.6;
+
+  /* ---- Spacing & shape --------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(23, 18, 12, 0.08), 0 6px 18px rgba(23, 18, 12, 0.10);
+  --content-max: 72rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+
+  /* ---- Motion ------------------------------------------------------------ */
+  --ease-page: cubic-bezier(0.22, 1, 0.36, 1); /* manuscript page turn */
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-page: 700ms;
+  --dur-sail: 6000ms; /* ship travels one route */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-page: 0ms;
+    --dur-sail: 0ms;
+  }
+}
+
+/* Self-hosted OFL fonts. Drop the .woff2 files into public/fonts/ (see public/fonts/README.md).
+   If they are missing the fallback stacks above take over. */
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/EBGaramond-Variable.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  src: url('/fonts/SourceSans3-Variable.woff2') format('woff2');
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+/* ---- Base --------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  color-scheme: light;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 100%;
+  line-height: var(--leading-body);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: var(--leading-tight);
+  font-weight: 600;
+  margin: 0 0 var(--space-3);
+}
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-xl); }
+p { margin: 0 0 var(--space-4); }
+a { color: var(--accent); }
+img,
+svg { max-width: 100%; height: auto; }
+:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); }
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}

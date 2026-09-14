@@ -1,0 +1,53 @@
+---
+/**
+ * Inline source citation with a native <details> popover (no JS).
+ * Renders the short form "[Author, Year, p.XX]" and expands to the full reference.
+ */
+import type { Source, SourceRef } from '@data/schema';
+import { formatShort, formatFull } from '@data/cite';
+
+interface Props {
+  refs: SourceRef[];
+  sources: Source[];
+}
+
+const { refs, sources } = Astro.props;
+const byId = new Map(sources.map((s) => [s.id, s]));
+---
+
+<details class="source">
+  <summary>
+    <span class="visually-hidden">Sources: </span>
+    {refs.map((r, i) => {
+      const s = byId.get(r.source_id);
+      return <span class="short">{s ? formatShort(s, r) : `[unknown source ${r.source_id}]`}{i < refs.length - 1 ? '; ' : ''}</span>;
+    })}
+  </summary>
+  <ol>
+    {refs.map((r) => {
+      const s = byId.get(r.source_id);
+      return (
+        <li>
+          {s ? formatFull(s) : `Unresolved source id "${r.source_id}"`}
+          {r.page && <span>, {r.page}</span>}
+          {r.note && <em> ({r.note})</em>}
+        </li>
+      );
+    })}
+  </ol>
+</details>
+
+<style>
+  .source { display: inline-block; font-size: var(--text-sm); color: var(--fg-muted); }
+  summary { cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  .short { text-decoration: underline dotted; text-underline-offset: 0.2em; }
+  ol {
+    margin: var(--space-2) 0 0;
+    padding: var(--space-3) var(--space-4) var(--space-3) var(--space-6);
+    background: var(--bg-elevated);
+    border-left: 3px solid var(--highlight);
+    border-radius: var(--radius-sm);
+    max-width: 40rem;
+  }
+</style>

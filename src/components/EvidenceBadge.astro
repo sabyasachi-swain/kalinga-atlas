@@ -1,0 +1,66 @@
+---
+/**
+ * Evidence badge: tier + type, always as colour AND glyph AND text (C3, C6).
+ * Never render a historical claim without one of these next to it.
+ */
+import type { EvidenceLevel, EvidenceType } from '@data/schema';
+
+interface Props {
+  level: EvidenceLevel;
+  type: EvidenceType;
+  /** Compact mode hides the long label but keeps it for screen readers. */
+  compact?: boolean;
+}
+
+const { level, type, compact = false } = Astro.props;
+
+const TIER: Record<EvidenceLevel, { glyph: string; css: string; help: string }> = {
+  Confirmed: { glyph: '✓✓', css: 'confirmed', help: 'Direct archaeological or inscriptional evidence, backed by at least two sources.' },
+  'Strongly Supported': { glyph: '✓', css: 'strong', help: 'Several independent sources agree.' },
+  Probable: { glyph: '~', css: 'probable', help: 'One credible source, or a strong inference from evidence.' },
+  Hypothetical: { glyph: '?', css: 'hypothetical', help: 'A scholarly idea or a traditional story. Not proven.' },
+  UNVERIFIED: { glyph: '!', css: 'unverified', help: 'Not yet checked. Should never appear on the live site.' },
+};
+
+const TYPE: Record<EvidenceType, { glyph: string; label: string; help: string }> = {
+  archaeological: { glyph: '◆', label: 'Archaeology', help: 'Something dug up, found, or carved in stone.' },
+  scholarly: { glyph: '■', label: 'Scholars say', help: 'What historians conclude from the evidence.' },
+  traditional: { glyph: '●', label: 'Tradition', help: 'A story passed down, not proven by digging or inscriptions.' },
+};
+
+const tier = TIER[level];
+const kind = TYPE[type];
+---
+
+<span class:list={['badge', `tier-${tier.css}`]} title={tier.help}>
+  <span aria-hidden="true">{tier.glyph}</span>
+  <span class:list={[{ 'visually-hidden': compact }]}>{level}</span>
+</span>
+<span class:list={['badge', `type-${type}`]} title={kind.help}>
+  <span aria-hidden="true">{kind.glyph}</span>
+  <span class:list={[{ 'visually-hidden': compact }]}>{kind.label}</span>
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    padding: 0.15em 0.6em;
+    border-radius: var(--radius-pill);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    line-height: 1.4;
+    margin-right: var(--space-1);
+  }
+  .tier-confirmed { background: var(--tier-confirmed); }
+  .tier-strong { background: var(--tier-strong); color: var(--ink-900); }
+  .tier-probable { background: var(--tier-probable); }
+  .tier-hypothetical { background: var(--tier-hypothetical); }
+  .tier-unverified { background: var(--tier-unverified); }
+  .type-archaeological { background: transparent; color: var(--type-archaeological); border: 1.5px solid currentColor; }
+  .type-scholarly { background: transparent; color: var(--type-scholarly); border: 1.5px solid currentColor; }
+  .type-traditional { background: transparent; color: var(--type-traditional); border: 1.5px solid currentColor; }
+</style>

@@ -1,0 +1,109 @@
+---
+/**
+ * Base layout: document skeleton, skip link, landmarks, footer attribution.
+ * Content pages ship zero JavaScript; islands opt in with client:visible.
+ */
+import '@styles/tokens.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Use 'map' for the dark, full-bleed atlas view. */
+  surface?: 'page' | 'map';
+}
+
+const { title, description, surface = 'page' } = Astro.props;
+const fullTitle = title === 'Kalinga: Ancient Trade Routes' ? title : `${title} · Kalinga: Ancient Trade Routes`;
+---
+
+<!doctype html>
+<html lang="en" data-surface={surface}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/">Kalinga <span>Ancient Trade Routes</span></a>
+      <nav aria-label="Sections">
+        <a href="/#routes">Routes</a>
+        <a href="/#ports">Ports</a>
+        <a href="/#goods">Goods</a>
+        <a href="/#evidence">Evidence</a>
+        <a href="/sources">Sources</a>
+        <a href="/#timeline">Timeline</a>
+      </nav>
+    </header>
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>
+        Map data: <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain).
+        Illustrations are original works, CC BY-SA 4.0. Code is MIT.
+        Every historical claim on this site cites a published source; see <a href="/sources">Sources</a>.
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: var(--space-4);
+    top: -3rem;
+    background: var(--navy-800);
+    color: var(--parchment-100);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-sm);
+    z-index: 100;
+  }
+  .skip-link:focus { top: var(--space-4); }
+
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-4) var(--space-8);
+    padding: var(--space-4) var(--gutter);
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg-elevated);
+  }
+  .brand {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .brand span {
+    font-size: var(--text-sm);
+    font-family: var(--font-body);
+    color: var(--fg-muted);
+    margin-left: var(--space-2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  nav { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+  nav a { color: var(--fg); text-decoration: none; padding: var(--space-1) 0; border-bottom: 2px solid transparent; }
+  nav a:hover { border-bottom-color: var(--highlight); }
+
+  main { min-height: 60vh; }
+  main:focus { outline: none; }
+
+  .site-footer {
+    padding: var(--space-8) var(--gutter);
+    border-top: 1px solid var(--rule);
+    color: var(--fg-muted);
+    font-size: var(--text-sm);
+  }
+
+  [data-surface='map'] .site-header { background: var(--navy-800); border-color: var(--navy-600); }
+  [data-surface='map'] .brand,
+  [data-surface='map'] nav a { color: var(--parchment-100); }
+  [data-surface='map'] .brand span { color: var(--parchment-400); }
+</style>

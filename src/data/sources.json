@@ -1,0 +1,270 @@
+[
+  {
+    "id": "ashoka-separate-edicts",
+    "type": "classic",
+    "title": "Separate Rock Edicts of Ashoka at Dhauli and Jaugada",
+    "original_date_text": "c. 3rd century BCE",
+    "registry_category": "primary",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "Cite a specific critical edition (e.g. Hultzsch, Corpus Inscriptionum Indicarum I, 1925) with page numbers before use."
+  },
+  {
+    "id": "hathigumpha-inscription",
+    "type": "classic",
+    "title": "Hathigumpha Inscription of Kharavela, Udayagiri",
+    "original_date_text": "c. 1st century BCE",
+    "registry_category": "primary",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "Cite the published edition used (e.g. Epigraphia Indica XX) with line and page references before use."
+  },
+  {
+    "id": "epigraphia-indica",
+    "type": "report",
+    "title": "Epigraphia Indica",
+    "publisher": "Archaeological Survey of India",
+    "registry_category": "primary",
+    "approved_by_human": true,
+    "note": "Series. Every reference must give volume, inscription title and page."
+  },
+  {
+    "id": "periplus-casson-1989",
+    "type": "book",
+    "title": "The Periplus Maris Erythraei: Text with Introduction, Translation, and Commentary",
+    "author": [{ "literal": "Anonymous" }],
+    "translator": [{ "family": "Casson", "given": "Lionel" }],
+    "publisher": "Princeton University Press",
+    "issued": { "date-parts": [[1989]] },
+    "original_date_text": "1st century CE",
+    "registry_category": "primary",
+    "approved_by_human": true
+  },
+  {
+    "id": "ptolemy-geographia",
+    "type": "classic",
+    "title": "Geographia",
+    "author": [{ "family": "Ptolemy", "given": "Claudius" }],
+    "original_date_text": "2nd century CE",
+    "registry_category": "primary",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "References to Palura and Dosarene. Cite a specific edition or translation with book/chapter before use."
+  },
+  {
+    "id": "arthashastra",
+    "type": "classic",
+    "title": "Arthashastra",
+    "author": [{ "family": "Kautilya" }],
+    "registry_category": "primary",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "Cite a specific translation (e.g. Kangle or Olivelle) with book/chapter/section before use."
+  },
+  {
+    "id": "jataka-tales",
+    "type": "classic",
+    "title": "Jataka Tales",
+    "registry_category": "primary",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "Cite the specific Jataka number and the translation used before use. Traditional narrative: evidence_type is normally 'traditional'."
+  },
+  {
+    "id": "xuanzang-travels",
+    "type": "classic",
+    "title": "Record of the Western Regions (Da Tang Xiyu Ji)",
+    "author": [{ "family": "Xuanzang" }],
+    "original_date_text": "7th century CE",
+    "registry_category": "primary",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "Cite the translation used (e.g. Beal 1884, Watters 1904–05) with page numbers before use."
+  },
+  {
+    "id": "yijing-record",
+    "type": "classic",
+    "title": "A Record of Buddhist Practices Sent Home from the Southern Sea",
+    "author": [{ "family": "Yijing" }],
+    "original_date_text": "7th century CE",
+    "registry_category": "primary",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "Cite the translation used (e.g. Takakusu 1896) with page numbers before use."
+  },
+  {
+    "id": "behera-2000",
+    "type": "book",
+    "title": "Maritime Heritage of India",
+    "author": [{ "family": "Behera", "given": "K. S." }],
+    "publisher": "Aryan Books International",
+    "publisher-place": "New Delhi",
+    "issued": { "date-parts": [[2000]] },
+    "registry_category": "secondary",
+    "approved_by_human": true
+  },
+  {
+    "id": "behera-orissa-review",
+    "type": "article-journal",
+    "title": "Rebirth of a Maritime State",
+    "author": [{ "family": "Behera", "given": "K. S." }],
+    "container-title": "Orissa Review",
+    "registry_category": "secondary",
+    "approved_by_human": true,
+    "note": "Year, issue and pages must be confirmed by the researcher before use."
+  },
+  {
+    "id": "kulke-rothermund",
+    "type": "book",
+    "title": "A History of India",
+    "author": [
+      { "family": "Kulke", "given": "Hermann" },
+      { "family": "Rothermund", "given": "Dietmar" }
+    ],
+    "publisher": "Routledge",
+    "registry_category": "secondary",
+    "approved_by_human": true,
+    "note": "Multiple editions. State the edition and year in each source_ref.note."
+  },
+  {
+    "id": "ray-2003",
+    "type": "book",
+    "title": "The Archaeology of Seafaring in Ancient South Asia",
+    "author": [{ "family": "Ray", "given": "Himanshu Prabha" }],
+    "publisher": "Cambridge University Press",
+    "issued": { "date-parts": [[2003]] },
+    "registry_category": "secondary",
+    "approved_by_human": true
+  },
+  {
+    "id": "ray-2021",
+    "type": "book",
+    "title": "Coastal Shrines and Transnational Maritime Networks across India and Southeast Asia",
+    "author": [{ "family": "Ray", "given": "Himanshu Prabha" }],
+    "publisher": "Routledge",
+    "issued": { "date-parts": [[2021]] },
+    "registry_category": "secondary",
+    "approved_by_human": true
+  },
+  {
+    "id": "indian-history-congress",
+    "type": "report",
+    "title": "Proceedings of the Indian History Congress",
+    "registry_category": "secondary",
+    "approved_by_human": true,
+    "note": "Series. Every reference must give the session/volume, author, paper title and pages."
+  },
+  {
+    "id": "asi-annual-reports",
+    "type": "report",
+    "title": "Annual Report / Indian Archaeology: A Review",
+    "publisher": "Archaeological Survey of India",
+    "registry_category": "site-report",
+    "approved_by_human": true,
+    "note": "Series. Every reference must give the year, site and page. Covers Sisupalgarh, Manikapatna, Palur, Radhanagar and others."
+  },
+  {
+    "id": "haque-1980",
+    "type": "book",
+    "title": "Muslim Administration in Orissa 1568–1751",
+    "author": [{ "family": "Haque", "given": "M. A." }],
+    "publisher": "Punthi Pustak",
+    "publisher-place": "Calcutta",
+    "issued": { "date-parts": [[1980]] },
+    "registry_category": "early-modern",
+    "approved_by_human": true
+  },
+  {
+    "id": "ray-bc-1981",
+    "type": "book",
+    "title": "Orissa under the Mughals",
+    "author": [{ "family": "Ray", "given": "B. C." }],
+    "publisher": "Punthi Pustak",
+    "publisher-place": "Calcutta",
+    "issued": { "date-parts": [[1981]] },
+    "registry_category": "early-modern",
+    "approved_by_human": true
+  },
+  {
+    "id": "patra-1971",
+    "type": "book",
+    "title": "Orissa under the East India Company",
+    "author": [{ "family": "Patra", "given": "K. M." }],
+    "publisher": "Munshiram Manoharlal",
+    "publisher-place": "New Delhi",
+    "issued": { "date-parts": [[1971]] },
+    "registry_category": "early-modern",
+    "approved_by_human": true
+  },
+  {
+    "id": "mahtab-history-of-orissa",
+    "type": "book",
+    "title": "History of Orissa",
+    "author": [{ "family": "Mahtab", "given": "Harekrushna" }],
+    "registry_category": "early-modern",
+    "approved_by_human": true,
+    "note": "Multiple editions. State the edition and year in each source_ref.note."
+  },
+  {
+    "id": "hunter-1872",
+    "type": "book",
+    "title": "Orissa: Or the Vicissitudes of an Indian Province under Native and British Rule",
+    "author": [{ "family": "Hunter", "given": "William Wilson" }],
+    "publisher": "Smith, Elder & Co.",
+    "publisher-place": "London",
+    "issued": { "date-parts": [[1872]] },
+    "registry_category": "early-modern",
+    "public_domain": true,
+    "approved_by_human": true
+  },
+  {
+    "id": "stirling-1825",
+    "type": "article-journal",
+    "title": "An Account, Geographical, Statistical, and Historical, of Orissa Proper or Cuttack",
+    "author": [{ "family": "Stirling", "given": "Andrew" }],
+    "container-title": "Asiatic Researches",
+    "volume": "15",
+    "issued": { "date-parts": [[1825]] },
+    "registry_category": "early-modern",
+    "public_domain": true,
+    "approved_by_human": true
+  },
+  {
+    "id": "imperial-gazetteer-orissa",
+    "type": "entry-encyclopedia",
+    "title": "Imperial Gazetteer of India (Orissa entries)",
+    "registry_category": "early-modern",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "State the edition, volume and page in each source_ref."
+  },
+  {
+    "id": "district-gazetteers-odisha",
+    "type": "entry-encyclopedia",
+    "title": "District Gazetteers (Cuttack, Puri, Ganjam, Balasore), British-era editions",
+    "registry_category": "early-modern",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "State district, edition, year and page in each source_ref."
+  },
+  {
+    "id": "natural-earth",
+    "type": "map",
+    "title": "Natural Earth, 1:50m Physical and Cultural Vectors",
+    "URL": "https://www.naturalearthdata.com/",
+    "registry_category": "geospatial",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "Public domain. Used for modern coastlines, land and rivers. Historical coastlines are separate, cited reconstructions."
+  },
+  {
+    "id": "rennell-1782",
+    "type": "map",
+    "title": "Map of Hindoostan",
+    "author": [{ "family": "Rennell", "given": "James" }],
+    "issued": { "date-parts": [[1782]] },
+    "registry_category": "geospatial",
+    "public_domain": true,
+    "approved_by_human": true
+  }
+]

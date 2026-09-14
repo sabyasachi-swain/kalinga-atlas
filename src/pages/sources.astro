@@ -1,0 +1,64 @@
+---
+import Base from '@layouts/Base.astro';
+import { getSources } from '@data/load';
+import { formatFull } from '@data/cite';
+
+const sources = getSources();
+const CATEGORY_LABEL: Record<string, string> = {
+  primary: 'Primary sources: inscriptions and texts',
+  secondary: 'Academic studies',
+  'site-report': 'Archaeological site reports',
+  'early-modern': 'Early modern and colonial sources (1500–1900)',
+  geospatial: 'Maps and geospatial data',
+};
+const groups = Object.keys(CATEGORY_LABEL).map((key) => ({
+  key,
+  label: CATEGORY_LABEL[key],
+  items: sources.filter((s) => s.registry_category === key).sort((a, b) => formatFull(a).localeCompare(formatFull(b))),
+}));
+---
+
+<Base title="Sources" description="Every source cited on Kalinga: Ancient Trade Routes, grouped by type.">
+  <article class="sources">
+    <h1>Sources &amp; Bibliography</h1>
+    <p class="lede">
+      Every claim on this site points to one of the works below. Sources marked <em>public domain</em> may be read
+      freely online; the rest are cited under fair dealing for education.
+    </p>
+    {
+      groups.map((g) => (
+        <section aria-labelledby={`cat-${g.key}`}>
+          <h2 id={`cat-${g.key}`}>{g.label}</h2>
+          {g.items.length === 0 ? (
+            <p class="empty">None yet.</p>
+          ) : (
+            <ol>
+              {g.items.map((s) => (
+                <li id={`src-${s.id}`}>
+                  <span set:html={formatFull(s).replace(/\*([^*]+)\*/g, '<cite>$1</cite>')} />
+                  {s.URL && (
+                    <>
+                      {' '}
+                      <a href={s.URL} rel="noopener">link</a>
+                    </>
+                  )}
+                  {s.note && <p class="note">{s.note}</p>}
+                </li>
+              ))}
+            </ol>
+          )}
+        </section>
+      ))
+    }
+  </article>
+</Base>
+
+<style>
+  .sources { padding: var(--space-8) var(--gutter); max-width: 50rem; margin: 0 auto; }
+  .lede { color: var(--fg-muted); }
+  ol { padding-left: var(--space-6); }
+  li { margin-bottom: var(--space-3); }
+  cite { font-style: italic; }
+  .note { font-size: var(--text-sm); color: var(--fg-muted); margin: var(--space-1) 0 0; }
+  .empty { color: var(--fg-muted); font-style: italic; }
+</style>

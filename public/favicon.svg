@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
+  <!-- Original work, CC BY-SA 4.0. A simplified sail on a dark sea. -->
+  <title id="t">Kalinga: Ancient Trade Routes</title>
+  <rect width="64" height="64" rx="12" fill="#0b1f3a"/>
+  <path d="M20 44 L44 44 L40 50 L24 50 Z" fill="#c9a227"/>
+  <path d="M32 14 L32 44 L20 44 Z" fill="#f3e9d2"/>
+  <path d="M33 18 L33 44 L46 44 Z" fill="#7fc4b3"/>
+  <path d="M12 54 Q22 50 32 54 T52 54" stroke="#7fc4b3" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

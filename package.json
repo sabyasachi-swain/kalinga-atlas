@@ -1,0 +1,51 @@
+{
+  "name": "kalinga-atlas",
+  "version": "0.1.0",
+  "description": "Kalinga: Ancient Trade Routes — an interactive historical atlas of Odisha's maritime and overland trade, c. 300 BCE – 1900 CE.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "prebuild": "npm run validate:data",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "validate:data": "tsx scripts/validate-data.ts",
+    "readability": "tsx scripts/readability.ts",
+    "fetch:geo": "tsx scripts/fetch-geo.ts",
+    "audit:lighthouse": "lighthouse http://localhost:4321 --output=html --output=json --output-path=./docs/audits/lighthouse --chrome-flags=\"--headless\" --quiet",
+    "audit:a11y": "lighthouse http://localhost:4321 --only-categories=accessibility --output=json --output-path=./docs/audits/a11y.json --chrome-flags=\"--headless\" --quiet"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.2.0",
+    "astro": "^5.7.0",
+    "d3-geo": "^3.1.1",
+    "d3-scale": "^4.0.2",
+    "d3-selection": "^3.0.0",
+    "d3-transition": "^3.0.1",
+    "d3-zoom": "^3.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "topojson-client": "^3.1.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/d3-geo": "^3.1.0",
+    "@types/d3-scale": "^4.0.9",
+    "@types/d3-selection": "^3.0.11",
+    "@types/d3-transition": "^3.0.9",
+    "@types/d3-zoom": "^3.0.8",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@types/topojson-client": "^3.1.5",
+    "lighthouse": "^12.6.0",
+    "text-readability": "^1.1.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  }
+}
