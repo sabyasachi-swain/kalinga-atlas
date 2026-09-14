@@ -1,0 +1,36 @@
+---
+import Base from '@layouts/Base.astro';
+---
+
+<Base title="Page not found" description="This page does not exist on Kalinga: Ancient Trade Routes.">
+  <article class="not-found">
+    <h1>Page not found</h1>
+    <p>
+      This page has drifted off the map. It may have been renamed, or it never existed &mdash; try one of the
+      sections below.
+    </p>
+    <ul class="links">
+      <li><a href="/">Home &amp; atlas</a></li>
+      <li><a href="/routes">Trade routes</a></li>
+      <li><a href="/ports">Ancient ports</a></li>
+      <li><a href="/goods">Goods &amp; commodities</a></li>
+      <li><a href="/evidence">Archaeological evidence</a></li>
+      <li><a href="/sources">Sources</a></li>
+    </ul>
+  </article>
+</Base>
+
+<style>
+  .not-found { padding: var(--space-12) var(--gutter); max-width: 40rem; margin: 0 auto; text-align: center; }
+  .links { list-style: none; padding: 0; margin: var(--space-6) 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4); }
+  .links a {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg-elevated);
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    color: var(--fg);
+  }
+  .links a:hover,
+  .links a:focus-visible { color: var(--accent); }
+</style>

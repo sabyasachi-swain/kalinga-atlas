@@ -32,10 +32,25 @@
     "id": "periplus-casson-1989",
     "type": "book",
     "title": "The Periplus Maris Erythraei: Text with Introduction, Translation, and Commentary",
-    "author": [{ "literal": "Anonymous" }],
-    "translator": [{ "family": "Casson", "given": "Lionel" }],
+    "author": [
+      {
+        "literal": "Anonymous"
+      }
+    ],
+    "translator": [
+      {
+        "family": "Casson",
+        "given": "Lionel"
+      }
+    ],
     "publisher": "Princeton University Press",
-    "issued": { "date-parts": [[1989]] },
+    "issued": {
+      "date-parts": [
+        [
+          1989
+        ]
+      ]
+    },
     "original_date_text": "1st century CE",
     "registry_category": "primary",
     "approved_by_human": true
@@ -44,7 +59,12 @@
     "id": "ptolemy-geographia",
     "type": "classic",
     "title": "Geographia",
-    "author": [{ "family": "Ptolemy", "given": "Claudius" }],
+    "author": [
+      {
+        "family": "Ptolemy",
+        "given": "Claudius"
+      }
+    ],
     "original_date_text": "2nd century CE",
     "registry_category": "primary",
     "public_domain": true,
@@ -55,7 +75,11 @@
     "id": "arthashastra",
     "type": "classic",
     "title": "Arthashastra",
-    "author": [{ "family": "Kautilya" }],
+    "author": [
+      {
+        "family": "Kautilya"
+      }
+    ],
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
@@ -74,7 +98,11 @@
     "id": "xuanzang-travels",
     "type": "classic",
     "title": "Record of the Western Regions (Da Tang Xiyu Ji)",
-    "author": [{ "family": "Xuanzang" }],
+    "author": [
+      {
+        "family": "Xuanzang"
+      }
+    ],
     "original_date_text": "7th century CE",
     "registry_category": "primary",
     "public_domain": true,
@@ -85,7 +113,11 @@
     "id": "yijing-record",
     "type": "classic",
     "title": "A Record of Buddhist Practices Sent Home from the Southern Sea",
-    "author": [{ "family": "Yijing" }],
+    "author": [
+      {
+        "family": "Yijing"
+      }
+    ],
     "original_date_text": "7th century CE",
     "registry_category": "primary",
     "public_domain": true,
@@ -96,10 +128,21 @@
     "id": "behera-2000",
     "type": "book",
     "title": "Maritime Heritage of India",
-    "author": [{ "family": "Behera", "given": "K. S." }],
+    "author": [
+      {
+        "family": "Behera",
+        "given": "K. S."
+      }
+    ],
     "publisher": "Aryan Books International",
     "publisher-place": "New Delhi",
-    "issued": { "date-parts": [[2000]] },
+    "issued": {
+      "date-parts": [
+        [
+          2000
+        ]
+      ]
+    },
     "registry_category": "secondary",
     "approved_by_human": true
   },
@@ -107,7 +150,12 @@
     "id": "behera-orissa-review",
     "type": "article-journal",
     "title": "Rebirth of a Maritime State",
-    "author": [{ "family": "Behera", "given": "K. S." }],
+    "author": [
+      {
+        "family": "Behera",
+        "given": "K. S."
+      }
+    ],
     "container-title": "Orissa Review",
     "registry_category": "secondary",
     "approved_by_human": true,
@@ -118,8 +166,14 @@
     "type": "book",
     "title": "A History of India",
     "author": [
-      { "family": "Kulke", "given": "Hermann" },
-      { "family": "Rothermund", "given": "Dietmar" }
+      {
+        "family": "Kulke",
+        "given": "Hermann"
+      },
+      {
+        "family": "Rothermund",
+        "given": "Dietmar"
+      }
     ],
     "publisher": "Routledge",
     "registry_category": "secondary",
@@ -130,9 +184,20 @@
     "id": "ray-2003",
     "type": "book",
     "title": "The Archaeology of Seafaring in Ancient South Asia",
-    "author": [{ "family": "Ray", "given": "Himanshu Prabha" }],
+    "author": [
+      {
+        "family": "Ray",
+        "given": "Himanshu Prabha"
+      }
+    ],
     "publisher": "Cambridge University Press",
-    "issued": { "date-parts": [[2003]] },
+    "issued": {
+      "date-parts": [
+        [
+          2003
+        ]
+      ]
+    },
     "registry_category": "secondary",
     "approved_by_human": true
   },
@@ -140,9 +205,20 @@
     "id": "ray-2021",
     "type": "book",
     "title": "Coastal Shrines and Transnational Maritime Networks across India and Southeast Asia",
-    "author": [{ "family": "Ray", "given": "Himanshu Prabha" }],
+    "author": [
+      {
+        "family": "Ray",
+        "given": "Himanshu Prabha"
+      }
+    ],
     "publisher": "Routledge",
-    "issued": { "date-parts": [[2021]] },
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
     "registry_category": "secondary",
     "approved_by_human": true
   },
@@ -167,10 +243,21 @@
     "id": "haque-1980",
     "type": "book",
     "title": "Muslim Administration in Orissa 1568–1751",
-    "author": [{ "family": "Haque", "given": "M. A." }],
+    "author": [
+      {
+        "family": "Haque",
+        "given": "M. A."
+      }
+    ],
     "publisher": "Punthi Pustak",
     "publisher-place": "Calcutta",
-    "issued": { "date-parts": [[1980]] },
+    "issued": {
+      "date-parts": [
+        [
+          1980
+        ]
+      ]
+    },
     "registry_category": "early-modern",
     "approved_by_human": true
   },
@@ -178,10 +265,21 @@
     "id": "ray-bc-1981",
     "type": "book",
     "title": "Orissa under the Mughals",
-    "author": [{ "family": "Ray", "given": "B. C." }],
+    "author": [
+      {
+        "family": "Ray",
+        "given": "B. C."
+      }
+    ],
     "publisher": "Punthi Pustak",
     "publisher-place": "Calcutta",
-    "issued": { "date-parts": [[1981]] },
+    "issued": {
+      "date-parts": [
+        [
+          1981
+        ]
+      ]
+    },
     "registry_category": "early-modern",
     "approved_by_human": true
   },
@@ -189,10 +287,21 @@
     "id": "patra-1971",
     "type": "book",
     "title": "Orissa under the East India Company",
-    "author": [{ "family": "Patra", "given": "K. M." }],
+    "author": [
+      {
+        "family": "Patra",
+        "given": "K. M."
+      }
+    ],
     "publisher": "Munshiram Manoharlal",
     "publisher-place": "New Delhi",
-    "issued": { "date-parts": [[1971]] },
+    "issued": {
+      "date-parts": [
+        [
+          1971
+        ]
+      ]
+    },
     "registry_category": "early-modern",
     "approved_by_human": true
   },
@@ -200,7 +309,12 @@
     "id": "mahtab-history-of-orissa",
     "type": "book",
     "title": "History of Orissa",
-    "author": [{ "family": "Mahtab", "given": "Harekrushna" }],
+    "author": [
+      {
+        "family": "Mahtab",
+        "given": "Harekrushna"
+      }
+    ],
     "registry_category": "early-modern",
     "approved_by_human": true,
     "note": "Multiple editions. State the edition and year in each source_ref.note."
@@ -209,10 +323,21 @@
     "id": "hunter-1872",
     "type": "book",
     "title": "Orissa: Or the Vicissitudes of an Indian Province under Native and British Rule",
-    "author": [{ "family": "Hunter", "given": "William Wilson" }],
+    "author": [
+      {
+        "family": "Hunter",
+        "given": "William Wilson"
+      }
+    ],
     "publisher": "Smith, Elder & Co.",
     "publisher-place": "London",
-    "issued": { "date-parts": [[1872]] },
+    "issued": {
+      "date-parts": [
+        [
+          1872
+        ]
+      ]
+    },
     "registry_category": "early-modern",
     "public_domain": true,
     "approved_by_human": true
@@ -221,10 +346,21 @@
     "id": "stirling-1825",
     "type": "article-journal",
     "title": "An Account, Geographical, Statistical, and Historical, of Orissa Proper or Cuttack",
-    "author": [{ "family": "Stirling", "given": "Andrew" }],
+    "author": [
+      {
+        "family": "Stirling",
+        "given": "Andrew"
+      }
+    ],
     "container-title": "Asiatic Researches",
     "volume": "15",
-    "issued": { "date-parts": [[1825]] },
+    "issued": {
+      "date-parts": [
+        [
+          1825
+        ]
+      ]
+    },
     "registry_category": "early-modern",
     "public_domain": true,
     "approved_by_human": true
@@ -261,10 +397,471 @@
     "id": "rennell-1782",
     "type": "map",
     "title": "Map of Hindoostan",
-    "author": [{ "family": "Rennell", "given": "James" }],
-    "issued": { "date-parts": [[1782]] },
+    "author": [
+      {
+        "family": "Rennell",
+        "given": "James"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1782
+        ]
+      ]
+    },
     "registry_category": "geospatial",
     "public_domain": true,
     "approved_by_human": true
+  },
+  {
+    "id": "tripati-2021-current-science",
+    "type": "article-journal",
+    "title": "Indo-Arabian stone anchor of Manikapatna, Odisha, east coast of India: an indicator of maritime contacts of Odisha",
+    "author": [
+      {
+        "family": "Tripati",
+        "given": "Sila"
+      }
+    ],
+    "container-title": "Current Science",
+    "volume": "120",
+    "page": "1211-1216",
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          4,
+          10
+        ]
+      ]
+    },
+    "URL": "https://www.currentscience.ac.in/Volumes/120/07/1211.pdf",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Peer-reviewed journal of the Indian Academy of Sciences; author is a maritime archaeologist at CSIR-National Institute of Oceanography. Vol. 120, No. 7, 10 April 2021. Full text read directly from the publisher PDF."
+  },
+  {
+    "id": "tripati-2022-scientific-reports",
+    "type": "article-journal",
+    "title": "Geochemical provenance of an Indo-Arabian stone anchor from Manikapatna highlights the medieval maritime trade of India",
+    "author": [
+      {
+        "family": "Tripati",
+        "given": "Sila"
+      },
+      {
+        "family": "Ray",
+        "given": "Jyotiranjan S."
+      },
+      {
+        "family": "Behera",
+        "given": "Rudra Prasad"
+      },
+      {
+        "family": "Babu",
+        "given": "Prakash"
+      },
+      {
+        "family": "Mahala",
+        "given": "Milan Kumar"
+      },
+      {
+        "family": "Kocherla",
+        "given": "Murali"
+      },
+      {
+        "family": "Khedekar",
+        "given": "Vijay"
+      }
+    ],
+    "container-title": "Scientific Reports",
+    "volume": "12",
+    "page": "13559",
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          8,
+          9
+        ]
+      ]
+    },
+    "DOI": "10.1038/s41598-022-17910-9",
+    "URL": "https://doi.org/10.1038/s41598-022-17910-9",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Peer-reviewed, open access (Nature Portfolio); article number 13559. Read via PubMed Central PMC9363498. Primary geochemical study of an artefact from the site."
+  },
+  {
+    "id": "patra-patra-ohrj-maritime-archaeology",
+    "type": "article-journal",
+    "title": "Archaeology and the Maritime History of Ancient Orissa",
+    "author": [
+      {
+        "family": "Patra",
+        "given": "Sushanta Kumar"
+      },
+      {
+        "family": "Patra",
+        "given": "Benudhar"
+      }
+    ],
+    "container-title": "Orissa Historical Research Journal",
+    "volume": "XLVII",
+    "page": "107-118",
+    "URL": "https://magazines.odisha.gov.in/Journal/Journal2/pdf/ohrj-014.pdf",
+    "registry_category": "secondary",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Orissa Historical Research Journal, Vol. XLVII, No. 2, published by the Odisha State Museum and hosted on the Government of Odisha magazines portal. OHRJ is named in the skill registry as a journal of acceptable calibre, to be flagged on first use. Year of issue is not printed in the PDF consulted; its latest citation is from 1999, so it is early 2000s. Year to be confirmed."
+  },
+  {
+    "id": "patnaik-2014-odisha-review",
+    "type": "article-journal",
+    "title": "Puri: A Study of Early Trade and Pilgrim Routes",
+    "author": [
+      {
+        "family": "Patnaik",
+        "given": "Sunil Kumar"
+      }
+    ],
+    "container-title": "Odisha Review",
+    "page": "103-109",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          6
+        ]
+      ]
+    },
+    "URL": "https://magazines.odisha.gov.in/Orissareview/2014/Jun/engpdf/103-109.pdf",
+    "registry_category": "secondary",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Odisha Review, June 2014, published by the Information and Public Relations Department, Government of Odisha. The registry already lists Orissa Review for a Behera article; this is a different paper and so gets its own entry. Author is associated with OIMSEAS, the institute that excavated Manikapatna."
+  },
+  {
+    "id": "sircar-select-inscriptions-1",
+    "type": "book",
+    "title": "Select Inscriptions Bearing on Indian History and Civilization, Volume I: From the Sixth Century B.C. to the Sixth Century A.D.",
+    "editor": [
+      {
+        "family": "Sircar",
+        "given": "Dines Chandra"
+      }
+    ],
+    "publisher": "University of Calcutta",
+    "publisher-place": "Calcutta",
+    "issued": {
+      "date-parts": [
+        [
+          1965
+        ]
+      ]
+    },
+    "volume": "1",
+    "URL": "https://archive.org/details/dli.calcutta.11040",
+    "registry_category": "primary",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Second edition, revised and enlarged, published by the University of Calcutta, 1965. The standard critical anthology of early Indian inscriptions; Sircar was Carmichael Professor of Ancient Indian History and Culture at Calcutta University and formerly Government Epigraphist for India. Needed as the second, independent edition of the Hathigumpha inscription (No. 91, pp. 213-221), whose readings and dating differ from Jayaswal & Banerji in Epigraphia Indica XX. Read in the archive.org scan dli.calcutta.11040."
+  },
+  {
+    "id": "pradhan-mohanty-mishra-2000",
+    "type": "chapter",
+    "title": "Manikapatna: An Ancient and Medieval Port on the Coast of Orissa",
+    "author": [
+      {
+        "family": "Pradhan",
+        "given": "D."
+      },
+      {
+        "family": "Mohanty",
+        "given": "P."
+      },
+      {
+        "family": "Mishra",
+        "given": "J."
+      }
+    ],
+    "editor": [
+      {
+        "family": "Basa",
+        "given": "K. K."
+      },
+      {
+        "family": "Mohanty",
+        "given": "P."
+      }
+    ],
+    "container-title": "Archaeology of Orissa, Vol. 1",
+    "publisher-place": "Delhi",
+    "issued": {
+      "date-parts": [
+        [
+          2000
+        ]
+      ]
+    },
+    "volume": "1",
+    "page": "473-493",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. The primary published report on the OIMSEAS excavations at Manikapatna, in a scholarly edited volume. Cited as the source of B. N. Mukherjee's reading of the Kharoshthi potsherd at p. 486. NOT READ BY ME: the reference and page come from Patra & Patra, OHRJ XLVII(2), p. 118, n. 28. Page not verified. Any entry citing it must stay draft until a copy is obtained."
+  },
+  {
+    "id": "dayalan-2019-acta-via-serica",
+    "type": "article-journal",
+    "title": "Ancient Seaports on the Eastern Coast of India: The Hub of the Maritime Silk Route Network",
+    "author": [
+      {
+        "family": "Dayalan",
+        "given": "Duraiswamy"
+      }
+    ],
+    "container-title": "Acta Via Serica",
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          6
+        ]
+      ]
+    },
+    "volume": "4",
+    "page": "25-69",
+    "URL": "https://www.ancientportsantiques.com/wp-content/uploads/Documents/PLACES/IndOc-Gulf/India-Dayalan2019.pdf",
+    "registry_category": "secondary",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Peer-reviewed journal of the Institute for the Humanities, Keimyung University, Korea (Acta Via Serica 4/1, June 2019). The author is a former Director of the Archaeological Survey of India. Read from a 36-page author's offprint PDF that carries no journal pagination, so refs cite the offprint page plus the section heading; journal page numbers are NOT verified. Independent of the Odisha-published literature and gives coordinates for every port it treats."
+  },
+  {
+    "id": "patnaik-2014-radhanagar",
+    "type": "article-journal",
+    "title": "Kankia-Radhanagar: An Early Historical Buddhist Settlement",
+    "author": [
+      {
+        "family": "Patnaik",
+        "given": "Sunil Kumar"
+      }
+    ],
+    "container-title": "Odisha Review",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          12
+        ]
+      ]
+    },
+    "page": "88-98",
+    "URL": "https://magazines.odisha.gov.in/Orissareview/2014/Dec/engpdf/89-98.pdf",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Odisha Review, December 2014, Government of Odisha. The author directed the 2010-13 excavations at Radhanagar for OIMSEAS, so this is the excavator's own summary of the dig, published before the formal 2015 report. Read in full from the government portal PDF. A separate paper from patnaik-2014-odisha-review (June 2014, on Puri) by the same author, hence a separate source id."
+  },
+  {
+    "id": "pradhan-2014-odisha-review-viraja",
+    "type": "article-journal",
+    "title": "Situating Viraja Kshetra and Its Environs in the Odishan Historiography",
+    "author": [
+      {
+        "family": "Pradhan",
+        "given": "Atul Chandra"
+      }
+    ],
+    "container-title": "Odisha Review",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          11
+        ]
+      ]
+    },
+    "page": "107-113",
+    "URL": "https://magazines.odisha.gov.in/Orissareview/2014/Nov/engpdf/108-113.pdf",
+    "registry_category": "secondary",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Odisha Review, November 2014, Government of Odisha. Used only for the Jajpur Buddhist complex: it is the one source read in this session that prints dated occupation ranges and coordinates for Lalitgiri, Ratnagiri and Udayagiri (p. 109). Read in full from the government portal PDF."
+  },
+  {
+    "id": "mohanty-smith-2009-sisupalgarh",
+    "type": "article-journal",
+    "title": "Excavations at Sisupalgarh, 2008",
+    "author": [
+      {
+        "family": "Mohanty",
+        "given": "R. K."
+      },
+      {
+        "family": "Smith",
+        "given": "Monica L."
+      }
+    ],
+    "container-title": "Man and Environment",
+    "issued": {
+      "date-parts": [
+        [
+          2009
+        ]
+      ]
+    },
+    "volume": "XXXIV",
+    "page": "47-56",
+    "URL": "https://anthro.ucla.edu/wp-content/uploads/2025/11/2009MohantyandSmithME.pdf",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Man and Environment XXXIV(1), journal of the Indian Society for Prehistoric and Quaternary Studies, named in the skill registry as a journal of acceptable calibre. A primary fieldwork report by the joint Deccan College (Pune) and UCLA project directors. Read from the author's copy hosted by the UCLA Department of Anthropology."
+  },
+  {
+    "id": "kingwell-banham-2018-ancient-asia",
+    "type": "article-journal",
+    "title": "Archaeobotanical Investigations into Golbai Sasan and Gopalpur, Two Neolithic-Chalcolithic Settlements of Odisha",
+    "author": [
+      {
+        "family": "Kingwell-Banham",
+        "given": "Eleanor"
+      },
+      {
+        "family": "Karoune",
+        "given": "Emma"
+      },
+      {
+        "family": "Mohanty",
+        "given": "Rabindra Kumar"
+      },
+      {
+        "family": "Fuller",
+        "given": "Dorian Q."
+      }
+    ],
+    "container-title": "Ancient Asia",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "volume": "9",
+    "page": "1-14",
+    "URL": "https://doi.org/10.5334/aa.164",
+    "DOI": "10.5334/aa.164",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Ancient Asia 9, art. 5 - peer-reviewed and open access; the journal is named in the skill registry as of acceptable calibre. Primary archaeobotanical study with AMS radiocarbon dates from Golbai Sasan. Read from the UCL Discovery open-access copy. Note: the 'Gopalpur' in this paper is a Neolithic mound in Jajpur district and is NOT the Ganjam port of the same name."
+  },
+  {
+    "id": "ardika-bellwood-1991-antiquity",
+    "type": "article-journal",
+    "title": "Sembiran: the beginnings of Indian contact with Bali",
+    "author": [
+      {
+        "family": "Ardika",
+        "given": "I. Wayan"
+      },
+      {
+        "family": "Bellwood",
+        "given": "Peter"
+      }
+    ],
+    "container-title": "Antiquity",
+    "issued": {
+      "date-parts": [
+        [
+          1991
+        ]
+      ]
+    },
+    "volume": "65",
+    "page": "221-232",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Antiquity 65(247), 1991 - a leading peer-reviewed archaeology journal. The excavators' own report on Indian Rouletted Ware, an Arikamedu type-10 sherd and a Kharoshthi graffito from Sembiran, north Bali, dated c. AD 1-200. Read from a PDF hosted in the University of Pennsylvania archaeobibliography file store."
+  },
+  {
+    "id": "imperial-gazetteer-india-1908",
+    "type": "entry-encyclopedia",
+    "title": "The Imperial Gazetteer of India, new edition (Oxford, Clarendon Press, 1907-09)",
+    "issued": {
+      "date-parts": [
+        [
+          1908
+        ]
+      ]
+    },
+    "registry_category": "early-modern",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Public domain. The registry already carries imperial-gazetteer-orissa for the Orissa entries; this separate id is for places OUTSIDE the Orissa Division that the atlas needs - Gopalpur, Ganjam Town, Calingapatam and Jaugada (Madras Presidency, Ganjam District), Calcutta, Rangoon. Volumes 6, 9, 11, 12, 14, 15, 20 and 21 read as archive.org OCR (identifiers imperialgazetteeNNgreauoft). Every ref gives volume and printed page. Reviewers may prefer to merge this into imperial-gazetteer-orissa and widen that entry's title instead."
+  },
+  {
+    "id": "patra-2014-odisha-review-ports",
+    "type": "article-journal",
+    "title": "Ports in Ancient Odisha: Historical Perspective",
+    "author": [
+      {
+        "family": "Patra",
+        "given": "Benudhar"
+      }
+    ],
+    "container-title": "Odisha Review",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          11
+        ]
+      ]
+    },
+    "page": "118-125",
+    "URL": "https://magazines.odisha.gov.in/Orissareview/2014/Nov/engpdf/119-125.pdf",
+    "registry_category": "secondary",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Odisha Review, November 2014, published by the Information and Public Relations Department, Government of Odisha; the same series already carries patnaik-2014-odisha-review, but this is a different paper by a different author and so gets its own entry. Author is a historian at Post Graduate Government College, Chandigarh, publishing widely on Kalinga's maritime history. Full text read from the publisher PDF (the site's TLS certificate has expired, so it was fetched with curl -k). Note that the PDF filename says 119-125 while the printed page range is 118-125. Shares an author with patra-patra-ohrj-maritime-archaeology, so the two are NOT fully independent works."
+  },
+  {
+    "id": "mccrindle-ptolemy-1927",
+    "type": "book",
+    "title": "Ancient India as Described by Ptolemy",
+    "author": [
+      {
+        "family": "McCrindle",
+        "given": "John Watson"
+      }
+    ],
+    "editor": [
+      {
+        "family": "Majumdar Sastri",
+        "given": "Surendranath"
+      }
+    ],
+    "publisher": "Chuckervertty, Chatterjee & Co.",
+    "publisher-place": "Calcutta",
+    "issued": {
+      "date-parts": [
+        [
+          1927
+        ]
+      ]
+    },
+    "original_date_text": "first published Indian Antiquary 1884; Trubner 1885",
+    "registry_category": "primary",
+    "public_domain": true,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. McCrindle's annotated translation of the Indian chapters of Ptolemy's Geographia, with S. N. Majumdar Sastri's additional notes. Needed as a source distinct from `ptolemy-geographia` because the claims cited (Sambalaka = Sambalpur, the diamond district, V. Ball's objection to the Adamas identifications) are the modern editors' commentary, NOT anything Ptolemy wrote; citing them under Ptolemy would misattribute them. Read in the archive.org scan `in.ernet.dli.2015.65897`, a Today & Tomorrow's Printers and Publishers (New Delhi) reprint edited by Ramchandra Jain, whose pagination matches the 1927 Calcutta edition cited by Patra 2014, n. 6. The reprint's own imprint date is not printed; a reviewer should confirm which edition to name in the bibliography."
   }
 ]

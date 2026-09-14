@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Destination marker</title>
+  <desc id="desc">Two concentric open rings with no inner dot, marking a foreign trading destination outside Kalinga on the trade-routes map.</desc>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="currentColor" stroke-width="3" />
+  <circle cx="32" cy="32" r="14" fill="none" stroke="currentColor" stroke-width="3" />
+</svg>

@@ -1,0 +1,73 @@
+---
+/**
+ * Attribution page. Renders docs/attribution.md through the `docs` content
+ * collection (Astro's built-in markdown pipeline — no hand-rolled parser,
+ * no extra dependency) once that file exists; until then this page still
+ * carries the one thing that must always be true: the licence summary.
+ */
+import Base from '@layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import licenseText from '../../LICENSE?raw';
+
+const docs = await getCollection('docs');
+const attributionEntry = docs.find((e) => e.id === 'attribution');
+const { Content } = attributionEntry ? await render(attributionEntry) : { Content: undefined };
+---
+
+<Base
+  title="Attribution"
+  description="Licensing and credit for the code, data, illustrations, fonts and map data behind Kalinga: Ancient Trade Routes."
+>
+  <article class="attribution">
+    <h1>Attribution</h1>
+
+    {
+      Content ? (
+        <div class="body">
+          <Content />
+        </div>
+      ) : (
+        <p class="lede">
+          Full written attribution is coming soon. In the meantime, here is the licence summary that governs
+          everything on this site.
+        </p>
+      )
+    }
+
+    <section aria-labelledby="licence-h">
+      <h2 id="licence-h">Licence summary</h2>
+      <ul class="licence-list">
+        <li><strong>Code:</strong> MIT.</li>
+        <li><strong>Original illustrations and icons</strong> (<code>src/assets/</code>): Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0), unless a file states otherwise.</li>
+        <li><strong>Historical data</strong> (<code>src/data/</code>): Creative Commons Attribution 4.0 (CC BY 4.0); every fact cites its published source, listed in full on the <a href="/sources">Sources</a> page.</li>
+        <li><strong>Fonts:</strong> EB Garamond, Source Sans 3 and Noto Sans Oriya, all SIL Open Font Licence, self-hosted from <code>public/fonts/</code>.</li>
+        <li><strong>Map data:</strong> <a href="https://www.naturalearthdata.com/">Natural Earth</a>, public domain.</li>
+      </ul>
+      <details class="full-licence">
+        <summary>Full MIT licence text</summary>
+        <pre>{licenseText}</pre>
+      </details>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .attribution { padding: var(--space-8) var(--gutter); max-width: 46rem; margin: 0 auto; }
+  .lede { color: var(--fg-muted); }
+  .body { max-width: 46rem; }
+  section { margin-top: var(--space-8); }
+  .licence-list { padding-left: var(--space-6); }
+  .licence-list li { margin-bottom: var(--space-2); }
+  .full-licence { margin-top: var(--space-4); }
+  .full-licence summary { cursor: pointer; font-weight: 600; }
+  pre {
+    white-space: pre-wrap;
+    background: var(--bg-elevated);
+    padding: var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    font-family: var(--font-mono);
+    margin-top: var(--space-3);
+    overflow-x: auto;
+  }
+</style>

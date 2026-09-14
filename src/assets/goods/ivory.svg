@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Ivory</title>
+  <desc id="desc">A single curved elephant tusk tapering to a point, with two short grain lines, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18,54 Q8,36 14,20 Q20,6 40,8 Q28,12 24,22 Q18,36 26,50 Q24,54 18,54 Z" />
+    <path d="M20,44 Q16,40 18,34" />
+    <path d="M24,30 Q20,26 22,20" />
+  </g>
+</svg>

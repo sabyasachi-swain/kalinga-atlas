@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Crate</title>
+  <desc id="desc">A wooden shipping crate drawn in simple three-quarter perspective with a cross brace, used as the generic fallback icon for a good with no dedicated illustration.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="14" y="24" width="28" height="28" />
+    <path d="M14,24 L24,14 L52,14 L42,24 Z" />
+    <path d="M42,24 L52,14 L52,42 L42,52 Z" />
+    <path d="M14,38 L42,38" />
+    <path d="M14,24 L42,52 M42,24 L14,52" />
+  </g>
+</svg>

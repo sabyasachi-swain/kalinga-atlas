@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Cotton cloth and muslin</title>
+  <desc id="desc">An open cotton boll with three fluffy overlapping lobes on a stem with a small leaf, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="24" cy="22" r="9" />
+    <circle cx="36" cy="20" r="9" />
+    <circle cx="32" cy="30" r="9" />
+    <path d="M32,38 L32,52" />
+    <path d="M32,44 L24,50 M32,47 L40,52" />
+  </g>
+</svg>

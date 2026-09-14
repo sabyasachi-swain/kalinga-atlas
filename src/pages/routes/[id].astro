@@ -1,0 +1,118 @@
+---
+import Base from '@layouts/Base.astro';
+import EvidenceBadge from '@components/EvidenceBadge.astro';
+import PeriodChips from '@components/PeriodChips.astro';
+import ScholarNotes from '@components/ScholarNotes.astro';
+import Narrative from '@components/Narrative.astro';
+import EntityCard from '@components/EntityCard.astro';
+import { getRoutes, getPorts, getSites, getGoods, getPeriods, getSources } from '@data/load';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const routes = getRoutes();
+  return routes.map((route) => ({ params: { id: route.id }, props: { route } }));
+}) satisfies GetStaticPaths;
+
+const { route } = Astro.props;
+
+const sources = getSources();
+const periods = getPeriods().filter((p) => route.periods.includes(p.id));
+
+const ports = getPorts();
+const sites = getSites();
+
+function resolveEndpoint(id: string): { name: string; href: string } | null {
+  const port = ports.find((p) => p.id === id);
+  if (port) return { name: port.name, href: `/ports/${port.id}/` };
+  const site = sites.find((s) => s.id === id);
+  if (site) return { name: site.name, href: `/sites/${site.id}/` };
+  return null;
+}
+
+const fromEndpoint = resolveEndpoint(route.from);
+const toEndpoint = resolveEndpoint(route.to);
+
+const relatedPorts = ports.filter((p) => p.id === route.from || p.id === route.to);
+const relatedGoods = getGoods().filter((g) => route.goods.includes(g.id));
+
+const narrativeEntries = await getCollection('routes');
+const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === route.id);
+
+const MODE_LABEL: Record<string, string> = {
+  maritime: 'Maritime (open sea)',
+  coastal: 'Coastal',
+  river: 'River',
+  land: 'Overland',
+};
+---
+
+<Base title={route.name} description={route.summary}>
+  <article class="entity-page">
+    <p class="back"><a href="/#routes">&larr; Back to the atlas</a></p>
+
+    <h1>{route.name}</h1>
+    <div class="badges">
+      <EvidenceBadge level={route.evidence_level} type={route.evidence_type} />
+    </div>
+    <PeriodChips periods={periods} />
+
+    <p class="summary">{route.summary}</p>
+    {route.kid_line && <p class="kid-line">{route.kid_line}</p>}
+
+    <Narrative entry={narrativeEntry} />
+
+    <section aria-labelledby="facts-h">
+      <h2 id="facts-h">Facts</h2>
+      <dl class="facts">
+        <dt>Mode</dt>
+        <dd>{MODE_LABEL[route.mode] ?? route.mode}</dd>
+        <dt>From</dt>
+        <dd>{fromEndpoint ? <a href={fromEndpoint.href}>{fromEndpoint.name}</a> : route.from}</dd>
+        <dt>To</dt>
+        <dd>{toEndpoint ? <a href={toEndpoint.href}>{toEndpoint.name}</a> : route.to}</dd>
+      </dl>
+    </section>
+
+    {relatedPorts.length > 0 && (
+      <section aria-labelledby="ports-h">
+        <h2 id="ports-h">Ports on this route</h2>
+        <ul class="cards">
+          {relatedPorts.map((p) => <EntityCard kind="port" entity={p} sources={sources} />)}
+        </ul>
+      </section>
+    )}
+
+    {relatedGoods.length > 0 && (
+      <section aria-labelledby="goods-h">
+        <h2 id="goods-h">Goods carried on this route</h2>
+        <ul class="cards">
+          {relatedGoods.map((g) => <EntityCard kind="good" entity={g} sources={sources} />)}
+        </ul>
+      </section>
+    )}
+
+    <ScholarNotes caveats={route.caveats} refs={route.source_refs} sources={sources} />
+  </article>
+</Base>
+
+<style>
+  .entity-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .back { margin-bottom: var(--space-4); }
+  .back a { color: var(--fg-muted); }
+  .badges { margin-bottom: var(--space-2); }
+  .summary { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
+  .kid-line { font-style: italic; max-width: 46rem; }
+  section { margin-top: var(--space-8); }
+  .facts { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-4); }
+  .facts dt { font-weight: 600; color: var(--fg-muted); }
+  .facts dd { margin: 0; }
+  .cards {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0 0;
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  }
+</style>

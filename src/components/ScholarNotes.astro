@@ -1,0 +1,68 @@
+---
+/**
+ * Scholar notes: the free-text `caveats` field plus the full, unabbreviated
+ * citation list for an entity. Complements SourcePopover's short inline form
+ * (used elsewhere on the same page) rather than replacing it — this is the
+ * one place a reader can see every source spelled out in full at once.
+ */
+import type { Source, SourceRef } from '@data/schema';
+import { formatFull } from '@data/cite';
+
+interface Props {
+  caveats?: string | undefined;
+  refs: SourceRef[];
+  sources: Source[];
+}
+
+const { caveats, refs, sources } = Astro.props;
+const byId = new Map(sources.map((s) => [s.id, s]));
+---
+
+<details class="scholar-notes">
+  <summary>Scholar notes</summary>
+  {caveats && <p class="caveats">{caveats}</p>}
+  {
+    refs.length > 0 ? (
+      <ol>
+        {refs.map((r) => {
+          const s = byId.get(r.source_id);
+          return (
+            <li>
+              {s ? formatFull(s) : `Unresolved source id "${r.source_id}"`}
+              {r.page && <span>, {r.page}</span>}
+              {r.note && <em> ({r.note})</em>}
+            </li>
+          );
+        })}
+      </ol>
+    ) : (
+      <p class="empty">No sources recorded yet.</p>
+    )
+  }
+</details>
+
+<style>
+  .scholar-notes {
+    margin: var(--space-4) 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-elevated);
+    border-left: 3px solid var(--accent-2);
+    border-radius: var(--radius-sm);
+  }
+  .scholar-notes summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-heading);
+  }
+  .caveats {
+    font-style: italic;
+    color: var(--fg-muted);
+    margin: var(--space-3) 0 0;
+  }
+  ol {
+    margin: var(--space-3) 0 0;
+    padding-left: var(--space-6);
+  }
+  li { margin-bottom: var(--space-2); }
+  .empty { color: var(--fg-muted); font-style: italic; margin: var(--space-3) 0 0; }
+</style>

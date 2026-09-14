@@ -1,0 +1,195 @@
+[
+  {
+    "id": "dayalan-2019-acta-via-serica",
+    "type": "article-journal",
+    "title": "Ancient Seaports on the Eastern Coast of India: The Hub of the Maritime Silk Route Network",
+    "author": [
+      {
+        "family": "Dayalan",
+        "given": "Duraiswamy"
+      }
+    ],
+    "container-title": "Acta Via Serica",
+    "volume": "4",
+    "page": "25-69",
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          6
+        ]
+      ]
+    },
+    "URL": "https://www.ancientportsantiques.com/wp-content/uploads/Documents/PLACES/IndOc-Gulf/India-Dayalan2019.pdf",
+    "registry_category": "secondary",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "Peer-reviewed journal of the Institute for the Humanities, Keimyung University, Korea (Acta Via Serica 4/1, June 2019). The author is a former Director of the Archaeological Survey of India. Read from a 36-page author's offprint PDF that carries no journal pagination, so refs cite the offprint page plus the section heading; journal page numbers are NOT verified. Independent of the Odisha-published literature and gives coordinates for every port it treats."
+  },
+  {
+    "id": "patnaik-2014-radhanagar",
+    "type": "article-journal",
+    "title": "Kankia-Radhanagar: An Early Historical Buddhist Settlement",
+    "author": [
+      {
+        "family": "Patnaik",
+        "given": "Sunil Kumar"
+      }
+    ],
+    "container-title": "Odisha Review",
+    "page": "88-98",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          12
+        ]
+      ]
+    },
+    "URL": "https://magazines.odisha.gov.in/Orissareview/2014/Dec/engpdf/89-98.pdf",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "Odisha Review, December 2014, Government of Odisha. The author directed the 2010-13 excavations at Radhanagar for OIMSEAS, so this is the excavator's own summary of the dig, published before the formal 2015 report. Read in full from the government portal PDF. A separate paper from patnaik-2014-odisha-review (June 2014, on Puri) by the same author, hence a separate source id."
+  },
+  {
+    "id": "pradhan-2014-odisha-review-viraja",
+    "type": "article-journal",
+    "title": "Situating Viraja Kshetra and Its Environs in the Odishan Historiography",
+    "author": [
+      {
+        "family": "Pradhan",
+        "given": "Atul Chandra"
+      }
+    ],
+    "container-title": "Odisha Review",
+    "page": "107-113",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          11
+        ]
+      ]
+    },
+    "URL": "https://magazines.odisha.gov.in/Orissareview/2014/Nov/engpdf/108-113.pdf",
+    "registry_category": "secondary",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "Odisha Review, November 2014, Government of Odisha. Used only for the Jajpur Buddhist complex: it is the one source read in this session that prints dated occupation ranges and coordinates for Lalitgiri, Ratnagiri and Udayagiri (p. 109). Read in full from the government portal PDF."
+  },
+  {
+    "id": "mohanty-smith-2009-sisupalgarh",
+    "type": "article-journal",
+    "title": "Excavations at Sisupalgarh, 2008",
+    "author": [
+      {
+        "family": "Mohanty",
+        "given": "R. K."
+      },
+      {
+        "family": "Smith",
+        "given": "Monica L."
+      }
+    ],
+    "container-title": "Man and Environment",
+    "volume": "XXXIV",
+    "page": "47-56",
+    "issued": {
+      "date-parts": [
+        [
+          2009
+        ]
+      ]
+    },
+    "URL": "https://anthro.ucla.edu/wp-content/uploads/2025/11/2009MohantyandSmithME.pdf",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "Man and Environment XXXIV(1), journal of the Indian Society for Prehistoric and Quaternary Studies, named in the skill registry as a journal of acceptable calibre. A primary fieldwork report by the joint Deccan College (Pune) and UCLA project directors. Read from the author's copy hosted by the UCLA Department of Anthropology."
+  },
+  {
+    "id": "kingwell-banham-2018-ancient-asia",
+    "type": "article-journal",
+    "title": "Archaeobotanical Investigations into Golbai Sasan and Gopalpur, Two Neolithic-Chalcolithic Settlements of Odisha",
+    "author": [
+      {
+        "family": "Kingwell-Banham",
+        "given": "Eleanor"
+      },
+      {
+        "family": "Karoune",
+        "given": "Emma"
+      },
+      {
+        "family": "Mohanty",
+        "given": "Rabindra Kumar"
+      },
+      {
+        "family": "Fuller",
+        "given": "Dorian Q."
+      }
+    ],
+    "container-title": "Ancient Asia",
+    "volume": "9",
+    "page": "1-14",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "DOI": "10.5334/aa.164",
+    "URL": "https://doi.org/10.5334/aa.164",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "Ancient Asia 9, art. 5 - peer-reviewed and open access; the journal is named in the skill registry as of acceptable calibre. Primary archaeobotanical study with AMS radiocarbon dates from Golbai Sasan. Read from the UCL Discovery open-access copy. Note: the 'Gopalpur' in this paper is a Neolithic mound in Jajpur district and is NOT the Ganjam port of the same name."
+  },
+  {
+    "id": "ardika-bellwood-1991-antiquity",
+    "type": "article-journal",
+    "title": "Sembiran: the beginnings of Indian contact with Bali",
+    "author": [
+      {
+        "family": "Ardika",
+        "given": "I. Wayan"
+      },
+      {
+        "family": "Bellwood",
+        "given": "Peter"
+      }
+    ],
+    "container-title": "Antiquity",
+    "volume": "65",
+    "page": "221-232",
+    "issued": {
+      "date-parts": [
+        [
+          1991
+        ]
+      ]
+    },
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "Antiquity 65(247), 1991 - a leading peer-reviewed archaeology journal. The excavators' own report on Indian Rouletted Ware, an Arikamedu type-10 sherd and a Kharoshthi graffito from Sembiran, north Bali, dated c. AD 1-200. Read from a PDF hosted in the University of Pennsylvania archaeobibliography file store."
+  },
+  {
+    "id": "imperial-gazetteer-india-1908",
+    "type": "entry-encyclopedia",
+    "title": "The Imperial Gazetteer of India, new edition (Oxford, Clarendon Press, 1907-09)",
+    "issued": {
+      "date-parts": [
+        [
+          1908
+        ]
+      ]
+    },
+    "registry_category": "early-modern",
+    "public_domain": true,
+    "approved_by_human": false,
+    "note": "Public domain. The registry already carries imperial-gazetteer-orissa for the Orissa entries; this separate id is for places OUTSIDE the Orissa Division that the atlas needs - Gopalpur, Ganjam Town, Calingapatam and Jaugada (Madras Presidency, Ganjam District), Calcutta, Rangoon. Volumes 6, 9, 11, 12, 14, 15, 20 and 21 read as archive.org OCR (identifiers imperialgazetteeNNgreauoft). Every ref gives volume and printed page. Reviewers may prefer to merge this into imperial-gazetteer-orissa and widen that entry's title instead."
+  }
+]

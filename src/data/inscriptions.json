@@ -1,1 +1,172 @@
-[]
+[
+  {
+    "id": "hathigumpha-kharavela",
+    "name": "Hathigumpha inscription of Kharavela",
+    "summary": "A long message about King Kharavela is carved in a cave near Bhubaneswar. It lists the towns he attacked and the pearls, jewels and elephants sent to him.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "hathigumpha-inscription",
+        "page": "K. P. Jayaswal & R. D. Banerji, Epigraphia Indica XX (1929-30), pp. 71-89; text of lines 11-13 at pp. 79-80; notes 34, 40, 42, 43 at p. 85; translation at pp. 86-89; geography at p. 78",
+        "note": "Read in the ASI scan of Epigraphia Indica XX on archive.org (item in.ernet.dli.2015.56671)."
+      },
+      {
+        "source_id": "sircar-select-inscriptions-1",
+        "page": "No. 91, 'Hathigumpha Cave Inscription of Kharavela', pp. 213-221; language, script and dating at p. 213 with n. 1; variant readings of line 11 at p. 217, n. 1",
+        "note": "Later independent edition. Disagrees with Jayaswal & Banerji on the date and on several trade-relevant readings."
+      }
+    ],
+    "periods": [
+      "kharavela"
+    ],
+    "status": "published",
+    "caveats": "Readings of the damaged lines are disputed. Jayaswal and Banerji read 'Pithumda' in line 11 and identify it with Ptolemy's Pitundra, 'an important port' (EI XX, p. 78); Sircar prints 'pothaṃ' there instead and records Barua's quite different reading of the same words (Select Inscriptions I, p. 217, n. 1). The two editions also disagree on date. Do not quote any single line as settled.",
+    "location": "Hathigumpha ('Elephant Cave'), an artificial cave on the southern face of the Udayagiri hills, about three miles from Bhubaneswar, Puri district, Odisha",
+    "language": "Prakrit (Sircar: 'Prakrit resembling Pali')",
+    "script": "Brahmi",
+    "date_text": "First half of the 2nd century BCE according to the first editors, whose palaeographic range is 'not earlier than the beginning of the 2nd century B.C. or later than that of the 1st century B.C.' (Epigraphia Indica XX, pp. 74, 77); Sircar's edition instead gives 'Brahmi of about the end of the 1st century B.C.' (Select Inscriptions I, p. 213)",
+    "trade_relevance": "The record ties Kalinga to places far away. In the eleventh year the king destroys Pithumda, which the first editors identify with Ptolemy's Pitundra and call an important port; in the twelfth he carries off the wealth of Anga and Magadha; in the thirteenth, elephants, jewels, rubies and hundreds of pearls are brought to him from the Pandya king, and he gives 'China clothes' (silks) to monks. In the fifth year he restores a canal dug generations earlier. Every one of these lines is damaged and is read differently by different editors.",
+    "edition_ref": {
+      "source_id": "hathigumpha-inscription",
+      "page": "Epigraphia Indica XX (1929-30), pp. 71-89",
+      "note": "Edited by K. P. Jayaswal and R. D. Banerji from the rock, the Patna Museum cast and their own impressions."
+    }
+  },
+  {
+    "id": "dhauli-separate-rock-edicts",
+    "name": "Ashoka's two Separate Rock Edicts at Dhauli",
+    "summary": "Ashoka had two special messages carved on a rock at Dhauli. They tell his officers in the town of Tosali how to treat people fairly.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "E. Hultzsch, Inscriptions of Asoka (Corpus Inscriptionum Indicarum I, new edn, Oxford, 1925): first separate edict pp. 92-97, second pp. 97-100; description of the rock pp. xiii-xiv; Tosali and the province of Kalinga pp. xxxvii-xxxviii",
+        "note": "Read in the archive.org scan of Hultzsch's 1925 edition (searchable text)."
+      },
+      {
+        "source_id": "epigraphia-indica",
+        "page": "Vol. XX (1929-30), J. Ph. Vogel, 'Prakrit Inscriptions from a Buddhist Site at Nagarjunikonda', p. 8",
+        "note": "'Asoka's two separate Rock-Edicts of Dhauli are addressed to the Governor and the magistrates (Mahamatras) of Tosali. This enables us to locate Tosali in Kalinga.'"
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "OHRJ XLVII(2), pp. 109-110",
+        "note": "Dhauli and Jaugada as the urban and political centres of Kalinga under Ashoka Maurya."
+      }
+    ],
+    "periods": [
+      "mauryan"
+    ],
+    "status": "published",
+    "caveats": "The trade link is indirect: the edicts are about the administration of justice, not commerce. Hultzsch notes that the Dhauli rock omits rock edicts XI-XIII of the Girnar set and puts these two edicts in their place (p. xiii), so Ashoka's own account of the Kalinga war was not displayed in Kalinga. Cunningham showed that the labels 'first' and 'second' are the wrong way round; Hultzsch keeps the old numbering (pp. xiii-xiv). Tosali's exact site is not established; the identification with Sisupalgarh is a proposal.",
+    "location": "The Dhauli rock, near Dhauli village, Khurda subdivision of the Puri district (now Khordha district), about seven miles south of Bhubaneswar, on the south bank of the Daya river, Odisha",
+    "language": "Prakrit, the eastern dialect of Ashoka's edicts (Hultzsch's 'Grammar of the Dhauli and Jaugada rock-edicts', ch. IX)",
+    "script": "Brahmi",
+    "date_text": "c. 3rd century BCE, in the reign of Ashoka (Devanampriya Priyadarsin); Kulke & Rothermund place the reign at 268-233 BCE and the conquest of Kalinga at 261 BCE (A History of India, 3rd edn, 1998, p. 61)",
+    "trade_relevance": "Both edicts are addressed to the officials at Tosali, so they place a Mauryan provincial town on the Odisha coastal plain in the 3rd century BCE. The first edict orders an inspecting Mahamatra to be sent out every five years, and others at least every three years from Ujjayini and from Takshasila, which means officials moved regularly between Kalinga and cities far to the west. Both edicts also speak to the 'unconquered borderers' living beyond the province. Neither mentions ships, goods or merchants.",
+    "edition_ref": {
+      "source_id": "ashoka-separate-edicts",
+      "page": "Hultzsch, Corpus Inscriptionum Indicarum I (1925), pp. 92-100",
+      "note": "Text, transliteration and translation of both Dhauli separate edicts."
+    }
+  },
+  {
+    "id": "jaugada-separate-rock-edicts",
+    "name": "Ashoka's two Separate Rock Edicts at Jaugada",
+    "summary": "The same two messages from Ashoka are carved on a rock inside an old fort at Jaugada. Here they are addressed to his officers in a town called Samapa.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "E. Hultzsch, Inscriptions of Asoka (Corpus Inscriptionum Indicarum I, new edn, Oxford, 1925): first separate edict pp. 111-116, second pp. 116-118; description of the rock pp. xiv-xv; Samapa and Khepingala p. xxxviii",
+        "note": "Translation of the second separate edict at pp. 117-118: 'The Mahamatras at Samapa have to be told (this) at the word of the king.'"
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "OHRJ XLVII(2), p. 109 (excavation and finds), p. 113 (argument linking the Jaugada edicts to the port of Palur)",
+        "note": "Reports punch-marked and Puri-Kushana coins, knobbed vessels and an earthen rampart at Jaugada."
+      }
+    ],
+    "periods": [
+      "mauryan"
+    ],
+    "status": "published",
+    "caveats": "Jaugada's trade relevance is inferred from where the rock stands, not from what it says. Patra & Patra (OHRJ XLVII.2, p. 113) argue the edicts were placed here because of the nearby port of Palur; that is their inference, not a statement in the inscription. The rock is badly damaged: Hultzsch reports about half of the first tablet and a third of the second have peeled away (p. xiv). The latitude printed for Jaugada in OHRJ p. 109 is plainly wrong, so no coordinates are given here.",
+    "location": "The Jaugada rock, inside a ruined fort in the Berhampur taluka of the Ganjam district (then Madras Presidency, now Odisha), about eighteen miles north-west of Ganjam town, on the northern bank of the Rishikulya river",
+    "language": "Prakrit, the eastern dialect of Ashoka's edicts (Hultzsch's 'Grammar of the Dhauli and Jaugada rock-edicts', ch. IX)",
+    "script": "Brahmi",
+    "date_text": "c. 3rd century BCE, in the reign of Ashoka (Devanampriya Priyadarsin); Kulke & Rothermund place the reign at 268-233 BCE (A History of India, 3rd edn, 1998, p. 61)",
+    "trade_relevance": "These copies are addressed to the Mahamatras at Samapa, which Hultzsch identifies as the head-quarters of the district containing Jaugada; he adds that the rock itself was then called Khepingala. That fixes a second Mauryan administrative town in Kalinga, on the northern bank of the Rishikulya near the coast. As at Dhauli, the king addresses the 'unconquered borderers' beyond his frontier. The edicts name no goods, ships or merchants; their value here is that they show where Mauryan authority sat on this coast.",
+    "edition_ref": {
+      "source_id": "ashoka-separate-edicts",
+      "page": "Hultzsch, Corpus Inscriptionum Indicarum I (1925), pp. 111-118",
+      "note": "Text, transliteration and translation of both Jaugada separate edicts."
+    }
+  },
+  {
+    "id": "nagarjunakonda-bodhisiri-inscription",
+    "name": "Bodhisiri's inscription at Nagarjunakonda (inscription F)",
+    "summary": "A woman named Bodhisiri paid for a Buddhist shrine at Nagarjunakonda. Her carved message lists faraway lands that monks from Sri Lanka had reached, and one of them is Tosali in Kalinga.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "epigraphia-indica",
+        "page": "Vol. XX (1929-30), No. 1, J. Ph. Vogel, 'Prakrit Inscriptions from a Buddhist Site at Nagarjunikonda', pp. 1-37; list of countries summarised p. 7; discussion of Tosali, Dosarene and the damaged name p. 8; description of inscription F p. 14; dating of the king p. 6",
+        "note": "Read in the ASI scan of Epigraphia Indica XX on archive.org. I could not reach the transcript pages of inscription F in that scan."
+      },
+      {
+        "source_id": "kulke-rothermund",
+        "page": "A History of India, 3rd edn (Routledge, 1998), p. 96",
+        "note": "Independently summarises the same inscription and its list, naming 'Toshali and Vanga (Orissa and Bengal)' among the countries."
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "The name after Damila is damaged: Vogel writes only that 'it is tempting to restore the name as Palura' (p. 8). Treat any Palur connection as a suggestion, not a reading. His linking of Tosali with Ptolemy's Dosara and the Periplus's Dosarene is his own argument against the usual derivation from Dasarna; Dosarene remains an unidentified region and must not be turned into a port. The date rests on Buhler's palaeography, which Vogel calls 'probably correct' (p. 6).",
+    "location": "Floor of apsidal shrine No. II on the mound Naharallabodu, Nagarjunakonda, Palnad taluk, Guntur district (then Madras Presidency, now Andhra Pradesh)",
+    "language": "Prakrit",
+    "script": "Brahmi",
+    "date_text": "The fourteenth regnal year of King Mathariputa Siri-Virapurisadata of the Ikshvaku dynasty; Vogel accepts Buhler's palaeographic dating of that king to the third century CE (Epigraphia Indica XX, pp. 6, 14)",
+    "trade_relevance": "Vogel's edition summarises the list of countries converted by the Ceylonese fraternities honoured here: Kasmira, Gandhara, China, Chilata, Tosali, Avaramta, Vamga, Vanavasi, Yavana, Damila, a damaged name, and the island of Tambapamni. Tosali is the Kalinga town named in Ashoka's Dhauli edicts, so a Kalingan centre appears inside a religious and travel network reaching from the north-west to Sri Lanka and China. It is the clearest early epigraphic notice of Kalinga from outside Kalinga.",
+    "edition_ref": {
+      "source_id": "epigraphia-indica",
+      "page": "Vol. XX (1929-30), No. 1, pp. 1-37 (inscription F)",
+      "note": "Edited by J. Ph. Vogel; inscription F described at p. 14, its country list at pp. 7-8."
+    }
+  },
+  {
+    "id": "manikapatna-kharoshthi-potsherd",
+    "name": "Kharoshthi potsherd from Manikapatna",
+    "summary": "A broken pot from the old port of Manikapatna has two lines of writing scratched on it. The letters belong to Kharoshthi, a script used far away in north-west India.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "OHRJ XLVII(2), p. 112; reference given at p. 118, n. 28",
+        "note": "'The two lined Kharosthi inscription on a pot shred discovered from here has been deciphered as \"Dasatradeva\" and \"Khida\" of 2nd century A.D (by B.N Mukherjee).'"
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "I have not seen the primary publication. The reading is reported at second hand from D. Pradhan, P. Mohanty and J. Mishra, 'Manikapatna: An Ancient and Medieval Port on the Coast of Orissa', in Basa & Mohanty (eds), Archaeology of Orissa I (2000), p. 486, cited at OHRJ XLVII.2, p. 118, n. 28; page not verified. The language of the sherd is not stated in what I read, only the script. Nothing here shows the pot itself travelled: scripts move with people, and the sherd may have been inscribed on the spot.",
+    "location": "Manikapatna, on the northern tip of Chilika lake, Puri district, Odisha",
+    "language": "Not stated in the notices consulted; the two words read are 'Dasatradeva' and 'Khida'",
+    "script": "Kharoshthi",
+    "date_text": "2nd century CE, as reported for B. N. Mukherjee's reading (Patra & Patra, OHRJ XLVII(2), p. 112)",
+    "trade_relevance": "Kharoshthi belongs to the north-west of the subcontinent, not to eastern India. Patra & Patra call this sherd 'the only instance of a Kharosthi inscription in the whole of Kalinga or even in eastern and southeastern India'. If the reading holds, it puts a name written in a north-western script at a Chilika port in the 2nd century CE, alongside that site's rouletted ware and amphora fragments. It is the only inscribed object from a Kalinga port in this list.",
+    "edition_ref": {
+      "source_id": "pradhan-mohanty-mishra-2000",
+      "page": "p. 486",
+      "note": "As cited in OHRJ XLVII(2), p. 118, n. 28. Page not verified: I could not obtain the chapter itself."
+    }
+  }
+]

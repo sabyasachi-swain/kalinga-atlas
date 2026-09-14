@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Lac and beeswax</title>
+  <desc id="desc">A cluster of two honeycomb hexagons with a twig and a resin drop beside them, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28,18 L40.12,25 L40.12,39 L28,46 L15.88,39 L15.88,25 Z" />
+    <path d="M44,13 L51.79,17.5 L51.79,26.5 L44,31 L36.21,26.5 L36.21,17.5 Z" />
+    <path d="M46,44 Q52,50 46,56 Q40,50 46,44 Z" />
+    <path d="M46,44 L50,36" />
+  </g>
+</svg>

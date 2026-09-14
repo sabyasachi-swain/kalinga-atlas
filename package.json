@@ -18,7 +18,9 @@
     "readability": "tsx scripts/readability.ts",
     "fetch:geo": "tsx scripts/fetch-geo.ts",
     "audit:lighthouse": "lighthouse http://localhost:4321 --output=html --output=json --output-path=./docs/audits/lighthouse --chrome-flags=\"--headless\" --quiet",
-    "audit:a11y": "lighthouse http://localhost:4321 --only-categories=accessibility --output=json --output-path=./docs/audits/a11y.json --chrome-flags=\"--headless\" --quiet"
+    "audit:a11y": "lighthouse http://localhost:4321 --only-categories=accessibility --output=json --output-path=./docs/audits/a11y.json --chrome-flags=\"--headless\" --quiet",
+    "merge:sources": "tsx scripts/merge-sources.ts",
+    "status": "tsx scripts/set-status.ts"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",

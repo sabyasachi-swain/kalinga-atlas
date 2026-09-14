@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Elephants</title>
+  <desc id="desc">A walking elephant in profile with one ear, a hanging trunk and four legs, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8,38 Q8,22 22,17 Q32,12 42,16 Q50,19 49,27 Q50,34 46,38 Q42,42 44,47 Q40,44 36,42 Q22,44 10,40 Q8,39 8,38 Z" />
+    <path d="M28,19 Q36,20 35,28 Q30,31 27,25 Q26,21 28,19 Z" />
+    <path d="M14,41 L13,52 M21,42 L20,52 M33,43 L33,52 M40,43 L41,52" />
+    <path d="M9,39 Q4,42 6,47" />
+  </g>
+  <circle cx="44" cy="23" r="1.5" fill="currentColor" stroke="none" />
+</svg>

@@ -1,0 +1,59 @@
+[
+  {
+    "id": "patra-2014-odisha-review-ports",
+    "type": "article-journal",
+    "title": "Ports in Ancient Odisha: Historical Perspective",
+    "author": [
+      {
+        "family": "Patra",
+        "given": "Benudhar"
+      }
+    ],
+    "container-title": "Odisha Review",
+    "page": "118-125",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          11
+        ]
+      ]
+    },
+    "URL": "https://magazines.odisha.gov.in/Orissareview/2014/Nov/engpdf/119-125.pdf",
+    "registry_category": "secondary",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "Odisha Review, November 2014, published by the Information and Public Relations Department, Government of Odisha; the same series already carries patnaik-2014-odisha-review, but this is a different paper by a different author and so gets its own entry. Author is a historian at Post Graduate Government College, Chandigarh, publishing widely on Kalinga's maritime history. Full text read from the publisher PDF (the site's TLS certificate has expired, so it was fetched with curl -k). Note that the PDF filename says 119-125 while the printed page range is 118-125. Shares an author with patra-patra-ohrj-maritime-archaeology, so the two are NOT fully independent works."
+  },
+  {
+    "id": "mccrindle-ptolemy-1927",
+    "type": "book",
+    "title": "Ancient India as Described by Ptolemy",
+    "author": [
+      {
+        "family": "McCrindle",
+        "given": "John Watson"
+      }
+    ],
+    "editor": [
+      {
+        "family": "Majumdar Sastri",
+        "given": "Surendranath"
+      }
+    ],
+    "publisher": "Chuckervertty, Chatterjee & Co.",
+    "publisher-place": "Calcutta",
+    "issued": {
+      "date-parts": [
+        [
+          1927
+        ]
+      ]
+    },
+    "original_date_text": "first published Indian Antiquary 1884; Trubner 1885",
+    "registry_category": "primary",
+    "public_domain": true,
+    "approved_by_human": false,
+    "note": "McCrindle's annotated translation of the Indian chapters of Ptolemy's Geographia, with S. N. Majumdar Sastri's additional notes. Needed as a source distinct from `ptolemy-geographia` because the claims cited (Sambalaka = Sambalpur, the diamond district, V. Ball's objection to the Adamas identifications) are the modern editors' commentary, NOT anything Ptolemy wrote; citing them under Ptolemy would misattribute them. Read in the archive.org scan `in.ernet.dli.2015.65897`, a Today & Tomorrow's Printers and Publishers (New Delhi) reprint edited by Ramchandra Jain, whose pagination matches the 1927 Calcutta edition cited by Patra 2014, n. 6. The reprint's own imprint date is not printed; a reviewer should confirm which edition to name in the bibliography."
+  }
+]

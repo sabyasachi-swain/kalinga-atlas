@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Tasar silk</title>
+  <desc id="desc">An oval silk cocoon with a single thread unwinding from it, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20,24 Q20,14 32,14 Q44,14 44,24 Q44,36 32,38 Q20,36 20,24 Z" />
+    <path d="M42,26 Q52,24 50,34 Q48,42 38,40 Q32,38 36,32" />
+  </g>
+</svg>

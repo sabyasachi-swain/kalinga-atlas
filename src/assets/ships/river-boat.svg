@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. Artistic reconstruction — not a historical document. -->
+  <title id="title">River boat</title>
+  <desc id="desc">Artistic reconstruction, not a historical document; generic silhouette, not a specific vessel type. A flat-bottomed river craft with a small arched canopy and a steering oar, facing right, drawn as a filled silhouette for animating along a river trade route.</desc>
+  <path fill="currentColor" d="M4,38 Q4,34 8,34 L54,34 Q60,34 60,38 Q60,42 54,42 L8,42 Q4,42 4,38 Z" />
+  <path fill="currentColor" d="M22,34 Q22,24 30,24 Q38,24 38,34 Z" />
+  <path fill="currentColor" d="M8,40 L2,57 L5,58 L11,42 Z" />
+</svg>

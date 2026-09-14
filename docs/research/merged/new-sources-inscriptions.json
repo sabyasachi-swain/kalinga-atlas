@@ -1,0 +1,72 @@
+[
+  {
+    "id": "sircar-select-inscriptions-1",
+    "type": "book",
+    "title": "Select Inscriptions Bearing on Indian History and Civilization, Volume I: From the Sixth Century B.C. to the Sixth Century A.D.",
+    "editor": [
+      {
+        "family": "Sircar",
+        "given": "Dines Chandra"
+      }
+    ],
+    "publisher": "University of Calcutta",
+    "publisher-place": "Calcutta",
+    "issued": {
+      "date-parts": [
+        [
+          1965
+        ]
+      ]
+    },
+    "volume": "1",
+    "URL": "https://archive.org/details/dli.calcutta.11040",
+    "registry_category": "primary",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "Second edition, revised and enlarged, published by the University of Calcutta, 1965. The standard critical anthology of early Indian inscriptions; Sircar was Carmichael Professor of Ancient Indian History and Culture at Calcutta University and formerly Government Epigraphist for India. Needed as the second, independent edition of the Hathigumpha inscription (No. 91, pp. 213-221), whose readings and dating differ from Jayaswal & Banerji in Epigraphia Indica XX. Read in the archive.org scan dli.calcutta.11040."
+  },
+  {
+    "id": "pradhan-mohanty-mishra-2000",
+    "type": "chapter",
+    "title": "Manikapatna: An Ancient and Medieval Port on the Coast of Orissa",
+    "author": [
+      {
+        "family": "Pradhan",
+        "given": "D."
+      },
+      {
+        "family": "Mohanty",
+        "given": "P."
+      },
+      {
+        "family": "Mishra",
+        "given": "J."
+      }
+    ],
+    "editor": [
+      {
+        "family": "Basa",
+        "given": "K. K."
+      },
+      {
+        "family": "Mohanty",
+        "given": "P."
+      }
+    ],
+    "container-title": "Archaeology of Orissa, Vol. 1",
+    "publisher-place": "Delhi",
+    "issued": {
+      "date-parts": [
+        [
+          2000
+        ]
+      ]
+    },
+    "volume": "1",
+    "page": "473-493",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "The primary published report on the OIMSEAS excavations at Manikapatna, in a scholarly edited volume. Cited as the source of B. N. Mukherjee's reading of the Kharoshthi potsherd at p. 486. NOT READ BY ME: the reference and page come from Patra & Patra, OHRJ XLVII(2), p. 118, n. 28. Page not verified. Any entry citing it must stay draft until a copy is obtained."
+  }
+]

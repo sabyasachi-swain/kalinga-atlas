@@ -1,0 +1,54 @@
+---
+import Base from '@layouts/Base.astro';
+import EntityCard from '@components/EntityCard.astro';
+import WaveDivider from '@components/WaveDivider.astro';
+import { getRoutes, getSources } from '@data/load';
+import { getEntry, render } from 'astro:content';
+
+const routes = getRoutes();
+const sources = getSources();
+
+const intro = await getEntry('sections', 'routes');
+const { Content: IntroContent } = intro ? await render(intro) : { Content: undefined };
+---
+
+<Base
+  title="Trade Routes"
+  description="The maritime, coastal, river and land routes that carried goods to and from ancient Kalinga."
+>
+  <article class="section-page">
+    <h1>Trade Routes</h1>
+    {
+      IntroContent ? (
+        <div class="intro">
+          <IntroContent />
+        </div>
+      ) : (
+        <p class="lede">
+          Ships and caravans followed these paths across two thousand years of trade.
+        </p>
+      )
+    }
+
+    <WaveDivider />
+
+    {routes.length === 0 && <p class="empty">No published routes yet.</p>}
+    <ul class="cards">
+      {routes.map((r) => <EntityCard kind="route" entity={r} sources={sources} />)}
+    </ul>
+  </article>
+</Base>
+
+<style>
+  .section-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .lede, .intro { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
+  .empty { color: var(--fg-muted); font-style: italic; }
+  .cards {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  }
+</style>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. Decorative palm-leaf manuscript motif. -->
+  <title id="title">Manuscript corner</title>
+  <desc id="desc">A curling corner flourish in the style of Odisha palm-leaf manuscript (pothi) border ornament, decorative, for framing a page corner.</desc>
+  <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+    d="M4,4 L4,24 M4,4 L24,4" />
+  <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+    d="M4,4 C20,4 20,20 36,20 C36,32 48,32 48,44" />
+  <circle cx="48" cy="44" r="3" fill="currentColor" />
+  <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+    d="M10,10 C20,12 22,20 30,22" />
+</svg>

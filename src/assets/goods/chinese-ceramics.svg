@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Chinese ceramics</title>
+  <desc id="desc">A lidded jar with a narrow neck, a rounded belly and a decorative band, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28,10 L36,10 L36,16 Q46,20 46,32 Q46,48 42,52 L22,52 Q18,48 18,32 Q18,20 28,16 Z" />
+    <path d="M27,9 Q32,5 37,9" />
+    <path d="M20,36 L44,36" />
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Diamonds</title>
+  <desc id="desc">A faceted diamond gem shown from the front, with crown and pavilion facet lines, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18,26 L26,14 L38,14 L46,26 L32,54 Z" />
+    <path d="M18,26 L46,26" />
+    <path d="M26,14 L32,26 M38,14 L32,26" />
+    <path d="M22,26 L32,54 M42,26 L32,54" />
+  </g>
+</svg>

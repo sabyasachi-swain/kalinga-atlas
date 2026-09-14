@@ -1,1 +1,562 @@
-[]
+[
+  {
+    "id": "sisupalgarh",
+    "name": "Sisupalgarh",
+    "summary": "Sisupalgarh is a huge square fort near Bhubaneswar, with an earth wall more than a mile long on each side. Inside it people found pottery and coin-like clay seals copied from Roman coins.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "'The systematic excavation at Sisupalagarh (Lat. 20 deg 13' 30\" N. and Long. 85 deg 51' 30\" E.) near Bhubaneswar by B.B. Lal of ASI and subsequently by the State Department of Archaeology'. Occupied 3rd c. BCE to mid-4th c. CE; knobbed and rouletted ware, Roman-derived clay bullae."
+      },
+      {
+        "source_id": "mohanty-smith-2009-sisupalgarh",
+        "page": "pp. 47-48",
+        "note": "'Sisupalgarh is a fortified Early Historic city ... Initially investigated by Lal (1949, 1991), the site is formally delineated by a rampart and moat enclosing over 1 km2 of ancient habitation.' The 2008 Deccan College/UCLA season cut the northern rampart and exposed 18 monolithic laterite pillars."
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "kharavela",
+      "early-historic",
+      "gupta"
+    ],
+    "status": "published",
+    "caveats": "The identification of Sisupalgarh with Ashoka's provincial capital Tosali and with Kharavela's Kalinganagari is a scholarly proposal reported by OHRJ p. 110, not a demonstrated fact; the Dhauli edicts are the usual anchor for Tosali. B. B. Lal's report (Ancient India 5, 1949) was not read. The 'Roman' clay bullae are local imitations of Roman coin imagery, evidence of contact with a trade network rather than of Roman ships.",
+    "coordinates": {
+      "lat": 20.225,
+      "lng": 85.8583
+    },
+    "coordinate_source": "patra-patra-ohrj-maritime-archaeology",
+    "modern_name": "Sisupalgarh, Bhubaneswar, Khordha district, Odisha",
+    "site_type": "fortified early historic urban centre",
+    "excavated_by": "B. B. Lal for the Archaeological Survey of India (1948); later the Odisha State Department of Archaeology; Deccan College Pune and UCLA (R. K. Mohanty and Monica L. Smith) from 2005",
+    "finds": [
+      {
+        "name": "Rouletted ware",
+        "significance": "A fine wheel-made pottery found from Tamil Nadu to Bali. Its presence here places Sisupalgarh inside a long-distance Bay of Bengal trade network.",
+        "source_refs": [
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "p. 110"
+          }
+        ]
+      },
+      {
+        "name": "Clay bullae imitating Roman coins",
+        "significance": "Small clay seals showing a Silenus head copied from Roman coin designs, and a medallion with a Kushana-style king on one side and a Roman head and legend on the other.",
+        "source_refs": [
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "p. 110"
+          }
+        ]
+      },
+      {
+        "name": "Knobbed ware",
+        "significance": "First identified at Sisupalgarh and later found across eastern India and at Ban Don Ta Phet in Thailand, so it links the city to Buddhist ritual networks reaching Southeast Asia.",
+        "source_refs": [
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "pp. 110, 112"
+          }
+        ]
+      },
+      {
+        "name": "Monolithic laterite pillars",
+        "significance": "Eighteen previously unknown stone pillars exposed in 2008 at the central mound, part of what may be a large apsidal public building - evidence of organised civic works.",
+        "source_refs": [
+          {
+            "source_id": "mohanty-smith-2009-sisupalgarh",
+            "page": "pp. 47, 50-52"
+          }
+        ]
+      },
+      {
+        "name": "Rampart and moat over 1 sq km",
+        "significance": "The earthwork defences, raised in many successive stages, enclose more than a square kilometre of houses - one of the largest early historic cities in eastern India.",
+        "source_refs": [
+          {
+            "source_id": "mohanty-smith-2009-sisupalgarh",
+            "page": "pp. 47-49"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "jaugada",
+    "name": "Jaugada",
+    "summary": "Jaugada is a ruined fort in south Odisha with Ashoka's orders carved on a big granite rock. Old pots, tiles and coins lie all over the ground inside its earth wall.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-india-1908",
+        "page": "vol. XIV, pp. 72-73, 'Jaugada'",
+        "note": "'Ruined fort in Ganjam District, Madras, situated in 19 deg 31' N. and 84 deg 50' E., about 18 miles west of Ganjam town, on the north bank of the Rushikulya ... a huge granite mass, on which are inscribed thirteen edicts of the Buddhist emperor Asoka (about 250 B.C.).'"
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 109",
+        "note": "'At Jaugada ... the excavation has revealed a full-fledged iron-using culture' with plain and painted pottery, knobbed vessels, iron implements and beads of shell, bone, agate, crystal, carnelian and quartz; punch-marked and Puri-Kushana coins; an earthen rampart. Linked by the authors to Palur."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Puri (1908), pp. 28-29",
+        "note": "Ashoka inscribed at Dhauli rock-edicts I-X and XIII, and 'Besides these general edicts, he also inscribed two edicts, known as the Kalinga edicts, in which he laid down principles for the administration of the newly conquered province'; the Jaugada version is treated alongside the Dhauli one."
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "kharavela",
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "No critical edition of the edicts was consulted: Hultzsch, Corpus Inscriptionum Indicarum I (1925) still needs to be cited for the text, so ashoka-separate-edicts is deliberately not listed among the source_refs. The Imperial Gazetteer's latitude is hard to read in the archive.org scan; 19 deg 31' is adopted because OHRJ p. 109 prints the same minutes (its '10 deg 31' N' is an obvious misprint for 19 deg 31'). The excavation behind OHRJ's account is IAR 1956-57, which was not read.",
+    "coordinates": {
+      "lat": 19.5167,
+      "lng": 84.8333
+    },
+    "coordinate_source": "imperial-gazetteer-india-1908",
+    "modern_name": "Jaugada, Ganjam district, Odisha",
+    "site_type": "fortified early historic settlement with Ashokan rock edicts",
+    "excavated_by": "Archaeological Survey of India (Indian Archaeology: A Review 1956-57, cited in OHRJ XLVII(2) n. 14; report not consulted)",
+    "finds": [
+      {
+        "name": "Ashokan rock edicts",
+        "significance": "Thirteen edicts of Ashoka cut into a granite outcrop inside the fort - the only Ashokan edicts in the old Madras Presidency, and the southern twin of the Dhauli set.",
+        "source_refs": [
+          {
+            "source_id": "imperial-gazetteer-india-1908",
+            "page": "vol. XIV, p. 72"
+          },
+          {
+            "source_id": "district-gazetteers-odisha",
+            "page": "O'Malley, Puri (1908), p. 28"
+          }
+        ]
+      },
+      {
+        "name": "Copper coins of the first century CE",
+        "significance": "Coins found inside the fort wall show the city was still lived in and trading centuries after Ashoka.",
+        "source_refs": [
+          {
+            "source_id": "imperial-gazetteer-india-1908",
+            "page": "vol. XIV, p. 73"
+          }
+        ]
+      },
+      {
+        "name": "Punch-marked and Puri-Kushana coins",
+        "significance": "Two coin families that circulated widely in eastern India, tying the site to inland and coastal exchange.",
+        "source_refs": [
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "p. 109"
+          }
+        ]
+      },
+      {
+        "name": "Knobbed vessels and semi-precious stone beads",
+        "significance": "Beads of agate, carnelian, crystal and quartz, and knobbed pottery of the kind traded across the Bay of Bengal.",
+        "source_refs": [
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "p. 109"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dhauli",
+    "name": "Dhauli",
+    "summary": "Dhauli is a low hill near Bhubaneswar where Ashoka had his orders carved into the rock. Just above the writing, the front half of an elephant is cut out of the stone.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XI, pp. 317-318, 'Dhauli'",
+        "note": "'Hill in the Khurda subdivision of Puri District, Bengal, situated in 20 deg 15' N. and 85 deg 50' E., about 7 miles south of Bhubaneswar. On its northern side is a version of Asoka's rock edicts. Above the inscription the forepart of an elephant has been carved out of the rock.'"
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Puri (1908), pp. 28-29",
+        "note": "'In this district Asoka commemorated his rule by inscribing at Dhauli hill rock-edicts I-X and XIII', plus the two Kalinga edicts laying down principles for governing the newly conquered province and the tribes on its borders. Kalinga was incorporated in Ashoka's empire in 262 or 261 BCE."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 109",
+        "note": "'the excavation conducted at Dhauli supplemented to the fact that during the period of Asoka there was the progress of urbanisation in Orissa'; Dhauli is treated as the urban settlement of Tosali, alongside Samapa (Jaugada)."
+      }
+    ],
+    "periods": [
+      "mauryan"
+    ],
+    "status": "published",
+    "caveats": "Two of the sources disagree about which edicts are present: the Imperial Gazetteer says edicts XII and XIII were omitted, the Puri gazetteer says XIII was inscribed and XI-XII omitted. A critical edition (Hultzsch, CII I, 1925) must settle this before publication, and ashoka-separate-edicts is therefore not cited here. The equation Dhauli = Tosali is a long-standing scholarly identification, not a proved one; the Nagarjunakonda inscription is the other anchor for the name.",
+    "coordinates": {
+      "lat": 20.25,
+      "lng": 85.8333
+    },
+    "coordinate_source": "imperial-gazetteer-orissa",
+    "modern_name": "Dhauli, Khordha district, Odisha",
+    "site_type": "Ashokan rock-edict site on a hill above the Daya river",
+    "finds": [
+      {
+        "name": "Ashokan rock edicts and the two separate (Kalinga) edicts",
+        "significance": "Ashoka's own words to the officers of newly conquered Kalinga - the oldest writing in Odisha, and the reason we know the conquest happened.",
+        "source_refs": [
+          {
+            "source_id": "imperial-gazetteer-orissa",
+            "page": "Imperial Gazetteer of India, vol. XI, p. 317"
+          },
+          {
+            "source_id": "district-gazetteers-odisha",
+            "page": "O'Malley, Puri (1908), p. 28"
+          }
+        ]
+      },
+      {
+        "name": "Rock-cut elephant forepart",
+        "significance": "The front half of an elephant carved straight out of the hill above the inscription - one of the earliest pieces of sculpture in eastern India.",
+        "source_refs": [
+          {
+            "source_id": "imperial-gazetteer-orissa",
+            "page": "Imperial Gazetteer of India, vol. XI, p. 318"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "udayagiri-khandagiri",
+    "name": "Udayagiri and Khandagiri caves",
+    "summary": "Two rocky hills near Bhubaneswar are honeycombed with caves cut for Jain monks. One cave carries King Kharavela's long inscription about his wars and his building works.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XV, pp. 239-240, 'Khandgiri'",
+        "note": "'Hill ... situated in 20 deg 16' N. and 85 deg 47' E., about 4 miles west of Bhubaneswar ... two separate peaks, the northern one of which is called Udayagiri and the southern Khandgiri ... The caves ... were occupied by monks of the Jain sect, and not, as is usually stated, by Buddhists.'"
+      },
+      {
+        "source_id": "hathigumpha-inscription",
+        "page": "Jayaswal & Banerji, Epigraphia Indica XX (1929-30), No. 7, pp. 71-89",
+        "note": "The standard edition of the inscription over the Hathi Gumpha cave. Line 11 (translation p. 88) records Kharavela ploughing down 'the market-town (?) Pithumda founded by the Ava King'; line 13 records pearls brought from the Pandya king. Read from the archive.org scan of EI XX."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 115",
+        "note": "'A close study of the art of the Khandagiri-Udayagiri caves reveals the use of west Asian decorative elements such as honey suckle, acanthus, stepped melons and winged animals'; pilasters in the Anantagumpha have ghata bases ornamented in a Hellenistic fashion."
+      }
+    ],
+    "periods": [
+      "kharavela",
+      "somavamshi",
+      "eastern-ganga"
+    ],
+    "status": "published",
+    "caveats": "The date of the Hathigumpha inscription is disputed. The Imperial Gazetteer follows the reading 'year 165 of the Maurya era = 155 BCE'; Jayaswal and Banerji place Kharavela in the first half of the 2nd century BCE (EI XX pp. 74, 77) while other editors argue for the late 1st century BCE, and several lines including the Pithumda passage have rival readings. The Imperial Gazetteer's correction is worth keeping: the caves are Jain, not Buddhist.",
+    "coordinates": {
+      "lat": 20.2667,
+      "lng": 85.7833
+    },
+    "coordinate_source": "imperial-gazetteer-orissa",
+    "modern_name": "Udayagiri and Khandagiri, Bhubaneswar, Khordha district, Odisha",
+    "site_type": "Jain rock-cut cave complex",
+    "finds": [
+      {
+        "name": "Hathigumpha inscription of Kharavela",
+        "significance": "A long royal record cut over a cave mouth. It names a coastal market-town, Pithumda, that Kharavela destroyed, and pearls brought from the Pandya king in the far south.",
+        "source_refs": [
+          {
+            "source_id": "hathigumpha-inscription",
+            "page": "Epigraphia Indica XX (1929-30), No. 7, lines 11 and 13; translation pp. 88-89"
+          },
+          {
+            "source_id": "imperial-gazetteer-orissa",
+            "page": "Imperial Gazetteer of India, vol. XV, p. 240"
+          }
+        ]
+      },
+      {
+        "name": "West Asian and Hellenistic decorative motifs",
+        "significance": "Honeysuckle, acanthus, stepped melons and winged animals carved in the caves - ornament borrowed from far to the west, showing ideas travelled as well as goods.",
+        "source_refs": [
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "p. 115"
+          }
+        ]
+      },
+      {
+        "name": "Navamuni cave inscription of Uddyota Kesari",
+        "significance": "A medieval Jain record dated in the eighteenth year of a Somavamshi king, showing monks used the caves for more than a thousand years.",
+        "source_refs": [
+          {
+            "source_id": "imperial-gazetteer-orissa",
+            "page": "Imperial Gazetteer of India, vol. XV, p. 240"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ratnagiri-lalitgiri-udayagiri-buddhist-complex",
+    "name": "Ratnagiri, Lalitgiri and Udayagiri Buddhist complex",
+    "summary": "Three hills in Jajpur district hold the ruins of large Buddhist monasteries. Monks lived, studied and kept relics here for well over a thousand years.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "pradhan-2014-odisha-review-viraja",
+        "page": "p. 109",
+        "note": "Lalitagiri, 'whose cultural sequence extends from 3rd century B.C. to 1200 A.D.'; a four-layer relic casket of khondalite, steatite, silver and gold. 'Sri Ratnagiri Mahavihariya Arya Bhikshu Sangha flourished from 5th century A.D. to 13th century A.D. on the Ratnagiri hillock (Lat. 20 deg 38' N)'."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 111, 116",
+        "note": "Gives Lalitgiri 20 deg 35' N / 86 deg 15' E, Udayagiri 20 deg 38' 45\" N / 86 deg 16' 25\" E, Ratnagiri 20 deg 38' N / 86 deg 20' E; the nested Lalitgiri caskets are 'a feature alien in Orissa but common in China'; an Astamahabhaya Tara, who protects sailors from shipwreck, came from Ratnagiri."
+      },
+      {
+        "source_id": "patnaik-2014-radhanagar",
+        "page": "p. 88",
+        "note": "'At a distance of 20 to 30 kms north-east of Kankia also have large Buddhist sites like Ratnagiri, Udayagiri, and Lalitgiri which all are excavated by Archaeological Survey of India in the recent past.'"
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "kharavela",
+      "early-historic",
+      "gupta",
+      "post-gupta",
+      "bhauma-kara",
+      "somavamshi",
+      "eastern-ganga"
+    ],
+    "status": "published",
+    "caveats": "This is one entry for three separate hills about 5-10 km apart; the coordinates are Ratnagiri's. The period list spans Pradhan's brackets for all three (Lalitgiri from the 3rd century BCE, Ratnagiri from the 5th century CE, all ending about 1200-1300 CE), so no single hill was occupied throughout. Debala Mitra's ASI excavation reports (1958-61) were not read, and no source consulted here dates the Astamahabhaya Tara sculpture.",
+    "coordinates": {
+      "lat": 20.6333,
+      "lng": 86.3333
+    },
+    "coordinate_source": "pradhan-2014-odisha-review-viraja",
+    "modern_name": "Ratnagiri, Lalitgiri and Udayagiri, Jajpur district, Odisha",
+    "site_type": "Buddhist monastic complex (three hill sites)",
+    "excavated_by": "Archaeological Survey of India",
+    "finds": [
+      {
+        "name": "Four-layer relic casket from the Lalitgiri stupa",
+        "significance": "Four caskets nested inside one another - khondalite, steatite, silver and gold - holding a relic. The arrangement is common in China and rare in Odisha.",
+        "source_refs": [
+          {
+            "source_id": "pradhan-2014-odisha-review-viraja",
+            "page": "p. 109"
+          },
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "p. 111"
+          }
+        ]
+      },
+      {
+        "name": "Astamahabhaya Tara sculpture from Ratnagiri",
+        "significance": "An image of the goddess who saves people from eight great dangers, one of them shipwreck - a saint for sailors carved at a monastery close to the coast.",
+        "source_refs": [
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "p. 111"
+          }
+        ]
+      },
+      {
+        "name": "Terracotta sealing naming the Ratnagiri monastery",
+        "significance": "A clay sealing found in the dig reads 'Sri Ratnagiri Mahavihariya Arya Bhikshu Sangha' - the monastery's own name, in its own words.",
+        "source_refs": [
+          {
+            "source_id": "pradhan-2014-odisha-review-viraja",
+            "page": "p. 109"
+          }
+        ]
+      },
+      {
+        "name": "Kushana Brahmi inscriptions, a gold ring and silver ingots from Lalitgiri",
+        "significance": "Writing of the Kushana centuries and worked precious metal, showing wealthy donors supported the monastery early on.",
+        "source_refs": [
+          {
+            "source_id": "pradhan-2014-odisha-review-viraja",
+            "page": "p. 109"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "radhanagar",
+    "name": "Radhanagar",
+    "summary": "Radhanagar is an old town in Jajpur district ringed by a huge mud wall. Diggers found coins, beads and pottery that had come from far away.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patnaik-2014-radhanagar",
+        "page": "pp. 88-94",
+        "note": "p. 88: 'Kankia (Lat: 20 deg 41' Long: 86 deg 11') locally known as Radhanagar', on the right bank of the Kelua, 30 km from the present shore; excavated 2010-13; occupied 4th-3rd c. BCE to 4th-5th c. CE, then sporadically 7th-8th to 13th-14th c. CE. p. 89: c. 902,500 sq m inside a mud fortification."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "Radhanagara is named with Sisupalagarh and Manikpatna as the Orissan find-spots of rouletted ware, alongside Chandraketugarh and Tamluk in Bengal, Salihundam and Dharanikota in Andhra, Kaveripatnam, Uraiyur and Arikamedu in Tamil Nadu, and sites in Java, Bali, Vietnam and Sri Lanka."
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "kharavela",
+      "early-historic",
+      "gupta",
+      "post-gupta",
+      "bhauma-kara",
+      "somavamshi",
+      "eastern-ganga"
+    ],
+    "status": "published",
+    "caveats": "The formal excavation report (published 2015) was not read; this rests on the excavator's own summary in Odisha Review. Patnaik notes the rouletted sherds have not yet been analysed - 'Once the mineral contain of these potsherds will be confirmed then we can safely put it either indigenous or imported' (p. 93) - so they should not be described as imports. The claim that Radhanagar was a Mauryan capital of Kalinga circulates in later writing but is not made in the sources cited here.",
+    "coordinates": {
+      "lat": 20.6833,
+      "lng": 86.1833
+    },
+    "coordinate_source": "patnaik-2014-radhanagar",
+    "modern_name": "Radhanagar (Kankia), Dharmasala, Jajpur district, Odisha",
+    "site_type": "fortified early historic settlement",
+    "excavated_by": "Odishan Institute of Maritime and South East Asian Studies (OIMSEAS), Bhubaneswar, 2010-13, under Sunil Kumar Patnaik",
+    "finds": [
+      {
+        "name": "Mud fortification enclosing about 902,500 square metres",
+        "significance": "A great earth wall with gateways and corner projections, showing a planned town rather than a village.",
+        "source_refs": [
+          {
+            "source_id": "patnaik-2014-radhanagar",
+            "page": "p. 89"
+          }
+        ]
+      },
+      {
+        "name": "Northern Black Polished Ware",
+        "significance": "A glossy luxury pottery of the middle Ganges plain. Finding it here links Radhanagar to the north Indian cities of the same centuries.",
+        "source_refs": [
+          {
+            "source_id": "patnaik-2014-radhanagar",
+            "page": "p. 93"
+          }
+        ]
+      },
+      {
+        "name": "Rouletted ware sherds",
+        "significance": "The same fine patterned pottery found at Sisupalgarh, Manikapatna and ports around the Bay of Bengal.",
+        "source_refs": [
+          {
+            "source_id": "patnaik-2014-radhanagar",
+            "page": "p. 93"
+          },
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "p. 110"
+          }
+        ]
+      },
+      {
+        "name": "Coins: silver punch-marked, uninscribed cast and Puri-Kushana",
+        "significance": "About thirty coins of several kinds, showing money changed hands here over a long stretch of time.",
+        "source_refs": [
+          {
+            "source_id": "patnaik-2014-radhanagar",
+            "page": "p. 94"
+          }
+        ]
+      },
+      {
+        "name": "Beads of carnelian, chalcedony and crystal",
+        "significance": "About two hundred beads, some of semi-precious stone that the excavator suggests was brought in from elsewhere.",
+        "source_refs": [
+          {
+            "source_id": "patnaik-2014-radhanagar",
+            "page": "p. 94"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "golbai-sasan",
+    "name": "Golbai Sasan",
+    "summary": "Golbai Sasan is a village mound near Chilika lake where people lived for thousands of years. They left behind stone tools for shaping wood, bone fish hooks and burnt grains of rice.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 108-109",
+        "note": "Excavated by the ASI Excavation Branch, Bhubaneswar, under B. K. Sinha; Neolithic c. 1600 BCE, Chalcolithic c. 1400-900 BCE, Iron Age c. 900-800 BCE, C14 pushing the earliest level to 2300 BCE. 'adzes for wood working gives the positive indication that Golbai was a boat-building centre.'"
+      },
+      {
+        "source_id": "kingwell-banham-2018-ancient-asia",
+        "page": "pp. 1-3",
+        "note": "A large stratified mound in the coastal lowlands near Chilika; earliest levels Neolithic, often dated c. 4500-3200 BP. 'The latest levels have been dated to the Iron Age (c.2500 BP-1500 BP).' Macro-remains and phytoliths give rice, pulses and millets, with new AMS radiocarbon dates."
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "kharavela",
+      "early-historic",
+      "gupta"
+    ],
+    "status": "published",
+    "caveats": "The periods listed cover only the Iron Age upper levels, which Kingwell-Banham et al. bracket c. 2500-1500 BP (c. 500 BCE - 500 CE). The site's main occupation, Neolithic to Chalcolithic c. 2300-800 BCE, falls before the earliest period in periods.json - a gap for a human to decide about. OHRJ p. 108 prints 'Long. 88 deg 05' E', which falls in the sea, so only its latitude is used and the longitude is read off a modern map. The boat-building reading is an inference from woodworking adzes, not from any boat.",
+    "coordinates": {
+      "lat": 20.0167,
+      "lng": 85.77
+    },
+    "coordinate_source": "patra-patra-ohrj-maritime-archaeology",
+    "modern_name": "Golbai Sasan, Khordha district, Odisha",
+    "site_type": "Neolithic to Iron Age settlement mound",
+    "excavated_by": "Excavation Branch, Archaeological Survey of India, Bhubaneswar, under B. K. Sinha (1991-93); re-investigated in 2010-11 by R. K. Mohanty and P. P. Joglekar",
+    "finds": [
+      {
+        "name": "Polished stone adzes and celts",
+        "significance": "A large number of woodworking adzes. The excavators read them as tools for making boats, which would make Golbai the oldest boat-building place known in Odisha.",
+        "source_refs": [
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "pp. 108-109"
+          }
+        ]
+      },
+      {
+        "name": "Bone harpoon and copper fish hook",
+        "significance": "Fishing gear made from antler, bone and copper, showing people here lived off the water as well as the land.",
+        "source_refs": [
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "pp. 108-109"
+          }
+        ]
+      },
+      {
+        "name": "Charred rice, pulses and millets",
+        "significance": "Burnt seeds and plant silica show a farming economy of rice, several pulses and millets, dated directly by radiocarbon.",
+        "source_refs": [
+          {
+            "source_id": "kingwell-banham-2018-ancient-asia",
+            "page": "pp. 1, 5-9"
+          }
+        ]
+      }
+    ]
+  }
+]

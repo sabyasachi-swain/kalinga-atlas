@@ -1,0 +1,39 @@
+---
+/**
+ * Renders a content-collection entry's Markdown body. The editor agent has
+ * not written every entity's narrative yet, so a missing entry is expected,
+ * not an error — show a plain placeholder instead.
+ */
+import { render, type CollectionEntry, type CollectionKey } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<CollectionKey> | undefined;
+}
+
+const { entry } = Astro.props;
+const { Content } = entry ? await render(entry) : { Content: undefined };
+---
+
+{
+  Content ? (
+    <div class="narrative">
+      <Content />
+    </div>
+  ) : (
+    <p class="narrative-empty">Narrative coming soon.</p>
+  )
+}
+
+<style>
+  .narrative {
+    max-width: 42rem;
+    font-size: var(--text-md);
+  }
+  .narrative :global(p) {
+    margin: 0 0 var(--space-4);
+  }
+  .narrative-empty {
+    color: var(--fg-muted);
+    font-style: italic;
+  }
+</style>

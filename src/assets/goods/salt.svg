@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Salt</title>
+  <desc id="desc">A triangular heap of salt with small crystal facets scattered on its slope, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8,52 L28,18 L48,52 Z" />
+    <path d="M26,30 L29,27 L32,30 L29,33 Z" />
+    <path d="M18,44 L21,41 L24,44 L21,47 Z" />
+    <path d="M34,44 L37,41 L40,44 L37,47 Z" />
+  </g>
+</svg>

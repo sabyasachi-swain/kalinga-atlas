@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 16" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. Decorative nautical-chart motif. -->
+  <title id="title">Wave divider</title>
+  <desc id="desc">A horizontal repeating wave line, decorative, used as a rule between page sections.</desc>
+  <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+    d="M0,8 C10,2 30,2 40,8 C50,14 70,14 80,8 C90,2 110,2 120,8 C130,14 150,14 160,8 C170,2 190,2 200,8 C210,14 230,14 240,8 C250,2 270,2 280,8 C290,14 310,14 320,8" />
+</svg>

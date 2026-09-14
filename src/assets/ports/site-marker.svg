@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Site marker</title>
+  <desc id="desc">A filled diamond, marking an archaeological or inscription site on the trade-routes map.</desc>
+  <path fill="currentColor" d="M32,8 L56,32 L32,56 L8,32 Z" />
+</svg>

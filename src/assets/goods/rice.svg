@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Rice</title>
+  <desc id="desc">A sheaf of three rice stalks tied at the waist and fanning out toward drooping tips, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32,54 Q28,38 18,22" />
+    <path d="M32,54 Q32,34 32,16" />
+    <path d="M32,54 Q36,38 46,22" />
+    <path d="M22,42 L42,42" />
+  </g>
+</svg>

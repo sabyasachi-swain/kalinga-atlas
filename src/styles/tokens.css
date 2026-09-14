@@ -52,6 +52,25 @@
   --map-port-glow: rgba(201, 162, 39, 0.45);
   --map-label: var(--parchment-200);
 
+  /* Route colours by travel mode (route-styles.md). Paired with a distinct
+     dash pattern and a legend glyph per mode — never colour alone. Ratios
+     computed with the standard WCAG relative-luminance formula. */
+  --route-amber-400: #e0a23c;      /* coastal: 8.20:1 on --navy-900, 6.89:1 on --map-land */
+  --route-river-300: #8fc7e0;      /* river: 9.95:1 on --navy-900, 8.37:1 on --map-land, 5.11:1 on --map-river fill */
+  --route-terracotta-400: #e0876a; /* land/caravan: 6.84:1 on --navy-900, 5.75:1 on --map-land */
+  --map-route-maritime: var(--map-route);          /* alias; 9.1:1 on --navy-900 (see tokens.md) */
+  --map-route-coastal: var(--route-amber-400);
+  --map-route-river: var(--route-river-300);
+  --map-route-land: var(--route-terracotta-400);
+  --map-route-glow-maritime: var(--map-route-glow); /* alias */
+  --map-route-glow-coastal: rgba(224, 162, 60, 0.35);
+  --map-route-glow-river: rgba(143, 199, 224, 0.35);
+  --map-route-glow-land: rgba(224, 135, 106, 0.35);
+
+  /* Modal/sheet backdrop. Sits behind an opaque panel, so no text-contrast
+     ratio applies (decorative dimming layer only). */
+  --scrim: rgba(7, 21, 40, 0.6);
+
   /* ---- Evidence tiers (colour + glyph + label, never colour alone) --------- */
   --tier-confirmed: var(--verdigris-700);
   --tier-strong: var(--gold-600);
@@ -95,12 +114,25 @@
   --content-max: 72rem;
   --gutter: clamp(1rem, 4vw, 2.5rem);
 
+  /* ---- Icon sizes (non-colour; n/a for contrast) -------------------------- */
+  --icon-sm: 1.25rem;  /* 20px: legend swatches, inline glyphs */
+  --icon-md: 2rem;     /* 32px: cargo-manifest grid, port-card thumbnails */
+  --icon-lg: 3rem;     /* 48px: section-page featured illustration */
+  --hit-min: 2.75rem;  /* 44px minimum touch target, every interactive control */
+
+  /* ---- Layering (non-colour; n/a for contrast) ---------------------------- */
+  --z-map: 1;
+  --z-panel: 10;   /* port panel, cargo-manifest sheet */
+  --z-popover: 20; /* source popover, keyboard-keys popover */
+  --z-toast: 30;   /* did-you-know toast: always tops the stack, one at a time */
+
   /* ---- Motion ------------------------------------------------------------ */
   --ease-page: cubic-bezier(0.22, 1, 0.36, 1); /* manuscript page turn */
   --dur-fast: 150ms;
   --dur-base: 300ms;
   --dur-page: 700ms;
   --dur-sail: 6000ms; /* ship travels one route */
+  --dur-flow: 2400ms; /* ambient route dash-offset "flow" loop, independent of --dur-sail */
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -109,6 +141,7 @@
     --dur-base: 0ms;
     --dur-page: 0ms;
     --dur-sail: 0ms;
+    --dur-flow: 0ms;
   }
 }
 
@@ -125,6 +158,14 @@
   src: url('/fonts/SourceSans3-Variable.woff2') format('woff2');
   font-weight: 300 700;
   font-display: swap;
+}
+/* Reserved for Phase 2 Odia UI. Only downloaded when an element uses --font-odia. */
+@font-face {
+  font-family: 'Noto Sans Oriya';
+  src: url('/fonts/NotoSansOriya-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0B00-0B7F;
 }
 
 /* ---- Base --------------------------------------------------------------- */

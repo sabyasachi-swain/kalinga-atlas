@@ -1,0 +1,52 @@
+---
+import Base from '@layouts/Base.astro';
+import EntityCard from '@components/EntityCard.astro';
+import WaveDivider from '@components/WaveDivider.astro';
+import { getGoods, getSources } from '@data/load';
+import { getEntry, render } from 'astro:content';
+
+const goods = getGoods();
+const sources = getSources();
+
+const intro = await getEntry('sections', 'goods');
+const { Content: IntroContent } = intro ? await render(intro) : { Content: undefined };
+---
+
+<Base
+  title="Goods & Commodities"
+  description="The spices, textiles, gems and other goods that moved through Kalinga's ports."
+>
+  <article class="section-page">
+    <h1>Goods &amp; Commodities</h1>
+    {
+      IntroContent ? (
+        <div class="intro">
+          <IntroContent />
+        </div>
+      ) : (
+        <p class="lede">What the ships carried in and out of Kalinga's ports.</p>
+      )
+    }
+
+    <WaveDivider />
+
+    {goods.length === 0 && <p class="empty">No published goods yet.</p>}
+    <ul class="cards">
+      {goods.map((g) => <EntityCard kind="good" entity={g} sources={sources} />)}
+    </ul>
+  </article>
+</Base>
+
+<style>
+  .section-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .lede, .intro { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
+  .empty { color: var(--fg-muted); font-style: italic; }
+  .cards {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import Base from '@layouts/Base.astro';
+import EntityCard from '@components/EntityCard.astro';
+import WaveDivider from '@components/WaveDivider.astro';
+import { getPorts, getSources } from '@data/load';
+import { getEntry, render } from 'astro:content';
+
+const ports = getPorts();
+const sources = getSources();
+
+const intro = await getEntry('sections', 'ports');
+const { Content: IntroContent } = intro ? await render(intro) : { Content: undefined };
+---
+
+<Base
+  title="Ancient Ports"
+  description="Every port on the Kalinga coast documented on this atlas, with the evidence behind each one."
+>
+  <article class="section-page">
+    <h1>Ancient Ports</h1>
+    {
+      IntroContent ? (
+        <div class="intro">
+          <IntroContent />
+        </div>
+      ) : (
+        <p class="lede">
+          The harbours and river landings that connected ancient Kalinga to the wider world.
+        </p>
+      )
+    }
+
+    <WaveDivider />
+
+    {ports.length === 0 && <p class="empty">No published ports yet.</p>}
+    <ul class="cards">
+      {ports.map((p) => <EntityCard kind="port" entity={p} sources={sources} />)}
+    </ul>
+  </article>
+</Base>
+
+<style>
+  .section-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .lede, .intro { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
+  .empty { color: var(--fg-muted); font-style: italic; }
+  .cards {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  }
+</style>

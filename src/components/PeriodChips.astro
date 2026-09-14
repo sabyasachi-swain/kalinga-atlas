@@ -1,0 +1,44 @@
+---
+/**
+ * Period chips: the named historical periods an entity belongs to.
+ * Caller resolves an entity's `periods` (ids) against `getPeriods()` and
+ * passes the resolved list — this component never reads data itself.
+ */
+import type { Period } from '@data/schema';
+
+interface Props {
+  periods: Pick<Period, 'id' | 'label'>[];
+}
+
+const { periods } = Astro.props;
+---
+
+{
+  periods.length > 0 && (
+    <ul class="period-chips" aria-label="Historical periods">
+      {periods.map((p) => (
+        <li class="chip">{p.label}</li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .period-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: var(--space-2) 0;
+  }
+  .chip {
+    background: var(--bg-elevated);
+    border: 1px solid var(--rule);
+    color: var(--fg-muted);
+    border-radius: var(--radius-pill);
+    padding: 0.2em 0.8em;
+    font-size: var(--text-xs);
+    font-family: var(--font-body);
+  }
+</style>

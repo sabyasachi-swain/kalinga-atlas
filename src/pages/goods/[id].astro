@@ -1,0 +1,113 @@
+---
+import Base from '@layouts/Base.astro';
+import EvidenceBadge from '@components/EvidenceBadge.astro';
+import PeriodChips from '@components/PeriodChips.astro';
+import ScholarNotes from '@components/ScholarNotes.astro';
+import Narrative from '@components/Narrative.astro';
+import EntityCard from '@components/EntityCard.astro';
+import { getGoods, getRoutes, getPorts, getPeriods, getSources } from '@data/load';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const goods = getGoods();
+  return goods.map((good) => ({ params: { id: good.id }, props: { good } }));
+}) satisfies GetStaticPaths;
+
+const { good } = Astro.props;
+
+const sources = getSources();
+const periods = getPeriods().filter((p) => good.periods.includes(p.id));
+
+const relatedRoutes = getRoutes().filter((r) => r.goods.includes(good.id));
+const relatedPorts = getPorts().filter((p) => p.goods.includes(good.id));
+
+const narrativeEntries = await getCollection('goods');
+const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === good.id);
+
+const CATEGORY_LABEL: Record<string, string> = {
+  textile: 'Textile',
+  spice: 'Spice',
+  gem: 'Gem',
+  metal: 'Metal',
+  'animal-product': 'Animal product',
+  foodstuff: 'Foodstuff',
+  timber: 'Timber',
+  ceramic: 'Ceramic',
+  other: 'Other',
+};
+
+const DIRECTION_LABEL: Record<string, string> = {
+  'export': 'Exported from Kalinga',
+  'import': 'Imported into Kalinga',
+  both: 'Traded both ways',
+};
+---
+
+<Base title={good.name} description={good.summary}>
+  <article class="entity-page">
+    <p class="back"><a href="/#goods">&larr; Back to the atlas</a></p>
+
+    <h1>{good.name}</h1>
+    <div class="badges">
+      <EvidenceBadge level={good.evidence_level} type={good.evidence_type} />
+    </div>
+    <PeriodChips periods={periods} />
+
+    <p class="summary">{good.summary}</p>
+    <p class="kid-line">{good.kid_line}</p>
+
+    <Narrative entry={narrativeEntry} />
+
+    <section aria-labelledby="facts-h">
+      <h2 id="facts-h">Facts</h2>
+      <dl class="facts">
+        <dt>Category</dt>
+        <dd>{CATEGORY_LABEL[good.category] ?? good.category}</dd>
+        <dt>Direction</dt>
+        <dd>{DIRECTION_LABEL[good.direction] ?? good.direction}</dd>
+      </dl>
+    </section>
+
+    {relatedRoutes.length > 0 && (
+      <section aria-labelledby="routes-h">
+        <h2 id="routes-h">Carried on these routes</h2>
+        <ul class="cards">
+          {relatedRoutes.map((r) => <EntityCard kind="route" entity={r} sources={sources} />)}
+        </ul>
+      </section>
+    )}
+
+    {relatedPorts.length > 0 && (
+      <section aria-labelledby="ports-h">
+        <h2 id="ports-h">Documented at these ports</h2>
+        <ul class="cards">
+          {relatedPorts.map((p) => <EntityCard kind="port" entity={p} sources={sources} />)}
+        </ul>
+      </section>
+    )}
+
+    <ScholarNotes caveats={good.caveats} refs={good.source_refs} sources={sources} />
+  </article>
+</Base>
+
+<style>
+  .entity-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .back { margin-bottom: var(--space-4); }
+  .back a { color: var(--fg-muted); }
+  .badges { margin-bottom: var(--space-2); }
+  .summary { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
+  .kid-line { font-style: italic; max-width: 46rem; }
+  section { margin-top: var(--space-8); }
+  .facts { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-4); }
+  .facts dt { font-weight: 600; color: var(--fg-muted); }
+  .facts dd { margin: 0; }
+  .cards {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0 0;
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  }
+</style>

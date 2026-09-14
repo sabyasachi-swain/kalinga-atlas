@@ -1,0 +1,44 @@
+---
+/**
+ * Inline SVG wave divider between page sections. Uses the designer's
+ * src/assets/ornament/wave-divider.svg once it exists; falls back to a
+ * simple inline wave path so section pages are never blocked on the asset.
+ * Purely decorative: aria-hidden, no text alternative needed.
+ */
+const svgModules = import.meta.glob('/src/assets/ornament/wave-divider.svg', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+}) as Record<string, string>;
+const customSvg = Object.values(svgModules)[0];
+---
+
+{
+  customSvg ? (
+    <div class="wave-divider" aria-hidden="true" set:html={customSvg} />
+  ) : (
+    <svg class="wave-divider" viewBox="0 0 64 8" aria-hidden="true" focusable="false">
+      <path
+        d="M0 4 Q4 0 8 4 T16 4 T24 4 T32 4 T40 4 T48 4 T56 4 T64 4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+        vector-effect="non-scaling-stroke"
+      />
+    </svg>
+  )
+}
+
+<style>
+  .wave-divider {
+    display: block;
+    width: 100%;
+    height: 1.5rem;
+    color: var(--accent-2);
+    margin: var(--space-8) 0;
+  }
+  .wave-divider :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+</style>

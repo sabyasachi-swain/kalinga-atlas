@@ -1,0 +1,63 @@
+---
+import Base from '@layouts/Base.astro';
+import EntityCard from '@components/EntityCard.astro';
+import WaveDivider from '@components/WaveDivider.astro';
+import { getSites, getInscriptions, getSources } from '@data/load';
+import { getEntry, render } from 'astro:content';
+
+const sites = getSites();
+const inscriptions = getInscriptions();
+const sources = getSources();
+
+const intro = await getEntry('sections', 'evidence');
+const { Content: IntroContent } = intro ? await render(intro) : { Content: undefined };
+---
+
+<Base
+  title="Archaeological Evidence"
+  description="Excavated sites and inscriptions that document Kalinga's trade, with the evidence behind each one."
+>
+  <article class="section-page">
+    <h1>Archaeological Evidence</h1>
+    {
+      IntroContent ? (
+        <div class="intro">
+          <IntroContent />
+        </div>
+      ) : (
+        <p class="lede">
+          What archaeologists have dug up, and what inscriptions say, about trade in and out of Kalinga.
+        </p>
+      )
+    }
+
+    <WaveDivider />
+
+    <h2 id="sites">Sites</h2>
+    {sites.length === 0 && <p class="empty">No published sites yet.</p>}
+    <ul class="cards">
+      {sites.map((s) => <EntityCard kind="site" entity={s} sources={sources} />)}
+    </ul>
+
+    <h2 id="inscriptions">Inscriptions</h2>
+    {inscriptions.length === 0 && <p class="empty">No published inscriptions yet.</p>}
+    <ul class="cards">
+      {inscriptions.map((i) => <EntityCard kind="inscription" entity={i} sources={sources} />)}
+    </ul>
+  </article>
+</Base>
+
+<style>
+  .section-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .lede, .intro { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
+  h2 { margin-top: var(--space-8); }
+  .empty { color: var(--fg-muted); font-style: italic; }
+  .cards {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-4);
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  }
+</style>

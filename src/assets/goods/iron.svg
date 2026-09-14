@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Iron</title>
+  <desc id="desc">A blacksmith's anvil shown in profile, with a pointed horn, a flat working face and a wide base, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4,20 L20,16 L50,16 L50,24 L38,26 L38,34 L48,38 L48,46 L14,46 L14,38 L24,34 L24,26 L12,24 Z" />
+  </g>
+</svg>

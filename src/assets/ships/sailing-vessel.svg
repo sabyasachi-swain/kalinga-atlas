@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. Artistic reconstruction — not a historical document. -->
+  <title id="title">Sailing vessel</title>
+  <desc id="desc">Artistic reconstruction, not a historical document; generic silhouette, not a specific vessel type. A single-masted sailing craft with a curved, upswept prow and a canted square sail, facing right, drawn as a filled silhouette for animating along a maritime trade route.</desc>
+  <path fill="currentColor" d="M6,40 Q6,34 14,33 L40,31 Q46,30 47,24 Q48,18 44,13 Q52,15 55,21 Q58,27 54,32 Q60,33 60,38 Q60,44 52,46 L16,47 Q6,47 6,40 Z" />
+  <path fill="currentColor" d="M29,6 L31,6 L31,24 L29,24 Z" />
+  <path fill="currentColor" d="M31,8 L54,14 L54,26 L31,23 Z" />
+  <path fill="currentColor" d="M30,6 L37,4.5 L30,8.5 Z" />
+</svg>

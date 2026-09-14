@@ -1,1 +1,424 @@
-[]
+[
+  {
+    "id": "ivory",
+    "name": "Ivory",
+    "summary": "A Greek sailing guide written about 1,900 years ago says a land on this coast gave its name to a kind of ivory. Scholars think that land may be the Odisha coast.",
+    "category": "animal-product",
+    "direction": "export",
+    "kid_line": "Greek sailors had a special name for elephant tusks from this coast: Dosarenic ivory.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "periplus-casson-1989",
+        "page": "section 62",
+        "note": "'Dosarene, yielding the ivory known as Dosarenic'. Section number is standard across editions. Casson's page NOT verified: the 1989 Princeton edition is lending-restricted on archive.org, so the wording was read in W. H. Schoff's 1912 translation via ToposText."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 122",
+        "note": "'The ivory yielded in Dosarene was known as dosarenic'; also summarises the rival identifications of Dosarene."
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "The Periplus names Dosarene, not Kalinga, and Dosarene is an unidentified region, not a proven port. Moti Chandra placed it at Toshali; B. Srivastava made it a janapada with Palur as its capital; Patra 2014 argues for the Chilika coast, near Xuanzang's Kongoda. No worked-ivory find or workshop from Odisha was reported in anything I read. Do not raise this tier without an excavation report.",
+    "icon": "ivory.svg"
+  },
+  {
+    "id": "elephants",
+    "name": "Elephants",
+    "summary": "An old Indian handbook on running a kingdom says the best war elephants came from Kalinga. A Chinese monk who travelled here in the 600s wrote the same thing.",
+    "category": "animal-product",
+    "direction": "export",
+    "kid_line": "A stone carving at Bhubaneswar shows an elephant standing on the deck of a ship, ready to sail away.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "arthashastra",
+        "page": "Book II, ch. 2",
+        "note": "'Elephants bred in countries, such as Kalinga, Anga, Karusa, and the East are the best.' Read in R. Shamasastry's translation, Mysore Printing and Publishing House, p. 49 (archive.org in.ernet.dli.2015.102722). Kangle's numbering not verified."
+      },
+      {
+        "source_id": "xuanzang-travels",
+        "page": "vol. II, p. 207",
+        "note": "Beal 1884: Kalinga 'produces the great tawny wild elephant, which are much prized by neighbouring provinces'; neighbouring Kongoda has 'the great greenish-blue elephant'."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 114",
+        "note": "Brahmeswar temple ship frieze, c. 9th century CE: 'elephant was an item of export among many other items'."
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "post-gupta",
+      "bhauma-kara"
+    ],
+    "status": "published",
+    "caveats": "The Arthashastra's date is disputed (Mauryan to c. 2nd century CE), so the mauryan tag follows the traditional attribution only. Xuanzang's neighbouring country Kongoda is Cunningham's identification with Ganjam. The ship-and-elephant frieze is read as evidence of export by Patra and Patra: that is an interpretation of a sculpture, not a shipping record. Stirling in 1825 doubted the elephant was indigenous to the province at all (Asiatic Researches XV, p. 182).",
+    "icon": "elephants.svg"
+  },
+  {
+    "id": "cotton-textiles",
+    "name": "Cotton cloth and muslin",
+    "summary": "An old Indian handbook lists Kalinga among the places that wove the best cotton cloth. Much later, English traders bought fine muslin at Cuttack and Balasore.",
+    "category": "textile",
+    "direction": "both",
+    "kid_line": "Kautilya's handbook put Kalinga on its short list of the seven best cotton-weaving lands in India.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "arthashastra",
+        "page": "Book II, ch. 11",
+        "note": "'Of cotton fabrics, those of Madhura, of Aparanta, of Kalinga, of Kasi, of Vanga, of Vatsa, and of Mahisha are the best.' Read in Shamasastry's translation, p. 84."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II, pp. 40, 247",
+        "note": "p. 40: the Orissa factors 'bought up at the lowest prices for ready money the fine muslins of Cattack'. p. 247: 'the Cattack and Balasor muslins formed an important item in the yearly Investments'."
+      },
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'Piece goods' heads both the list of exports liable to duty and the list of goods imported from the adjoining districts of Bengal."
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "mughal-maratha",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Nothing links the cotton of the Arthashastra to the muslin the East India Company bought some 1,800 years later; they are two separate claims with separate sources, and the centuries between are deliberately untagged. The famous muslins of Periplus section 62 belong to Masalia, usually identified with Machilipatnam in Andhra, NOT to Kalinga. Direction is 'both' because Stirling lists piece goods as an import from Bengal as well as a dutiable export.",
+    "icon": "cotton-textiles.svg"
+  },
+  {
+    "id": "salt",
+    "name": "Salt",
+    "summary": "Salt was made from seawater along the Odisha coast, by boiling it or letting the sun dry it. Boats carried it up the Mahanadi and swapped it for rice and cotton.",
+    "category": "foodstuff",
+    "direction": "export",
+    "kid_line": "Boats carried salt upriver to Sambalpur and came back loaded with cotton, wheat, oil-seeds and rice.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "pp. 194, 218",
+        "note": "p. 194: 'formerly salt was an important article of export by way of the great road leading along the Mahanadi to Sembelpur and Berar... more than three lacs of maunds being exported annually'. p. 218: the salt monopoly's revenue exceeds all the land rents."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. I, p. 41; vol. II, pp. 159-162; vol. II Appendix III, p. 74",
+        "note": "vol. I p. 41: 'The only manufacture of Parikud is salt', solar and boiled processes. vol. II: the Tributary States and Central Provinces send rice, grain, oil-seeds and cotton to the coast 'in exchange for salt' (page not isolable: between the running heads for pp. 159 and 162)."
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "vol. XXII, p. 13 (Sambalpur District)",
+        "note": "'Salt comes principally from Ganjam, and is now brought by rail instead of river as formerly.'"
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "p. 104",
+        "note": "Abul Fazl described Manikapatna as a sea port where taxes were collected; reported here as a salt-tax centre."
+      }
+    ],
+    "periods": [
+      "mughal-maratha",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "All the quantitative evidence is from 1825 onward, under the British salt monopoly. The Mughal-period tag rests only on Abul Fazl's notice of Manikapatna as a taxed port, reported at second hand by Patnaik. Salt was surely made and traded on this coast long before that, but I found no earlier source that says so with a citable page.",
+    "icon": "salt.svg"
+  },
+  {
+    "id": "rice",
+    "name": "Rice",
+    "summary": "Rice was Odisha's biggest crop and its biggest export. Small ships loaded it at the river mouths and carried it away to Calcutta.",
+    "category": "foodstuff",
+    "direction": "export",
+    "kid_line": "Ships from the Maldive Islands sailed all the way to Balasore just to fill up with rice and clay pots.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'A considerable exportation of rice takes place from the several small ports along the coast to Calcutta'; Maldive vessels 'resort annually to Balasore and Dhamra, to take on board cargoes of rice and earthen pots'."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II Appendix I, p. 13; vol. II, pp. 159-162",
+        "note": "Appendix I (Puri): at Machhagaon near the Devi river mouth 'a considerable export rice trade is done here'; Pipli and Bhubaneswar are 'seats of a considerable trade in rice and cloth'."
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "vol. XXII, p. 13 (Sambalpur District)",
+        "note": "'Rice is the staple export of Sambalpur, being sent principally to Calcutta, but also to Bombay and Berar.'"
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Every source here is colonial. Rice was certainly grown and eaten far earlier, but I found no dated source documenting it as a traded good before 1825, so no earlier period is tagged. The Gazetteer figures are for 1903-04, just outside the atlas's 1900 cut-off.",
+    "icon": "rice.svg"
+  },
+  {
+    "id": "cowrie-shells",
+    "name": "Cowrie shells",
+    "summary": "Small shiny sea shells were used as everyday money in Odisha for hundreds of years. Ships from the Maldive Islands brought them to Balasore and Dhamra.",
+    "category": "animal-product",
+    "direction": "import",
+    "kid_line": "In 1804 a silver rupee was officially worth 5,120 cowrie shells. By Hunter's day it bought only 3,584.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "xuanzang-travels",
+        "page": "vol. II, p. 207",
+        "note": "Beal 1884, on Kongoda: 'They use cowrie shells and pearls in commercial transactions.'"
+      },
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'a small supply of couris, cocoanuts, coral, and dried fish is obtained from the few Maldive vessels, which resort annually to Balasore and Dhamra'."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II, p. 167",
+        "note": "'From time immemorial Orissa... has used a local currency of cowries'; the 1804 official rate of 5,120 cowries to the rupee and the 1872 rate of 3,584."
+      }
+    ],
+    "periods": [
+      "post-gupta",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Xuanzang reports cowrie currency for Kongoda, which Cunningham identified with Ganjam; he does not say where the shells came from, so the 'import' direction rests on Stirling alone. Nothing I read bridges the gap between the 7th century and 1825, so the periods in between are deliberately untagged.",
+    "icon": "cowrie-shells.svg"
+  },
+  {
+    "id": "chinese-ceramics",
+    "name": "Chinese ceramics",
+    "summary": "Pieces of green and blue-and-white Chinese pottery turn up in the sand at old Odisha ports. They had travelled thousands of miles across the sea.",
+    "category": "ceramic",
+    "direction": "import",
+    "kid_line": "Diggers at Manikapatna and Khalkatapatna found Chinese celadon, porcelain and two little Chinese copper coins.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "tripati-2021-current-science",
+        "page": "p. 1212",
+        "note": "Manikapatna finds include 'Chinese porcelain (1368-1644 CE)... belonging to Yuan and Ming dynasties' and a coin of the Jiaqing Emperor of the Qing dynasty."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 111-112",
+        "note": "'Chinese celadone ware, white porcelain, blue, white and brown glazed porcelain sherds' at Manikapatna; celadon, porcelain and two Chinese copper coins of c. 14th century at Khalkatapatna."
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "p. 105",
+        "note": "Manikapatna finds list includes Chinese celadon, porcelain and a Chinese coin."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 119-120",
+        "note": "Khalkatapatna, c. 12th-14th century CE: Chinese celadon ware, porcelain with blue floral design on white, two Chinese copper coins datable to c. 14th century."
+      }
+    ],
+    "periods": [
+      "eastern-ganga",
+      "gajapati"
+    ],
+    "status": "published",
+    "caveats": "Khalkatapatna's Chinese material is dated c. 12th-14th century; Manikapatna's porcelain to 1368-1644. Its celadon is described only as 'datable to different centuries', so no earlier or later period is tagged. Finding Chinese pots does not prove Chinese ships called here: the goods may have moved through Southeast Asian middlemen. Two of the four sources share an author (Benudhar Patra).",
+    "icon": "chinese-ceramics.svg"
+  },
+  {
+    "id": "roman-amphorae",
+    "name": "Amphora jars",
+    "summary": "Broken pieces of tall Mediterranean storage jars have been dug up at two Odisha ports. They show that goods reached here from the Roman world.",
+    "category": "ceramic",
+    "direction": "import",
+    "kid_line": "Bits of amphorae, the tall two-handled jars used all round the Roman world, turned up at Manikapatna and Palur.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 109, 111",
+        "note": "p. 109: exploration around Palur (Kantigarh) 'unearthed fragments of the Chinese celadon ware, the Roman rouletted ware, amphora pieces etc.'. p. 111: Manikapatna yielded 'Roman rouletted pottery and fragments of amphora'."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 120",
+        "note": "'The discovery of rouletted ware, fragments of amphora etc., indicate its contact with the Roman Empire in the early centuries CE' (Manikapatna)."
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "Both accounts I could read are by Benudhar Patra (one co-authored), so they are not fully independent works; the tier is held at Probable for that reason. No published typology or fabric study of the sherds was available to me, so date and origin rest on the excavators' identification. The rouletted ware found with them is now generally taken to be Indian-made, so these finds show participation in a long-distance network, not Roman ships in Odisha. What the jars carried is not recorded.",
+    "icon": "roman-amphorae.svg"
+  },
+  {
+    "id": "diamonds",
+    "name": "Diamonds",
+    "summary": "Diamonds were washed out of the river sand at Hirakud, a name that means 'diamond island'. The people who found them were paid with grants of land.",
+    "category": "gem",
+    "direction": "export",
+    "kid_line": "Hirakud means 'diamond island': searchers called Jharias sifted the Mahanadi's sand and were paid in land.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "vol. XXII, p. 12 (Sambalpur District)",
+        "note": "'When Sambalpur was under native rule diamonds were obtained in the island of Hirakud (diamond island) in the Mahanadi. The Jharias or diamond-seekers were rewarded with grants of land... The diamonds, which are of very poor quality, [were] leased by the British Government for Rs. 200.'"
+      },
+      {
+        "source_id": "mccrindle-ptolemy-1927",
+        "page": "pp. 71, 169, 333",
+        "note": "p. 169: 'The Sambalaka of the Mandalai may perhaps be Sambhalpur on the Upper Mahanadi, the capital of a district which produces the finest diamonds in the world'. p. 71: 'Adamas is a Greek word meaning diamond'. p. 333: V. Ball's objection to the identifications."
+      }
+    ],
+    "periods": [
+      "mughal-maratha",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only the Gazetteer documents actual diamond-getting, under pre-British 'native rule', and it calls the stones 'of very poor quality'. The ancient link is conjecture: McCrindle merely suggested Ptolemy's inland town Sambalaka might be Sambalpur, and Ptolemy's river Adamas has been identified with the Mahanadi, the Subarnarekha and the Brahmani by different scholars; V. Ball rejected the Subarnarekha because it carries no diamonds. Sambalpur sat in the Central Provinces, not Orissa, when the Gazetteer was written.",
+    "icon": "diamonds.svg"
+  },
+  {
+    "id": "sal-timber",
+    "name": "Sal timber",
+    "summary": "Tall sal trees grew in the hill forests behind the coast. Their timber was carted and floated down to the ports, and taxed all the way.",
+    "category": "timber",
+    "direction": "export",
+    "kid_line": "Tolls on timber in Ganjam were so steep that a shilling's worth cost one shilling and fourpence to move 42 miles.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "Exports liable to duty include 'sal timber, congni wood, karbeli, shirbeli'."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II, p. 235; vol. II Appendix III, p. 75",
+        "note": "p. 235: 'the transit dues on timber mounting up 133 per cent. on a journey of 42 miles' in Ganjam District. Appendix III p. 75: 'The chief marketable timber of the Tributary States is Sal.'"
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "vol. XXII, p. 12 (Sambalpur District)",
+        "note": "Sal forest covers about 238 square miles; 1903-4 forest revenue Rs. 34,000, of which Rs. 10,000 came from timber and Rs. 12,000 from bamboos."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "All three sources are colonial. Timber must have moved down these rivers much earlier, but I found no dated pre-1800 source for it, so only the British period is tagged. Stirling's list is of goods on which export duty was paid at Cuttack, which is not the same as seaborne export.",
+    "icon": "sal-timber.svg"
+  },
+  {
+    "id": "iron",
+    "name": "Iron",
+    "summary": "Iron was smelted in small clay furnaces in the western hills. Boats brought it down the Mahanadi, and it was also taxed when it left Cuttack.",
+    "category": "metal",
+    "direction": "both",
+    "kid_line": "Sambalpur still had 160 village furnaces turning out about 1,120 hundredweight of iron every year.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'The exports liable to duty are as follows: Piece goods, bees wax, iron, kut'h..., oil, lac, stone plates, sal timber, congni wood...'"
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "vol. XXII, p. 12 (Sambalpur District)",
+        "note": "'Iron ores occur in most of the hilly country on the borders of the District... There are 160 native furnaces, which produce about 1,120 cwt. of iron annually.'"
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II Appendix III, p. 74",
+        "note": "Mahanadi river towns 'carry salt, spices, cocoa-nuts, and brass utensils up to Sambalpur... bringing thence, in exchange, cotton, wheat, oil-seeds, clarified butter, oil, molasses, iron, turmeric, tasar cloth, rice'."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "The records point opposite ways: Stirling lists iron among Cuttack's dutiable exports in the 1820s, while Hunter's Mahanadi boatmen bring iron down into Odisha from Sambalpur. Hence direction 'both'. Excavation at Jaugada shows a fully iron-using culture in the early historic period, but that is evidence of use, not of trade, so no early period is tagged.",
+    "icon": "iron.svg"
+  },
+  {
+    "id": "tasar-silk",
+    "name": "Tasar silk",
+    "summary": "Wild silkworms in the hill jungles spin a coarse golden silk called tasar. Weavers in western Odisha made it into cloth and sent some of it towards the coast.",
+    "category": "textile",
+    "direction": "export",
+    "kid_line": "Tasar silk comes from wild forest silkworms, and a whole caste, the Kostas, made their living dealing in it.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II Appendix III, p. 75",
+        "note": "'The jungle yields an annual supply of resin, lac, tasar, bees-wax, dyes, fibres'; class (9.) 'Kostia, dealers in tasar'."
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "vol. XXII, p. 13 (Sambalpur District)",
+        "note": "'Tasar silk-weaving is an important industry in Sambalpur. The cocoons are at present not cultivated locally, but are imported from Chota Nagpur... A little cloth is sent to Ganjam, but the greater part is sold locally.'"
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Both sources are late colonial; nothing I read carries tasar back earlier. The Gazetteer says the cocoons were themselves imported from Chota Nagpur and that only 'a little' cloth went to Ganjam, so this is a regional trade, not a proven maritime export. Stirling (1825, p. 194) records silk being imported into Cuttack from Bengal, a different fibre moving the other way.",
+    "icon": "tasar-silk.svg"
+  },
+  {
+    "id": "lac-and-beeswax",
+    "name": "Lac and beeswax",
+    "summary": "Forest people collected sticky red lac made by tiny insects, and wax from wild bees. Both were carried out of the hills and taxed as they left.",
+    "category": "other",
+    "direction": "export",
+    "kid_line": "Lac is a red resin made by tiny insects. Whole communities lived by gathering it, with beeswax, honey and dyes.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "Exports liable to duty include 'bees wax' and 'lac'."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II, p. 102; vol. II Appendix III, p. 75",
+        "note": "p. 102: 'The trade of the Tributary States consists of rice, sugar-cane, oil seeds, clarified butter, cotton, coarse cereals, timber, lac, turmeric, beeswax, and other jungle products.' Appendix III p. 75 names the collecting communities, including Kols 'who sell resin, lac, wax'."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Both sources are 19th century. Neither says lac or wax was shipped overseas: Stirling's list is of goods on which duty was paid on leaving the district, and Hunter's is of inland traffic. Do not upgrade to a maritime export without a customs return or a factory record.",
+    "icon": "lac-and-beeswax.svg"
+  }
+]

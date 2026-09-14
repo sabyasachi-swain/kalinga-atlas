@@ -1,1 +1,802 @@
-[]
+[
+  {
+    "id": "manikapatna",
+    "name": "Manikapatna",
+    "summary": "Manikapatna is an old port on the shore of Chilika lake. People digging there found coins and broken pots from China, Sri Lanka and lands far to the west.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "tripati-2021-current-science",
+        "page": "pp. 1211-1212",
+        "note": "p. 1211: OIMSEAS, Bhubaneswar excavated 1989-1993; site lies on the bank of Chilika Lake in Brahmagiri taluk, Puri district. p. 1212: two periods, 2nd c. BCE to 5th-6th c. CE and 9th to 19th c. CE; Kharoshthi inscription, knobbed and rouletted ware, Puri-Kushan and Chola coins, Yuan/Ming porcelain."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 111-112",
+        "note": "Finds list: Chinese celadon and porcelain, rouletted pottery and amphora fragments, knobbed ware, Burmese and Siamese pottery, a Ceylonese coin of Sahassamalla, Indonesian terracotta, egg-white Arabian ware, and a Kharoshthi potsherd read as 'Dasatradeva'."
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "pp. 104-105",
+        "note": "Excavation seasons 1989-90 and 1992-93; site c. 45 km south of Puri; mounds topped by the 13th-c. Bhabakundaleswar temple; period I 2nd c. BCE to 5th-6th c. CE, period II 9th c. to early 19th c. CE; East India Company copper coins, Mughal and Shah Alam coins, a British medal."
+      },
+      {
+        "source_id": "tripati-2022-scientific-reports",
+        "page": "Introduction; Sci. Rep. 12:13559",
+        "note": "Confirms OIMSEAS excavations 1989-1993 and a Deccan College, Pune campaign in 2010; the same two phases; a broken Indo-Arabian stone anchor recovered near the mosque during 2018-19 exploration."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 120",
+        "note": "Prints a coordinate for the site: 'Lat. 19 deg 43' 54\" N and Long. 85 deg 33' 14\" E', in the northern tip of the Chilika Lake, Brahmagiri tahsil, Puri district. Also the Sahassamalla-coin network linking Manikpatna, Polonnaruva and Kotchina (Sumatra), and Maratuan (Burmese) brown glazed ware."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 23, section 'Manikapatna'",
+        "note": "Independently gives 19 deg 43' N; 85 deg 34' E, agreeing with Patra 2014 to the arc-minute. Records Abul Fazl (1595-96) on Manikapatna as a large port where salt tax was collected. Journal pagination not verified."
+      }
+    ],
+    "periods": [
+      "kharavela",
+      "early-historic",
+      "gupta",
+      "bhauma-kara",
+      "somavamshi",
+      "eastern-ganga",
+      "gajapati",
+      "mughal-maratha",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Excavated by OIMSEAS, Bhubaneswar, in 1989-93 and by Deccan College, Pune, in 2010 - not by the ASI. Whether the ASI's Indian Archaeology: A Review ever reported the site is unchecked. Identification with Xuanzang's Che-li-ta-lo is a proposal, not settled; Cunningham placed that port at Puri, others at Citrotpola. Coordinates were replaced in this session with the published figure in Patra 2014 p. 120 (19 deg 43' 54\" N, 85 deg 33' 14\" E), corroborated by Dayalan 2019; the earlier value 19.68/85.47 was an estimate.",
+    "coordinates": {
+      "lat": 19.7317,
+      "lng": 85.5539
+    },
+    "coordinate_source": "patra-2014-odisha-review-ports",
+    "modern_name": "Manikapatna, Puri district, Odisha",
+    "also_known_as": [
+      "Manikpatna",
+      "Che-li-ta-lo (proposed identification)"
+    ],
+    "goods": []
+  },
+  {
+    "id": "palur",
+    "name": "Palur",
+    "summary": "Palur is an old port village near the mouth of the Rushikulya river in south Odisha. People found bits of Chinese and Mediterranean pots there, which shows traders came from far away.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 109",
+        "note": "Prints 'Palur (Lat 19 deg 27' E. and Long 85 deg 11' N.)' with the labels reversed. Exploration by A. Nath (ASI) and K. S. Behera at Palur (Kantigarh) found Chinese celadon, rouletted ware and amphora pieces; K. K. Basa's survey found a possible lighthouse pillar and a stamped boat motif nearby."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 121",
+        "note": "Gerini identified Ptolemy's Paloura with modern Palur, Chatrapur subdivision, Ganjam district, 'at Lat. 19 deg 27' N and Long. 85 deg 11' E, just above the mouth of Rushikulya'. Palur named as a maritime emporium in the Nagarjunikonda inscription of Virapurushadatta, later 3rd century CE."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint pp. 20-21, section 'Palur'",
+        "note": "'Palur (19 deg 27' N; 85 deg 11' E), situated in the Ganjam district of Odisha, was mentioned as an important port on the eastern coast of India.' Kantigarh explorations yielded Chinese celadon, rouletted ware and Mediterranean amphora. Journal pagination not verified."
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "The equation of Ptolemy's 'Paloura' with modern Palur is Gerini's proposal, repeated by later writers; it is not proved. S. Levi's further equation of Palur with the Dantapura of the Buddhist Jatakas and the Dathavamsa is a philological argument only, so 'Dantapura' is listed as a proposal, not a fact. No excavation report was read: the Kantigarh finds are known only from exploration summaries, and the Chinese celadon among them is undated in every source consulted, so no medieval period is claimed here.",
+    "coordinates": {
+      "lat": 19.45,
+      "lng": 85.1833
+    },
+    "coordinate_source": "dayalan-2019-acta-via-serica",
+    "modern_name": "Palur, Ganjam district, Odisha",
+    "also_known_as": [
+      "Paloura (Ptolemy)",
+      "Dantapura (proposed identification)"
+    ],
+    "goods": []
+  },
+  {
+    "id": "khalkatapatna",
+    "name": "Khalkatapatna",
+    "summary": "Khalkatapatna was a busy river port near Konark about 800 years ago. Diggers found Chinese plates, Chinese coins and a hard brick floor for loading boats.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 119",
+        "note": "'The excavation at Khalkattapatna (Lat. 19 deg 51' 13\" N and Long. 86 deg 02' 40\" E) in the Puri district by the Excavation Branch IV of the ASI (1984-1985)'. 11 km east of Konarak on the left bank of the Kushabhadra. Material assigned to c. 12th-14th century CE; a single cultural deposit."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 112",
+        "note": "Brick-jelly floor read as a loading platform; Chinese celadon and porcelain with blue floral design, egg-white glazed and chocolate glazed ware; two circular Chinese copper coins with a square central hole, c. 14th century CE; 143 antiquities including beads, bangles and coins of native rulers."
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "p. 105",
+        "note": "'the excavation at Khalkatapatna near Konark focuses on the trade activities during Ganga period ... flourished during 11th century A.D. The evidence found from excavation (1987, ASI) are a brick jetty floor, Chinese Celadonware, Chinese porcelain ...'"
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 22, section 'Khalkattapatna'",
+        "note": "Gives 19 deg 51' N; 86 deg 02' E and the same 12th-14th century CE range, citing Indian Archaeology 1985-86 - A Review, p. 56 and B. K. Sinha (1992). Journal pagination not verified."
+      }
+    ],
+    "periods": [
+      "somavamshi",
+      "eastern-ganga"
+    ],
+    "status": "published",
+    "caveats": "Sources disagree on the excavation season: Patra 2014 and Dayalan 2019 say ASI Excavation Branch IV in 1984-85 (citing IAR 1985-86, p. 56), while Patnaik 2014 p. 105 says 1987. Neither IAR nor B. K. Sinha's site report was read directly, so the tier stops short of Confirmed. Patnaik dates the floruit to the 11th century, the other three to the 12th-14th; both brackets are listed as periods.",
+    "coordinates": {
+      "lat": 19.8536,
+      "lng": 86.0444
+    },
+    "coordinate_source": "patra-2014-odisha-review-ports",
+    "modern_name": "Khalkatapatna, Puri district, Odisha",
+    "also_known_as": [
+      "Khalkattapatna"
+    ],
+    "goods": []
+  },
+  {
+    "id": "kalingapatnam",
+    "name": "Kalingapatnam",
+    "summary": "Kalingapatnam sits where the Vamsadhara river meets the sea. Its name means the town of the Kalinga people, and ships used it for a very long time.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-india-1908",
+        "page": "vol. IX, pp. 291-292, 'Calingapatam'",
+        "note": "'Port in the Chicacole taluk of Ganjam District, Madras, situated in 18 deg 20' N. and 84 deg 8' E., at the mouth of the Vamsadhara river.' Ruins of many mosques; small gold coins of great age found on the old city site. Open roadstead with a lighthouse; exports 6 lakhs in 1903-4."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 122-123",
+        "note": "At the Vamsadhara mouth, Srikakulam district. An excavation in 1928 found pottery, large brick walls and glazed tiles showing a fortified city from c. 2nd century BCE to early medieval times; ASI work of 1977-79 in the stupa mound dated settlement to 300 BCE. Roman coins from the site."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 20, section 'Kalingapatnam'",
+        "note": "'Kalingapatnam (18 deg 19' N; 84 deg 06' E), an ancient port city as well as a notable Buddhist centre ... a flourishing port under the Ganga rulers, and during ancient times, vessels from here sailed to Sri Lanka, Java, Sumatra, Malaysia and other countries.' Journal pagination not verified."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 107",
+        "note": "Lists Kalingapatnam among the ports of ancient Orissa brought to light by archaeological excavation."
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "kharavela",
+      "early-historic",
+      "eastern-ganga",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Kalingapatnam is in Srikakulam district, Andhra Pradesh, on the north-Andhra stretch of the historic Kalinga coast, not in modern Odisha. Coordinates follow the Imperial Gazetteer (18 deg 20' N, 84 deg 8' E); Dayalan gives 18 deg 19' N, 84 deg 06' E, and the figures printed in Patra 2014 p. 122 ('18 deg 0' 20\" N ... 84 deg 0' 7\" E') look like a typesetting error and were rejected. The 1928 and 1977-79 excavation reports were not read.",
+    "coordinates": {
+      "lat": 18.3333,
+      "lng": 84.1333
+    },
+    "coordinate_source": "imperial-gazetteer-india-1908",
+    "modern_name": "Kalingapatnam, Srikakulam district, Andhra Pradesh",
+    "also_known_as": [
+      "Calingapatam"
+    ],
+    "goods": []
+  },
+  {
+    "id": "pithunda",
+    "name": "Pithunda",
+    "summary": "Pithunda was a busy market town by the sea that King Kharavela says he destroyed. Nobody has dug it up, so we do not know exactly where it stood.",
+    "evidence_level": "Hypothetical",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hathigumpha-inscription",
+        "page": "Jayaswal & Banerji, Epigraphia Indica XX (1929-30), No. 7, pp. 71-89: translation of line 11 on p. 88, editors' note 34 on p. 85",
+        "note": "p. 88, line 11: 'And the market-town (?) Pithumda founded by the Ava King he ploughs down with a plough of asses.' Note 34, p. 85: 'According to Ptolemy, a city in the upper part of the Coromandal coast; This city has perhaps to be taken as the capital of the Ava or Avarni.'"
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 123",
+        "note": "Pithunda in the Hathigumpha inscription (Kharavela's 11th regnal year), Ptolemy's Pityndra midway between the Godavari and Mahanadi mouths, and Pihumda of the Jain Uttaradhyayana Sutra, all equated by Sylvain Levi. 'could be located somewhere near Chicacole region of modern Andhra Pradesh'."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 21, section 'Pithunda'; and p. 20, section 'Kalingapatnam'",
+        "note": "Repeats Levi's equation and places Pithunda 'somewhere near the Chicacole region (Srikakulam region)'; on p. 20 suggests instead that it 'seems to have been located somewhat close to Kalingapatnam at the mouth of the river Vamsadhara'. Journal pagination not verified."
+      }
+    ],
+    "periods": [
+      "kharavela"
+    ],
+    "status": "published",
+    "caveats": "Pithunda has never been located on the ground and no excavation is associated with it. The coordinates here are NOT a site position: they are the centre of the Chicacole (Srikakulam) region that Patra and Dayalan name as the likely area, read off a modern map. Treat the dot as a region marker. The equation of Kharavela's Pithumda with Ptolemy's Pityndra and the Jain Pihumda is Sylvain Levi's proposal (Indian Antiquary LV, 1926), and Dayalan offers two different placings in one paper.",
+    "coordinates": {
+      "lat": 18.3,
+      "lng": 83.9
+    },
+    "coordinate_source": "dayalan-2019-acta-via-serica",
+    "modern_name": "Not identified; placed near Srikakulam, Andhra Pradesh",
+    "also_known_as": [
+      "Pithumda (Hathigumpha inscription)",
+      "Pityndra (Ptolemy)",
+      "Pihumda (Uttaradhyayana Sutra)"
+    ],
+    "goods": []
+  },
+  {
+    "id": "puri",
+    "name": "Puri",
+    "summary": "Puri is the town of the great Jagannath temple, right beside the sea. Sailors steered by its tall temple, but the open beach made a poor harbour.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Puri (1908), p. 15",
+        "note": "'The only port in the district is Puri, and this is nothing but an unprotected roadstead. It is open for import and export trade from the middle of October to the middle of March, but during the rest of the year, the surf does not allow of ships being laden or unladen.'"
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "p. 107",
+        "note": "Kempthorn's sailing directions of 1679, folio 136-68: 'from Maneclapatam to Jauggernaut course is East-North East and distance is 10 miles.' Ship logs of Capt. Talbot (1680), Hide (1681) and Lake (1683). The author concludes Puri 'was used as a Port from Arab period (10th Century A.D)'."
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XX, p. 411, 'Puri Town'",
+        "note": "'situated in 19 deg 48' N. and 85 deg 49' E., on the coast', population 49,334 in 1901; 'Puri is a city of lodging-houses, being destitute alike of manufactures or commerce on any considerable scale.'"
+      }
+    ],
+    "periods": [
+      "somavamshi",
+      "eastern-ganga",
+      "mughal-maratha",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "The two gazetteers and Patnaik pull in opposite directions: the Imperial Gazetteer calls Puri destitute of commerce, while Patnaik argues from European sailing directions that it worked as a port from the 10th century. What all three support is a beach roadstead used seasonally and a temple used as a sea-mark, not a sheltered harbour - hence Probable. Cunningham's identification of Puri with Xuanzang's Che-li-ta-lo is rejected by Patra 2014 p. 120 and Dayalan 2019 because Puri has no Buddhist monuments; it is not asserted here.",
+    "coordinates": {
+      "lat": 19.8,
+      "lng": 85.8167
+    },
+    "coordinate_source": "imperial-gazetteer-orissa",
+    "modern_name": "Puri, Puri district, Odisha",
+    "also_known_as": [
+      "Jauggernaut (English ship logs)",
+      "Purushottama Kshetra"
+    ],
+    "goods": []
+  },
+  {
+    "id": "cuttack",
+    "name": "Cuttack",
+    "summary": "Cuttack stands on a tongue of land where the Mahanadi river splits in two. Boats carried its fine cloth and silver work down the river and out to sea.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XI, pp. 92, 98",
+        "note": "p. 98: 'Cuttack City (Kataka, the fort) ... situated in 20 deg 29' N. and 85 deg 52' E., on the peninsula formed by the bifurcation of the Mahanadi'; 'connected by canal with Chandbali and False Point'. p. 92: chief trade centres are Cuttack city, False Point and Chandbali; weekly steamers."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, p. 40",
+        "note": "'the Orissa factors bought up at the lowest prices for ready money the fine muslins of Cattack' - Cuttack cloth reaching the sea through the English factories at Pippli and Balasore in the 17th century."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 111",
+        "note": "Excavation at Barabati fort, on the right bank of the Mahanadi in Cuttack district, yielded 'a few sherds of Chinese ceramics'. The printed coordinate ('Lat 20 deg 29' N. and Long. 85 deg E') has a defective longitude."
+      }
+    ],
+    "periods": [
+      "somavamshi",
+      "mughal-maratha",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Cuttack is a river and canal port, roughly 100 km from the open sea; ocean-going ships never reached it. The Imperial Gazetteer's account of a fort built in the tenth century by 'Makar Kesari' is a dynastic tradition it reports without evidence. The Chinese sherds from Barabati are reported at second hand in OHRJ; B. K. Sinha's excavation report (UHRJ V, 1994) was not read.",
+    "coordinates": {
+      "lat": 20.4833,
+      "lng": 85.8667
+    },
+    "coordinate_source": "imperial-gazetteer-orissa",
+    "modern_name": "Cuttack, Cuttack district, Odisha",
+    "also_known_as": [
+      "Kataka",
+      "Cattack"
+    ],
+    "goods": []
+  },
+  {
+    "id": "balasore",
+    "name": "Balasore",
+    "summary": "Balasore was the first place in Bengal where English traders built a factory. Big ships waited far out at sea while small boats carried goods up the winding river.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-india-1908",
+        "page": "vol. VI, pp. 245-246, 'Balasore Town'",
+        "note": "'situated in 21 deg 30' N. and 86 deg 56' E., on the right bank of the Burhabalang river'. 'Balasore was the first place occupied by the English in Bengal. It owed its importance ... to the safety of its roadstead.' Earliest mention in the English records is 1633."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, pp. 39-40, 196-197",
+        "note": "p. 39: 'These two Orissa harbours - Pippli, founded in 1635, and Balasor, founded in 1642 - formed the basis of our future greatness in Bengal.' p. 40: silting of the Subarnarekha moved the Pippli factory to Balasore. p. 197: in 1688 Captain Heath attacks and plunders the town."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), pp. 9, 34-37, 144, 186",
+        "note": "p. 144: 'At the commencement of the 19th century Balasore was the only port of which Orissa could boast, and it was frequented chiefly by vessels from Madras, which put in for cargoes of rice, and by the Laccadive and Maldive islanders.' pp. 34-37: Cartwright, the Dutch, Danes and French."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 23",
+        "note": "Lists Balasore among the Odisha seaports with active British, Danish, Dutch, French and Portuguese contacts in the 16th-18th centuries. Journal pagination not verified."
+      }
+    ],
+    "periods": [
+      "mughal-maratha",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "The founding date is disputed: Hunter 1872 p. 39 says 1642, while the Imperial Gazetteer vol. VI p. 245 and the Balasore District Gazetteer pp. 34-35 date the first English trade at Balasore to 1633, under Ralph Cartwright. Coordinates follow the Imperial Gazetteer; the OCR of the 1907 district gazetteer p. 186 prints '85 deg 56' E', which is impossible and was read as a scanning error. Dayalan's gloss 'Balasore (Kosambia)' is unexplained and is not adopted.",
+    "coordinates": {
+      "lat": 21.5,
+      "lng": 86.9333
+    },
+    "coordinate_source": "imperial-gazetteer-india-1908",
+    "modern_name": "Baleswar (Balasore), Balasore district, Odisha",
+    "also_known_as": [
+      "Balasor",
+      "Baleswar"
+    ],
+    "goods": []
+  },
+  {
+    "id": "pipli",
+    "name": "Pipli",
+    "summary": "Pipli was once the busiest port on the Odisha coast, near the mouth of the Subarnarekha river. Sand slowly blocked the river, and today nothing of the town is left.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, pp. 37-40, 196",
+        "note": "p. 37: about 1514 the Portuguese were pushed north to the Subarnarekha mouth and founded a colony at 'Pippli, now a ruined and silt-locked village ... but then a fine harbour'. p. 196: the 1634 firman restricted English vessels to 'no other port than Pippli, near Balasor'."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), pp. 9, 34 n., 36-37, 204",
+        "note": "p. 204: 'Pipli was once the most important port on the Orissa coast and contained settlements of the Portuguese and Dutch. The Portuguese settled there in 1599 ... a great slave mart.' p. 9: 'By the beginning of the 18th century the silting up of its mouth had ruined Pipli.'"
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 23",
+        "note": "Lists Pipli among the Odisha seaports in active contact with British, Danish, Dutch, French and Portuguese traders in the 16th-18th centuries. Journal pagination not verified."
+      }
+    ],
+    "periods": [
+      "gajapati",
+      "mughal-maratha"
+    ],
+    "status": "published",
+    "caveats": "Do not confuse this Pipli, at the Subarnarekha mouth in Balasore district, with the modern applique town of Pipili on the Cuttack-Puri road. Sources disagree twice over: Hunter dates the Portuguese arrival to about 1514, the Balasore gazetteer to 1599; and Hunter says the English founded a factory here in 1635, while the gazetteer (p. 34 n., p. 204) reports Wilson's Early Annals that 'the English never had any factory at Pipli except in the imagination of the historians'. Nothing of the site survives, so the coordinates are read off a modern map at the Subarnarekha mouth and are approximate.",
+    "coordinates": {
+      "lat": 21.6,
+      "lng": 87.42
+    },
+    "coordinate_source": "district-gazetteers-odisha",
+    "modern_name": "Site lost; near the mouth of the Subarnarekha, Balasore district, Odisha",
+    "also_known_as": [
+      "Pippli",
+      "Philip-patam"
+    ],
+    "goods": []
+  },
+  {
+    "id": "hariharpur",
+    "name": "Hariharpur",
+    "summary": "Hariharpur was a trading post in the middle of the Mahanadi delta. English traders built a house there in 1633, but fever and floods soon drove them away.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), pp. 34-35, 37",
+        "note": "p. 34: after the governor's licence to Ralph Cartwright, 'They built a house of business at Hariharpur, on a channel half way down the delta'. p. 35: the Swan 'anchored off the Mughal customs-station of Harishpur' on 22 July 1633; five of six factors died and the delta factory decayed."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 23",
+        "note": "Lists Harishpur among the Odisha seaports with active British, Danish, Dutch, French and Portuguese trade contacts in the 16th-18th centuries. Journal pagination not verified."
+      }
+    ],
+    "periods": [
+      "mughal-maratha"
+    ],
+    "status": "published",
+    "caveats": "Hariharpur and Harishpur may or may not be the same place: the Balasore gazetteer uses both spellings within two pages, but Hunter 1872 vol. ii lists 'Hariharpur (Jagatsinhpur)' and 'Harishpur' as two separate fiscal divisions of Cuttack district. This entry follows the gazetteer's narrative and should be checked against the Cuttack district gazetteer and the East India Company factory records before promotion. No published coordinate was found; the position is read off a modern map near Jagatsinghpur, in the delta channel country the gazetteer describes, and is approximate.",
+    "coordinates": {
+      "lat": 20.25,
+      "lng": 86.17
+    },
+    "coordinate_source": "district-gazetteers-odisha",
+    "modern_name": "Hariharpur, near Jagatsinghpur, Odisha (identification unconfirmed)",
+    "also_known_as": [
+      "Harishpur",
+      "Hurryharpore"
+    ],
+    "goods": []
+  },
+  {
+    "id": "chandbali",
+    "name": "Chandbali",
+    "summary": "Chandbali is a river port far up the Baitarani, safe from storms out at sea. A hundred years ago steamers left here for Calcutta three times a week.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), pp. 10, 144-145, 197-198",
+        "note": "p. 197: 'Chandbali - Port in the Bhadrakh subdivision, situated on the left bank of the Baitarani river ... 20 miles from its mouth, in 20 deg 47' N. and 86 deg 45' E.' p. 144: it and Balasore are the only ports of importance, trading with Calcutta, Bombay to Arakan, the Maldives and Ceylon."
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XI, p. 92",
+        "note": "'The chief trade centres are Cuttack city, False Point port, and Chandbali, which is situated just outside the District.' 'Steamers carrying passengers and goods ply three times a week from Cuttack city to Chandbali port by canal, and from Chandbali to Calcutta by sea.'"
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, Appendix IV, pp. 107-108",
+        "note": "The Dhamra estuary, the channel that serves Chandbali, 'was declared a port by Government Notification, No. 877, of the 18th May 1858 ... As a port for native shippers, it ranks next to that of Balasor among the Orissa harbours.' Hunter, writing in 1872, does not yet name Chandbali itself."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 23",
+        "note": "Lists Chandabali among the Odisha seaports in active European trade contact in the late medieval period. Journal pagination not verified."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Chandbali is a 19th-century creation: the Balasore gazetteer p. 197 says it was a few fishermen's huts until Captain McNeill leased land there about 1872, and that it later absorbed the trade of the older port of Dhamra, 15 miles downstream. Dayalan's inclusion of it in a list of 16th-18th century European trading ports is therefore doubtful and is not followed here. Dayalan also glosses Dhamra as 'Dosarene'; that identification is not accepted - Dosarene remains an unlocated region.",
+    "coordinates": {
+      "lat": 20.7833,
+      "lng": 86.75
+    },
+    "coordinate_source": "district-gazetteers-odisha",
+    "modern_name": "Chandbali, Bhadrak district, Odisha",
+    "also_known_as": [
+      "Chandabali"
+    ],
+    "goods": []
+  },
+  {
+    "id": "gopalpur",
+    "name": "Gopalpur",
+    "summary": "Gopalpur was the main port of the Ganjam coast in south Odisha. Ships had to anchor out in the open sea because there is no shelter from the waves.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-india-1908",
+        "page": "vol. XII, pp. 152, 329-330",
+        "note": "p. 329: 'Gopalpur - Chief port of Ganjam District, Madras, situated in 19 deg 16' N. and 84 deg 53' E.' A call for British India Steam Navigation coasting steamers; in 1903-4, 7,400 passengers went to and 8,300 returned from Burma. p. 330: 'an open roadstead with no shelter whatever'."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 121",
+        "note": "Gerini identified Ptolemy's apheterion, where ships bound for Khryse left the coast, with modern Gopalpur below the Rushikulya mouth; Patra argues instead for Mansurkota near Gopalpur, citing Maltby, The Ganjam District Manual, p. 31."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 21, section 'Palur'",
+        "note": "Repeats Gerini's identification of Ptolemy's apheterion with modern Gopalpur. Journal pagination not verified."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only the colonial port is documented directly, by the Imperial Gazetteer. The link to Ptolemy's apheterion is Gerini's conjecture, and Patra himself prefers a different spot (Mansurkota); no ancient period is claimed here for that reason. Maltby's Ganjam District Manual was not read.",
+    "coordinates": {
+      "lat": 19.2667,
+      "lng": 84.8833
+    },
+    "coordinate_source": "imperial-gazetteer-india-1908",
+    "modern_name": "Gopalpur-on-Sea, Ganjam district, Odisha",
+    "also_known_as": [
+      "Mansurkota (proposed older name)"
+    ],
+    "goods": []
+  },
+  {
+    "id": "tamralipti",
+    "name": "Tamralipti",
+    "summary": "Tamralipti was the greatest port at the top of the Bay of Bengal. Monks and traders sailed from here to Sri Lanka, Burma and China.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 118-119",
+        "note": "'Of all the ports of ancient Odisha ... the first and foremost was the port of Tamralipti.' Identified with Tamluk, at the Rupnarayana confluence, 'Lat. 22 deg 17' N and Long. 87 deg 57' E'. Ptolemy's Tamalities; Fa-Hien, Xuanzang and Yijing embarked here for China."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint pp. 24-25, section 'Tamralipti'",
+        "note": "Independently gives Tamluk at 22 deg 17' N; 87 deg 57' E; the Dudhapani rock inscription of Udayamana (c. 8th century CE) recording Ayodhya merchants frequenting the port; Chinese, Sri Lankan and Southeast Asian potsherds from Tamluk and its neighbouring villages. Journal pagination not verified."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "Large quantities of rouletted ware from the ancient port site of Tamralipti; a Ganga fanam found at Tamralipti, taken to show the port lay under Eastern Ganga suzerainty; Roman gold coins from Bamanghati in Mayurbhanj argued to have arrived through Tamluk."
+      }
+    ],
+    "periods": [
+      "early-historic",
+      "gupta",
+      "post-gupta",
+      "bhauma-kara",
+      "eastern-ganga"
+    ],
+    "status": "published",
+    "caveats": "Tamralipti is in Bengal, at modern Tamluk, and is included here as a trading destination, not as a Kalinga port. OHRJ p. 110 asserts that 'Tamluk in ancient times known as Tamralipti was in Orissa' and Patra 2014 that it 'formed a part of Odishan kingdom till the seventeenth century CE'; both are contested political claims and are not adopted. Only summaries of the Tamluk excavations were read, not the reports themselves.",
+    "coordinates": {
+      "lat": 22.2833,
+      "lng": 87.95
+    },
+    "coordinate_source": "patra-2014-odisha-review-ports",
+    "modern_name": "Tamluk, Purba Medinipur district, West Bengal",
+    "region": "bengal",
+    "also_known_as": [
+      "Tamluk",
+      "Tamalities (Ptolemy)"
+    ],
+    "goods": []
+  },
+  {
+    "id": "calcutta",
+    "name": "Calcutta",
+    "summary": "Calcutta grew into the biggest port in British India. Steamers carried rice and passengers there from the Odisha coast every week.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-india-1908",
+        "page": "vol. IX, p. 260, 'Calcutta'",
+        "note": "'Capital of the Indian Empire and the official residence of the Viceroy and Governor-General, situated in 22 deg 34' N. and 88 deg 22' E., on the east or left bank of the Hooghly river ... The city lies about 86 miles from the sea.'"
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), p. 144",
+        "note": "'The ports which trade with Chandbali and Balasore are Calcutta, the coast ports from Bombay on the west to Arakan on the east, and foreign ports, such as the Maldive islands, Ceylon, and occasionally Mauritius.' Steamers ran three times a week between Chandbali and Calcutta."
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XI, pp. 92, 98",
+        "note": "p. 92: steamers ply from Cuttack city to Chandbali by canal and from Chandbali to Calcutta by sea; the chief imports of Cuttack district - piece-goods, kerosene, metals, yarn, spices - come from Calcutta. p. 98: Cuttack is connected by canal with Chandbali and False Point."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Included as the colonial-era destination that drew Odisha's coastal trade away from its own ports; the Balasore gazetteer p. 144 says Balasore was 'declining owing to the advent of the railway'. Nothing here documents Calcutta before the British period.",
+    "coordinates": {
+      "lat": 22.5667,
+      "lng": 88.3667
+    },
+    "coordinate_source": "imperial-gazetteer-india-1908",
+    "modern_name": "Kolkata, West Bengal",
+    "region": "bengal",
+    "also_known_as": [
+      "Kolkata"
+    ],
+    "goods": []
+  },
+  {
+    "id": "arikamedu",
+    "name": "Arikamedu",
+    "summary": "Arikamedu is an old trading village on a river near Pondicherry. The same shiny patterned pottery turns up here and at Kalinga's ports.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint pp. 12-16, section 'Arikamedu'",
+        "note": "'Arikamedu (11 deg 53' N; 79 deg 48' E), a well-known Indo-Roman trading station, is identified with \"Pouduke\" of the Periplus Maris Erythraei and Ptolemy. It is about 6 km from Pondicherry, situated on the bank of the Ariyankuppam River.' Journal pagination not verified."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 110-111",
+        "note": "p. 111: 'The rouletted wares of Manikpatna have much similarity with those of Sisupalagarh and Arikamedu.' p. 110: rouletted ware from Sisupalagarh, Manikpatna and Radhanagara is grouped with finds from Kaveripatnam, Uraiyur and Arikamedu."
+      }
+    ],
+    "periods": [
+      "kharavela",
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "The Kalinga connection rests on pottery resemblance, not on any record of a voyage: rouletted ware at Manikapatna and Sisupalgarh looks like rouletted ware at Arikamedu. That shows a shared trading network, not sailings between the two places, so the tier is Probable. The identification of Arikamedu with the Periplus's Poduke is itself a scholarly proposal.",
+    "coordinates": {
+      "lat": 11.8833,
+      "lng": 79.8
+    },
+    "coordinate_source": "dayalan-2019-acta-via-serica",
+    "modern_name": "Arikamedu, near Puducherry",
+    "region": "south-india",
+    "also_known_as": [
+      "Poduke (proposed identification)",
+      "Virampatnam"
+    ],
+    "goods": []
+  },
+  {
+    "id": "kaveripattinam",
+    "name": "Kaveripattinam",
+    "summary": "Kaveripattinam was a great port where the Kaveri river meets the sea. Diggers found a brick and timber wharf where boats were tied up.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint pp. 10-12, section 'Kaveripumpattinam'",
+        "note": "'Kaveripumpattinam (10 deg 46' N; 79 deg 51' E) in the district of Tanjavur, Tamil Nadu.' At Kilaiyur a massive brick platform, read as a wharf where boats could be moored to wooden posts, was excavated; radiocarbon dates on the associated wood average about 250 BCE. Journal pagination not verified."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "Rouletted ware from Sisupalagarh, Manikpatna and Radhanagara in Orissa is listed with the same ware from Kaveripatnam, Uraiyur and Arikamedu, which the authors read as evidence of a shared Roman-period trade network along the east coast."
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "pp. 103, 108",
+        "note": "p. 103: in the early historical period 'the land routes extended from Taxila to Kaveripattinam in the south and Tamluk in the east up to Broach in the west', with Tosali, Kalingapatnam, Tamralipti and Pithunda among the Kalinga centres in the same trade circuit."
+      }
+    ],
+    "periods": [
+      "kharavela",
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "As with Arikamedu, the tie to Kalinga is a shared pottery horizon and a shared overland trade circuit, not a documented voyage between the two coasts. Kaveripattinam is also called Kaveripumpattinam and Puhar; the modern village is Poompuhar. The excavation reports behind Dayalan's wharf description were not read.",
+    "coordinates": {
+      "lat": 10.7667,
+      "lng": 79.85
+    },
+    "coordinate_source": "dayalan-2019-acta-via-serica",
+    "modern_name": "Poompuhar, Mayiladuthurai district, Tamil Nadu",
+    "region": "south-india",
+    "also_known_as": [
+      "Kaveripumpattinam",
+      "Puhar"
+    ],
+    "goods": []
+  },
+  {
+    "id": "anuradhapura",
+    "name": "Anuradhapura",
+    "summary": "Anuradhapura was the old capital city of Sri Lanka. Ships from Kalinga's ports reached the island, and a Sri Lankan coin turned up at Manikapatna.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 112, 114",
+        "note": "p. 112: 'An archaeological excavation at Anuradhapura in Ceylon proves the introduction of Indian cultural elements including Buddhism into Sri Lanka even before the days of Asoka.' p. 114: the tradition of Dantakumara and Hemamala sailing to Ceylon with the tooth relic from Dantapura/Palur."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 120",
+        "note": "'The discovery of Shahasamalla's coin from Manikpatna in Odisha, Polonaruva in Sri Lanka and Kotchina in Indonesia testify to a maritime network linking coastal Odisha, Sri Lanka and Sumatra.' Also Xuanzang on seeing the light over the Buddha's tooth relic in Sri Lanka from Che-li-ta-lo."
+      },
+      {
+        "source_id": "ardika-bellwood-1991-antiquity",
+        "page": "pp. 225-226",
+        "note": "Rouletted Ware sherds from Anuradhapura were analysed alongside those from Sembiran (Bali) and Arikamedu; Arikamedu type-10 pottery is also reported from Anuradhapura, placing the Sri Lankan capital inside the same Bay of Bengal ceramic network as Kalinga's ports."
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "early-historic",
+      "eastern-ganga"
+    ],
+    "status": "published",
+    "caveats": "Anuradhapura is an inland royal city, not a harbour: it stands here for the Sri Lankan end of the route, reached through north-western ports such as Mantai, for which no source connecting it to Kalinga was found in this session. No published coordinate was located, so the position is read off a modern map and is approximate. The Dantapura tooth-relic voyage is a traditional narrative from the Dathavamsa, not archaeology.",
+    "coordinates": {
+      "lat": 8.35,
+      "lng": 80.4
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Anuradhapura, North Central Province, Sri Lanka",
+    "region": "sri-lanka",
+    "also_known_as": [
+      "Seng-ka-lo (Xuanzang, for Ceylon)"
+    ],
+    "goods": []
+  },
+  {
+    "id": "sembiran",
+    "name": "Sembiran",
+    "summary": "Sembiran is a village on the north coast of Bali. Indian pots buried there show that ships from India reached Bali about two thousand years ago.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "ardika-bellwood-1991-antiquity",
+        "page": "pp. 221-232, esp. pp. 221-227",
+        "note": "Excavations by Ardika in 1987 and 1989 in Tejakula District, north-east Bali, found Indian Rouletted Ware, a sherd of Arikamedu type 10 and a body sherd carrying a graffito identified as Kharoshthi, in deposits the authors date to about AD 1-200 on combined ceramic and epigraphic grounds."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "Rouletted ware from Sisupalagarh, Manikpatna and Radhanagara in Orissa is listed together with the same ware 'from Buni complex in North Java, from Sembiran on the north coast of Bali', which the authors read as implying a trade route connecting the east coast of India with Southeast Asia."
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "Ardika and Bellwood do not name Kalinga: the link to Odisha is made by OHRJ p. 110, which places Sembiran and the Odishan sites in one rouletted-ware distribution. The Kharoshthi graffito at Sembiran is intriguing beside the Kharoshthi potsherd from Manikapatna, but no published work read here connects the two, and the connection must not be asserted. No coordinate is printed in the paper; the position is taken from a modern map of Tejakula District and is approximate.",
+    "coordinates": {
+      "lat": -8.13,
+      "lng": 115.32
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Sembiran, Tejakula District, Bali, Indonesia",
+    "region": "southeast-asia",
+    "goods": []
+  },
+  {
+    "id": "rangoon",
+    "name": "Rangoon",
+    "summary": "Rangoon is a port on a river in Burma, now called Yangon. A hundred years ago ships and thousands of workers sailed there from the Odisha coast.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-india-1908",
+        "page": "vol. XXI, pp. 213-214, 'Rangoon City'; vol. XII, pp. 152, 329",
+        "note": "vol. XXI p. 213: 'Capital of Burma ... situated in 16 deg 46' N. and 96 deg 11' E. ... 21 miles from the sea.' vol. XII p. 152: exports of the Ganjam ports go chiefly to Calcutta, Madras, Bombay ... Rangoon and Moulmein, with much passenger traffic to and from Rangoon at the three ports."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), p. 144",
+        "note": "Chandbali and Balasore traded with 'the coast ports from Bombay on the west to Arakan on the east', placing the Burmese coast inside the same shipping circuit; Arakan, not Rangoon, is the port named."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "The evidence here is colonial only. Both refs for the Rangoon link come from the same work, the Imperial Gazetteer, so the entry counts as one supporting source for that claim, which caps it at Probable. Kalinga's much older Burma trade is attested differently - by 'Maratuan' brown glazed ware at Manikapatna, named after a place in Burma (OHRJ p. 111; Patra 2014 p. 120) - but no source read here fixed that place, so Martaban is not entered.",
+    "coordinates": {
+      "lat": 16.7667,
+      "lng": 96.1833
+    },
+    "coordinate_source": "imperial-gazetteer-india-1908",
+    "modern_name": "Yangon, Myanmar",
+    "region": "southeast-asia",
+    "also_known_as": [
+      "Yangon"
+    ],
+    "goods": []
+  }
+]

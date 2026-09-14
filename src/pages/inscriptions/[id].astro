@@ -1,0 +1,75 @@
+---
+import Base from '@layouts/Base.astro';
+import EvidenceBadge from '@components/EvidenceBadge.astro';
+import SourcePopover from '@components/SourcePopover.astro';
+import PeriodChips from '@components/PeriodChips.astro';
+import ScholarNotes from '@components/ScholarNotes.astro';
+import Narrative from '@components/Narrative.astro';
+import { getInscriptions, getPeriods, getSources } from '@data/load';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const inscriptions = getInscriptions();
+  return inscriptions.map((inscription) => ({ params: { id: inscription.id }, props: { inscription } }));
+}) satisfies GetStaticPaths;
+
+const { inscription } = Astro.props;
+
+const sources = getSources();
+const periods = getPeriods().filter((p) => inscription.periods.includes(p.id));
+
+const narrativeEntries = await getCollection('inscriptions');
+const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === inscription.id);
+---
+
+<Base title={inscription.name} description={inscription.summary}>
+  <article class="entity-page">
+    <p class="back"><a href="/#evidence">&larr; Back to the atlas</a></p>
+
+    <h1>{inscription.name}</h1>
+    <div class="badges">
+      <EvidenceBadge level={inscription.evidence_level} type={inscription.evidence_type} />
+    </div>
+    <PeriodChips periods={periods} />
+
+    <p class="summary">{inscription.summary}</p>
+
+    <Narrative entry={narrativeEntry} />
+
+    <section aria-labelledby="facts-h">
+      <h2 id="facts-h">Facts</h2>
+      <dl class="facts">
+        <dt>Location</dt>
+        <dd>{inscription.location}</dd>
+        <dt>Language</dt>
+        <dd>{inscription.language}</dd>
+        <dt>Script</dt>
+        <dd>{inscription.script}</dd>
+        <dt>Date</dt>
+        <dd>{inscription.date_text}</dd>
+        <dt>Edition</dt>
+        <dd><SourcePopover refs={[inscription.edition_ref]} sources={sources} /></dd>
+      </dl>
+    </section>
+
+    <section aria-labelledby="relevance-h">
+      <h2 id="relevance-h">Why it matters for trade</h2>
+      <p>{inscription.trade_relevance}</p>
+    </section>
+
+    <ScholarNotes caveats={inscription.caveats} refs={inscription.source_refs} sources={sources} />
+  </article>
+</Base>
+
+<style>
+  .entity-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .back { margin-bottom: var(--space-4); }
+  .back a { color: var(--fg-muted); }
+  .badges { margin-bottom: var(--space-2); }
+  .summary { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
+  section { margin-top: var(--space-8); }
+  .facts { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-4); }
+  .facts dt { font-weight: 600; color: var(--fg-muted); }
+  .facts dd { margin: 0; }
+</style>

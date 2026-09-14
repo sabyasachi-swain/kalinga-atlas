@@ -1,0 +1,99 @@
+---
+import Base from '@layouts/Base.astro';
+import EvidenceBadge from '@components/EvidenceBadge.astro';
+import SourcePopover from '@components/SourcePopover.astro';
+import PeriodChips from '@components/PeriodChips.astro';
+import ScholarNotes from '@components/ScholarNotes.astro';
+import Narrative from '@components/Narrative.astro';
+import { getSites, getPeriods, getSources } from '@data/load';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const sites = getSites();
+  return sites.map((site) => ({ params: { id: site.id }, props: { site } }));
+}) satisfies GetStaticPaths;
+
+const { site } = Astro.props;
+
+const sources = getSources();
+const periods = getPeriods().filter((p) => site.periods.includes(p.id));
+
+const narrativeEntries = await getCollection('sites');
+const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === site.id);
+
+const coordinateSource = sources.find((s) => s.id === site.coordinate_source);
+---
+
+<Base title={site.name} description={site.summary}>
+  <article class="entity-page">
+    <p class="back"><a href="/#evidence">&larr; Back to the atlas</a></p>
+
+    <h1>{site.name}</h1>
+    <div class="badges">
+      <EvidenceBadge level={site.evidence_level} type={site.evidence_type} />
+    </div>
+    <PeriodChips periods={periods} />
+
+    <p class="summary">{site.summary}</p>
+
+    <Narrative entry={narrativeEntry} />
+
+    <section aria-labelledby="facts-h">
+      <h2 id="facts-h">Facts</h2>
+      <dl class="facts">
+        <dt>Site type</dt>
+        <dd>{site.site_type}</dd>
+        <dt>Coordinates</dt>
+        <dd>
+          {site.coordinates.lat.toFixed(2)}&deg;, {site.coordinates.lng.toFixed(2)}&deg;
+          {coordinateSource && <SourcePopover refs={[{ source_id: site.coordinate_source }]} sources={sources} />}
+        </dd>
+        {site.modern_name && (
+          <>
+            <dt>Modern name</dt>
+            <dd>{site.modern_name}</dd>
+          </>
+        )}
+        {site.excavated_by && (
+          <>
+            <dt>Excavated by</dt>
+            <dd>{site.excavated_by}</dd>
+          </>
+        )}
+      </dl>
+    </section>
+
+    {site.finds.length > 0 && (
+      <section aria-labelledby="finds-h">
+        <h2 id="finds-h">Key finds</h2>
+        <ul class="finds">
+          {site.finds.map((find) => (
+            <li>
+              <h3>{find.name}</h3>
+              <p>{find.significance}</p>
+              <SourcePopover refs={find.source_refs} sources={sources} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <ScholarNotes caveats={site.caveats} refs={site.source_refs} sources={sources} />
+  </article>
+</Base>
+
+<style>
+  .entity-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .back { margin-bottom: var(--space-4); }
+  .back a { color: var(--fg-muted); }
+  .badges { margin-bottom: var(--space-2); }
+  .summary { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
+  section { margin-top: var(--space-8); }
+  .facts { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-4); }
+  .facts dt { font-weight: 600; color: var(--fg-muted); }
+  .facts dd { margin: 0; }
+  .finds { list-style: none; padding: 0; margin: var(--space-4) 0 0; display: grid; gap: var(--space-4); }
+  .finds li { background: var(--bg-elevated); border-radius: var(--radius-md); padding: var(--space-4); box-shadow: var(--shadow-card); }
+  .finds h3 { margin-bottom: var(--space-1); }
+</style>

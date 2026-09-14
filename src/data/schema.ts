@@ -158,7 +158,8 @@ export const Source = z.object({
   public_domain: z.boolean().default(false),
   /** Set when a source was added outside the original registry and has been approved by a human. */
   approved_by_human: z.boolean().default(false),
-  note: z.string().max(600).optional(),
+  /** Provenance note: why the source is credible, what was actually read. */
+  note: z.string().max(1200).optional(),
 });
 export type Source = z.infer<typeof Source>;
 
@@ -185,6 +186,13 @@ export const Port = ClaimBase
     /** The source the coordinates were taken from (ASI gazetteer, site report, etc.). */
     coordinate_source: Id,
     modern_name: z.string().optional(),
+    /**
+     * Where the port is. "kalinga" for the Odisha / north-Andhra coast; other values
+     * mark trading destinations that routes point to (they render differently).
+     */
+    region: z
+      .enum(['kalinga', 'bengal', 'south-india', 'sri-lanka', 'southeast-asia', 'east-asia', 'west-asia', 'other'])
+      .default('kalinga'),
     /** Alternative names in classical texts, e.g. "Palura" (Ptolemy). Each needs its own source in `caveats` or notes. */
     also_known_as: z.array(z.string()).optional(),
     /** Ids of goods documented at this port. */

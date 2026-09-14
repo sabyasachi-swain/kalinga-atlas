@@ -5,8 +5,19 @@
     "start_year": -300,
     "end_year": -185,
     "summary": "Kalinga is conquered by Ashoka. His edicts at Dhauli and Jaugada are the oldest written records here.",
-    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
-    "status": "draft",
+    "source_refs": [
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), pp. 61, 63-64, 67; Map 4 'Maurya Empire under Ashoka (268-233 BC)', List of Maps p. vii",
+        "note": "p. 61: Ashoka conquered Kalinga in 261 BC, reign dated 268-233 BC after Eggermont; pp. 63-64: the edicts at Dhauli and Jaugada, governor at Tosali; p. 67: the last Maurya killed in 185 BC. End year confirmed."
+      },
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "Hultzsch, Inscriptions of Asoka (CII I, 1925), pp. xxxvii-xxxviii",
+        "note": "Kalinga conquered in Ashoka's eighth regnal year; Dhauli and Jaugada allotted to that province, with Tosali and Samapa as its centres."
+      }
+    ],
+    "status": "published",
     "order": 0
   },
   {
@@ -15,39 +26,110 @@
     "start_year": -185,
     "end_year": -1,
     "summary": "King Kharavela rules from Kalinga. The Hathigumpha inscription tells his story.",
-    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
-    "status": "draft",
+    "source_refs": [
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), pp. 94-96",
+        "note": "p. 94: 'It was initially assumed that both emerged soon after the decline of the Maurya empire around 185 BC, but more recent research seems to indicate that they arose only around the middle of the first century BC.' Range kept; the later dating is the open question."
+      },
+      {
+        "source_id": "hathigumpha-inscription",
+        "page": "Jayaswal & Banerji, Epigraphia Indica XX (1929-30), pp. 74, 77",
+        "note": "p. 74: script 'cannot be earlier than the beginning of the 2nd century B.C. or later than that of the 1st century B.C.'; p. 77: Kharavela 'must have flourished in the first half of the 2nd century B.C.' Sircar (Select Inscriptions I, p. 213) argues for the end of the 1st century BCE."
+      }
+    ],
+    "status": "published",
     "order": 1
   },
   {
+    "id": "early-historic",
+    "label": "Early historic centuries",
+    "start_year": 1,
+    "end_year": 300,
+    "summary": "Coins and pottery from this time show Kalinga's ports trading with lands across the sea.",
+    "source_refs": [
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), Map 5 'India c. 0-AD 300' (List of Maps, p. vii); p. 96; Chronology p. 354",
+        "note": "Map 5's own bracket, c. 0-AD 300, matches this period exactly. p. 96: the Ikshvakus and the Nagarjunakonda inscription naming Toshali. Chronology p. 354: '1st century - Intensive trade connections with the Roman empire'. No change needed."
+      },
+      {
+        "source_id": "epigraphia-indica",
+        "page": "Vol. XX (1929-30), Vogel, pp. 6-8",
+        "note": "Siri-Virapurisadata placed in the third century CE on palaeographic grounds (p. 6); Tosali named in the Nagarjunakonda list (pp. 7-8)."
+      }
+    ],
+    "status": "published",
+    "order": 2
+  },
+  {
     "id": "gupta",
-    "label": "Gupta and post-Gupta centuries",
+    "label": "Gupta centuries",
     "start_year": 300,
     "end_year": 600,
     "summary": "Kalinga sits at the edge of the Gupta world while sea trade with the east grows.",
-    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
-    "status": "draft",
-    "order": 2
+    "source_refs": [
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), Map 6 'The Gupta Empire (320-500)' (List of Maps, p. vii); Chronology p. 354; pp. 123-124",
+        "note": "Source brackets the Gupta empire itself at 320-500, narrower than this period's 300-600. Range left UNCHANGED: narrowing it would leave 500-600 with no period. p. 123 Samudragupta in Kalinga; p. 124 Shailodbhavas after the Gupta decline. See inscriptions-and-periods.md."
+      }
+    ],
+    "status": "published",
+    "order": 3
+  },
+  {
+    "id": "post-gupta",
+    "label": "Post-Gupta centuries",
+    "start_year": 600,
+    "end_year": 736,
+    "summary": "Chinese monks visit and write about the region. Buddhist centres and sea trade continue.",
+    "source_refs": [
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), p. 124; Map 9 'Territorial Development of Orissa (c. 600-1400)', legend",
+        "note": "CHANGED end_year 700 -> 736. p. 124: the Shailodbhavas held central Orissa through the 7th century and were dislodged 'in the eighth century' by the Bhaumakaras; Map 9's legend starts the Bhauma-Karas at 736 AD. Extended so the two periods still meet without a gap."
+      },
+      {
+        "source_id": "xuanzang-travels",
+        "page": "page not verified",
+        "note": "Kept from the seed data. I could not consult Beal (1884) or Watters (1904-05) in this session, so no page can be given for the 7th-century visit."
+      }
+    ],
+    "status": "published",
+    "order": 4
   },
   {
     "id": "bhauma-kara",
     "label": "Bhauma-Kara",
-    "start_year": 700,
+    "start_year": 736,
     "end_year": 950,
     "summary": "The Bhauma-Kara rulers govern coastal Odisha. Buddhist centres flourish.",
-    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
-    "status": "draft",
-    "order": 3
+    "source_refs": [
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), p. 124; Map 9 'Territorial Development of Orissa (c. 600-1400)', legend",
+        "note": "CHANGED start_year 700 -> 736. Map 9 legend: 'kingdom of Bhauma-Karas (736 AD - early 10th century AD)'. p. 124: 'In the eighth century the Shailodbhavas were dislodged ... by the Bhaumakaras'. end_year 950 KEPT but is a rounding: the source says only 'early 10th century'."
+      }
+    ],
+    "status": "published",
+    "order": 5
   },
   {
     "id": "somavamshi",
     "label": "Somavamshi",
     "start_year": 900,
-    "end_year": 1100,
+    "end_year": 1112,
     "summary": "The Somavamshi kings unite inland and coastal Odisha.",
-    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
-    "status": "draft",
-    "order": 4
+    "source_refs": [
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), pp. 124, 171; Map 9 'Territorial Development of Orissa (c. 600-1400)', legend",
+        "note": "CHANGED end_year 1100 -> 1112. Map 9 legend: 'kingdom of Somavamsha (early 10th century - 1112 AD)'. p. 171: Chodaganga 'in c. 1112 conquered the fertile Mahanadi delta of central Orissa from the Somavamsha king'. Overlap with eastern-ganga unchanged."
+      }
+    ],
+    "status": "published",
+    "order": 6
   },
   {
     "id": "eastern-ganga",
@@ -55,9 +137,15 @@
     "start_year": 1078,
     "end_year": 1434,
     "summary": "The Eastern Gangas build the great temples of Puri and Konark.",
-    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
-    "status": "draft",
-    "order": 5
+    "source_refs": [
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), pp. 171-173; Map 9 'Territorial Development of Orissa (c. 600-1400)', legend",
+        "note": "p. 171: Chodaganga 'in c. 1112 conquered the fertile Mahanadi delta'; Map 9 brackets the Ganga kingdom 1112-1436; p. 173: Suryavamsha founded 1435. Years UNCHANGED: 1078 is unattested in anything I read, and the source contradicts itself on the end (1436 map vs 1435 text)."
+      }
+    ],
+    "status": "published",
+    "order": 7
   },
   {
     "id": "gajapati",
@@ -65,9 +153,20 @@
     "start_year": 1434,
     "end_year": 1541,
     "summary": "The Gajapati kings rule a large kingdom along the east coast.",
-    "source_refs": [{ "source_id": "kulke-rothermund", "note": "Ranges are approximate; researcher to confirm edition and page." }],
-    "status": "draft",
-    "order": 6
+    "source_refs": [
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), pp. 173-176",
+        "note": "p. 173: Kapilendra founded 'the Suryavamsha dynasty in 1435'; and 'Finally, in 1568, the Afghan sultan of Bengal swooped down upon Orissa', ending Gajapati rule. Years UNCHANGED: both boundaries (1434, 1541) differ from what I could source (1435; 1568), and the sources disagree."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "Orissa, Vol. I, Contents: chap. V, 'Orissa under Native Rule (3101 B.C. to 1532 A.D.)', pp. 168-330",
+        "note": "Hunter ends native rule at 1532, a third date again. Recorded to show the spread of published opinion on this boundary."
+      }
+    ],
+    "status": "published",
+    "order": 8
   },
   {
     "id": "mughal-maratha",
@@ -75,9 +174,30 @@
     "start_year": 1568,
     "end_year": 1803,
     "summary": "Odisha comes under Mughal, then Maratha, control. European traders set up factories on the coast.",
-    "source_refs": [{ "source_id": "haque-1980", "note": "Researcher to confirm page." }, { "source_id": "ray-bc-1981", "note": "Researcher to confirm page." }],
-    "status": "draft",
-    "order": 7
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "Orissa, Vol. II, chap. VI, 'Orissa under Foreign Governors, Mughul and Marhatta', pp. 1-35, titled '(1568-1803)' in the Vol. I Contents; running heads 'Orissa a Mughul Province (1592-1751)' pp. 22-23, 'Orissa Ceded to Marhattas (1751)' p. 30, 'Marhatta Misrule (1751-1803)' pp. 31-35",
+        "note": "Hunter's chapter covers exactly this period's range, including the internal 1751 hinge. Both years confirmed; no change made."
+      },
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), pp. 173, 206",
+        "note": "p. 173: 'Finally, in 1568, the Afghan sultan of Bengal swooped down upon Orissa'; p. 206: Murshid Quli Khan 'annexed Bihar and Orissa'."
+      },
+      {
+        "source_id": "haque-1980",
+        "page": "page not verified",
+        "note": "Kept from the seed data. Not consulted in this session; no copy reachable online."
+      },
+      {
+        "source_id": "ray-bc-1981",
+        "page": "page not verified",
+        "note": "Kept from the seed data. Not consulted in this session; no copy reachable online."
+      }
+    ],
+    "status": "published",
+    "order": 9
   },
   {
     "id": "british",
@@ -85,8 +205,19 @@
     "start_year": 1803,
     "end_year": 1900,
     "summary": "The East India Company takes Odisha. Old ports fade as trade moves to Calcutta.",
-    "source_refs": [{ "source_id": "patra-1971", "note": "Researcher to confirm page." }],
-    "status": "draft",
-    "order": 8
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "Orissa, Vol. II, chap. VII, 'The English as Settlers and Governors in Orissa', pp. 36-173; p. 36; pp. 55-59",
+        "note": "p. 36: 'no sooner did the Province pass under British sway in 1803, than the materials ... suddenly cease'; pp. 57-58: the Cuttack fort stormed 14 Oct 1803, after which Orissa 'passed under British Rule'. Start year confirmed. end_year 1900 is the atlas's closing bracket, not a sourced date."
+      },
+      {
+        "source_id": "patra-1971",
+        "page": "page not verified",
+        "note": "Kept from the seed data. Not consulted in this session; no copy reachable online."
+      }
+    ],
+    "status": "published",
+    "order": 10
   }
 ]

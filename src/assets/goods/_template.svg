@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <!-- TEMPLATE: copy this file to src/assets/goods/<good-id>.svg (id must match Good.icon in goods.json), -->
+  <!-- then replace the title, desc and the placeholder shape below. Keep everything else unchanged: -->
+  <!-- viewBox 0 0 64 64, role/aria-labelledby, the licence comment, currentColor, 2px round-capped strokes. -->
+  <!-- Line icon style: outline only, no fill, so the glyph reads at 24px in a chip and 48px in the manifest. -->
+  <title id="title">Good name</title>
+  <desc id="desc">One plain sentence describing what the icon shows, e.g. "A cluster of black peppercorns on a stem, drawn as a simple line icon."</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="32" r="20" />
+    <path d="M32,16 L32,48 M16,32 L48,32" />
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Cowrie shells</title>
+  <desc id="desc">An oval cowrie shell shown from below, with the ridged central opening, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8,32 Q10,18 32,17 Q54,18 56,32 Q54,46 32,47 Q10,46 8,32 Z" />
+    <path d="M14,32 L50,32" />
+    <path d="M18,29 L18,35 M24,28 L24,36 M32,28 L32,36 M40,28 L40,36 M46,29 L46,35" />
+  </g>
+</svg>

@@ -1,0 +1,111 @@
+---
+import Base from '@layouts/Base.astro';
+import EvidenceBadge from '@components/EvidenceBadge.astro';
+import SourcePopover from '@components/SourcePopover.astro';
+import PeriodChips from '@components/PeriodChips.astro';
+import ScholarNotes from '@components/ScholarNotes.astro';
+import Narrative from '@components/Narrative.astro';
+import EntityCard from '@components/EntityCard.astro';
+import { getPorts, getRoutes, getGoods, getPeriods, getSources } from '@data/load';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const ports = getPorts();
+  return ports.map((port) => ({ params: { id: port.id }, props: { port } }));
+}) satisfies GetStaticPaths;
+
+const { port } = Astro.props;
+
+const sources = getSources();
+const periods = getPeriods().filter((p) => port.periods.includes(p.id));
+
+const relatedRoutes = getRoutes().filter((r) => r.from === port.id || r.to === port.id);
+const relatedGoods = getGoods().filter((g) => port.goods.includes(g.id));
+
+const narrativeEntries = await getCollection('ports');
+const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === port.id);
+
+const coordinateSource = sources.find((s) => s.id === port.coordinate_source);
+---
+
+<Base title={port.name} description={port.summary}>
+  <article class="entity-page">
+    <p class="back"><a href="/#ports">&larr; Back to the atlas</a></p>
+
+    <h1>{port.name}</h1>
+    <div class="badges">
+      <EvidenceBadge level={port.evidence_level} type={port.evidence_type} />
+    </div>
+    <PeriodChips periods={periods} />
+
+    <p class="summary">{port.summary}</p>
+
+    <Narrative entry={narrativeEntry} />
+
+    <section aria-labelledby="facts-h">
+      <h2 id="facts-h">Facts</h2>
+      <dl class="facts">
+        <dt>Coordinates</dt>
+        <dd>
+          {port.coordinates.lat.toFixed(2)}&deg;, {port.coordinates.lng.toFixed(2)}&deg;
+          {coordinateSource && <SourcePopover refs={[{ source_id: port.coordinate_source }]} sources={sources} />}
+        </dd>
+        {port.modern_name && (
+          <>
+            <dt>Modern name</dt>
+            <dd>{port.modern_name}</dd>
+          </>
+        )}
+        {port.also_known_as && port.also_known_as.length > 0 && (
+          <>
+            <dt>Also known as</dt>
+            <dd>{port.also_known_as.join(', ')}</dd>
+          </>
+        )}
+        <dt>Region</dt>
+        <dd>{port.region}</dd>
+      </dl>
+    </section>
+
+    {relatedRoutes.length > 0 && (
+      <section aria-labelledby="routes-h">
+        <h2 id="routes-h">Routes through {port.name}</h2>
+        <ul class="cards">
+          {relatedRoutes.map((r) => <EntityCard kind="route" entity={r} sources={sources} />)}
+        </ul>
+      </section>
+    )}
+
+    {relatedGoods.length > 0 && (
+      <section aria-labelledby="goods-h">
+        <h2 id="goods-h">Goods documented here</h2>
+        <ul class="cards">
+          {relatedGoods.map((g) => <EntityCard kind="good" entity={g} sources={sources} />)}
+        </ul>
+      </section>
+    )}
+
+    <ScholarNotes caveats={port.caveats} refs={port.source_refs} sources={sources} />
+  </article>
+</Base>
+
+<style>
+  .entity-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
+  .back { margin-bottom: var(--space-4); }
+  .back a { color: var(--fg-muted); }
+  .badges { margin-bottom: var(--space-2); }
+  .summary { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
+  section { margin-top: var(--space-8); }
+  .facts { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-4); }
+  .facts dt { font-weight: 600; color: var(--fg-muted); }
+  .facts dd { margin: 0; }
+  .cards {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0 0;
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  }
+</style>
