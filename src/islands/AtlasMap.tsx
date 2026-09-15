@@ -44,7 +44,7 @@ export interface AtlasMapProps {
   periods: Period[];
   /** id from periods.json. Controls which ports/routes are lit. */
   activePeriod: string;
-  /** Path to the TopoJSON land file, default /geo/land-50m.json */
+  /** Path to the TopoJSON land file, relative to Astro's configured base URL. */
   landUrl?: string;
   riversUrl?: string;
   onSelect?: (selection: MapSelection) => void;
@@ -230,8 +230,8 @@ export function AtlasMap({
   sites,
   periods,
   activePeriod,
-  landUrl = '/geo/land-50m.json',
-  riversUrl = '/geo/rivers-50m.json',
+  landUrl = `${import.meta.env.BASE_URL}geo/land-50m.json`,
+  riversUrl = `${import.meta.env.BASE_URL}geo/rivers-50m.json`,
   onSelect,
   selection = null,
   onClear,
