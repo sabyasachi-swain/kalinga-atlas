@@ -156,6 +156,11 @@
 .route-hit {
   fill: none;
   stroke: transparent;
+  /* 12 screen px regardless of zoom: non-scaling-stroke keeps the hit band a
+     constant on-screen width without recomputing it in JS on every zoom
+     tick (previously `stroke-width: ROUTE_HIT_WIDTH / k`, set inline). */
+  stroke-width: 12px;
+  vector-effect: non-scaling-stroke;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -211,6 +216,17 @@
   transition: opacity var(--dur-page) var(--ease-page);
 }
 .marker:focus { outline: none; }
+/* Counter-scale against the map zoom, read from a custom property set on
+   .atlas-map (see AtlasMap.tsx). Keeps markers and the ship a constant
+   on-screen size; --map-counter is written straight to the DOM by the
+   d3-zoom handler during a gesture, so this scale updates without a React
+   re-render of any marker. transform-box/origin pinned to match the old
+   SVG-attribute `scale(...)`, which always scaled around local (0,0). */
+.marker-scale {
+  transform: scale(var(--map-counter, 1));
+  transform-box: view-box;
+  transform-origin: 0px 0px;
+}
 .marker-hit {
   fill: transparent;
   stroke: none;

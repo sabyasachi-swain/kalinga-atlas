@@ -98,11 +98,12 @@ const MAX_SCALE = 12;
 const HIT_RADIUS = 22;
 /**
  * route-styles.md: a full 44 px hit band is impractical for a world-scale
- * line, so routes get a 12 screen-px transparent stroke instead. Keyboard
- * users reach every route directly with Tab, so nothing depends on the hit
- * band being large.
+ * line, so routes get a 12 screen-px transparent stroke instead (set in
+ * atlas.css as `.route-hit`'s `stroke-width`, kept constant on screen with
+ * `vector-effect: non-scaling-stroke` rather than a per-zoom JS recompute).
+ * Keyboard users reach every route directly with Tab, so nothing depends on
+ * the hit band being large.
  */
-const ROUTE_HIT_WIDTH = 12;
 /**
  * Minimum screen-space gap between two visible labels. The Kalinga coast has
  * a dozen ports within a degree of each other, so at low zoom their names
@@ -248,6 +249,20 @@ export function AtlasMap({
   const nodeRefs = useRef<Map<string, SVGGElement>>(new Map());
   const routePathRefs = useRef<Map<string, SVGPathElement>>(new Map());
   const lastSelectedKey = useRef<string | null>(null);
+  const rootGRef = useRef<SVGGElement | null>(null);
+  /**
+   * Live transform, written on every d3-zoom tick without touching React
+   * state. `transform` (state, below) only gets committed on the zoom
+   * `end` event, so a drag or wheel gesture re-renders the component once
+   * per gesture instead of once per tick. Mid-gesture, the root <g>'s
+   * `transform` attribute and the `--map-counter` custom property (which
+   * every marker's counter-scale reads) are written directly to the DOM
+   * from the refs below.
+   */
+  const liveTransformRef = useRef({ k: 1, x: 0, y: 0 });
+  const canvasRafRef = useRef(0);
+  const offscreenRef = useRef<HTMLCanvasElement | null>(null);
+  const offscreenReadyRef = useRef(false);
 
   const [size, setSize] = useState({ width: SSR_WIDTH, height: SSR_HEIGHT });
   const [transform, setTransform] = useState({ k: 1, x: 0, y: 0 });
@@ -462,6 +477,23 @@ export function AtlasMap({
       })
       .on('zoom', (event: D3ZoomEvent<HTMLDivElement, unknown>) => {
         const t = event.transform;
+        liveTransformRef.current = { k: t.k, x: t.x, y: t.y };
+        // Mutate the DOM directly for every tick: the SVG root <g> transform
+        // and the --map-counter custom property markers/ship counter-scale
+        // against. This is what keeps a drag or wheel gesture from
+        // re-rendering the whole marker/route tree on every tick.
+        const g = rootGRef.current;
+        if (g) g.setAttribute('transform', `translate(${t.x},${t.y}) scale(${t.k})`);
+        const figure = figureRef.current;
+        if (figure) figure.style.setProperty('--map-counter', String(1 / t.k));
+        scheduleCacheDrawRef.current();
+      })
+      .on('end', (event: D3ZoomEvent<HTMLDivElement, unknown>) => {
+        const t = event.transform;
+        liveTransformRef.current = { k: t.k, x: t.x, y: t.y };
+        // Commit to React state once per gesture: this is what reruns label
+        // culling and updates the zoom buttons' disabled state, and it
+        // triggers the one full-quality vector redraw of the canvas.
         setTransform({ k: t.k, x: t.x, y: t.y });
       });
 
@@ -484,15 +516,14 @@ export function AtlasMap({
     behavior.scaleBy(select(el), factor);
   }, []);
 
-  const panBy = useCallback(
-    (dx: number, dy: number) => {
-      const el = stageRef.current;
-      const behavior = zoomRef.current;
-      if (!el || !behavior) return;
-      behavior.translateBy(select(el), dx / transform.k, dy / transform.k);
-    },
-    [transform.k],
-  );
+  const panBy = useCallback((dx: number, dy: number) => {
+    const el = stageRef.current;
+    const behavior = zoomRef.current;
+    if (!el || !behavior) return;
+    // Live k, not the committed state value: correct even mid-gesture.
+    const k = liveTransformRef.current.k;
+    behavior.translateBy(select(el), dx / k, dy / k);
+  }, []);
 
   const resetView = useCallback(() => {
     const el = stageRef.current;
@@ -501,66 +532,175 @@ export function AtlasMap({
     behavior.transform(select(el), zoomIdentity);
   }, []);
 
-  // -- Canvas draw ---------------------------------------------------------
-  const draw = useCallback(() => {
-    const canvas = canvasRef.current;
-    const figure = figureRef.current;
-    if (!canvas || !figure) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+  // -- Canvas draw -----------------------------------------------------------
+  //
+  // Two paths, both reading the *live* transform (a ref, not React state):
+  //
+  //   - `drawFull` strokes land/graticule/rivers with geoPath at the current
+  //     transform. Sharp at any zoom, but it walks every polygon, so it is
+  //     only used to paint the resting frame: once after geodata/size/zoom
+  //     settle, never on every zoom tick.
+  //   - `drawFromCache` blits a bitmap of the basemap rendered once at
+  //     identity transform (`paintOffscreen`), scaled/translated onto the
+  //     visible canvas with a single drawImage. That is what a zoom or pan
+  //     gesture uses while it is in motion: O(1) per frame instead of
+  //     O(polygon count), at the cost of a softer edge until the gesture
+  //     ends and `drawFull` repaints it crisp.
+  //
+  // Colours, fills and strokes are unchanged from the previous single-path
+  // version; only when full-quality vector work happens has changed.
 
-    const { width, height } = size;
-    if (width < 2 || height < 2) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const readColours = useCallback((figure: Element | null) => ({
+    graticule: readVar(figure, '--map-graticule', 'rgba(217,201,163,0.14)'),
+    land: readVar(figure, '--map-land', '#2a2418'),
+    edge: readVar(figure, '--map-land-edge', '#5a4b2e'),
+    river: readVar(figure, '--map-river', '#244a63'),
+  }), []);
+
+  const sizeCanvas = useCallback((canvas: HTMLCanvasElement, width: number, height: number, dpr: number) => {
     const pxW = Math.round(width * dpr);
     const pxH = Math.round(height * dpr);
     if (canvas.width !== pxW) canvas.width = pxW;
     if (canvas.height !== pxH) canvas.height = pxH;
+  }, []);
 
-    const graticuleColour = readVar(figure, '--map-graticule', 'rgba(217,201,163,0.14)');
-    const landColour = readVar(figure, '--map-land', '#2a2418');
-    const edgeColour = readVar(figure, '--map-land-edge', '#5a4b2e');
-    const riverColour = readVar(figure, '--map-river', '#244a63');
+  const paintVector = useCallback(
+    (ctx: CanvasRenderingContext2D, dpr: number, k: number, x: number, y: number) => {
+      const { width, height } = size;
+      const figure = figureRef.current;
+      const { graticule, land, edge, river } = readColours(figure);
 
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, width, height);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+      ctx.setTransform(dpr * k, 0, 0, dpr * k, dpr * x, dpr * y);
 
-    const { k, x, y } = transform;
-    ctx.setTransform(dpr * k, 0, 0, dpr * k, dpr * x, dpr * y);
+      const p = geoPath(projection, ctx);
 
-    const p = geoPath(projection, ctx);
-
-    ctx.beginPath();
-    p(geoGraticule10());
-    ctx.lineWidth = 0.6 / k;
-    ctx.strokeStyle = graticuleColour;
-    ctx.stroke();
-
-    if (geo.land) {
       ctx.beginPath();
-      p(geo.land);
-      ctx.fillStyle = landColour;
-      ctx.fill();
-      ctx.lineWidth = 0.9 / k;
-      ctx.strokeStyle = edgeColour;
+      p(geoGraticule10());
+      ctx.lineWidth = 0.6 / k;
+      ctx.strokeStyle = graticule;
       ctx.stroke();
-    }
 
-    if (geo.rivers.length > 0) {
-      ctx.beginPath();
-      for (const river of geo.rivers) p(river);
-      ctx.lineWidth = 0.7 / k;
-      ctx.strokeStyle = riverColour;
-      ctx.stroke();
-    }
+      if (geo.land) {
+        ctx.beginPath();
+        p(geo.land);
+        ctx.fillStyle = land;
+        ctx.fill();
+        ctx.lineWidth = 0.9 / k;
+        ctx.strokeStyle = edge;
+        ctx.stroke();
+      }
 
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-  }, [geo, projection, size, transform]);
+      if (geo.rivers.length > 0) {
+        ctx.beginPath();
+        for (const river2 of geo.rivers) p(river2);
+        ctx.lineWidth = 0.7 / k;
+        ctx.strokeStyle = river;
+        ctx.stroke();
+      }
+
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+    },
+    [geo, projection, size, readColours],
+  );
+
+  /** Full-quality redraw of the visible canvas at an arbitrary transform. */
+  const drawFull = useCallback(
+    (t: { k: number; x: number; y: number }) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const { width, height } = size;
+      if (width < 2 || height < 2) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      sizeCanvas(canvas, width, height, dpr);
+      paintVector(ctx, dpr, t.k, t.x, t.y);
+    },
+    [size, sizeCanvas, paintVector],
+  );
+
+  /** Renders the basemap once at identity transform into an offscreen bitmap. */
+  const paintOffscreen = useCallback(() => {
+    const { width, height } = size;
+    if (width < 2 || height < 2) return;
+    let off = offscreenRef.current;
+    if (!off) {
+      off = document.createElement('canvas');
+      offscreenRef.current = off;
+    }
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    sizeCanvas(off, width, height, dpr);
+    const ctx = off.getContext('2d');
+    if (!ctx) return;
+    paintVector(ctx, dpr, 1, 0, 0);
+    offscreenReadyRef.current = true;
+  }, [size, sizeCanvas, paintVector]);
+
+  /** Cheap redraw for mid-gesture ticks: blit the cached bitmap, transformed. */
+  const drawFromCache = useCallback(
+    (t: { k: number; x: number; y: number }) => {
+      const canvas = canvasRef.current;
+      const off = offscreenRef.current;
+      if (!canvas || !off || !offscreenReadyRef.current) {
+        drawFull(t);
+        return;
+      }
+      const { width, height } = size;
+      if (width < 2 || height < 2) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      sizeCanvas(canvas, width, height, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+      ctx.setTransform(dpr * t.k, 0, 0, dpr * t.k, dpr * t.x, dpr * t.y);
+      ctx.drawImage(off, 0, 0, width, height);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+    },
+    [size, sizeCanvas, drawFull],
+  );
+
+  /** Coalesce mid-gesture redraws to at most one per animation frame. */
+  const scheduleCacheDraw = useCallback(() => {
+    if (canvasRafRef.current) return;
+    canvasRafRef.current = requestAnimationFrame(() => {
+      canvasRafRef.current = 0;
+      drawFromCache(liveTransformRef.current);
+    });
+  }, [drawFromCache]);
+
+  // The d3-zoom setup effect below only ever runs once (empty deps — the
+  // zoom behavior is created once for the stage's lifetime), so its 'zoom'
+  // callback closes over whatever `scheduleCacheDraw` was at mount. Route
+  // every call through a ref that is kept current every render instead, so
+  // a gesture always schedules a draw using the latest `size`/`geo`.
+  const scheduleCacheDrawRef = useRef(scheduleCacheDraw);
+  useEffect(() => {
+    scheduleCacheDrawRef.current = scheduleCacheDraw;
+  }, [scheduleCacheDraw]);
+
+  // Repaint the bitmap cache and the resting frame whenever geodata or size
+  // change; also whenever the committed transform changes (gesture end, or
+  // a keyboard/button zoom step), so the on-screen canvas stays crisp.
+  useEffect(() => {
+    paintOffscreen();
+    const frame = requestAnimationFrame(() => drawFull(transform));
+    return () => cancelAnimationFrame(frame);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [geo, size, paintOffscreen]);
 
   useEffect(() => {
-    const frame = requestAnimationFrame(draw);
+    const frame = requestAnimationFrame(() => drawFull(transform));
     return () => cancelAnimationFrame(frame);
-  }, [draw]);
+  }, [transform, drawFull]);
+
+  useEffect(() => {
+    return () => {
+      if (canvasRafRef.current) cancelAnimationFrame(canvasRafRef.current);
+    };
+  }, []);
 
   // -- Selection -----------------------------------------------------------
   const selectedKey = selection ? `${selection.kind}:${selection.id}` : null;
@@ -722,7 +862,16 @@ export function AtlasMap({
   // -- Render --------------------------------------------------------------
   const { k, x, y } = transform;
   const rootTransform = `translate(${x},${y}) scale(${k})`;
-  const counter = 1 / k;
+  /**
+   * Counter-scale for markers/ship, as a CSS custom property rather than a
+   * per-element inline `scale(...)`: it inherits from the figure down to
+   * every marker with a single write, and the zoom handler updates it
+   * directly on the DOM mid-gesture without touching this JSX at all (see
+   * the 'zoom' listener above). This value (from committed state) only
+   * matters at mount and at the end of each gesture, when React re-renders
+   * and reasserts it.
+   */
+  const mapCounterStyle = { '--map-counter': 1 / k } as CSSProperties;
   const keysTitleId = `atlas-keys-title-${uid}`;
   const descId = `atlas-map-desc-${uid}`;
   const activeMarkers = markers.filter((m) => !m.inactive);
@@ -769,6 +918,7 @@ export function AtlasMap({
       className="atlas-map"
       role="group"
       tabIndex={0}
+      style={mapCounterStyle}
       aria-label={`Map of Kalinga trade routes, ${period?.label ?? 'all periods'}. Press question mark for keyboard help.`}
       aria-describedby={descId}
       onKeyDown={onFigureKeyDown}
@@ -802,7 +952,7 @@ export function AtlasMap({
             </symbol>
           </defs>
 
-          <g transform={rootTransform}>
+          <g ref={rootGRef} transform={rootTransform}>
             <g className="routes">
               {routeData.map((r) => (
                 <g
@@ -832,7 +982,7 @@ export function AtlasMap({
                     strokeDasharray={r.dash}
                     ref={(el) => setRoutePathRef(r.id, el)}
                   />
-                  <path className="route-hit" d={r.d} style={{ strokeWidth: ROUTE_HIT_WIDTH * counter }} />
+                  <path className="route-hit" d={r.d} />
                 </g>
               ))}
             </g>
@@ -849,7 +999,7 @@ export function AtlasMap({
                   data-kind={m.shape}
                   data-inactive={String(m.inactive)}
                   data-selected={String(selectedKey === m.key)}
-                  transform={`translate(${m.x},${m.y}) scale(${counter})`}
+                  transform={`translate(${m.x},${m.y})`}
                   onClick={(e) => {
                     e.stopPropagation();
                     (e.currentTarget as SVGGElement).focus();
@@ -857,28 +1007,33 @@ export function AtlasMap({
                   }}
                   onKeyDown={(e) => onNodeKeyDown(e, m.kind, m.id)}
                 >
-                  <circle className="marker-hit" r={HIT_RADIUS} />
-                  <circle className="marker-glow" r={12} />
-                  {m.shape === 'site' ? (
-                    <path className="marker-shape" d="M0,-7 L7,0 L0,7 L-7,0 Z" />
-                  ) : (
-                    <>
-                      <circle className="marker-shape" r={7} />
-                      <circle className="marker-core" r={m.shape === 'destination' ? 3.2 : 2.6} />
-                    </>
-                  )}
-                  {labelled.has(m.key) && (
-                    <text className="marker-label" x={11} y={4}>
-                      {m.name}
-                    </text>
-                  )}
+                  {/* Counter-scale via the --map-counter custom property
+                      (set on the figure), not a per-render inline scale():
+                      the zoom handler updates it directly on the DOM. */}
+                  <g className="marker-scale">
+                    <circle className="marker-hit" r={HIT_RADIUS} />
+                    <circle className="marker-glow" r={12} />
+                    {m.shape === 'site' ? (
+                      <path className="marker-shape" d="M0,-7 L7,0 L0,7 L-7,0 Z" />
+                    ) : (
+                      <>
+                        <circle className="marker-shape" r={7} />
+                        <circle className="marker-core" r={m.shape === 'destination' ? 3.2 : 2.6} />
+                      </>
+                    )}
+                    {labelled.has(m.key) && (
+                      <text className="marker-label" x={11} y={4}>
+                        {m.name}
+                      </text>
+                    )}
+                  </g>
                 </g>
               ))}
             </g>
 
             {shipVisible && (
               <g className="ship" ref={shipRef} data-sailing="false" aria-hidden="true">
-                <g transform={`scale(${counter})`}>
+                <g className="marker-scale">
                   <use className="ship-glyph" href={`#${shipSymbol}`} x={-13} y={-13} width={26} height={26} />
                 </g>
               </g>
