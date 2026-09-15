@@ -157,3 +157,37 @@ and `district-gazetteers-odisha`, all `approved_by_human: true`. No new source w
    (p. 9), yet quotes Hamilton (1820) on 9,000 tons of salt shipped annually from the port (p. 204).
    Both statements are in the same book. The entry's `caveats` field is already at 598 of 600
    characters, so this contradiction could not be recorded there and is recorded here instead.
+
+## 2026-09-15: Fact-check corrections to two published summaries
+
+Scope: fix two factual errors a fact-check found in `summary` fields. Only `summary` and `caveats` changed. Both entries stay `published`, and no sources were added. Nothing under `src/content/` was touched, because editors are rewriting those narratives.
+
+### `sisupalgarh` (`src/data/sites.json`)
+
+- **Before:** "Sisupalgarh is a huge square fort near Bhubaneswar, with an earth wall more than a mile long on each side. Inside it people found pottery and coin-like clay seals copied from Roman coins."
+- **After:** "Sisupalgarh is a big walled city near Bhubaneswar, with an earth wall and moat around more than a square kilometre of land. Inside, people found pottery and clay seals copied from Roman coins."
+- **Checked:** I read the author's copy of Mohanty and Smith 2009 (`mohanty-smith-2009-sisupalgarh`, the UCLA PDF). On p. 47 the abstract says "the rampart that surrounds the urban core and encloses an area over one square km in size". The introduction says "a fortified Early Historic city … formally delineated by a rampart and moat enclosing over 1 km² of ancient habitation". **The article prints no side length anywhere** (I searched the full text for km, square, side and hectare). So the summary now gives the area as printed and no side length. Working one out (about 1 km, or two-thirds of a mile) would be my own inference.
+- I also dropped "square" and "coin-like". Neither word appears in the two cited passages. "Walled city" rests on p. 47's "fortified Early Historic city".
+- Added to `caveats`: "Mohanty and Smith p. 47 give the enclosed area as 'over 1 km2' and print no side length."
+- Pottery and Roman-style clay seals: `patra-patra-ohrj-maritime-archaeology` p. 110 (unchanged, not re-read this session).
+
+### `rice` (`src/data/goods.json`)
+
+- **Before:** "Rice was Odisha's biggest crop and its biggest export. Small ships loaded it at the river mouths and carried it away to Calcutta."
+- **After:** "A lot of rice was shipped from Odisha's small coastal ports to Calcutta. Inland in Sambalpur, rice was the main thing sent away to be sold."
+- **Checked:**
+  - *Stirling 1825*, *Asiatic Researches* XV, p. 194 (archive.org `asiaticresearche151825cal`, djvu text). It reads: "A considerable exportation of rice takes place from the several small ports along the coast to Calcutta." Rice does not appear in Stirling's list of exports "liable to duty", and he ranks nothing.
+  - *Imperial Gazetteer of India*, new edition, vol. XXII, p. 13 (archive.org `imperialgazettee22greauoft`, running head "TRADE AND COMMUNICATIONS 13"). It reads: "Rice is the staple export of Sambalpur, being sent principally to Calcutta, but also to Bombay and Berar." That is a district-level statement about inland Sambalpur (1903-04), not about sea trade.
+  - Hunter 1872 (vol. II App. I p. 13, "a considerable export rice trade") was not re-read this session.
+- **Result:** none of the three cited works calls rice Odisha's biggest crop or biggest sea export. I removed both superlatives. The old "small ships … river mouths" wording also went, because Stirling says "small ports along the coast". "Main thing sent away to be sold" paraphrases "staple export" and is limited to Sambalpur.
+- Added to `caveats`: no cited source ranks rice as the largest export; Stirling says "considerable"; the Gazetteer's "staple export" is for inland Sambalpur, not sea trade.
+
+### Tier check (not changed)
+
+- `sisupalgarh`, **Strongly Supported**: still holds. Two distinct works (OHRJ excavation synthesis; Mohanty and Smith fieldwork report) independently document the fortified excavated site. The area figure itself rests on Mohanty and Smith alone, and the Roman-style seals in the summary rest on OHRJ p. 110 alone.
+- `rice`, **Strongly Supported**: holds for the corrected, narrower claim, with one weakness. The coastal-ports-to-Calcutta export rests directly on Stirling p. 194, and Hunter's Machhagaon "export rice trade" (not re-read) is the only second work for coastal export. The Gazetteer line is inland and dated 1903-04, past the 1900 cut-off. If a reviewer does not count Hunter's line, the coastal-export sentence would be `Probable` on its own.
+
+### Open
+
+- Re-read Hunter vol. II App. I p. 13 to confirm the Machhagaon quote that the rice tier leans on.
+- Read B. B. Lal, *Ancient India* 5 (1949) if a side length for the Sisupalgarh rampart is wanted. Mohanty and Smith do not give one.

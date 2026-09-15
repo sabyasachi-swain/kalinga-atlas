@@ -7,7 +7,7 @@ Manikapatna is an old port by Chilika lake, in Odisha. Workers digging there fou
 
 A scholar read the scratches as two words: "Dasatradeva" and "Khida." He thought the pot was made about 1,900 years ago. Historians say this may be the only Kharoshthi writing ever found on the whole coast of eastern India [Patra, n.d., p.112].
 
-Historians think this pot is a clue. Someone who knew a script from northwest India once stood at this port. But it does not prove the pot itself traveled far. Someone could have scratched the words right there [Patra, n.d., p.118]. [NEEDS VERIFICATION] <!-- fact-check: p.118 is only note 28, the reference for the reading. The finds are at p.112. The caution here is the project view, not something historians said. -->
+This pot is a clue. Someone who knew a script from northwest India once stood at this port. But it does not prove the pot itself traveled far. Someone could have scratched the words right there [Patra, n.d., p.112].
 
 ## For scholars
 

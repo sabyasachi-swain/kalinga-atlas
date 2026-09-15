@@ -7,7 +7,7 @@ An old Indian handbook on ruling a kingdom named the best places for war elephan
 
 A Chinese monk named Xuanzang travelled here in the 600s CE. He wrote that Kalinga bred a great tawny elephant. Nearby kingdoms prized it highly [Xuanzang, 7th century CE, p.207].
 
-A stone carving on a temple in Bhubaneswar shows a ship. An elephant stands on its deck. Historians agree this shows elephants were shipped away as a trade good [Patra, n.d., p.114]. [NEEDS VERIFICATION] <!-- fact-check: only one work reads the carving this way. The entry caveat calls it a reading of a picture. It is not a shipping record. So "agree" and "shows" go too far. Try: Two writers read this as a sign of trade. -->
+A stone carving on a temple in Bhubaneswar shows a ship. An elephant stands on its deck. One historian reads this as a sign that elephants were shipped away as a trade good [Patra, n.d., p.114].
 
 ## For scholars
-Scholars disagree on the Arthashastra's date. It may come from Mauryan times, or as late as 200 CE. So its "Kalinga" may not mean the same borders each time. The ship-and-elephant carving is one reading of a picture. It is not a shipping record. In 1825, a British report even doubted elephants were native to the region at all.
+Scholars disagree on the Arthashastra's date. It may come from Mauryan times, or as late as 200 CE. So its "Kalinga" may not mean the same borders each time [Kautilya, n.d., p.49]. The ship-and-elephant carving is one historian's reading of a picture. It is not a shipping record [Patra, n.d., p.114].

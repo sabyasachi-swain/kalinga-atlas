@@ -4,7 +4,7 @@ title: Balasore to Calcutta
 scholar: false
 ---
 
-Balasore was Odisha's busiest sea port before the railway came. A colonial report says it was once "the only port" Odisha had. This was true at the start of the 1800s. [District Gazetteers (Cuttack, Puri, Ganjam, Balasore), British-era editions, n.d., p.144]
+A colonial report says Balasore was once "the only port" Odisha had. This was true at the start of the 1800s. [District Gazetteers (Cuttack, Puri, Ganjam, Balasore), British-era editions, n.d., p.144]
 
 Ships from Balasore carried rice north to Calcutta. Some ships sailed on to Bombay. Some sailed all the way to Burma. A British officer wrote about this trade in the 1820s. He saw rice moving up the coast from small ports. Much of it went to Calcutta. [Stirling, 1825, p.194]
 

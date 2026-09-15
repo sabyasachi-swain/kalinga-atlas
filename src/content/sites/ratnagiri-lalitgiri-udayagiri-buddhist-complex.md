@@ -10,4 +10,4 @@ Inside a stupa at Lalitgiri, archaeologists opened four caskets. Each sat nested
 At Ratnagiri, diggers found a carved image of a goddess. She was believed to save people from eight great dangers, shipwreck among them. Finding her so close to the coast suggests monks here prayed for sailors' safety [Patra, n.d., p.111].
 
 ## For scholars
-This entry covers three separate hills, spaced five to ten kilometres apart. It is not one single site. No one hill was used for the entire span of time listed here. The original dig reports, from the 1950s and 1960s, were not read directly for this entry. No source used here gives an exact date for the goddess carving.
+This entry covers three separate hills, spaced five to ten kilometres apart. It is not one single site. No one hill was used for the entire span of time listed here. The original dig reports, from the 1950s and 1960s, were not read directly for this entry. No source used here gives an exact date for the goddess carving [Pradhan, 2014, p.109; Patra, n.d., pp.111, 116].

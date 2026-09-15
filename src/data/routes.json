@@ -113,12 +113,12 @@
     "goods": [
       "rice"
     ],
-    "kid_line": "Three times a week a steamer left Chandbali for Calcutta, the busiest port in British India."
+    "kid_line": "Three times a week a steamer left Chandbali for Calcutta."
   },
   {
     "id": "route-balasore-calcutta-coasting",
     "name": "Balasore to Calcutta",
-    "summary": "Balasore was Odisha's busiest sea port before the railway came. Ships took rice and fine cloth north to Calcutta.",
+    "summary": "A 19th-century report said Balasore was the only sea port Orissa could boast of at that time. Ships took rice and fine cloth north to Calcutta.",
     "evidence_level": "Strongly Supported",
     "evidence_type": "scholarly",
     "source_refs": [
@@ -236,7 +236,7 @@
   {
     "id": "route-manikapatna-tamralipti-coast",
     "name": "Manikapatna to Tamralipti",
-    "summary": "Tamralipti at the top of the bay was the greatest port of all. The same patterned pottery lies at both ends of this coast, so boats seem to have worked between them.",
+    "summary": "A historian called Tamralipti, at the top of the bay, 'the first and foremost' of ancient Odisha's ports. The same patterned pottery lies at both ends of this coast, so boats seem to have worked between them.",
     "evidence_level": "Probable",
     "evidence_type": "scholarly",
     "source_refs": [

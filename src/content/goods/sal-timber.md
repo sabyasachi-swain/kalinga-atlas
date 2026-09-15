@@ -10,4 +10,4 @@ The tax could be steep. In Ganjam district, one report says moving timber worth 
 The scale was large too. A gazetteer says Sambalpur's sal forest covered 238 square miles. It earned the government ten thousand rupees a year from timber sales alone [Imperial Gazetteer of India (Orissa entries), n.d., p.12].
 
 ## For scholars
-All three sources here come from the colonial period. Timber must have moved down these rivers much earlier. But no dated source before 1800 has been found for that. Stirling's list also records tax paid at Cuttack. That is not quite the same as proof the wood left by sea.
+All three sources here come from the colonial period. Timber must have moved down these rivers much earlier. But no dated source before 1800 has been found for that. Stirling's list also records tax paid at Cuttack. That is not quite the same as proof the wood left by sea [Stirling, 1825, p.194; Hunter, 1872, p.235].

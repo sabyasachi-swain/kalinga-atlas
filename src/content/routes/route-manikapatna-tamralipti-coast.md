@@ -4,7 +4,7 @@ title: Manikapatna to Tamralipti
 scholar: false
 ---
 
-Tamralipti stood at the top of the Bay of Bengal. It was the greatest port on this whole coast. A historian says traders once travelled by land and river to their nearest port. From there, they made short coastal hops to bigger ports. Then they sailed on to foreign lands. [Patra, 2014, p.118]
+Tamralipti stood at the top of the Bay of Bengal. One historian calls it "the first and foremost" port on this whole coast. He says traders once travelled by land and river to their nearest port. From there, they made short coastal hops to bigger ports. Then they sailed on to foreign lands. [Patra, 2014, pp.118-119]
 
 The same stamped pottery has been found at Manikapatna and at Tamralipti. It is called rouletted ware. Historians think this hints that ships worked this coast, moving between the two. [Patra, n.d., p.110]
 

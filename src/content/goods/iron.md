@@ -10,4 +10,4 @@ Boats carried that iron down the Mahanadi river toward the coast. They traded it
 But the iron also moved the other way. An 1825 tax list names iron among the goods leaving Cuttack for other places [Stirling, 1825, p.194].
 
 ## For scholars
-The two records do not fully agree. Stirling shows iron leaving Cuttack in the 1820s. Hunter shows boatmen bringing iron down into Odisha from Sambalpur instead. That is why this good is marked as moving "both" ways. Digs at Jaugada show people used iron tools much earlier. But that shows use, not trade. So no earlier period is claimed here.
+The two records do not fully agree. Stirling shows iron leaving Cuttack in the 1820s. Hunter shows boatmen bringing iron down into Odisha from Sambalpur instead. That is why this good is marked as moving "both" ways [Stirling, 1825, p.194; Hunter, 1872, p.74]. Digs at Jaugada show people used iron tools much earlier. But that shows use, not trade. So no earlier period is claimed here.

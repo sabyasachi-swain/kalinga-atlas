@@ -4,7 +4,7 @@ title: Tamralipti
 scholar: false
 ---
 
-Tamralipti was the greatest port at the top of the Bay of Bengal. It stood where the Rupnarayan river meets the sea. Today the spot is called Tamluk, in West Bengal. [Patra, 2014, p.118]
+One historian calls Tamralipti "the first and foremost" port at the top of the Bay of Bengal. It stood where the Rupnarayan river meets the sea. Today the spot is called Tamluk, in West Bengal. [Patra, 2014, pp.118-119]
 
 Buddhist monks and traders sailed from here to Sri Lanka, Burma and China. Three famous Chinese monks left from Tamralipti on their way home. Their names were Fa-Hien, Xuanzang and Yijing. [Patra, 2014, p.119]
 

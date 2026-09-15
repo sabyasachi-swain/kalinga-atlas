@@ -6,7 +6,7 @@ scholar: false
 
 Kaveripattinam was a great port where the Kaveri river meets the sea, in Tamil Nadu. Old texts also call it Kaveripumpattinam, or Puhar. [Dayalan, 2019, p.10]
 
-Diggers found a huge brick and wood platform there. It was built as a dock, where boats could tie up. [NEEDS VERIFICATION] <!-- fact-check: the source reads the platform as a wharf. It does not state this as a fact, and the dig report was not read. --> Wood from the site dates to about 250 BCE. That makes this a very old port. [Dayalan, 2019, p.11]
+Diggers found a huge brick and wood platform there. Archaeologists think it may have been a dock, where boats could tie up. Wood from the site dates to about 250 BCE. That makes this a very old port. [Dayalan, 2019, p.11]
 
 The same rouletted ware, a fine stamped pottery, found here also turns up at Kalinga's ports. Historians think an old land road linked this southern port to Kalinga too. A sea trade web likely joined them as well. [Patnaik, 2014, p.103; Patra, n.d., p.110]
 

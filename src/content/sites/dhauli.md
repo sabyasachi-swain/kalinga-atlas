@@ -7,7 +7,7 @@ Dhauli is a low hill near Bhubaneswar. Ashoka had his orders carved into its roc
 
 Two of the edicts here are special. They are called the Kalinga edicts. In them, Ashoka set rules for the land he had just conquered by war [District Gazetteers (Cuttack, Puri, Ganjam, Balasore), British-era editions, n.d., p.28].
 
-Archaeologists dug at Dhauli. They found signs of a real town nearby. [NEEDS VERIFICATION] <!-- fact-check: no dig at Dhauli is in this entry. Its only finds are the edicts and the elephant. OHRJ p.109 just lists Tosali among towns that grew then. Say "Historians count Dhauli among the towns that grew then." --> It grew up around Ashoka's time. The inscription did not stand alone in empty ground [Patra, n.d., p.109].
+Historians count Dhauli among the towns that grew up around Ashoka's time. The inscription did not stand alone in empty ground [Patra, n.d., p.109].
 
 ## For scholars
-Two colonial reports do not agree. They disagree on which edicts appear at Dhauli. A modern edition is still needed to settle this. Many scholars link Dhauli to Tosali. Tosali was a capital city named in Ashoka's edicts. But this link is a long-standing guess. It is not a proven fact.
+Two colonial reports do not agree. They disagree on which edicts appear at Dhauli. A modern edition is still needed to settle this. Many scholars link Dhauli to Tosali. Tosali was a capital city named in Ashoka's edicts. But this link is a long-standing guess. It is not a proven fact [Patra, n.d., p.109].

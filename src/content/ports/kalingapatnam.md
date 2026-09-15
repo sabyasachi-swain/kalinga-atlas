@@ -8,7 +8,7 @@ Kalingapatnam sits where the Vamsadhara river meets the sea. Today this spot is 
 
 Diggers worked here in 1928, and again in the 1970s. They found thick brick walls, glazed tiles and old pots. The finds show a walled town. It stood from about the 200s BCE into later times. Roman coins turned up in the same soil. That is a sign of trade reaching far across the sea. [Patra, 2014, p.122]
 
-Kalingapatnam was also a Buddhist centre. Monks lived and taught close to the busy harbour. [NEEDS VERIFICATION] <!-- fact-check: no source says monks lived or taught here. --> Historians agree that under the Eastern Ganga kings, ships sailed from here to Sri Lanka, Java, Sumatra and other lands across the sea. [Dayalan, 2019, p.20]
+Historians call Kalingapatnam an ancient port city and a notable centre of Buddhism. Under the Eastern Ganga kings, ships sailed from here to Sri Lanka, Java, Sumatra and other lands across the sea. [Dayalan, 2019, p.20]
 
 ## For scholars
 

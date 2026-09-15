@@ -6,7 +6,7 @@ scholar: false
 
 Anuradhapura was the old capital city of Sri Lanka. It sits inland, away from the coast. It stands here for the island's link to Kalinga's ports. Ships would have reached it through harbours on Sri Lanka's own coast. [Patra, 2014, p.120]
 
-A coin of the Sri Lankan king Sahassamalla was found at the old port of Polonnaruva. [NEEDS VERIFICATION] <!-- fact-check: Polonnaruva is an inland royal city, not a port. The source names it only as a find spot. --> The same king's coins turned up at Manikapatna in Kalinga too, and on the island of Sumatra. Historians think this shows a likely trade web joining all three places. [Patra, 2014, p.120]
+A coin of the Sri Lankan king Sahassamalla was found at Polonnaruva, an old Sri Lankan city. The same king's coins turned up at Manikapatna in Kalinga too, and on the island of Sumatra. Historians think this shows a likely trade web joining all three places. [Patra, 2014, p.120]
 
 Rouletted ware, a fine stamped pottery, has turned up at Anuradhapura too. So has pottery like that found in Bali and at Arikamedu. This places Sri Lanka's old capital inside the same wide trade world as Kalinga. [Ardika, 1991, p.225]
 

@@ -30,7 +30,7 @@
   {
     "id": "elephants",
     "name": "Elephants",
-    "summary": "An old Indian handbook on running a kingdom says the best war elephants came from Kalinga. A Chinese monk who travelled here in the 600s wrote the same thing.",
+    "summary": "An old Indian handbook on running a kingdom names Kalinga among the lands with the best elephants. A Chinese monk who travelled here in the 600s wrote the same thing.",
     "category": "animal-product",
     "direction": "export",
     "kid_line": "A stone carving at Bhubaneswar shows an elephant standing on the deck of a ship, ready to sail away.",
@@ -139,7 +139,7 @@
   {
     "id": "rice",
     "name": "Rice",
-    "summary": "Rice was Odisha's biggest crop and its biggest export. Small ships loaded it at the river mouths and carried it away to Calcutta.",
+    "summary": "A lot of rice was shipped from Odisha's small coastal ports to Calcutta. Inland in Sambalpur, rice was the main thing sent away to be sold.",
     "category": "foodstuff",
     "direction": "export",
     "kid_line": "Ships from the Maldive Islands sailed all the way to Balasore just to fill up with rice and clay pots.",
@@ -166,7 +166,7 @@
       "british"
     ],
     "status": "published",
-    "caveats": "Every source here is colonial. Rice was certainly grown and eaten far earlier, but I found no dated source documenting it as a traded good before 1825, so no earlier period is tagged. The Gazetteer figures are for 1903-04, just outside the atlas's 1900 cut-off.",
+    "caveats": "Every source here is colonial. Rice was certainly grown and eaten far earlier, but I found no dated source documenting it as a traded good before 1825, so no earlier period is tagged. The Gazetteer figures are for 1903-04, just outside the atlas's 1900 cut-off. No cited source ranks rice as Odisha's largest export: Stirling p. 194 says only 'considerable', and the Gazetteer's 'staple export' (vol. XXII p. 13) is for inland Sambalpur, not sea trade.",
     "icon": "rice.svg"
   },
   {

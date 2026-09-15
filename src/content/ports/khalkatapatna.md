@@ -10,7 +10,7 @@ Diggers also found piles of Chinese pots. Some were blue-patterned. Some were a 
 
 More than a hundred small objects came out of the ground nearby. These included beads, bangles and coins made by local Odisha kings. Together, the finds show this was a real harbour, not just a fishing village. [Patra, n.d., p.112; Patnaik, 2014, p.105]
 
-Historians agree Khalkatapatna did well under the Eastern Ganga kings. Those same kings built the great Sun Temple close by, at Konark. [NEEDS VERIFICATION] <!-- fact-check: no source in this port entry says who built the Konark temple. --> [Dayalan, 2019, p.22; Patnaik, 2014, p.105]
+Historians agree Khalkatapatna flourished under the Eastern Ganga kings, only a few miles from Konark. [Dayalan, 2019, p.22; Patnaik, 2014, p.105]
 
 ## For scholars
 

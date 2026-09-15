@@ -4,7 +4,7 @@ title: Calcutta
 scholar: false
 ---
 
-Calcutta grew into the biggest port in British India. It sits on the bank of the Hooghly river, about 86 miles from open sea. [The Imperial Gazetteer of India, new edition (Oxford, Clarendon Press, 1907-09), 1908, p.260]
+Calcutta grew into the capital of British India. It sits on the bank of the Hooghly river, about 86 miles from open sea. [The Imperial Gazetteer of India, new edition (Oxford, Clarendon Press, 1907-09), 1908, p.260]
 
 Steamers linked Calcutta to the Odisha coast every week. They sailed to and from the ports of Chandbali and Balasore. They carried rice, people, cloth and other goods both ways. [District Gazetteers (Cuttack, Puri, Ganjam, Balasore), British-era editions, n.d., p.144; The Imperial Gazetteer of India, new edition (Oxford, Clarendon Press, 1907-09), 1908, p.260]
 
