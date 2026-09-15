@@ -56,40 +56,37 @@ The main session is the **orchestrator**: it checks gates, delegates, verifies. 
 
 | Agent (`.claude/agents/`) | Owns | Model |
 |---|---|---|
-| `researcher` | `src/data/*.json`, `docs/research/` | opus |
+| `researcher` | `src/data/*.json`, `docs/research/` | sonnet (high effort) |
 | `designer` | tokens, `docs/design/`, `src/assets/` | sonnet |
-| `engineer` | `src/` code, build passing | sonnet (opus for `AtlasMap`/`Timeline` core) |
+| `engineer` | `src/` code, build passing | sonnet |
 | `editor` | `src/content/`, readability | sonnet |
 | `qa-auditor` | `docs/audits/` reports only | haiku |
 
 | Skill | Use |
 |---|---|
 | `/phase research\|design\|build\|content\|launch` | Run one phase: gate check → routed delegation → verification |
-| `/add-entry <type> <name>` | Research and add one data entry (researcher, opus) |
+| `/add-entry <type> <name>` | Research and add one data entry (researcher, sonnet) |
 | `/validate-data` | Run and summarise the validator (haiku) |
-| `/fact-check <path>` | Check a content file's claims (editor on opus) |
+| `/fact-check <path>` | Check a content file's claims (editor, sonnet) |
 | `/audit` | Build, preview, Lighthouse, dated report (qa-auditor, haiku) |
 | `historical-sourcing`, `design-system`, `atlas-engineering` | Reference skills, preloaded into agents; not user-invocable |
 
-Model routing principle: **the tier follows the cost of being wrong.** Sourcing and fact-checking on Opus; bounded creative and implementation work on Sonnet; validators and audits on Haiku. Override by naming a model in the request.
+Model routing principle: **Opus 5 runs only the main session (the orchestrator).** Every agent and forked skill runs on Sonnet or Haiku, and `.claude/hooks/no-opus-subagents.mjs` blocks any agent launch that would use Opus. Built-in agents need an explicit model: always pass `model: "haiku"` or `"sonnet"` to Explore, which ignores the default. Agents hand drafting to OpenRouter and spend their Claude tokens on checking.
 
 Path-scoped rules load automatically: `.claude/rules/data.md`, `ui.md`, `content.md`.
 
-### External models via OpenRouter (MCP, optional)
+### External models via OpenRouter (MCP)
 
-The `openrouter` MCP server (`tools/openrouter-mcp/`) gives access to cheaper non-Claude models. **Purpose: save Claude Pro usage.** Claude stays the orchestrator. It decides what to hand off and verifies everything that comes back.
+The `openrouter` MCP server (`tools/openrouter-mcp/`) runs cheaper non-Claude models. **Default: when a `pick_model` task fits, an OpenRouter model does the first draft or first pass, and Claude checks it.** Claude still makes every decision.
 
-- **Hand off token-heavy work you can check in far fewer tokens:**
-  - first-pass review of large files or diffs
-  - summarising or extracting from long files, logs or audit reports
-  - drafting boilerplate, tests or scripts
-  - a quick second opinion before a costly Claude-side investigation
-- **Keep it on Claude:** small tasks (a handoff costs more than it saves), multi-step edits that need repo context, final decisions, and anything a test, build or validator already checks.
-- **Save tokens by passing `file_paths`,** not pasted content. The server reads the files, so they never enter Claude's context. Ask for short, structured output. For simple jobs, set `reasoning: "off"`. Hidden reasoning is billed and can use up `max_tokens` before any answer appears, even on `"low"`.
-- **Pick models with `pick_model(task)`** (free). It reads `tools/openrouter-mcp/model-routing.json` and returns free candidates first, then mid-priced ones, with suggested settings. Try them in order and move to the next on a 429 or 404. Use `list_models` only when no task fits. Never guess model ids. Use `compare_models` only when disagreement between models is itself useful.
-- **Costly work stays on Claude.** The server refuses models above the price cap, so hard reasoning, architecture, high-risk review and final decisions go to Opus on the subscription.
-- **Never use it for history.** An external model is not a source. Its claims never go into `src/data/` or `src/content/` without a registry source.
-- **Never send secrets or `.env` contents.** Verify findings against the code, then tell the user which model was used, what you accepted or rejected, and the reported cost.
+- **Main session (Opus):** plan, delegate, decide, verify. For long files, logs or reports where you only need the gist, use `summarise_extract` or `audit_summary` with `file_paths` instead of reading them. Delegate implementation to agents rather than doing it in your own context.
+- **Agents (Sonnet/Haiku):** follow the "OpenRouter first" section of each agent file. Draft externally and check on Claude. If one retry fails, do the work yourself.
+- **Task types** (call `pick_model` with no task for the live list): `code_review`, `draft_code`, `debug_second_opinion`, `summarise_extract`, `audit_summary`, `draft_prose`, `extract_claims`, `compare_perspectives`, `quick_question`. Try candidates in order: free first, then medium-cost. Never guess model ids.
+- **Keep on Claude:** final decisions, architecture, fact-checking, choosing sources and tiers, multi-file integration, and tiny tasks where a handoff costs more than it saves.
+- **Save tokens:** pass `file_paths` instead of pasting, ask for short structured output, and use the suggested `reasoning` and `max_tokens`.
+- **Enforced by the server:** the price cap in `model-routing.json` (costly work goes to Claude) and providers that don't train on prompts.
+- **History rule:** an external model is never a source. It may rephrase or extract from sourced material you give it. Every claim still needs a registry source and a Claude fact-check.
+- **Never send secrets or `.env` contents.** Report which model did what, what you rejected, and the cost.
 
 ## Conventions
 

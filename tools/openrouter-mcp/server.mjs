@@ -210,12 +210,19 @@ async function chat({ model, messages, temperature, max_tokens, reasoning }) {
   if (routing.privacy?.data_collection) provider.data_collection = routing.privacy.data_collection;
   if (Object.keys(provider).length) body.provider = provider;
 
-  const res = await httpsRequest(`${API}/chat/completions`, {
-    method: 'POST',
-    headers: headers(),
-    body: JSON.stringify(body),
-    timeoutMs: REQUEST_TIMEOUT_MS,
-  });
+  const send = () =>
+    httpsRequest(`${API}/chat/completions`, {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify(body),
+      timeoutMs: REQUEST_TIMEOUT_MS,
+    });
+  let res = await send();
+  // Some models (e.g. GLM, Kimi, Gemini Flash) refuse reasoning "off"; retry once at the lowest effort.
+  if (res.status === 400 && body.reasoning?.enabled === false && /reasoning is mandatory/i.test(res.text)) {
+    body.reasoning = { effort: 'low', exclude: true };
+    res = await send();
+  }
 
   const text = res.text;
   let json;

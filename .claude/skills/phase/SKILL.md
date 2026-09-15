@@ -23,14 +23,18 @@ If the gate fails, stop and report exactly which check failed and what to run. D
 
 ## Step 2: choose the model (routing table)
 
-| Work | Model | Why |
-|---|---|---|
-| research, sourcing, tiering, fact-checking | `opus` | a wrong claim is the costliest error on this site |
-| map engine, timeline, D3 interaction model (`src/islands/AtlasMap.tsx`, `Timeline.tsx`, `map-architecture.md` changes) | `opus` | hardest engineering; correctness of a11y and perf matters |
-| section pages, components, styling, tokens, SVG art, copywriting | `sonnet` | bounded work with strong references preloaded |
-| running validators, audits, summarising reports | `haiku` | tool-driven, low judgement |
+**Opus is only for the main session (you, the orchestrator). Never pass `model: opus` to an agent.** Agents draft through OpenRouter (`pick_model`) and spend their Claude tokens on checking.
 
-Agent files already carry their default model. Override with the Agent tool's `model` parameter only when this table says so (typically: `engineer` gets `opus` for map/timeline tasks). If the user named a model in their request, use that instead.
+| Work | Claude model | OpenRouter tasks (via `pick_model`) | Why |
+|---|---|---|---|
+| research, sourcing, tiering | `sonnet` (researcher, high effort) | `extract_claims`, `draft_prose` for summaries | drafts only; validator plus human promotion catch errors |
+| fact-checking | `sonnet` (/fact-check) | none: verification stays on Claude | a missed error ships a false claim |
+| map engine, timeline, D3 interaction | `sonnet` (engineer) | `draft_code`, `code_review`, `debug_second_opinion` | build, check and audit verify |
+| pages, components, styling, tokens, SVG art | `sonnet` | `draft_code`, `code_review` | bounded work with strong references |
+| copywriting | `sonnet` (editor) | `draft_prose` | readability script plus fact-check verify |
+| validators, audits, summarising reports | `haiku` | `audit_summary`, `summarise_extract` | tool-driven, low judgement |
+
+Agent files already carry these models. If the user named a model in their request, use that instead, except Opus for agents. Run agents one at a time unless scopes are large and touch different files.
 
 ## Step 3: delegate with a complete brief
 
@@ -54,7 +58,7 @@ Run independent scopes in parallel (e.g. researcher on ports and researcher on g
 
 **design** — brief the designer with: the published data so far, the components needed for the next build slice, instruction to output tokens/specs/SVGs per the design-system skill, and a contrast check summary.
 
-**build** — brief the engineer with: the specs in `docs/design/`, the components/pages in scope, the atlas-engineering skill (preloaded), and the requirement that `npm run build` and `npm run check` pass. Use `model: opus` when the scope includes the map or timeline islands.
+**build** — brief the engineer with: the specs in `docs/design/`, the components/pages in scope, the atlas-engineering skill (preloaded), and the requirement that `npm run build` and `npm run check` pass. For map or timeline islands, ask the engineer to use OpenRouter `code_review` on the change and `debug_second_opinion` when stuck (still Sonnet, never Opus).
 
 **content** — brief the editor with: the entity ids to write for, the `src/content/` layout, the citation format, and the readability gate. Then run `/fact-check` on each new file.
 

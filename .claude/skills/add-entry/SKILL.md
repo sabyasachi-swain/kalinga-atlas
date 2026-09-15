@@ -7,7 +7,7 @@ argument-hint: <port|route|good|site|inscription|fact> <name>
 
 # /add-entry $type "$name"
 
-Delegate to the **researcher** agent (it runs on Opus by default; do not downgrade). One entry per run.
+Delegate to the **researcher** agent (Sonnet; never pass `model: opus`, since Opus is only for the main session). One entry per run.
 
 ## Brief for the researcher
 

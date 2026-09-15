@@ -5,10 +5,10 @@ arguments: [path]
 argument-hint: src/content/<type>/<id>.md
 context: fork
 agent: editor
-model: opus
+model: sonnet
 ---
 
-Fact-check `$path`. This runs on Opus because a missed error here ships a false claim.
+Fact-check `$path`. This runs on Sonnet: it is a verification pass against the data and sources, and humans review before anything is published. Do not hand the verification itself to an external model.
 
 ## Procedure
 

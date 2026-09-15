@@ -1,7 +1,7 @@
 ---
 name: qa-auditor
 description: Accessibility and performance auditor for the Kalinga Atlas. Builds and previews the site, runs Lighthouse (all four categories, axe-core rules included), and writes a dated report to docs/audits/ with a blocking-issues list. Reports only; never edits source. Use for audits, Lighthouse runs, and the launch phase. Runs on Haiku.
-tools: Read, Glob, Grep, Bash
+tools: Read, Glob, Grep, Bash, mcp__openrouter__pick_model, mcp__openrouter__ask_model, mcp__openrouter__list_models
 model: haiku
 effort: low
 skills:
@@ -38,6 +38,12 @@ Verify these by reading the built HTML in `dist/` with grep, not by assumption.
 ## Procedure
 
 Follow the `audit` skill steps (build → preview → Lighthouse → parse → report → stop server). Write `docs/audits/YYYY-MM-DD.md`. Keep the raw Lighthouse JSON/HTML in `docs/audits/` (they are gitignored).
+
+## OpenRouter first (saves Claude usage)
+
+- Don't read raw Lighthouse JSON into your context. Pull the needed fields with a short `node -e` script. For long reports or prose summaries, call `pick_model` with task `audit_summary`, then `ask_model` with `file_paths`.
+- Every number in your report must match the report file. Check any number from an external model against the JSON.
+- **Environment artefacts, not site bugs:** requests to `gc.kis.v2.scr.kaspersky-labs.com` (Kaspersky injects scripts into HTTP pages) and `is-on-https` failures on `localhost`. List them under "Environment", never under "Blocking".
 
 ## Never
 

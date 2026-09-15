@@ -1,6 +1,30 @@
 {
-  "enabledMcpjsonServers": ["openrouter"],
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
+  },
+  "enabledMcpjsonServers": [
+    "openrouter"
+  ],
   "permissions": {
-    "allow": ["mcp__openrouter__list_models", "mcp__openrouter__pick_model"]
+    "allow": [
+      "mcp__openrouter__list_models",
+      "mcp__openrouter__pick_model",
+      "mcp__openrouter__ask_model",
+      "mcp__openrouter__review_code",
+      "mcp__openrouter__compare_models"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Agent|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/no-opus-subagents.mjs\""
+          }
+        ]
+      }
+    ]
   }
 }
