@@ -28,7 +28,7 @@ const PATH: Record<Kind, string> = {
   inscription: 'inscriptions',
 };
 
-const href = `/${PATH[kind]}/${entity.id}/`;
+const href = `${import.meta.env.BASE_URL}${PATH[kind]}/${entity.id}/`;
 const description = kind === 'good' ? (entity as Good).kid_line : entity.summary;
 ---
 

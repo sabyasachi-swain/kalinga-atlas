@@ -24,6 +24,7 @@ const relatedPorts = getPorts().filter((p) => p.goods.includes(good.id));
 
 const narrativeEntries = await getCollection('goods');
 const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === good.id);
+const base = import.meta.env.BASE_URL;
 
 const CATEGORY_LABEL: Record<string, string> = {
   textile: 'Textile',
@@ -46,7 +47,7 @@ const DIRECTION_LABEL: Record<string, string> = {
 
 <Base title={good.name} description={good.summary}>
   <article class="entity-page">
-    <p class="back"><a href="/#goods">&larr; Back to the atlas</a></p>
+    <p class="back"><a href={`${base}#goods`}>&larr; Back to the atlas</a></p>
 
     <h1>{good.name}</h1>
     <div class="badges">

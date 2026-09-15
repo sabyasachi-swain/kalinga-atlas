@@ -14,6 +14,7 @@ interface Props {
 
 const { title, description, surface = 'page' } = Astro.props;
 const fullTitle = title === 'Kalinga: Ancient Trade Routes' ? title : `${title} · Kalinga: Ancient Trade Routes`;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -24,19 +25,19 @@ const fullTitle = title === 'Kalinga: Ancient Trade Routes' ? title : `${title} 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <a class="brand" href="/">Kalinga <span>Ancient Trade Routes</span></a>
+      <a class="brand" href={base}>Kalinga <span>Ancient Trade Routes</span></a>
       <nav aria-label="Sections">
-        <a href="/routes">Routes</a>
-        <a href="/ports">Ports</a>
-        <a href="/goods">Goods</a>
-        <a href="/evidence">Evidence</a>
-        <a href="/sources">Sources</a>
-        <a href="/#timeline">Timeline</a>
+        <a href={`${base}routes/`}>Routes</a>
+        <a href={`${base}ports/`}>Ports</a>
+        <a href={`${base}goods/`}>Goods</a>
+        <a href={`${base}evidence/`}>Evidence</a>
+        <a href={`${base}sources/`}>Sources</a>
+        <a href={`${base}#timeline`}>Timeline</a>
       </nav>
     </header>
     <main id="main" tabindex="-1">
@@ -46,8 +47,8 @@ const fullTitle = title === 'Kalinga: Ancient Trade Routes' ? title : `${title} 
       <p>
         Map data: <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain).
         Illustrations are original works, CC BY-SA 4.0. Code is MIT.
-        Every historical claim on this site cites a published source; see <a href="/sources">Sources</a>
-        and <a href="/attribution">Attribution</a>.
+        Every historical claim on this site cites a published source; see <a href={`${base}sources/`}>Sources</a>
+        and <a href={`${base}attribution/`}>Attribution</a>.
       </p>
     </footer>
   </body>

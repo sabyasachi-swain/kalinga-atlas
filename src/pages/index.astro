@@ -13,6 +13,7 @@ const periods = getPeriods();
 const goods = getGoods();
 const sources = getSources();
 const facts = getFacts();
+const base = import.meta.env.BASE_URL;
 
 /** How many cards each home-page section shows before "See all". */
 const PREVIEW = 6;
@@ -23,7 +24,7 @@ const sections = [
     id: 'routes',
     title: 'Trade Routes',
     blurb: 'Follow the sea lanes, coast roads and rivers that carried Kalinga’s ships and caravans.',
-    href: '/routes',
+    href: `${base}routes/`,
     kind: 'route' as const,
     items: routes,
     total: routes.length,
@@ -32,7 +33,7 @@ const sections = [
     id: 'ports',
     title: 'Ancient Ports',
     blurb: 'Harbours on the Odisha coast where ships were loaded, taxed and sent across the Bay of Bengal.',
-    href: '/ports',
+    href: `${base}ports/`,
     kind: 'port' as const,
     items: kalingaPorts,
     total: ports.length,
@@ -41,7 +42,7 @@ const sections = [
     id: 'goods',
     title: 'Goods & Commodities',
     blurb: 'What was in the ship? Elephants, cloth, salt, shells and more, each with the record that proves it.',
-    href: '/goods',
+    href: `${base}goods/`,
     kind: 'good' as const,
     items: goods,
     total: goods.length,
@@ -50,7 +51,7 @@ const sections = [
     id: 'evidence',
     title: 'Archaeological Evidence',
     blurb: 'Dug-up cities, carved edicts and broken pots: the hard evidence behind every claim on this site.',
-    href: '/evidence',
+    href: `${base}evidence/`,
     kind: 'site' as const,
     items: sites,
     total: sites.length + inscriptions.length,
@@ -128,7 +129,7 @@ const sections = [
       evidence it is: something archaeologists found, something scholars worked out, or a story passed down.
     </p>
     <p>
-      Tap any citation to see the full reference, or browse the whole list on the <a href="/sources">Sources</a> page.
+      Tap any citation to see the full reference, or browse the whole list on the <a href={`${base}sources/`}>Sources</a> page.
       Nothing here is invented, and where historians are unsure, the site says so.
     </p>
   </section>
