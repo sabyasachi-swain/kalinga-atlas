@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Good stamp</title>
+  <desc id="desc">A generic tied cloth trading sack, used as the logbook stamp glyph for a visited good.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22,26 C22,20 26,16 32,16 C38,16 42,20 42,26 L44,46 C44,50 40,52 32,52 C24,52 20,50 20,46 Z" />
+    <path d="M26,26 L38,26" />
+    <path d="M29,17 L27,12 M35,17 L37,12" />
+  </g>
+</svg>

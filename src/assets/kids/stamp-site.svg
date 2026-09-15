@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Site stamp</title>
+  <desc id="desc">A diamond, matching the map's archaeological-site marker, with a small trowel beside it, used as the logbook stamp glyph for a visited site.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28,16 L40,32 L28,48 L16,32 Z" />
+    <path d="M44,20 L52,12" />
+    <path d="M48,16 L44,20 L46,26 L50,22 Z" fill="currentColor" stroke="none" />
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Route stamp</title>
+  <desc id="desc">A small sailing-craft silhouette above a dashed wave line, used as the logbook stamp glyph for a visited trade route.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20,34 L44,34 L40,44 L24,44 Z" />
+    <path d="M32,34 L32,16 L40,26 Z" fill="currentColor" stroke="none" />
+    <path d="M32,16 L32,12" />
+    <path d="M14,50 C18,47 22,53 26,50 C30,47 34,53 38,50 C42,47 46,53 50,50" stroke-dasharray="1 6" />
+  </g>
+</svg>

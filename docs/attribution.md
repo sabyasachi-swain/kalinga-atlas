@@ -43,6 +43,16 @@ for what it depicts and whether it is a generic artistic reconstruction.
 | `src/assets/goods/lac-and-beeswax.svg` | Original for this project | CC BY-SA 4.0 | Honeycomb hexagons with a twig and resin drop, line icon. |
 | `src/assets/goods/crate.svg` | Original for this project | CC BY-SA 4.0 | Generic wooden shipping crate in three-quarter view; fallback icon for any good without a dedicated illustration. |
 | `src/assets/ships/caravan.svg` | Original for this project | CC BY-SA 4.0 | Generic ox-cart silhouette (single ox, two-wheeled cart), facing right, for land trade routes. Artistic reconstruction — not a specific historical vehicle. |
+| `src/assets/kids/logbook.svg` | Original for this project | CC BY-SA 4.0 | Closed book with a compass-star cover emblem; icon for the visitor's own stamp-collection logbook (docs/design/kid-experience.md). |
+| `src/assets/kids/stamp-frame.svg` | Original for this project | CC BY-SA 4.0 | Hand-inked wobbly circular border used behind every logbook stamp glyph. |
+| `src/assets/kids/stamp-port.svg` | Original for this project | CC BY-SA 4.0 | Circle-with-dot glyph (echoes `ports/port-marker.svg`), logbook stamp for a visited port. |
+| `src/assets/kids/stamp-good.svg` | Original for this project | CC BY-SA 4.0 | Tied trading-sack glyph, logbook stamp for a visited good. |
+| `src/assets/kids/stamp-route.svg` | Original for this project | CC BY-SA 4.0 | Small sailing-craft-over-waves glyph, logbook stamp for a visited route. |
+| `src/assets/kids/stamp-site.svg` | Original for this project | CC BY-SA 4.0 | Diamond glyph (echoes `ports/site-marker.svg`) with a trowel, logbook stamp for a visited archaeological site. |
+| `src/assets/kids/stamp-inscription.svg` | Original for this project | CC BY-SA 4.0 | Carved-tablet glyph, logbook stamp for a visited inscription. |
+| `src/assets/kids/quest-map.svg` | Original for this project | CC BY-SA 4.0 | Folded map with a dashed path to an X; icon for treasure-hunt quest mode. |
+| `src/assets/kids/compass-hint.svg` | Original for this project | CC BY-SA 4.0 | Single pointing compass needle; icon for a direction-only quest hint. |
+| `src/assets/kids/guide-disha.svg` | Original for this project | CC BY-SA 4.0 | "Disha the Compass" guide mascot, built from the compass-rose motif with added eyes and a smile. Original character; never depicts or states history itself, only points to existing badged content. |
 
 ## Fonts
 

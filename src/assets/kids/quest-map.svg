@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Quest map</title>
+  <desc id="desc">A folded map with a dashed path leading to a marked X, standing for treasure-hunt quest mode, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10,16 L24,10 L40,16 L54,10 L54,48 L40,54 L24,48 L10,54 Z" />
+    <path d="M24,10 L24,48 M40,16 L40,54" />
+    <path d="M16,20 C22,26 20,34 26,38 C32,42 36,34 44,30" stroke-dasharray="1 5" />
+    <path d="M42,26 L48,32 M48,26 L42,32" />
+  </g>
+</svg>

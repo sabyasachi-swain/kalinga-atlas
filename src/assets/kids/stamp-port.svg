@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Port stamp</title>
+  <desc id="desc">A circle with a filled inner dot, matching the map's port marker, used as the logbook stamp glyph for a visited port.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+    <circle cx="32" cy="32" r="16" />
+    <circle cx="32" cy="32" r="5" fill="currentColor" stroke="none" />
+  </g>
+</svg>

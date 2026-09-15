@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Disha the Compass, guide character</title>
+  <desc id="desc">A friendly eight-point compass-star mascot with two dot eyes and a simple curved smile, used only to point at interface hints, never to state history. Original character, not a historical figure or artefact.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32,6 L37,28 L32,32 L27,28 Z" fill="currentColor" stroke="none" />
+    <path d="M32,58 L27,36 L32,32 L37,36 Z" fill="currentColor" stroke="none" opacity="0.7" />
+    <path d="M6,32 L28,27 L32,32 L28,37 Z" fill="currentColor" stroke="none" opacity="0.7" />
+    <path d="M58,32 L36,37 L32,32 L36,27 Z" fill="currentColor" stroke="none" opacity="0.7" />
+    <path d="M14,14 L29,26 L32,32 L26,29 Z" fill="currentColor" stroke="none" opacity="0.5" />
+    <path d="M50,14 L38,29 L32,32 L35,26 Z" fill="currentColor" stroke="none" opacity="0.5" />
+    <path d="M14,50 L26,38 L32,32 L29,38 Z" fill="currentColor" stroke="none" opacity="0.5" />
+    <path d="M50,50 L35,38 L32,32 L38,35 Z" fill="currentColor" stroke="none" opacity="0.5" />
+    <circle cx="27" cy="24" r="1.6" fill="currentColor" stroke="none" />
+    <circle cx="37" cy="24" r="1.6" fill="currentColor" stroke="none" />
+    <path d="M27,29 C29,31 35,31 37,29" />
+  </g>
+</svg>

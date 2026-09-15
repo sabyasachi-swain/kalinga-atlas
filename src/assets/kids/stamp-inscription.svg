@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Inscription stamp</title>
+  <desc id="desc">A rounded stone tablet with three carved lines of generic script marks, used as the logbook stamp glyph for a visited inscription.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18,14 L46,14 L46,50 L18,50 C15,50 14,48 14,46 L14,18 C14,16 15,14 18,14 Z" />
+    <path d="M22,24 L38,24 M22,32 L40,32 M22,40 L34,40" />
+  </g>
+</svg>

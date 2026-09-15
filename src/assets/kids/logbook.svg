@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Logbook</title>
+  <desc id="desc">A small closed book with a compass-star emblem on its cover, standing for the visitor's own stamp collection, drawn as a simple line icon.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14,12 L46,12 C49,12 51,14 51,17 L51,50 C51,52 49,54 46,54 L14,54 Z" />
+    <path d="M14,12 L14,54 M14,17 L18,17 L18,49 L14,49" />
+    <path d="M32,22 L34,28 L32,26 L30,28 Z" />
+    <circle cx="32" cy="30" r="9" />
+    <path d="M32,21 L32,24 M32,36 L32,39 M23,30 L26,30 M38,30 L41,30" />
+  </g>
+</svg>

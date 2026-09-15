@@ -71,6 +71,13 @@
      ratio applies (decorative dimming layer only). */
   --scrim: rgba(7, 21, 40, 0.6);
 
+  /* ---- Kid experience (docs/design/kid-experience.md) ---------------------
+     All four derive from existing hues; no new palette is introduced. */
+  --progress-track: var(--parchment-400);
+  --progress-fill: var(--verdigris-700);   /* 3.59:1 vs --progress-track: meets WCAG 2.1 AA 3:1 non-text/UI minimum */
+  --stamp-ink: var(--laterite-700);        /* 7.75:1 vs --parchment-200 (stamp card bg): exceeds 4.5:1 */
+  --stamp-glow: rgba(168, 134, 27, 0.35);  /* derived from --gold-600; decorative glow underlay only, no ratio required */
+
   /* ---- Evidence tiers (colour + glyph + label, never colour alone) --------- */
   --tier-confirmed: var(--verdigris-700);
   --tier-strong: var(--gold-600);
