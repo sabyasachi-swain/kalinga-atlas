@@ -1,0 +1,92 @@
+{
+  "reviewed": "2026-09-15",
+  "review_after": "2026-10-15",
+  "policy": "Free models first, then medium-cost. Nothing above the price cap: costly work stays on Claude (Opus) via the subscription.",
+  "evidence": "Chosen 2026-09-15 from the live OpenRouter catalogue, a 3-task probe (bug finding, JSON extraction, length-constrained summary; a reliability filter, not a quality ranking), a data_collection=deny + price-cap check per model, and public benchmarks (mostly vendor-reported).",
+
+  "limits": {
+    "max_usd_per_million": { "prompt": 1.0, "completion": 4.0 }
+  },
+  "privacy": {
+    "data_collection": "deny"
+  },
+
+  "tasks": {
+    "code_review": {
+      "use_for": "First-pass review of large files or diffs for bugs, edge cases and security issues. Claude verifies every finding.",
+      "free": ["cohere/north-mini-code:free", "dots-studio/dots-3-note-preview:free"],
+      "medium": ["deepseek/deepseek-v4.1-flash", "qwen/qwen3.8-flash", "moonshotai/kimi-k2.7-code"],
+      "settings": { "tool": "review_code", "reasoning": "off", "max_tokens": 2000, "pass": "file_paths" },
+      "notes": "North Mini Code was concise and complete in the probe. Use Kimi K2.7 Code (coding specialist, vendor-only benchmarks) only when the cheaper reviews look shallow."
+    },
+
+    "summarise_extract": {
+      "use_for": "Summarising or extracting structured data from long files, logs, audit reports or JSON, returning short output.",
+      "free": ["dots-studio/dots-3-note-preview:free", "cohere/north-mini-code:free"],
+      "medium": ["z-ai/glm-5.3-flash", "qwen/qwen3.8-flash", "deepseek/deepseek-v4.1-flash"],
+      "settings": { "tool": "ask_model", "reasoning": "off", "max_tokens": 1000, "temperature": 0, "pass": "file_paths" },
+      "notes": "GLM-5.3 Flash: cheapest full-score model, terse, 1.3M context. Dots-3 has 512K context but is wordy, so ask for bullets or JSON."
+    },
+
+    "draft_code": {
+      "use_for": "Drafting boilerplate, tests, scripts, regexes or small functions that Claude then checks with check/build/tests.",
+      "free": ["cohere/north-mini-code:free"],
+      "medium": ["openai/gpt-5.6-luna", "qwen/qwen3-coder-next", "deepseek/deepseek-v4.1-flash"],
+      "settings": { "tool": "ask_model", "reasoning": "off", "max_tokens": 3000, "temperature": 0.2 },
+      "notes": "GPT-5.6 Luna was fast and terse and leads cheap models on public coding comparisons. Qwen3 Coder Next is fastest but missed a bug in the review probe, so use it for drafting, not review."
+    },
+
+    "debug_second_opinion": {
+      "use_for": "A bug Claude is stuck on after one real attempt: root-cause hypotheses from a different model family.",
+      "free": ["cohere/north-mini-code:free"],
+      "medium": ["deepseek/deepseek-v4-pro-0813", "moonshotai/kimi-k2.7-code", "google/gemini-3.8-flash"],
+      "settings": { "tool": "ask_model", "reasoning": "medium", "max_tokens": 6000 },
+      "notes": "The one task where reasoning is worth paying for. DeepSeek V4 Pro is the strongest reasoner under the cap (vendor-reported). Include the error, relevant files via file_paths, and what Claude already ruled out."
+    },
+
+    "compare_perspectives": {
+      "use_for": "Design trade-offs or ambiguous questions where disagreement between model families is itself useful.",
+      "free": ["cohere/north-mini-code:free", "dots-studio/dots-3-note-preview:free"],
+      "medium": ["deepseek/deepseek-v4.1-flash", "qwen/qwen3.8-flash", "openai/gpt-5.6-luna"],
+      "settings": { "tool": "compare_models", "reasoning": "off", "max_tokens": 1200 },
+      "notes": "Pass either the two free models or the three medium ones (three vendors). Claude synthesises and decides."
+    },
+
+    "quick_question": {
+      "use_for": "Short technical questions (API usage, library behaviour, explaining an error message) that don't need repo context.",
+      "free": ["dots-studio/dots-3-note-preview:free", "cohere/north-mini-code:free"],
+      "medium": ["openai/gpt-5.6-luna", "z-ai/glm-5.3-flash"],
+      "settings": { "tool": "ask_model", "reasoning": "off", "max_tokens": 800 },
+      "notes": "Only worth it when the answer would otherwise cost Claude a long investigation. Check answers against docs or code."
+    }
+  },
+
+  "keep_on_claude": [
+    "Architecture and cross-cutting design decisions",
+    "High-risk code: AtlasMap/Timeline core, validator, build config",
+    "Multi-file edits that need repo context",
+    "Final review before reporting work done",
+    "Historical research, sourcing and fact-checking (an external model is never a source)",
+    "Anything that would need a model above the price cap: use Opus on the subscription",
+    "Small tasks, where the handoff costs more than it saves"
+  ],
+
+  "excluded": {
+    "nvidia/nemotron-3-ultra-550b-a55b:free": "Providers train on free prompts (fails data_collection=deny); also overloaded in probe",
+    "nvidia/nemotron-3-super-120b-a12b:free": "Providers train on free prompts (fails data_collection=deny)",
+    "nvidia/nemotron-3.5-lightning:free": "Providers train on free prompts (fails data_collection=deny)",
+    "poolside/laguna-s-2.1:free": "Providers train on free prompts (fails data_collection=deny)",
+    "thinkingmachines/inkling:free": "Only available to agentic harnesses (403)",
+    "google/gemma-4-31b-it:free": "Repeatedly rate-limited upstream (429)",
+    "google/gemma-4-26b-a4b-it:free": "Repeatedly rate-limited upstream (429)",
+    "z-ai/glm-5.2:free": "Scored 9/9 once, then rate-limited upstream three times (429); 32K context",
+    "nex-agi/nex-n2.5-pro:free": "Timed out in probe (~2 min per call)",
+    "nex-agi/nex-n2.5-mini:free": "Provider error 520",
+    "openrouter/free": "Routes to a random free model; failed the length-constrained summary",
+    "kwaipilot/kat-coder-pro-v2.5": "Provider returned 400 on every probe task",
+    "qwen/qwen3.7-plus": "Correct but slow and verbose (2K+ tokens on simple tasks); newer Qwen3.8 Flash is cheaper",
+    "xiaomi/mimo-v2.5": "Slow and verbose (up to 42 s and 2K tokens on simple tasks)",
+    "minimax/minimax-m3": "Missed a bug and was slow on review (31 s); no advantage over picks",
+    "qwen/qwen3.8-max-0902": "Above the price cap ($2/$6): use Claude instead"
+  }
+}

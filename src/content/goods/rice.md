@@ -3,9 +3,9 @@ entity_id: rice
 title: Rice
 ---
 
-Rice was Odisha's biggest crop. It was also its biggest export by sea. Small ships loaded it right at the river mouths. They carried it away to Calcutta [Stirling, 1825, p.194].
+Rice was Odisha's biggest crop. It was also its biggest export by sea. [NEEDS VERIFICATION] <!-- fact-check: Stirling p.194 says only that a "considerable" amount of rice went to Calcutta. He ranks nothing. The data summary carries the same over-claim and needs the same fix. --> Small ships loaded it right at the river mouths. They carried it away to Calcutta [Stirling, 1825, p.194].
 
-Here is one striking detail. Ships from the Maldive Islands sailed all the way to Balasore and Dhamra each year. They came just to fill their holds with rice and clay pots [Stirling, 1825, p.194].
+Here is one striking detail. Ships from the Maldive Islands sailed all the way to Balasore and Dhamra each year. They came just to fill their holds with rice and clay pots [Stirling, 1825, p.194]. [NEEDS VERIFICATION] <!-- fact-check: the same sentence in Stirling says those ships also brought in cowries, coconuts, coral and dried fish. "Just" is wrong. -->
 
 A report on Puri district names one busy spot. At Machhagaon, near the mouth of the Devi river, "a considerable export rice trade" once took place [Hunter, 1872, p.13].
 

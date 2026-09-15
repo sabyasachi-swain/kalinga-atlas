@@ -75,6 +75,22 @@ Model routing principle: **the tier follows the cost of being wrong.** Sourcing 
 
 Path-scoped rules load automatically: `.claude/rules/data.md`, `ui.md`, `content.md`.
 
+### External models via OpenRouter (MCP, optional)
+
+The `openrouter` MCP server (`tools/openrouter-mcp/`) gives access to cheaper non-Claude models. **Purpose: save Claude Pro usage.** Claude stays the orchestrator. It decides what to hand off and verifies everything that comes back.
+
+- **Hand off token-heavy work you can check in far fewer tokens:**
+  - first-pass review of large files or diffs
+  - summarising or extracting from long files, logs or audit reports
+  - drafting boilerplate, tests or scripts
+  - a quick second opinion before a costly Claude-side investigation
+- **Keep it on Claude:** small tasks (a handoff costs more than it saves), multi-step edits that need repo context, final decisions, and anything a test, build or validator already checks.
+- **Save tokens by passing `file_paths`,** not pasted content. The server reads the files, so they never enter Claude's context. Ask for short, structured output. For simple jobs, set `reasoning: "off"`. Hidden reasoning is billed and can use up `max_tokens` before any answer appears, even on `"low"`.
+- **Pick models with `pick_model(task)`** (free). It reads `tools/openrouter-mcp/model-routing.json` and returns free candidates first, then mid-priced ones, with suggested settings. Try them in order and move to the next on a 429 or 404. Use `list_models` only when no task fits. Never guess model ids. Use `compare_models` only when disagreement between models is itself useful.
+- **Costly work stays on Claude.** The server refuses models above the price cap, so hard reasoning, architecture, high-risk review and final decisions go to Opus on the subscription.
+- **Never use it for history.** An external model is not a source. Its claims never go into `src/data/` or `src/content/` without a registry source.
+- **Never send secrets or `.env` contents.** Verify findings against the code, then tell the user which model was used, what you accepted or rejected, and the reported cost.
+
 ## Conventions
 
 - TypeScript strict with `noUncheckedIndexedAccess`; guard array access.

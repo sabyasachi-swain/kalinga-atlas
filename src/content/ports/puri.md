@@ -14,4 +14,4 @@ So historians think ships probably anchored offshore and used small boats to rea
 
 ## For scholars
 
-Sources disagree on Puri. British gazetteers call it a place with almost no trade at all. Patnaik argues from ship logs that boats used it for centuries. Both things can be true: a beach that ships could reach, but never a real harbour. [District Gazetteers (Cuttack, Puri, Ganjam, Balasore), British-era editions, n.d., p.15; Patnaik, 2014, p.107]
+Sources disagree on Puri. British gazetteers call it a place with almost no trade at all. Patnaik argues from ship logs that boats used it for centuries. Both things can be true: a beach that ships could reach, but never a real harbour. [District Gazetteers (Cuttack, Puri, Ganjam, Balasore), British-era editions, n.d., p.15; Patnaik, 2014, p.107; Imperial Gazetteer of India (Orissa entries), n.d., p.411]

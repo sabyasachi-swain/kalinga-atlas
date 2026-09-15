@@ -5,7 +5,7 @@ title: Salt
 
 Along the coast, people made salt from seawater. A report on Parikud names two ways they did it. One was boiling the water down. The other was letting the sun dry it in shallow pans [Hunter, 1872, p.41].
 
-Boats then carried the salt inland, up the Mahanadi river toward Sambalpur. An 1825 report says over three hundred thousand maunds of salt went that way each year. That is a huge amount [Stirling, 1825, p.194].
+Boats then carried the salt inland, up the Mahanadi river toward Sambalpur. [NEEDS VERIFICATION] <!-- fact-check: Stirling p.194 says the salt went by "the great road leading along the Mahanadi", not by boat, and says "formerly". Say "Salt went inland along the great road beside the Mahanadi." --> An 1825 report says over three hundred thousand maunds of salt went that way each year. That is a huge amount [Stirling, 1825, p.194].
 
 This trade mattered to the government. The same report says the tax on salt brought in more money than all the land rents in the province [Stirling, 1825, p.218].
 

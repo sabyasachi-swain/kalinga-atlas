@@ -8,8 +8,8 @@ Kalingapatnam sits where the Vamsadhara river meets the sea. Today this spot is 
 
 Diggers worked here in 1928, and again in the 1970s. They found thick brick walls, glazed tiles and old pots. The finds show a walled town. It stood from about the 200s BCE into later times. Roman coins turned up in the same soil. That is a sign of trade reaching far across the sea. [Patra, 2014, p.122]
 
-Kalingapatnam was also a Buddhist centre. Monks lived and taught close to the busy harbour. Historians agree that under the Eastern Ganga kings, ships sailed from here to Sri Lanka, Java, Sumatra and other lands across the sea. [Dayalan, 2019, p.20]
+Kalingapatnam was also a Buddhist centre. Monks lived and taught close to the busy harbour. [NEEDS VERIFICATION] <!-- fact-check: no source says monks lived or taught here. --> Historians agree that under the Eastern Ganga kings, ships sailed from here to Sri Lanka, Java, Sumatra and other lands across the sea. [Dayalan, 2019, p.20]
 
 ## For scholars
 
-Kalingapatnam lies in modern Andhra Pradesh. That is on the old Kalinga coast, not in today's Odisha. British records also tell of ruined mosques and old gold coins found on the site. A lighthouse once stood there too, to guide ships to the river mouth. [Imperial Gazetteer of India, new edition (Oxford, Clarendon Press, 1907-09), 1908, p.291; Dayalan, 2019, p.20]
+Kalingapatnam lies in modern Andhra Pradesh. That is on the old Kalinga coast, not in today's Odisha. British records also tell of ruined mosques and old gold coins found on the site. A lighthouse once stood there too, to guide ships to the river mouth. [The Imperial Gazetteer of India, new edition (Oxford, Clarendon Press, 1907-09), 1908, p.291; Dayalan, 2019, p.20]

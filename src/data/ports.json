@@ -49,7 +49,7 @@
       "british"
     ],
     "status": "published",
-    "caveats": "Excavated by OIMSEAS, Bhubaneswar, in 1989-93 and by Deccan College, Pune, in 2010 - not by the ASI. Whether the ASI's Indian Archaeology: A Review ever reported the site is unchecked. Identification with Xuanzang's Che-li-ta-lo is a proposal, not settled; Cunningham placed that port at Puri, others at Citrotpola. Coordinates were replaced in this session with the published figure in Patra 2014 p. 120 (19 deg 43' 54\" N, 85 deg 33' 14\" E), corroborated by Dayalan 2019; the earlier value 19.68/85.47 was an estimate.",
+    "caveats": "Excavated by OIMSEAS, Bhubaneswar, in 1989-93 and by Deccan College, Pune, in 2010 - not by the ASI. Whether the ASI's Indian Archaeology: A Review ever reported the site is unchecked. Identification with Xuanzang's Che-li-ta-lo is a proposal, not settled; Cunningham placed that port at Puri, others at Citrotpola. Coordinates were replaced in this session with the published figure in Patra 2014 p. 120 (19 deg 43' 54\" N, 85 deg 33' 14\" E), corroborated by Dayalan 2019; the earlier value 19.68/85.47 was an estimate. Goods: salt is inferred from the Abul Fazl salt-tax notice, not from a find.",
     "coordinates": {
       "lat": 19.7317,
       "lng": 85.5539
@@ -60,7 +60,11 @@
       "Manikpatna",
       "Che-li-ta-lo (proposed identification)"
     ],
-    "goods": []
+    "goods": [
+      "chinese-ceramics",
+      "roman-amphorae",
+      "salt"
+    ]
   },
   {
     "id": "palur",
@@ -89,7 +93,7 @@
       "early-historic"
     ],
     "status": "published",
-    "caveats": "The equation of Ptolemy's 'Paloura' with modern Palur is Gerini's proposal, repeated by later writers; it is not proved. S. Levi's further equation of Palur with the Dantapura of the Buddhist Jatakas and the Dathavamsa is a philological argument only, so 'Dantapura' is listed as a proposal, not a fact. No excavation report was read: the Kantigarh finds are known only from exploration summaries, and the Chinese celadon among them is undated in every source consulted, so no medieval period is claimed here.",
+    "caveats": "The equation of Ptolemy's 'Paloura' with modern Palur is Gerini's proposal, repeated by later writers; it is not proved. S. Levi's further equation of Palur with the Dantapura of the Buddhist Jatakas and the Dathavamsa is a philological argument only, so 'Dantapura' is listed as a proposal, not a fact. No excavation report was read: the Kantigarh finds are known only from exploration summaries, and the Chinese celadon among them is undated in every source consulted, so no medieval period is claimed here. Goods: the Palur celadon is undated in every source read, so no period is claimed for it.",
     "coordinates": {
       "lat": 19.45,
       "lng": 85.1833
@@ -100,7 +104,10 @@
       "Paloura (Ptolemy)",
       "Dantapura (proposed identification)"
     ],
-    "goods": []
+    "goods": [
+      "roman-amphorae",
+      "chinese-ceramics"
+    ]
   },
   {
     "id": "khalkatapatna",
@@ -145,7 +152,9 @@
     "also_known_as": [
       "Khalkattapatna"
     ],
-    "goods": []
+    "goods": [
+      "chinese-ceramics"
+    ]
   },
   {
     "id": "kalingapatnam",
@@ -183,7 +192,7 @@
       "british"
     ],
     "status": "published",
-    "caveats": "Kalingapatnam is in Srikakulam district, Andhra Pradesh, on the north-Andhra stretch of the historic Kalinga coast, not in modern Odisha. Coordinates follow the Imperial Gazetteer (18 deg 20' N, 84 deg 8' E); Dayalan gives 18 deg 19' N, 84 deg 06' E, and the figures printed in Patra 2014 p. 122 ('18 deg 0' 20\" N ... 84 deg 0' 7\" E') look like a typesetting error and were rejected. The 1928 and 1977-79 excavation reports were not read.",
+    "caveats": "Kalingapatnam is in Srikakulam district, Andhra Pradesh, on the north-Andhra stretch of the historic Kalinga coast, not in modern Odisha. Coordinates follow the Imperial Gazetteer (18 deg 20' N, 84 deg 8' E); Dayalan gives 18 deg 19' N, 84 deg 06' E, and the figures printed in Patra 2014 p. 122 ('18 deg 0' 20\" N ... 84 deg 0' 7\" E') look like a typesetting error and were rejected. The 1928 and 1977-79 excavation reports were not read. Goods: salt follows Imperial Gazetteer vol. IX, p. 292, which puts a salt factory at the port - a manufacture, not a shipment record.",
     "coordinates": {
       "lat": 18.3333,
       "lng": 84.1333
@@ -193,7 +202,9 @@
     "also_known_as": [
       "Calingapatam"
     ],
-    "goods": []
+    "goods": [
+      "salt"
+    ]
   },
   {
     "id": "pithunda",
@@ -308,7 +319,7 @@
       "british"
     ],
     "status": "published",
-    "caveats": "Cuttack is a river and canal port, roughly 100 km from the open sea; ocean-going ships never reached it. The Imperial Gazetteer's account of a fort built in the tenth century by 'Makar Kesari' is a dynastic tradition it reports without evidence. The Chinese sherds from Barabati are reported at second hand in OHRJ; B. K. Sinha's excavation report (UHRJ V, 1994) was not read.",
+    "caveats": "Cuttack is a river and canal port, roughly 100 km from the open sea; ocean-going ships never reached it. The Imperial Gazetteer's account of a fort built in the tenth century by 'Makar Kesari' is a dynastic tradition it reports without evidence. The Chinese sherds from Barabati are reported at second hand in OHRJ; B. K. Sinha's excavation report (UHRJ V, 1994) was not read. Goods: the Chinese sherds are from Barabati fort and are undated; the 'muslins of Cattack' (Hunter vol. ii, pp. 40, 247) may name the district rather than the city.",
     "coordinates": {
       "lat": 20.4833,
       "lng": 85.8667
@@ -319,7 +330,10 @@
       "Kataka",
       "Cattack"
     ],
-    "goods": []
+    "goods": [
+      "cotton-textiles",
+      "chinese-ceramics"
+    ]
   },
   {
     "id": "balasore",
@@ -354,7 +368,7 @@
       "british"
     ],
     "status": "published",
-    "caveats": "The founding date is disputed: Hunter 1872 p. 39 says 1642, while the Imperial Gazetteer vol. VI p. 245 and the Balasore District Gazetteer pp. 34-35 date the first English trade at Balasore to 1633, under Ralph Cartwright. Coordinates follow the Imperial Gazetteer; the OCR of the 1907 district gazetteer p. 186 prints '85 deg 56' E', which is impossible and was read as a scanning error. Dayalan's gloss 'Balasore (Kosambia)' is unexplained and is not adopted.",
+    "caveats": "The founding date is disputed: Hunter 1872 p. 39 says 1642, while the Imperial Gazetteer vol. VI p. 245 and the Balasore District Gazetteer pp. 34-35 date the first English trade at Balasore to 1633, under Ralph Cartwright. Coordinates follow the Imperial Gazetteer; the OCR of the 1907 district gazetteer p. 186 prints '85 deg 56' E', which is impossible and was read as a scanning error. Dayalan's gloss 'Balasore (Kosambia)' is unexplained and is not adopted. Goods: the muslin link is Hunter vol. ii, p. 247 ('the Cattack and Balasor muslins'), a page not otherwise cited here.",
     "coordinates": {
       "lat": 21.5,
       "lng": 86.9333
@@ -365,7 +379,11 @@
       "Balasor",
       "Baleswar"
     ],
-    "goods": []
+    "goods": [
+      "rice",
+      "cowrie-shells",
+      "cotton-textiles"
+    ]
   },
   {
     "id": "pipli",
@@ -406,7 +424,9 @@
       "Pippli",
       "Philip-patam"
     ],
-    "goods": []
+    "goods": [
+      "salt"
+    ]
   },
   {
     "id": "hariharpur",
@@ -475,7 +495,7 @@
       "british"
     ],
     "status": "published",
-    "caveats": "Chandbali is a 19th-century creation: the Balasore gazetteer p. 197 says it was a few fishermen's huts until Captain McNeill leased land there about 1872, and that it later absorbed the trade of the older port of Dhamra, 15 miles downstream. Dayalan's inclusion of it in a list of 16th-18th century European trading ports is therefore doubtful and is not followed here. Dayalan also glosses Dhamra as 'Dosarene'; that identification is not accepted - Dosarene remains an unlocated region.",
+    "caveats": "Chandbali is a 19th-century creation: the Balasore gazetteer p. 197 says it was a few fishermen's huts until Captain McNeill leased land there about 1872, and that it later absorbed the trade of the older port of Dhamra, 15 miles downstream. Dayalan's inclusion of it in a list of 16th-18th century European trading ports is therefore doubtful and is not followed here. Dayalan also glosses Dhamra as 'Dosarene'; that identification is not accepted - Dosarene remains an unlocated region. Goods: rice is the district export of gazetteer p. 139, shipped through Chandbali; not a port-specific record.",
     "coordinates": {
       "lat": 20.7833,
       "lng": 86.75
@@ -485,7 +505,9 @@
     "also_known_as": [
       "Chandabali"
     ],
-    "goods": []
+    "goods": [
+      "rice"
+    ]
   },
   {
     "id": "gopalpur",
@@ -514,7 +536,7 @@
       "british"
     ],
     "status": "published",
-    "caveats": "Only the colonial port is documented directly, by the Imperial Gazetteer. The link to Ptolemy's apheterion is Gerini's conjecture, and Patra himself prefers a different spot (Mansurkota); no ancient period is claimed here for that reason. Maltby's Ganjam District Manual was not read.",
+    "caveats": "Only the colonial port is documented directly, by the Imperial Gazetteer. The link to Ptolemy's apheterion is Gerini's conjecture, and Patra himself prefers a different spot (Mansurkota); no ancient period is claimed here for that reason. Maltby's Ganjam District Manual was not read. Goods: Imperial Gazetteer vol. XII, p. 329 lists 'sal timber' among Gopalpur's principal exports, and piece-goods and cotton twist among its imports. Rice is left out: the district's rice export to Colombo (vol. XII, p. 152) is credited to Gopalpur and Calingapatam together, not to this port.",
     "coordinates": {
       "lat": 19.2667,
       "lng": 84.8833
@@ -524,7 +546,10 @@
     "also_known_as": [
       "Mansurkota (proposed older name)"
     ],
-    "goods": []
+    "goods": [
+      "sal-timber",
+      "cotton-textiles"
+    ]
   },
   {
     "id": "tamralipti",
@@ -598,7 +623,7 @@
       "british"
     ],
     "status": "published",
-    "caveats": "Included as the colonial-era destination that drew Odisha's coastal trade away from its own ports; the Balasore gazetteer p. 144 says Balasore was 'declining owing to the advent of the railway'. Nothing here documents Calcutta before the British period.",
+    "caveats": "Included as the colonial-era destination that drew Odisha's coastal trade away from its own ports; the Balasore gazetteer p. 144 says Balasore was 'declining owing to the advent of the railway'. Nothing here documents Calcutta before the British period. Goods: rice and piece-goods are linked as cargo moving to and from Calcutta (Imperial Gazetteer vol. XI, p. 92; Balasore gazetteer p. 144), not as things made there.",
     "coordinates": {
       "lat": 22.5667,
       "lng": 88.3667
@@ -609,7 +634,10 @@
     "also_known_as": [
       "Kolkata"
     ],
-    "goods": []
+    "goods": [
+      "rice",
+      "cotton-textiles"
+    ]
   },
   {
     "id": "arikamedu",

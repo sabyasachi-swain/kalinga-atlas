@@ -62,3 +62,32 @@ Every promotion or demotion of an entry between draft, reviewed and published, w
 - inscriptions:dhauli-separate-rock-edicts draft -> published
 - inscriptions:jaugada-separate-rock-edicts draft -> published
 - inscriptions:manikapatna-kharoshthi-potsherd draft -> published
+
+## 2026-09-15: set published (routes facts)
+
+- routes:route-cuttack-chandbali-canal draft -> published
+- routes:route-chandbali-calcutta-steamer draft -> published
+- routes:route-balasore-calcutta-coasting draft -> published
+- routes:route-gopalpur-rangoon-passage draft -> published
+- routes:route-manikapatna-tamralipti-coast draft -> published
+- routes:route-manikapatna-anuradhapura-sea draft -> published
+- routes:route-palur-sembiran-sea draft -> published
+- routes:route-manikapatna-arikamedu-coast draft -> published
+- routes:route-manikapatna-puri-coast draft -> published
+- routes:route-gopalpur-puri-chilika draft -> published
+- routes:route-jaugada-palur-road draft -> published
+- routes:route-puri-balasore-trunk-road draft -> published
+- facts:fact-dhauli-inspectors-from-afar draft -> published
+- facts:fact-kharavela-china-clothes draft -> published
+- facts:fact-kharavela-ploughed-pithunda draft -> published
+- facts:fact-sisupalgarh-walled-city draft -> published
+- facts:fact-sembiran-indian-pots-in-bali draft -> published
+- facts:fact-nagarjunakonda-names-tosali draft -> published
+- facts:fact-manikapatna-kharoshthi-sherd draft -> published
+- facts:fact-manikapatna-pottery-from-everywhere draft -> published
+- facts:fact-manikapatna-anchor-from-gujarat draft -> published
+- facts:fact-elephant-on-a-ship-carving draft -> published
+- facts:fact-cowrie-shells-as-money draft -> published
+- facts:fact-maldive-boats-at-balasore draft -> published
+- facts:fact-salt-up-the-mahanadi draft -> published
+- facts:fact-bali-jatra-paper-boats draft -> published

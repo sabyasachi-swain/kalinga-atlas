@@ -6,7 +6,7 @@ scholar: false
 
 Chandbali is a river port far up the Baitarani river. It sits about 20 miles from the sea. Being so far inland kept its ships safe from storms out at sea. [District Gazetteers (Cuttack, Puri, Ganjam, Balasore), British-era editions, n.d., p.197; Hunter, 1872, p.107]
 
-The channel here became an official port in 1858. Before that, it grew from trade at an older port nearby, called Dhamra. [Hunter, 1872, p.107]
+The channel here became an official port in 1858. Before that, it grew from trade at an older port nearby, called Dhamra. [NEEDS VERIFICATION] <!-- fact-check: the order is back to front. The data says Chandbali was a few huts until about 1872 and took over Dhamra's trade later. --> [Hunter, 1872, p.107; District Gazetteers (Cuttack, Puri, Ganjam, Balasore), British-era editions, n.d., p.197]
 
 A hundred years ago, steamers left Chandbali for Calcutta three times a week. They carried people and goods along a canal from Cuttack. [Imperial Gazetteer of India (Orissa entries), n.d., p.92; Hunter, 1872, p.107]
 

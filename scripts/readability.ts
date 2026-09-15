@@ -37,7 +37,13 @@ function toProse(md: string): { prose: string; scholar: boolean } {
   }
   const prose = body
     .replace(/```[\s\S]*?```/g, ' ')
-    .replace(/\[[^\]]*?,\s*\d{4}[^\]]*\]/g, ' ') // inline citations [Author, Year, p.XX]
+    // HTML comments carry editorial notes (fact-check reasons), not public copy.
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    // Inline citations: [Author, Year, p.XX] and [Author, n.d., p.XX].
+    // Sources with no `issued` date render as "n.d." through cite.ts, so match
+    // either a four-digit year or that literal; otherwise an undated source's
+    // citation is scored as prose and inflates the grade.
+    .replace(/\[[^\]]*?,[^\]]*?(?:\d{4}|n\.d\.)[^\]]*\]/g, ' ')
     .replace(/\[NEEDS VERIFICATION\]/g, ' ')
     .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')

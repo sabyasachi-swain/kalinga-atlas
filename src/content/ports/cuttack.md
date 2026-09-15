@@ -14,4 +14,4 @@ Historians agree Cuttack was a river port, not a sea port. Big ships never reach
 
 ## For scholars
 
-An old story says a king built Cuttack's fort in the 900s CE. But no proof backs this up. The Chinese pottery from Barabati fort is known only second-hand. No one has checked the first dig report yet. [Patra, n.d., p.111; Hunter, 1872, p.40]
+An old story says a king built Cuttack's fort in the 900s CE. But no proof backs this up. The Chinese pottery from Barabati fort is known only second-hand. No one has checked the first dig report yet. [Patra, n.d., p.111; Hunter, 1872, p.40; Imperial Gazetteer of India (Orissa entries), n.d., p.98]

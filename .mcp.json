@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "openrouter": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["tools/openrouter-mcp/server.mjs"]
+    }
+  }
+}

@@ -900,5 +900,33 @@
     "public_domain": true,
     "approved_by_human": true,
     "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. McCrindle's annotated translation of the Indian chapters of Ptolemy's Geographia, with S. N. Majumdar Sastri's additional notes. Needed as a source distinct from `ptolemy-geographia` because the claims cited (Sambalaka = Sambalpur, the diamond district, V. Ball's objection to the Adamas identifications) are the modern editors' commentary, NOT anything Ptolemy wrote; citing them under Ptolemy would misattribute them. Read in the archive.org scan `in.ernet.dli.2015.65897`, a Today & Tomorrow's Printers and Publishers (New Delhi) reprint edited by Ramchandra Jain, whose pagination matches the 1927 Calcutta edition cited by Patra 2014, n. 6. The reprint's own imprint date is not printed; a reviewer should confirm which edition to name in the bibliography."
+  },
+  {
+    "id": "nanda-2019-odisha-review",
+    "type": "article-journal",
+    "title": "Kalinga Bali Yatra and the Maritime Trade of Odisha",
+    "author": [
+      {
+        "family": "Nanda",
+        "given": "R. K."
+      }
+    ],
+    "container-title": "Odisha Review",
+    "publisher": "Information and Public Relations Department, Government of Odisha",
+    "publisher-place": "Bhubaneswar",
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          11
+        ]
+      ]
+    },
+    "page": "41-45",
+    "URL": "https://magazines.odisha.gov.in/Orissareview/2019/Nov/engpdf/41-45.pdf",
+    "registry_category": "secondary",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "approved under delegation 2026-09-14: Government of Odisha publication. Read in full from the official PDF (5 pp., journal pages 41-45, ISSN 0970-8669), downloaded 2026-09-15. Verified in the text: p. 41 defines Baliyatra, 'popularly known as the Boita Bandana Yatra', held at Cuttack at Gadagadia Ghata from Kartika Purnima, marking the day the Sadhaba mariners sailed for Bali, Java, Sumatra, Borneo and Sri Lanka. p. 42 describes miniature boats of coloured paper, dried banana bark and cork carrying betel leaf, betel nut and a lit oil lamp, and states 'The memory of these expeditions is kept alive in the festival of Boita Bandana'. p. 44 groups the rouletted ware of Sembiran in north-east Bali with Sisupalgarh, Manikpatna and Tamluk. Caution: the author is a professor of management, the article carries no footnotes, and its reading list (p. 45) has six items. It is a government-published popular account - good evidence for the festival as practised, weak for dating anything."
   }
 ]

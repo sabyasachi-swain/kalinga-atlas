@@ -4,13 +4,13 @@ title: Khalkatapatna
 scholar: false
 ---
 
-Khalkatapatna was a busy river port near Konark, on the coast of Odisha. It stood on the bank of the Kushabhadra river, close to the sea. Diggers worked here in the 1980s. They found a hard brick floor, built for loading boats. [Patra, 2014, p.119]
+Khalkatapatna was a busy river port near Konark, on the coast of Odisha. It stood on the bank of the Kushabhadra river, close to the sea. Diggers worked here in the 1980s. They found a hard brick floor, built for loading boats. [Patra, 2014, p.119; Patra, n.d., p.112]
 
-Diggers also found piles of Chinese pots. Some were blue-patterned. Some were a shiny green ware called celadon. Two round Chinese copper coins turned up too, each with a square hole in the middle. They show the port traded with China around the 1300s CE. [Patnaik, 2014, p.105]
+Diggers also found piles of Chinese pots. Some were blue-patterned. Some were a shiny green ware called celadon. Two round Chinese copper coins turned up too, each with a square hole in the middle. They show the port traded with China around the 1300s CE. [Patnaik, 2014, p.105; Patra, n.d., p.112]
 
 More than a hundred small objects came out of the ground nearby. These included beads, bangles and coins made by local Odisha kings. Together, the finds show this was a real harbour, not just a fishing village. [Patra, n.d., p.112; Patnaik, 2014, p.105]
 
-Historians agree Khalkatapatna did well under the Eastern Ganga kings. Those same kings built the great Sun Temple close by, at Konark. [Dayalan, 2019, p.22]
+Historians agree Khalkatapatna did well under the Eastern Ganga kings. Those same kings built the great Sun Temple close by, at Konark. [NEEDS VERIFICATION] <!-- fact-check: no source in this port entry says who built the Konark temple. --> [Dayalan, 2019, p.22; Patnaik, 2014, p.105]
 
 ## For scholars
 

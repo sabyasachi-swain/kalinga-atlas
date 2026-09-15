@@ -11,6 +11,6 @@ One historian thinks the messages were placed here because of a nearby port call
 
 ## For scholars
 
-Much of the Jaugada rock has crumbled away. About half of the first message is gone. About a third of the second message is gone too. Those words can never be read again [Hultzsch, 1925, p.14].
+Much of the Jaugada rock has crumbled away. About half of the first message is gone. About a third of the second message is gone too. Those words can never be read again [Hultzsch, 1925, pp.xiv-xv].
 
 The port-of-Palur idea is a guess. It is not something written in the stone. Readers should not treat it as settled fact [Patra, n.d., p.113].

@@ -4,7 +4,7 @@ title: Pithunda
 scholar: false
 ---
 
-Pithunda was a busy market town on the Kalinga coast. It stood there more than two thousand years ago. An old inscription for King Kharavela says he destroyed Pithunda in war. It even says a king from far away first built the town. That king is called the Ava king. [Patra, 2014, p.123]
+Pithunda was a busy market town on the Kalinga coast. [NEEDS VERIFICATION] <!-- fact-check: this port is rated Hypothetical, so the town cannot be stated as fact. The word "busy" is not in any source, and the editors of the inscription mark "market-town" as a doubtful reading. --> It stood there more than two thousand years ago. An old inscription for King Kharavela says he destroyed Pithunda in war. It even says a king from far away first built the town. [NEEDS VERIFICATION] <!-- fact-check: no source says the Ava king came from far away. Where he ruled is not known. --> That king is called the Ava king. [Patra, 2014, p.123; Jayaswal, 1930, p.88]
 
 No one has ever dug up Pithunda. So no one is sure exactly where it stood. One idea is that it lay near modern Srikakulam. That is close to the coast of north Andhra Pradesh. [Dayalan, 2019, p.21]
 
