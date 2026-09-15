@@ -6,7 +6,8 @@ import react from '@astrojs/react';
 // under src/islands/ ship JavaScript, and only when they scroll into view.
 export default defineConfig({
   output: 'static',
-  site: 'https://kalinga-atlas.example.org',
+  site: 'https://sabyasachi-swain.github.io/kalinga-atlas',
+  base: '/kalinga-atlas',
   integrations: [react()],
   build: {
     inlineStylesheets: 'auto',
