@@ -42,6 +42,7 @@ for (const sel of selectors) {
   }
   const path = resolve(DATA, `${file}.json`);
   const list: Record<string, unknown>[] = JSON.parse(readFileSync(path, 'utf8'));
+  const changesBefore = changes.length;
   for (const e of list) {
     if (id && e.id !== id) continue;
     if (e.status === status) continue;
@@ -51,8 +52,12 @@ for (const sel of selectors) {
         continue;
       }
       if (status === 'published') {
-        const refs = (e.source_refs as { source_id: string }[] | undefined) ?? [];
-        const bad = refs.filter((r) => !approved.has(r.source_id)).map((r) => r.source_id);
+        type Ref = { source_id: string };
+        const refs: Ref[] = [...((e.source_refs as Ref[] | undefined) ?? [])];
+        if (e.edition_ref) refs.push(e.edition_ref as Ref);
+        const finds = (e.finds as { source_refs?: Ref[] }[] | undefined) ?? [];
+        for (const find of finds) refs.push(...(find.source_refs ?? []));
+        const bad = [...new Set(refs.filter((r) => !approved.has(r.source_id)).map((r) => r.source_id))];
         if (bad.length > 0) {
           refused.push(`${file}:${e.id} cites unapproved source(s): ${bad.join(', ')}`);
           continue;
@@ -62,7 +67,13 @@ for (const sel of selectors) {
     changes.push(`${file}:${e.id} ${e.status} -> ${status}`);
     e.status = status;
   }
-  writeFileSync(path, `${JSON.stringify(list, null, 2)}\n`);
+  // Skip the write entirely when this file had nothing to change (e.g. every
+  // matching entry was already at the target status, or every candidate was
+  // refused) — no point rewriting (and touching the mtime of) an untouched
+  // data file.
+  if (changes.length > changesBefore) {
+    writeFileSync(path, `${JSON.stringify(list, null, 2)}\n`);
+  }
 }
 
 const stamp = new Date().toISOString().slice(0, 10);

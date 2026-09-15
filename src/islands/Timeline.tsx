@@ -8,7 +8,7 @@
  * decorative duplicate of the range input, so it is aria-hidden; clicking a
  * band goes through the same onChange path as an arrow key.
  */
-import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { scaleLinear } from 'd3-scale';
 import type { Period } from '@data/schema';
 
@@ -43,14 +43,19 @@ export function Timeline({ periods, activePeriod, onChange }: TimelineProps) {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [width, setWidth] = useState(720);
 
-  useEffect(() => {
+  // useLayoutEffect (not useEffect): the real width is almost always narrower
+  // than the SSR default, and changing it re-packs periods into lanes that
+  // can change the SVG's height. Measuring and correcting before the browser
+  // paints avoids a visible reflow (a measured CLS source on first load).
+  useLayoutEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
+    const apply = (w: number) => setWidth((prev) => (Math.round(prev) === Math.round(w) ? prev : Math.max(w, 200)));
+    apply(el.getBoundingClientRect().width);
     const ro = new ResizeObserver((entries) => {
       const entry = entries[0];
       if (!entry) return;
-      const w = entry.contentRect.width;
-      setWidth((prev) => (Math.round(prev) === Math.round(w) ? prev : Math.max(w, 200)));
+      apply(entry.contentRect.width);
     });
     ro.observe(el);
     return () => ro.disconnect();

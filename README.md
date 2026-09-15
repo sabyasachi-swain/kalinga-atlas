@@ -25,8 +25,11 @@ Other commands:
 | `npm run readability` | Flesch-Kincaid check on `src/content/`; fails above grade 7. |
 | `npm run build` | Static build to `dist/`. |
 | `npm run preview` | Serve the build locally. |
+| `npm run serve:dist` | Serve `dist/` with gzip and cache headers, for local Lighthouse runs. |
 | `npm run audit:a11y` | Accessibility-only Lighthouse run (axe-core rules) into `docs/audits/`. |
 | `npm run audit:lighthouse` | Lighthouse report into `docs/audits/`. |
+
+Local Lighthouse runs must target `npm run serve:dist` (port 4173), not `astro dev` or `astro preview`: both of those serve uncompressed and without cache headers, which alone can cost 40+ performance points that a real static host never charges. `audit:lighthouse` and `audit:a11y` also block requests to `*kaspersky-labs.com*`, because on a machine running Kaspersky the antivirus injects its own script and stylesheet into every plain-HTTP `localhost` page — several hundred KiB of render-blocking, third-party weight that has nothing to do with this site and does not exist for a real visitor over HTTPS. If you don't run Kaspersky, that flag is a harmless no-op.
 
 ## Working with Claude Code
 

@@ -32,6 +32,7 @@ const { Content: IntroContent } = intro ? await render(intro) : { Content: undef
 
     <WaveDivider />
 
+    <h2 class="visually-hidden">All ports</h2>
     {ports.length === 0 && <p class="empty">No published ports yet.</p>}
     <ul class="cards">
       {ports.map((p) => <EntityCard kind="port" entity={p} sources={sources} />)}

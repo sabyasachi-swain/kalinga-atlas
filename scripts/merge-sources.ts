@@ -33,13 +33,20 @@ if (files.length === 0) {
 let added = 0;
 let skipped = 0;
 let invalid = 0;
+let filesLeftInPlace = 0;
 for (const file of files) {
   const raw = JSON.parse(readFileSync(join(RESEARCH, file), 'utf8'));
   const list = Array.isArray(raw) ? raw : [];
+  // Only move this file into merged/ once every entry in it has been
+  // accounted for (merged or a harmless duplicate). A file with even one
+  // invalid entry stays in docs/research/ so it isn't silently lost — that
+  // has happened before.
+  let fileHasInvalid = false;
   for (const entry of list) {
     const parsed = Source.safeParse(entry);
     if (!parsed.success) {
       invalid++;
+      fileHasInvalid = true;
       console.error(`  invalid in ${file}: ${entry?.id ?? '?'}: ${parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
       continue;
     }
@@ -55,11 +62,21 @@ for (const file of files) {
     byId.set(s.id, s);
     added++;
   }
+  if (fileHasInvalid) {
+    filesLeftInPlace++;
+    console.error(`  keeping ${file} in docs/research/: it has invalid entries above`);
+    continue;
+  }
   if (!existsSync(MERGED_DIR)) mkdirSync(MERGED_DIR, { recursive: true });
   renameSync(join(RESEARCH, file), join(MERGED_DIR, file));
 }
 
 const out = [...byId.values()];
 writeFileSync(SOURCES, `${JSON.stringify(out, null, 2)}\n`);
-console.log(`merge-sources: added ${added}, skipped ${skipped} duplicates, ${invalid} invalid; sources.json now has ${out.length} entries`);
+console.log(
+  `merge-sources: added ${added}, skipped ${skipped} duplicates, ${invalid} invalid; sources.json now has ${out.length} entries`,
+);
+if (filesLeftInPlace > 0) {
+  console.log(`${filesLeftInPlace} file(s) left in docs/research/ (had invalid entries; fix and re-run).`);
+}
 if (invalid > 0) process.exit(1);

@@ -30,6 +30,7 @@ const { Content: IntroContent } = intro ? await render(intro) : { Content: undef
 
     <WaveDivider />
 
+    <h2 class="visually-hidden">All goods</h2>
     {goods.length === 0 && <p class="empty">No published goods yet.</p>}
     <ul class="cards">
       {goods.map((g) => <EntityCard kind="good" entity={g} sources={sources} />)}

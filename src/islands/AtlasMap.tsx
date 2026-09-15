@@ -237,7 +237,7 @@ export function AtlasMap({
   focusReturnToken = 0,
 }: AtlasMapProps) {
   const uid = useId().replace(/[^a-zA-Z0-9-]/g, '');
-  const figureRef = useRef<HTMLElement | null>(null);
+  const figureRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const shipRef = useRef<SVGGElement | null>(null);
@@ -724,6 +724,7 @@ export function AtlasMap({
   const rootTransform = `translate(${x},${y}) scale(${k})`;
   const counter = 1 / k;
   const keysTitleId = `atlas-keys-title-${uid}`;
+  const descId = `atlas-map-desc-${uid}`;
   const activeMarkers = markers.filter((m) => !m.inactive);
   const activeRoutes = routeData.filter((r) => !r.inactive);
   const canZoomIn = k < MAX_SCALE - 0.001;
@@ -763,12 +764,13 @@ export function AtlasMap({
     sites.some((s) => s.evidence_level === 'Probable' || s.evidence_level === 'Hypothetical');
 
   return (
-    <figure
+    <div
       ref={figureRef}
       className="atlas-map"
       role="group"
       tabIndex={0}
       aria-label={`Map of Kalinga trade routes, ${period?.label ?? 'all periods'}. Press question mark for keyboard help.`}
+      aria-describedby={descId}
       onKeyDown={onFigureKeyDown}
     >
       <div className="atlas-map__stage" ref={stageRef}>
@@ -1105,7 +1107,7 @@ export function AtlasMap({
         </div>
       </details>
 
-      <figcaption className="visually-hidden">
+      <p id={descId} className="visually-hidden">
         {`Interactive map of the Bay of Bengal and the eastern Indian Ocean, from the Arabian Sea to Java. Land is drawn from modern Natural Earth outlines. It shows ${plural(
           markers.length,
           'place',
@@ -1117,7 +1119,7 @@ export function AtlasMap({
         )} and ${plural(activeRoutes.length, 'route', 'routes')} belong to ${
           period?.label ?? 'the selected period'
         }. Every place and route is also listed, with its sources, in the sections below this map.`}
-      </figcaption>
-    </figure>
+      </p>
+    </div>
   );
 }

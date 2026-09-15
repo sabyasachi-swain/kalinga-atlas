@@ -6,6 +6,42 @@
  * saying what it is and why it is not a global token.
  */
 
+/*
+ * Metric-adjusted fallback for the body font, local to pages that mount the
+ * Atlas island (this stylesheet is only ever loaded there). Measured with
+ * Lighthouse: the home page's biggest layout-shift contributor by far was
+ * "Web font loaded" for SourceSans3-Variable.woff2 — the swap from the
+ * generic sans-serif fallback to the real font reflows the whole page,
+ * because their line box metrics differ. A local @font-face that points at
+ * an installed system font but overrides its metrics to approximate Source
+ * Sans 3's own gives the fallback nearly the same line height and baseline,
+ * so the later swap barely moves anything. This cannot go in tokens.css
+ * (owned by the design system in this wave), so it is scoped here and only
+ * prepended to --font-body, ahead of the same fallbacks tokens.css already
+ * lists.
+ */
+@font-face {
+  font-family: 'Source Sans 3 Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Segoe UI');
+  ascent-override: 93%;
+  descent-override: 23%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
+}
+
+/* :root, not .atlas-island: the page reflow this fixes is body-wide text
+   (the hero and section copy above and around the island), not just the
+   island itself. This stylesheet only loads on pages that mount the island
+   (currently just "/"), so it never reaches pages tokens.css alone covers. */
+:root {
+  /* !important: stylesheet load order between this file and tokens.css's
+     own `:root { --font-body: … }` isn't guaranteed by the bundler, and
+     both rules have identical specificity. This one must win whenever it
+     is present, so it doesn't silently stop working after an unrelated
+     build change reorders the two stylesheets. */
+  --font-body: 'Source Sans 3', 'Source Sans 3 Fallback', 'Segoe UI', system-ui, -apple-system, sans-serif !important;
+}
+
 .atlas-island {
   /* ---- Locally defined values ------------------------------------------ */
   /* Island-local layout constants. Not global tokens: they describe this one
@@ -472,11 +508,20 @@
    "Did you know?" toast (docs/design/did-you-know.md)
    -------------------------------------------------------------------------- */
 
+/* Always an overlay, never in normal flow: a toast that pushed layout below
+   the map (in-flow on narrow screens) was a measured CLS source, since it
+   renders after the map's own async geodata/hydration settle. Fixed
+   positioning at every width means it can never shift anything else. */
 .atlas-fact {
   display: flex;
   gap: var(--space-3);
   align-items: flex-start;
-  margin-top: var(--space-4);
+  position: fixed;
+  left: var(--space-4);
+  right: var(--space-4);
+  bottom: var(--space-4);
+  width: auto;
+  margin-top: 0;
   padding: var(--space-3) var(--space-4);
   background: var(--bg-elevated);
   border: 1px solid var(--rule);
@@ -496,11 +541,8 @@
 
 @media (min-width: 37.5rem) {
   .atlas-fact {
-    position: fixed;
-    right: var(--space-4);
-    bottom: var(--space-4);
+    left: auto;
     width: min(24rem, calc(100vw - 2 * var(--space-4)));
-    margin-top: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
