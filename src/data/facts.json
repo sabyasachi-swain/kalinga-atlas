@@ -1,1 +1,343 @@
-[]
+[
+  {
+    "id": "fact-dhauli-inspectors-from-afar",
+    "name": "Ashoka's inspectors came from Ujjain and Taxila",
+    "text": "Ashoka's rock letter at Dhauli sends inspectors to Kalinga all the way from Ujjain and Taxila, far across his empire.",
+    "summary": "Ashoka had orders carved into a rock at Dhauli. They tell his officers in Kalinga to be fair, and they send inspectors from Ujjain and Taxila, cities right across his empire.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "Hultzsch, Inscriptions of Asoka (CII I, 1925), Dhauli Separate Rock Edict I, translation p. 97, sections Z-CC; and pp. xxxvii-xxxviii",
+        "note": "p. 97: a Mahamatra sent out every five years; 'from Ujjayini also the prince (governor) will send out for the same purpose a person of the same description'; 'In the same way (an officer will be deputed) from Takshasila also.'"
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 109",
+        "note": "Places the edicts on the Odisha coastal plain: 'urban settlements like Tosali (Dhauli), Samapa (Jaugada) and others came into prominence'."
+      }
+    ],
+    "periods": ["mauryan"],
+    "status": "draft",
+    "related_ids": ["dhauli", "dhauli-separate-rock-edicts", "jaugada-separate-rock-edicts"],
+    "caveats": "The Ujjayini and Takshasila lines were read only in Hultzsch's 1925 edition, so the tier stays Probable. The edicts are about treating people fairly, not about trade; what they show is that officials moved regularly between Kalinga and cities far to the west."
+  },
+  {
+    "id": "fact-kharavela-china-clothes",
+    "name": "Kharavela's gift of 'China clothes'",
+    "text": "A cave inscription of King Kharavela says he gave monks 'China clothes'. The editors read that as silk from China.",
+    "summary": "A cave inscription cut for King Kharavela lists the gifts he gave. One of them is 'China clothes', which the editors of the inscription read as silk brought from China.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "hathigumpha-inscription",
+        "page": "Jayaswal & Banerji, Epigraphia Indica XX (1929-30), No. 7, translation of line 14, p. 88",
+        "note": "Line 14 of the translation records 'China clothes (silks) and white clothes' given to monks."
+      }
+    ],
+    "periods": ["kharavela"],
+    "status": "draft",
+    "related_ids": ["hathigumpha-kharavela", "udayagiri-khandagiri"],
+    "caveats": "'China clothes (silks)' is Jayaswal and Banerji's translation of a damaged line; Sircar's rival edition was not checked for line 14. The date of the inscription is itself disputed, from the first half of the 2nd century BCE to about the beginning of the 1st century CE."
+  },
+  {
+    "id": "fact-kharavela-ploughed-pithunda",
+    "name": "Pithunda ploughed with donkeys",
+    "text": "King Kharavela boasted that he ploughed the market town of Pithunda into the ground with a plough pulled by donkeys.",
+    "summary": "King Kharavela had his deeds carved on a cave wall. One line says he destroyed a busy market town called Pithunda by ploughing it into the ground with donkeys. Nobody has ever found the town.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "hathigumpha-inscription",
+        "page": "Jayaswal & Banerji, Epigraphia Indica XX (1929-30), No. 7, translation of line 11, p. 88; editors' note 34, p. 85",
+        "note": "p. 88: 'And the market-town (?) Pithumda founded by the Ava King he ploughs down with a plough of asses'. Note 34: Ptolemy's Pitundra, 'a city in the upper part of the Coromandal coast'."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 123",
+        "note": "Repeats Sylvain Levi's equation of Pithunda, Ptolemy's Pityndra and the Jain Pihumda, and places it 'somewhere near Chicacole region of modern Andhra Pradesh'."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 21, section 'Pithunda'",
+        "note": "Independently repeats Levi's equation and the Chicacole (Srikakulam) placing. Journal pagination not verified."
+      }
+    ],
+    "periods": ["kharavela"],
+    "status": "draft",
+    "related_ids": ["pithunda", "hathigumpha-kharavela"],
+    "caveats": "Held at Probable although three works are cited, because the reading is disputed: Jayaswal and Banerji print 'Pithumdam' in line 11, Sircar's edition prints 'potham', and Barua translated the line quite differently. Pithunda has never been located on the ground."
+  },
+  {
+    "id": "fact-sisupalgarh-walled-city",
+    "name": "Sisupalgarh's walls and moat",
+    "text": "Sisupalgarh was a walled city of over one square kilometre, ringed by a moat, with rows of tall stone pillars inside.",
+    "summary": "Sisupalgarh, near Bhubaneswar, was a city with earth walls and a moat around more than a square kilometre of houses. Diggers in 2008 uncovered eighteen tall laterite pillars standing in rows.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "mohanty-smith-2009-sisupalgarh",
+        "page": "pp. 47-52",
+        "note": "p. 47: 'the site is formally delineated by a rampart and moat enclosing over 1 km2 of ancient habitation.' pp. 50-52: the 2008 season exposed eighteen monolithic laterite pillars at the central mound."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "Excavation by B. B. Lal of the ASI and later by the State Department of Archaeology; occupation from the 3rd century BCE to the mid-4th century CE; knobbed and rouletted ware and Roman-derived clay bullae."
+      }
+    ],
+    "periods": ["mauryan", "kharavela", "early-historic", "gupta"],
+    "status": "draft",
+    "related_ids": ["sisupalgarh"],
+    "caveats": "B. B. Lal's original report (Ancient India 5, 1949) was not read. The identification of Sisupalgarh with Ashoka's Tosali or Kharavela's Kalinganagari is a proposal and is not part of this fact."
+  },
+  {
+    "id": "fact-sembiran-indian-pots-in-bali",
+    "name": "Indian pots buried in Bali",
+    "text": "Pots like the ones at Kalinga's ports were dug up in a village in Bali, in soil about two thousand years old.",
+    "summary": "Diggers in the village of Sembiran, on the north coast of Bali, found Indian pottery of the same kind found at Odisha's early ports. The soil it lay in is about two thousand years old.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "ardika-bellwood-1991-antiquity",
+        "page": "pp. 221-227",
+        "note": "Excavations of 1987 and 1989 in Tejakula District, north-east Bali, produced Indian Rouletted Ware, an Arikamedu type-10 sherd and a Kharoshthi graffito, in deposits dated c. AD 1-200."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "Groups rouletted ware from Sisupalagarh, Manikpatna and Radhanagara with the same ware 'from Buni complex in North Java, from Sembiran on the north coast of Bali'."
+      }
+    ],
+    "periods": ["early-historic"],
+    "status": "draft",
+    "related_ids": ["sembiran", "manikapatna", "sisupalgarh", "radhanagar"],
+    "caveats": "Ardika and Bellwood do not mention Kalinga; the link to Odisha's sites is made only by Patra & Patra, p. 110, so the tier stays Probable. Matching pottery shows a shared trade network, not a voyage from Kalinga to Bali."
+  },
+  {
+    "id": "fact-nagarjunakonda-names-tosali",
+    "name": "Tosali on a Nagarjunakonda list",
+    "text": "A 1,700-year-old stone in Andhra lists lands that Sri Lankan monks reached. Kalinga's town Tosali is on it, beside China.",
+    "summary": "A carved stone at Nagarjunakonda honours Sri Lankan monks and names the far-off lands they had reached. Kashmir, Gandhara, China and Bengal are on the list, and so is Tosali, a town in Kalinga.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "epigraphia-indica",
+        "page": "Vol. XX (1929-30), No. 1, Vogel, pp. 6-8",
+        "note": "p. 7: inscription F names Kasmira, Gandhara, China, Chilata, Tosali, Avaramta, Vamga, Vanavasi, Yavana, Damila, a damaged name and Tambapamni. p. 8: 'This enables us to locate Tosali in Kalinga.' p. 6: Buhler's third-century CE dating accepted."
+      },
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), p. 96",
+        "note": "The Ikshvakus of Nagarjunakonda and the inscription naming Toshali."
+      }
+    ],
+    "periods": ["early-historic"],
+    "status": "draft",
+    "related_ids": ["nagarjunakonda-bodhisiri-inscription", "dhauli", "dhauli-separate-rock-edicts"],
+    "caveats": "The list is Vogel's English summary of inscription F; his transcript of the Prakrit could not be read in the scan consulted. Tosali is tied to Kalinga because it is the town Ashoka's Dhauli edicts are addressed to."
+  },
+  {
+    "id": "fact-manikapatna-kharoshthi-sherd",
+    "name": "The only Kharoshthi writing in Kalinga",
+    "text": "A broken pot at Manikapatna has writing in Kharoshthi, a script from far north-west India. It is the only one in Kalinga.",
+    "summary": "A piece of a pot dug up at Manikapatna carries two lines in Kharoshthi. That script belongs to the far north-west of India, and this is said to be the only Kharoshthi writing found in the whole of Kalinga.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 111-112",
+        "note": "p. 112: the two-line Kharoshthi potsherd read by B. N. Mukherjee as 'Dasatradeva' and 'Khida', 2nd century CE, 'the only instance of a Kharosthi inscription in the whole of Kalinga or even in eastern and southeastern India'."
+      }
+    ],
+    "periods": ["early-historic"],
+    "status": "draft",
+    "related_ids": ["manikapatna-kharoshthi-potsherd", "manikapatna"],
+    "caveats": "One source only. Patra & Patra report B. N. Mukherjee's reading at second hand from the excavation report (Pradhan, Mohanty & Mishra 2000, p. 486), which has not been read, so the reading itself is unchecked."
+  },
+  {
+    "id": "fact-manikapatna-pottery-from-everywhere",
+    "name": "Pottery from half the world at one village",
+    "text": "One village by Chilika lake gave up Chinese porcelain, Arab glazed pots, Burmese jars and a Sri Lankan coin.",
+    "summary": "Manikapatna, a village on Chilika lake, was dug in the 1990s. The finds included Chinese celadon and porcelain, egg-white Arabian glazed ware, Burmese and Siamese pottery, Indonesian terracotta and a coin from Sri Lanka.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "tripati-2021-current-science",
+        "page": "p. 1212",
+        "note": "Coins of Rajaraja Chola (985-1016 CE), Sahassamalla of Polonnaruva, Sri Lanka, and the Jiaqing emperor of Qing China, with Chinese porcelain of the Yuan and Ming dynasties (1368-1644 CE)."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 111-112",
+        "note": "p. 111: 'Chinese celadone ware, white porcelain, blue, white and brown glazed porcelain sherds ... knobbed ware, Burmese pottery, Ceylonese coins, Siamese pottery, Indonesian terracotta, egg white Arabian pottery'."
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "p. 105",
+        "note": "Finds listed include rouletted ware, knobbed ware, Chinese celadon and porcelain, a Chinese coin, Mughal and Shah Alam coins and East India Company copper coins."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 120",
+        "note": "The Sahassamalla coin network linking Manikpatna, Polonnaruva and Kotchina in Sumatra, and 'Maratuan' brown glazed ware of Burmese origin."
+      }
+    ],
+    "periods": ["somavamshi", "eastern-ganga", "gajapati"],
+    "status": "draft",
+    "related_ids": ["manikapatna", "chinese-ceramics"],
+    "caveats": "The 'Arabian' pottery is an egg-white glazed ware that the sources attribute to Arab countries; the Sri Lankan coin is of Sahassamalla of Polonnaruva, c. 11th-12th century CE. Two of the four works share an author, so they are not fully independent."
+  },
+  {
+    "id": "fact-manikapatna-anchor-from-gujarat",
+    "name": "An anchor cut from Gujarat rock",
+    "text": "Scientists tested a broken stone anchor from Manikapatna. Its rock came from Gujarat, right across India.",
+    "summary": "A broken stone anchor was found on the Manikapatna shore. Geologists tested the rock and matched it to lava flows at Palitana in Gujarat, on the other side of India, so the anchor travelled all the way round the coast.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "tripati-2022-scientific-reports",
+        "page": "Abstract; Scientific Reports 12:13559, DOI 10.1038/s41598-022-17910-9",
+        "note": "Abstract: the anchor rock 'did not come from any local rock formations' and 'was sourced from one of the lava flows of the Deccan Traps at Palitana in the Saurashtra region of Gujarat, western India'."
+      },
+      {
+        "source_id": "tripati-2021-current-science",
+        "page": "pp. 1211-1212",
+        "note": "Describes the broken Indo-Arabian stone anchor recovered at Manikapatna and the site's two occupation phases."
+      }
+    ],
+    "periods": ["bhauma-kara", "somavamshi", "eastern-ganga", "gajapati"],
+    "status": "draft",
+    "related_ids": ["manikapatna"],
+    "caveats": "Both papers share a lead author, so the tier stays Probable even though two works are cited. They date the anchor only to 'the medieval period', which is why all four of the atlas's medieval periods are listed rather than one."
+  },
+  {
+    "id": "fact-elephant-on-a-ship-carving",
+    "name": "An elephant on a ship's bow",
+    "text": "A carving on a Bhubaneswar temple, about 1,100 years old, shows a ship with an elephant standing on its bow.",
+    "summary": "A stone frieze on the Brahmeswar temple at Bhubaneswar shows two ships, each with an elephant standing on the bow. Historians read it as evidence that Odisha's ships were big enough to carry elephants away for sale.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 114",
+        "note": "The Brahmeswar temple frieze, Bhubaneswar, c. 9th century CE: 'the ships of ancient Orissa were well built and were big and strong enough to carry elephants, and that elephant was an item of export among many other items.'"
+      }
+    ],
+    "periods": ["bhauma-kara"],
+    "status": "draft",
+    "related_ids": ["elephants"],
+    "caveats": "One source only, and the reading that the elephants were being exported is those authors' interpretation of the carving. The Brahmeswar temple itself is not an entry in this atlas."
+  },
+  {
+    "id": "fact-cowrie-shells-as-money",
+    "name": "Sea shells used as money",
+    "text": "In old Odisha people paid with sea shells. One silver rupee was officially worth 5,120 cowrie shells.",
+    "summary": "For centuries Odisha used cowrie shells as small change. When the British took over, one silver rupee was officially worth 5,120 cowries; by Hunter's day it bought only 3,584 of them.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "Orissa, vol. II, p. 167",
+        "note": "'From time immemorial Orissa ... has used a local currency of cowries'; the official rate at annexation was 5,120 cowries to the rupee, and 'a rupee now only purchases 3584 of these.'"
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), p. 144",
+        "note": "Balasore was frequented 'by the Laccadive and Maldive islanders, from whom the cowries then used extensively for currency were obtained.'"
+      },
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'a small supply of couris, cocoanuts, coral, and dried fish is obtained from the few Maldive vessels, which resort annually to Balasore and Dhamra'."
+      }
+    ],
+    "periods": ["british"],
+    "status": "draft",
+    "related_ids": ["cowrie-shells", "balasore"],
+    "caveats": "Hunter gives the 5,120 figure as the official rate 'at annexation', which his own account dates to 1803; he does not print a year beside the figure itself."
+  },
+  {
+    "id": "fact-maldive-boats-at-balasore",
+    "name": "Maldive boats at Balasore",
+    "text": "Boats from the Maldive Islands came to Balasore with cowries and coral, and sailed home full of rice and clay pots.",
+    "summary": "Every year a few vessels from the Maldive Islands reached Balasore and Dhamra. They brought cowrie shells, coconuts, coral and dried fish, and loaded rice and earthen pots for the voyage home.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'a small supply of couris, cocoanuts, coral, and dried fish is obtained from the few Maldive vessels, which resort annually to Balasore and Dhamra, to take on board cargoes of rice and earthen pots'."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), pp. 138, 144",
+        "note": "p. 138: the ports were 'chiefly frequented by ... Maldive vessels, which brought cowries, coco-nuts, coral and dried fish, and took back rice and earthen pots'. p. 144: Madras vessels put in for cargoes of rice."
+      }
+    ],
+    "periods": ["british"],
+    "status": "draft",
+    "related_ids": ["balasore", "rice", "cowrie-shells"],
+    "caveats": "Both sources describe the early 19th century. Stirling names Balasore and Dhamra; the gazetteer writes of the Balasore district ports generally."
+  },
+  {
+    "id": "fact-salt-up-the-mahanadi",
+    "name": "Salt boats up the Mahanadi",
+    "text": "Boats carried salt up the Mahanadi to Sambalpur and came back with cotton, iron, turmeric, tasar cloth and rice.",
+    "summary": "River boats took salt, spices, coconuts and brass pots up the Mahanadi as far as Sambalpur. They came back down loaded with cotton, wheat, oil-seeds, iron, turmeric, tasar cloth and rice.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "Orissa, vol. II, Appendix III, p. 74",
+        "note": "Baideswar, Padmabati and Kantilo 'carry salt, spices, cocoa-nuts, and brass utensils up to Sambalpur ... bringing thence, in exchange, cotton, wheat, oil-seeds, clarified butter, oil, molasses, iron, turmeric, tasar cloth, rice, etc.'"
+      },
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'formerly salt was an important article of export by way of the great road leading along the Mahanadi to Sembelpur and Berar ... more than three lacs of maunds being exported annually.'"
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XXII, p. 13 (Sambalpur District)",
+        "note": "'Salt comes principally from Ganjam, and is now brought by rail instead of river as formerly.' Rice is the staple export of Sambalpur."
+      }
+    ],
+    "periods": ["british"],
+    "status": "draft",
+    "related_ids": ["salt", "rice", "iron", "tasar-silk"],
+    "caveats": "All three sources describe the 19th century; Stirling's 'formerly' points back into the Maratha period, but no source read gives figures for it. Sambalpur was in the Central Provinces when the Gazetteer volume was compiled."
+  },
+  {
+    "id": "fact-bali-jatra-paper-boats",
+    "name": "Bali Jatra and Boita Bandana",
+    "text": "Every Kartika Purnima, Odia families float little paper boats to remember ancestors who sailed to Bali and Java.",
+    "summary": "On the full moon of Kartika, people in Odisha float tiny boats of paper, banana bark and cork, with betel leaf and a lamp inside. The custom, called Boita Bandana, is said to remember the Sadhaba traders who sailed to Bali, Java, Sumatra, Borneo and Sri Lanka.",
+    "evidence_level": "Hypothetical",
+    "evidence_type": "traditional",
+    "source_refs": [
+      {
+        "source_id": "nanda-2019-odisha-review-baliyatra",
+        "page": "pp. 41-42",
+        "note": "p. 41: Baliyatra, 'popularly known as the Boita Bandana Yatra', held at Cuttack from Kartika Purnima, marks the day the Sadhaba mariners sailed for Bali, Java, Sumatra, Borneo and Sri Lanka. p. 42: 'The memory of these expeditions is kept alive in the festival of Boita Bandana'."
+      }
+    ],
+    "periods": ["early-historic"],
+    "status": "draft",
+    "related_ids": ["cuttack", "sembiran", "manikapatna"],
+    "caveats": "Festival lore, not evidence of a voyage. The article describes the custom and asserts that it keeps alive the memory of Sadhaba voyages, but gives no evidence for how old the festival is, and no source read here traces an unbroken line from the ancient voyages to it. The period tag follows only the article's own statement that Odisha traded with Java and Bali in the early historical period. The source is a Government of Odisha magazine article by a professor of management and is NOT YET APPROVED: it is defined in docs/research/new-sources-facts.json, not in sources.json."
+  }
+]

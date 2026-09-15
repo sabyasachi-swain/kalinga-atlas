@@ -5,7 +5,7 @@ title: Hathigumpha Inscription of Kharavela
 
 Hathigumpha means "Elephant Cave." It is a cave cut into a hill near Bhubaneswar, in Odisha. Long lines are carved on its wall. They tell the story of a king named Kharavela [Sircar, 1965, p.213].
 
-The words tell of gifts sent from far away. A king in the south sent elephants, jewels, and pearls. Kharavela gave silk cloth to monks. Historians think this shows Kalinga once traded with lands to the south and east [Hathigumpha Inscription of Kharavela, Udayagiri, c. 1st century BCE, p.88].
+The words tell of gifts sent from far away. A king in the south sent elephants, jewels, and pearls. Kharavela gave silk cloth to monks. Historians think this shows Kalinga once traded with lands to the south and east [Jayaswal, 1930, p.88].
 
 Scholars care about this cave because it holds Kharavela's own words. But the rock has big cracks. Some words are hard to read. Two scholars have read some lines in very different ways, so no one line is fully settled [Sircar, 1965, p.217].
 

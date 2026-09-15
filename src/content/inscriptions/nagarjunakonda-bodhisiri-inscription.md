@@ -7,7 +7,7 @@ Far south of Kalinga is a place called Nagarjunakonda, in Andhra Pradesh. A woma
 
 Bodhisiri's words list far-off lands. Monks from Sri Lanka had traveled and taught there. The list names Kashmir, China, and a place called Tosali. Tosali is the same Kalinga town named in Ashoka's edicts at Dhauli [Epigraphia Indica, n.d., p.7].
 
-Historians agree this Tosali is the one in Kalinga. That means Kalinga was part of a wide Buddhist world. It reached from northwest India all the way to Sri Lanka and China [Kulke, n.d., p.96].
+Historians agree this Tosali is the one in Kalinga. That means Kalinga was part of a wide Buddhist world. It reached from northwest India all the way to Sri Lanka and China [Kulke, 1998, p.96].
 
 Scholars care about this message because it names Kalinga from far away. One word right after it is badly worn. A scholar guessed it might read "Palura," a port named by the Greek writer Ptolemy. He called this only a guess, not a real reading [Epigraphia Indica, n.d., p.8].
 

@@ -4,12 +4,12 @@ title: Pithunda
 scholar: false
 ---
 
-Pithunda was a busy market town somewhere on the Kalinga coast, more than two thousand years ago. An old inscription carved for King Kharavela says he destroyed Pithunda in war. It even says the town was first built by a king from far away, called the Ava king. [Patra, 2014, p.123]
+Pithunda was a busy market town on the Kalinga coast. It stood there more than two thousand years ago. An old inscription for King Kharavela says he destroyed Pithunda in war. It even says a king from far away first built the town. That king is called the Ava king. [Patra, 2014, p.123]
 
-No one has ever dug up Pithunda, so nobody is sure exactly where it stood. One idea is that it lay somewhere near modern Srikakulam, close to the coast of north Andhra Pradesh. [Dayalan, 2019, p.21]
+No one has ever dug up Pithunda. So no one is sure exactly where it stood. One idea is that it lay near modern Srikakulam. That is close to the coast of north Andhra Pradesh. [Dayalan, 2019, p.21]
 
-One idea is that Pithunda is the same city the Greek geographer Ptolemy called Pityndra, and the same town named Pihumda in an old Jain text. If that idea is right, this one busy market town was remembered under three different names, in three different languages. [Patra, 2014, p.123]
+One idea links Pithunda to a city a Greek mapmaker named Ptolemy called Pityndra. It may also be the town Pihumda, named in an old Jain text. If that idea is right, one busy market town was known by three different names. [Patra, 2014, p.123]
 
 ## For scholars
 
-The dot on the map marks only the Srikakulam region, not a real excavated site. Even the researcher Dayalan gives two different guesses for Pithunda in the same article. [Dayalan, 2019, p.20]
+The dot on the map marks only the Srikakulam region. It is not a real dug-up site. Even the writer Dayalan gives two different guesses for Pithunda in one paper. [Dayalan, 2019, p.20]

@@ -1,1 +1,467 @@
-[]
+[
+  {
+    "id": "route-cuttack-chandbali-canal",
+    "name": "Cuttack to Chandbali by canal",
+    "summary": "Steamers left Cuttack and went down a canal to the port of Chandbali. Boats had carried salt and grain along the Mahanadi here for far longer than that.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XI, pp. 92, 98",
+        "note": "p. 92: 'Steamers carrying passengers and goods ply three times a week from Cuttack city to Chandbali port by canal, and from Chandbali to Calcutta by sea.' p. 98: Cuttack is 'connected by canal with Chandbali and False Point'."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), pp. 10, 197",
+        "note": "p. 10: 'Chandbali, 20 miles from the mouth, is the most important port in Orissa.' p. 197: Chandbali stands on the left bank of the Baitarani, 20 miles from its mouth; land was leased to the India General Steam Navigation Company in 1877."
+      },
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "Cited for the cargo, not for the canal: 'formerly salt was an important article of export by way of the great road leading along the Mahanadi to Sembelpur and Berar ... more than three lacs of maunds being exported annually.'"
+      }
+    ],
+    "periods": ["british"],
+    "status": "draft",
+    "caveats": "The drawn line is a schematic, not a surveyed track: no source read here maps the canal, and the waypoints between the two ports were read off a modern map. Cuttack lies about 100 km from the open sea and ocean-going ships never reached it. Stirling and Hunter describe an older salt traffic that went inland by road and river boat to Sambalpur, not along this canal; they support the cargo only.",
+    "mode": "river",
+    "from": "cuttack",
+    "to": "chandbali",
+    "waypoints": [
+      { "lat": 20.4833, "lng": 85.8667 },
+      { "lat": 20.5, "lng": 86.1 },
+      { "lat": 20.5, "lng": 86.42 },
+      { "lat": 20.66, "lng": 86.6 },
+      { "lat": 20.7833, "lng": 86.75 }
+    ],
+    "goods": ["salt", "rice"],
+    "kid_line": "Three times a week a steamer left Cuttack for Chandbali along a canal, then carried on to Calcutta by sea."
+  },
+  {
+    "id": "route-chandbali-calcutta-steamer",
+    "name": "Chandbali to Calcutta by sea",
+    "summary": "Steamers sailed from the river port of Chandbali up the coast to Calcutta. Odisha's own trade slowly drained away to that much bigger port.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XI, p. 92",
+        "note": "'Steamers carrying passengers and goods ply three times a week from Cuttack city to Chandbali port by canal, and from Chandbali to Calcutta by sea.' The chief imports of Cuttack district come from Calcutta."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), pp. 144-145",
+        "note": "'The ports which trade with Chandbali and Balasore are Calcutta, the coast ports from Bombay on the west to Arakan on the east, and foreign ports, such as the Maldive islands, Ceylon, and occasionally Mauritius.'"
+      }
+    ],
+    "periods": ["british"],
+    "status": "draft",
+    "caveats": "The sea lane is a schematic drawn between the two ports; no chart or sailing direction was consulted. The two gazetteers are separate works but both are British official publications of the same decade, so they are not fully independent. Rice is listed because Stirling 1825, p. 194 records rice going from the small Odisha coast ports to Calcutta; neither gazetteer read here itemises this steamer's cargo.",
+    "mode": "coastal",
+    "from": "chandbali",
+    "to": "calcutta",
+    "waypoints": [
+      { "lat": 20.7833, "lng": 86.75 },
+      { "lat": 20.8, "lng": 87.05 },
+      { "lat": 21.3, "lng": 87.35 },
+      { "lat": 21.7, "lng": 87.8 },
+      { "lat": 21.95, "lng": 88.1 },
+      { "lat": 22.5667, "lng": 88.3667 }
+    ],
+    "goods": ["rice"],
+    "kid_line": "Three times a week a steamer left Chandbali for Calcutta, the busiest port in British India."
+  },
+  {
+    "id": "route-balasore-calcutta-coasting",
+    "name": "Balasore to Calcutta",
+    "summary": "Balasore was Odisha's busiest sea port before the railway came. Ships took rice and fine cloth north to Calcutta.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), p. 144",
+        "note": "'At the commencement of the 19th century Balasore was the only port of which Orissa could boast.' Its trading partners are 'Calcutta, the coast ports from Bombay on the west to Arakan on the east, and foreign ports'. Trade was 'declining owing to the advent of the railway'."
+      },
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'A considerable exportation of rice takes place from the several small ports along the coast to Calcutta.' 'Piece goods' heads the list of exports liable to duty."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, pp. 40, 247",
+        "note": "Cited for the cargo: p. 40, the Orissa factors 'bought up at the lowest prices for ready money the fine muslins of Cattack'; p. 247, 'the Cattack and Balasor muslins formed an important item in the yearly Investments'."
+      }
+    ],
+    "periods": ["british"],
+    "status": "draft",
+    "caveats": "Schematic line; no chart consulted. Hunter's muslin passages describe the 17th- and 18th-century English factories buying cloth at Balasore, not the 19th-century Calcutta run, so they support the cargo and not the route. Only the British period is listed, because the two sources that name Calcutta as the destination are both 19th century.",
+    "mode": "coastal",
+    "from": "balasore",
+    "to": "calcutta",
+    "waypoints": [
+      { "lat": 21.5, "lng": 86.9333 },
+      { "lat": 21.55, "lng": 87.15 },
+      { "lat": 21.75, "lng": 87.6 },
+      { "lat": 21.95, "lng": 88.05 },
+      { "lat": 22.2, "lng": 88.25 },
+      { "lat": 22.5667, "lng": 88.3667 }
+    ],
+    "goods": ["rice", "cotton-textiles"],
+    "kid_line": "Ships loaded rice at Balasore for Calcutta, and Balasore muslin went into the Company's yearly shipment home."
+  },
+  {
+    "id": "route-gopalpur-rangoon-passage",
+    "name": "Gopalpur to Rangoon",
+    "summary": "From the open beach at Gopalpur, steamers crossed the Bay of Bengal to Burma. Thousands of people sailed out each year to work, and most came home again.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-india-1908",
+        "page": "vol. XII, pp. 152, 329-330; vol. XXI, pp. 213-214",
+        "note": "vol. XII pp. 329-330: Gopalpur, 'an open roadstead with no shelter whatever', a call for British India Steam Navigation coasting steamers; in 1903-4, 7,400 passengers went to and 8,300 returned from Burma. p. 152: Ganjam port exports go chiefly to Calcutta, Madras, Bombay, Rangoon and Moulmein."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), p. 144",
+        "note": "Chandbali and Balasore traded with 'the coast ports from Bombay on the west to Arakan on the east', which places the Burmese coast inside the same shipping circuit. Arakan, not Rangoon, is the port named."
+      }
+    ],
+    "periods": ["british"],
+    "status": "draft",
+    "caveats": "Both statements about the Gopalpur to Rangoon link come from one work, the Imperial Gazetteer, so the tier stops at Probable. The Balasore gazetteer names Arakan and not Rangoon, and is cited only for the wider circuit. Neither source itemises a cargo, so goods is empty; the traffic they record is people. The open-water track is drawn schematically.",
+    "mode": "maritime",
+    "from": "gopalpur",
+    "to": "rangoon",
+    "waypoints": [
+      { "lat": 19.2667, "lng": 84.8833 },
+      { "lat": 18.6, "lng": 86.5 },
+      { "lat": 17.6, "lng": 89.5 },
+      { "lat": 16.6, "lng": 93.0 },
+      { "lat": 16.3, "lng": 95.6 },
+      { "lat": 16.7667, "lng": 96.1833 }
+    ],
+    "goods": [],
+    "kid_line": "In one year 7,400 people sailed from Gopalpur to Burma, and 8,300 came back the other way."
+  },
+  {
+    "id": "route-manikapatna-tamralipti-coast",
+    "name": "Manikapatna to Tamralipti",
+    "summary": "Tamralipti at the top of the bay was the greatest port of all. The same patterned pottery lies at both ends of this coast, so boats seem to have worked between them.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 118-119",
+        "note": "p. 118: 'people from different parts used to come by land and river route to the nearest port, then made a coastal voyage to different big ports, and thence made voyage to different foreign countries'. Tamralipti is 'the first and foremost' of the ports treated."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "Rouletted ware from Sisupalagarh, Manikpatna and Radhanagara in Orissa is listed together with the same ware from Chandraketugarh and Tamluk in West Bengal, which the authors read as one Roman-period trade network."
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "p. 103",
+        "note": "'the land routes extended from Taxila to Kaveripattinam in the south and Tamluk in the east up to Broach in the west'; Tosali, Kalingapatnam, Tamralipti and Pithunda are named as the Kalinga centres 'which were all in the trade circuit'."
+      }
+    ],
+    "periods": ["early-historic"],
+    "status": "draft",
+    "caveats": "No source read here records a voyage between these two ports. The route is an inference from Patra's general model of short coastal hops and from rouletted ware found at both ends. Two of the three works share an author, so the independence is weaker than the count suggests. Tamralipti is in Bengal, at modern Tamluk; the claim that it was Odishan is a contested political one and is not adopted. Line schematic.",
+    "mode": "coastal",
+    "from": "manikapatna",
+    "to": "tamralipti",
+    "waypoints": [
+      { "lat": 19.7317, "lng": 85.5539 },
+      { "lat": 19.88, "lng": 86.2 },
+      { "lat": 20.4, "lng": 86.95 },
+      { "lat": 20.9, "lng": 87.2 },
+      { "lat": 21.6, "lng": 87.6 },
+      { "lat": 22.2833, "lng": 87.95 }
+    ],
+    "goods": [],
+    "kid_line": "Ships worked up the coast in short hops, from one big port to the next, until they reached Tamralipti."
+  },
+  {
+    "id": "route-manikapatna-anuradhapura-sea",
+    "name": "Chilika coast to Sri Lanka",
+    "summary": "Ships left the Chilika coast for Sri Lanka. A Chinese monk wrote that on a still night you could see a light shining over the island from here.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "xuanzang-travels",
+        "page": "Beal 1884, vol. II, pp. 205-206",
+        "note": "p. 205, Charitra (Che-li-ta-lo) 'on the borders of the ocean ... Here it is merchants depart for distant countries'. p. 206: 'Going south 20,000 li or so is the country of Simhala (Seng-kia-lo). In the still night ... we see the surmounting precious stone of the tooth-stupa of Buddha.'"
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 120",
+        "note": "'The discovery of Shahasamalla's coin from Manikpatna in Odisha, Polonaruva in Sri Lanka and Kotchina in Indonesia testify to a maritime network linking coastal Odisha, Sri Lanka and Sumatra.' Manikpatna is Patra's preferred identification of Che-li-ta-lo."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 112, 114",
+        "note": "p. 114: 'in ancient times prince Dantakumara and princess Hemamala had sailed to Ceylon with the Buddha's tooth relic from the port of Dantapura/Palur'. p. 112: excavation at Anuradhapura shows Indian cultural elements reaching Sri Lanka before Ashoka."
+      },
+      {
+        "source_id": "ardika-bellwood-1991-antiquity",
+        "page": "pp. 225-226",
+        "note": "Rouletted Ware from Anuradhapura was analysed alongside the Sembiran and Arikamedu material, placing the Sri Lankan capital inside the same Bay of Bengal ceramic network as Kalinga's ports."
+      }
+    ],
+    "periods": ["early-historic", "post-gupta", "eastern-ganga"],
+    "status": "draft",
+    "caveats": "Anuradhapura is an inland capital, used here as the Sri Lankan anchor; the landfall would have been a north-western port such as Mantai, for which no Kalinga link was found. Xuanzang places Simhala south of Charitra and says a light was seen; he records no sailing. The tooth-relic voyage is a Dathavamsa tradition. Sahassamalla's coin is c. 1200 CE, the pottery some 1,100 years older. Two refs share an author. Line schematic.",
+    "mode": "maritime",
+    "from": "manikapatna",
+    "to": "anuradhapura",
+    "waypoints": [
+      { "lat": 19.7317, "lng": 85.5539 },
+      { "lat": 19.0, "lng": 85.6 },
+      { "lat": 16.5, "lng": 83.5 },
+      { "lat": 13.5, "lng": 81.2 },
+      { "lat": 10.0, "lng": 80.2 },
+      { "lat": 8.35, "lng": 80.4 }
+    ],
+    "goods": [],
+    "kid_line": "A Chinese monk wrote that on a still night you could see a jewel shining over the Buddha's tooth shrine in Sri Lanka."
+  },
+  {
+    "id": "route-palur-sembiran-sea",
+    "name": "Palur to Bali",
+    "summary": "Palur was where ships stopped following the coast and turned into open sea for Southeast Asia. Indian pots of exactly the same kind lie buried at Sembiran in Bali.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 109-110",
+        "note": "Palur was a departure port on the India-Southeast Asia route; the spread of rouletted ware suggests a trade link from the eastern coast to Southeast Asia."
+      },
+      {
+        "source_id": "ardika-bellwood-1991-antiquity",
+        "page": "pp. 221-232",
+        "note": "Excavations at Sembiran in Tejakula District, north-east Bali, in 1987 and 1989 found Indian Rouletted Ware, a sherd of Arikamedu type 10 and a body sherd carrying a graffito identified as Kharoshthi, in deposits dated about AD 1-200."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 121",
+        "note": "Ptolemy's apheterion, a point of departure 'immediately to the south of Paloura (Palur), where ships bound for Khryse (the Malaya Peninsula) ceased to follow the littoral and entered the high seas'. Gerini placed it at Gopalpur; Patra prefers Mansurkota nearby."
+      },
+      {
+        "source_id": "xuanzang-travels",
+        "page": "Beal 1884, vol. II, p. 205 n. 55",
+        "note": "Beal glosses Charitra as Chinese Fa-hing, 'city of departure', and equates it with 'Ptolemy's to apheterion ton eis ten Chrysen empleonton (lib. vii. c. 1, 15)' - the point where ships left the coast for the Golden Land."
+      },
+      {
+        "source_id": "nanda-2019-odisha-review",
+        "page": "pp. 41-43",
+        "note": "The Bali Jatra or Boita Bandana festival at Cuttack remembers Sadhaba mariners setting out on Kartika Purnima for Bali, Java, Sumatra, Borneo and Ceylon. p. 43 joins the Sembiran roulette ware to Sisupalgarh, Manikpatna and Tamluk."
+      }
+    ],
+    "periods": ["early-historic"],
+    "status": "draft",
+    "caveats": "Ardika and Bellwood say 'Indian', not Kalinga; the Odisha to Bali link is asserted by OHRJ p. 110 and by Nanda 2019, not by the excavators. Ptolemy's apheterion points to Khryse, the Malay Peninsula, not to Bali, and Ptolemy's own text was not read. Bali Jatra is a living memory, not a record, and dates nothing. Beal and Patra place the departure point differently, at Manikapatna and near Gopalpur. The 5,000 km line is schematic.",
+    "mode": "maritime",
+    "from": "palur",
+    "to": "sembiran",
+    "waypoints": [
+      { "lat": 19.45, "lng": 85.1833 },
+      { "lat": 17.5, "lng": 86.5 },
+      { "lat": 10.5, "lng": 93.5 },
+      { "lat": 4.5, "lng": 95.0 },
+      { "lat": -3.5, "lng": 107.0 },
+      { "lat": -8.13, "lng": 115.32 }
+    ],
+    "goods": [],
+    "kid_line": "Every year Odisha floats little paper boats to remember the sailors who set off for Bali on the Kartika full moon."
+  },
+  {
+    "id": "route-manikapatna-arikamedu-coast",
+    "name": "Chilika coast to Arikamedu",
+    "summary": "Arikamedu near Pondicherry traded with the Roman world. Broken jars and the same patterned pottery turn up at Odisha's ports as well.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 110-111",
+        "note": "p. 111: 'The rouletted wares of Manikpatna have much similarity with those of Sisupalagarh and Arikamedu.' p. 110: the same ware from Kaveripatnam, Uraiyur and Arikamedu is grouped with the Odishan finds as one Roman trade network along the east coast."
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "p. 103",
+        "note": "'the land routes extended from Taxila to Kaveripattinam in the south and Tamluk in the east up to Broach in the west'; Tosali, Kalingapatnam, Tamralipti and Pithunda were 'all in the trade circuit'."
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint pp. 12-16, section 'Arikamedu'",
+        "note": "'Arikamedu (11 deg 53' N; 79 deg 48' E), a well-known Indo-Roman trading station, is identified with \"Pouduke\" of the Periplus Maris Erythraei and Ptolemy.' Journal pagination not verified."
+      }
+    ],
+    "periods": ["kharavela", "early-historic"],
+    "status": "draft",
+    "caveats": "The tie is a shared pottery style, not a recorded voyage between these two places, so the tier stops at Probable. Amphora fragments are listed because they occur at Manikapatna and Palur inside the same Roman-period network; no source read here puts amphorae on this leg. Kaveripattinam belongs to the same network and would suit the line equally well. The sea lane is drawn schematically.",
+    "mode": "coastal",
+    "from": "manikapatna",
+    "to": "arikamedu",
+    "waypoints": [
+      { "lat": 19.7317, "lng": 85.5539 },
+      { "lat": 18.8, "lng": 85.2 },
+      { "lat": 17.2, "lng": 83.6 },
+      { "lat": 15.6, "lng": 81.2 },
+      { "lat": 13.3, "lng": 80.4 },
+      { "lat": 11.8833, "lng": 79.8 }
+    ],
+    "goods": ["roman-amphorae"],
+    "kid_line": "The same rouletted pottery was found at Manikapatna and at Arikamedu, a thousand kilometres down the coast."
+  },
+  {
+    "id": "route-manikapatna-puri-coast",
+    "name": "Manikapatna to Puri",
+    "summary": "An English sailing book of 1679 gave the course from Manikapatna to Puri. Captains steered by the tall temple of Jagannath, which they could see far out at sea.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "p. 107",
+        "note": "Kempthorn (1679), folio 136-68: 'from Maneclapatam to Jauggernaut course is East-North East and distance is 10 miles.' The ship logs of Capt. Talbot (1680), Hide (1681) and Lake (1683) name Jaggernaut and Maneclapatam as landmarks for approaching the Odisha coast."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Puri (1908), pp. 15, 196",
+        "note": "p. 15: 'The only port in the district is Puri, and this is nothing but an unprotected roadstead.' p. 196: 'The sea along the coast is fairly deep, and vessels can go close to the shore', but heavy surf blocks landing for most of the year."
+      }
+    ],
+    "periods": ["mughal-maratha"],
+    "status": "draft",
+    "caveats": "Only Patnaik reports Kempthorn's direction, and 'Maneclapatam' is his reading of the name; the folio itself was not seen. His ten miles is far short of the roughly 45 km between the two places, so either the name or the figure is doubtful. The Puri gazetteer is cited for the coast, not for this leg. Patnaik's further conclusion that Puri worked as a port from the tenth century is his own and is not adopted here.",
+    "mode": "coastal",
+    "from": "manikapatna",
+    "to": "puri",
+    "waypoints": [
+      { "lat": 19.7317, "lng": 85.5539 },
+      { "lat": 19.66, "lng": 85.62 },
+      { "lat": 19.72, "lng": 85.7 },
+      { "lat": 19.8, "lng": 85.8167 }
+    ],
+    "goods": [],
+    "kid_line": "A sailing book of 1679 told captains to steer east-north-east from Manikapatna to reach Jagannath."
+  },
+  {
+    "id": "route-gopalpur-puri-chilika",
+    "name": "Ganjam to Puri through Chilika",
+    "summary": "Boats from Ganjam came north through a canal and across Chilika lake. They brought bamboo and carried away the spare rice of the southern villages.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Puri (1908), p. 196",
+        "note": "Ganjam traders used the Ganjam canal and Chilika lake for boat traffic all year, bringing bamboo and taking away surplus rice."
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "pp. 106, 108",
+        "note": "p. 106: the Brahmanda Purana treats Chilika as a trade route, and Kushana coins at Gurubai on the strip between the lake and the sea 'suggests a trade route in the area'. p. 108: in 1810 pilgrims from the south came by road along the strip 'or in few cases by boats across the Chilika Lake'."
+      }
+    ],
+    "periods": ["british"],
+    "status": "draft",
+    "caveats": "The gazetteer names 'Ganjam traders' and the Ganjam canal, not Gopalpur itself; Gopalpur stands in as the Ganjam anchor because the same gazetteer series calls it the district's chief port. The canal and lake line is schematic. Patnaik's Kushana coins and his Brahmanda Purana reference point to a much older Chilika route, but the boat traffic actually described is colonial, so only the British period is listed.",
+    "mode": "river",
+    "from": "gopalpur",
+    "to": "puri",
+    "waypoints": [
+      { "lat": 19.2667, "lng": 84.8833 },
+      { "lat": 19.45, "lng": 85.06 },
+      { "lat": 19.58, "lng": 85.26 },
+      { "lat": 19.7, "lng": 85.45 },
+      { "lat": 19.78, "lng": 85.62 },
+      { "lat": 19.8, "lng": 85.8167 }
+    ],
+    "goods": ["rice"],
+    "kid_line": "Flat-bottomed patwa boats crossed Chilika all year round, bringing bamboo north and taking rice back south."
+  },
+  {
+    "id": "route-jaugada-palur-road",
+    "name": "Jaugada to Palur",
+    "summary": "Jaugada was a walled town up the Rushikulya river with Ashoka's orders carved on a rock. Scholars think its harbour was Palur, down at the river mouth.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "pp. 109, 113",
+        "note": "p. 113: 'The very location of the Asokan Edicts at Jaugarh, a place far away from the actual scene of the war i.e. Dhauli is an indication of its association with the port of Palur, a well known ancient port of Kalinga.' p. 109: Palur, near the Rushikulya, was a port of international repute."
+      },
+      {
+        "source_id": "imperial-gazetteer-india-1908",
+        "page": "vol. XIV, pp. 72-73, 'Jaugada'",
+        "note": "'Ruined fort in Ganjam District, Madras, situated in 19 deg 31' N. and 84 deg 50' E., about 18 miles west of Ganjam town, on the north bank of the Rushikulya', carrying thirteen edicts of Ashoka on a granite mass."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 121-122",
+        "note": "Palur is placed 'just above the mouth of Rushikulya'. Przyluski derived Palura from Dravidian words meaning 'tooth city' and linked the name to elephant tusks, 'probably one of the important items of export'; Kongoda bred elephants of good quality."
+      }
+    ],
+    "periods": ["mauryan", "early-historic"],
+    "status": "draft",
+    "caveats": "No source read here describes a road between the two places. OHRJ p. 113 argues only that the position of the Ashokan edicts at Jaugada implies an association with the port of Palur, and that argument stands in one work. Ivory and elephants are listed because the Periplus and Xuanzang place both in this Ganjam and Chilika region, not because any source puts them on this road. The line follows the Rushikulya schematically.",
+    "mode": "land",
+    "from": "jaugada",
+    "to": "palur",
+    "waypoints": [
+      { "lat": 19.5167, "lng": 84.8333 },
+      { "lat": 19.45, "lng": 84.95 },
+      { "lat": 19.4, "lng": 85.08 },
+      { "lat": 19.45, "lng": 85.1833 }
+    ],
+    "goods": ["ivory", "elephants"],
+    "kid_line": "Palur may mean 'tooth city', and one scholar thought the tooth in the name was an elephant tusk waiting to be shipped."
+  },
+  {
+    "id": "route-puri-balasore-trunk-road",
+    "name": "The Orissa Trunk Road",
+    "summary": "A great road was cut north from Puri through Cuttack to Balasore. Crowds of pilgrims walked it to see Jagannath, and carts carried paddy and salt.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), pp. 142, 146-147, 193",
+        "note": "p. 146: 'The principal road is the Orissa Trunk Road, which runs for a length of 95 miles from end to end of the district', linking Midnapore and Calcutta on the north 'with Cuttack, Puri and Ganjam on the south'; built by Captain Sackville 1812-1820. p. 193: 'also called the Jagannath road'."
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "p. 107",
+        "note": "Toynbee: 'The traffic from south to Cuttack passed along the eastern shore of the Chillika lake, between it and the sea, to Puri and thence followed exactly the line of the present great Jagannath road', and northwards from Puri through Cuttack and Jajpur to Bhadrak."
+      }
+    ],
+    "periods": ["british"],
+    "status": "draft",
+    "caveats": "The road was sanctioned in 1811 and finished in 1825, so nothing earlier is claimed for this line. Ricketts wrote in 1841 that 'for eight months of the year it is in such a state that no merchants attempt to move goods by it' (Balasore gazetteer p. 143), and by 1907 its chief traffic was paddy and salt between Soro and Balasore only (p. 147). Patnaik's 'Van Den Brokes map ... 1960' must be a misprint and is not used. Line schematic.",
+    "mode": "land",
+    "from": "puri",
+    "to": "balasore",
+    "waypoints": [
+      { "lat": 19.8, "lng": 85.8167 },
+      { "lat": 20.13, "lng": 85.7 },
+      { "lat": 20.4833, "lng": 85.8667 },
+      { "lat": 20.85, "lng": 86.33 },
+      { "lat": 21.06, "lng": 86.51 },
+      { "lat": 21.5, "lng": 86.9333 }
+    ],
+    "goods": ["rice", "salt"],
+    "kid_line": "The road was built for pilgrims, and in 1827 a rich Bengali paid for rest-houses and bridges all along it."
+  }
+]

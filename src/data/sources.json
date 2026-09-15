@@ -7,7 +7,20 @@
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "Cite a specific critical edition (e.g. Hultzsch, Corpus Inscriptionum Indicarum I, 1925) with page numbers before use."
+    "note": "Edition read: Hultzsch, Inscriptions of Asoka, Corpus Inscriptionum Indicarum I (1925). Cite a specific critical edition (e.g. Hultzsch, Corpus Inscriptionum Indicarum I, 1925) with page numbers before use.",
+    "editor": [
+      {
+        "family": "Hultzsch",
+        "given": "Eugen"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1925
+        ]
+      ]
+    }
   },
   {
     "id": "hathigumpha-inscription",
@@ -17,7 +30,24 @@
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "Cite the published edition used (e.g. Epigraphia Indica XX) with line and page references before use."
+    "note": "Edition read: Jayaswal & Banerji, Epigraphia Indica XX (1929-30), pp. 71-89. Cite the published edition used (e.g. Epigraphia Indica XX) with line and page references before use.",
+    "editor": [
+      {
+        "family": "Jayaswal",
+        "given": "K. P."
+      },
+      {
+        "family": "Banerji",
+        "given": "R. D."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1930
+        ]
+      ]
+    }
   },
   {
     "id": "epigraphia-indica",
@@ -178,7 +208,14 @@
     "publisher": "Routledge",
     "registry_category": "secondary",
     "approved_by_human": true,
-    "note": "Multiple editions. State the edition and year in each source_ref.note."
+    "note": "3rd edition (Routledge, 1998) is the one read for this project. Multiple editions. State the edition and year in each source_ref.note.",
+    "issued": {
+      "date-parts": [
+        [
+          1998
+        ]
+      ]
+    }
   },
   {
     "id": "ray-2003",
