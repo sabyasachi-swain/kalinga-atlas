@@ -174,6 +174,87 @@ OK: data valid
 
 Zero errors, zero warnings, in both runs.
 
+## Addendum: previously-blocked routes, now unblocked (5 more entries)
+
+A ports-researcher session added `sambalpur` to `ports.json` and `ujjayini` /
+`takshashila` to `sites.json`, each `Strongly Supported` with page-verified
+citations, which unblocked two of the routes flagged above as blocked. Five
+new entries were added, written and validated as one batch:
+
+| id | mode | periods | tier | distinct sources |
+|---|---|---|---|---|
+| `route-cuttack-sambalpur-river` | river | mughal-maratha, british | Strongly Supported | 3 (`stirling-1825`, `hunter-1872`, `imperial-gazetteer-orissa`) |
+| `route-dhauli-ujjayini-road` | land | mauryan | Strongly Supported | 2 (`ashoka-separate-edicts`, `kulke-rothermund`) |
+| `route-dhauli-takshashila-road` | land | mauryan | Strongly Supported | 2 |
+| `route-jaugada-ujjayini-road` | land | mauryan | Strongly Supported | 2 |
+| `route-jaugada-takshashila-road` | land | mauryan | Strongly Supported | 2 |
+
+Before writing these, I re-read the exact `sambalpur`, `ujjayini` and
+`takshashila` entries in full to get the verified ids, coordinates and
+quotations, rather than reusing anything from memory.
+
+**Why these four edict-based routes are tiered above the earlier inferred
+land routes (`dhauli-jaugada-road`, `udayagiri-khandagiri-pithunda-road`,
+`sisupalgarh-manikapatna-road`, all `Probable`):** those three rest on
+sources that establish *relatedness* between two places (shared pottery, one
+inscription's account of a military campaign, an administrative pairing)
+without any source stating that officials, goods or people actually moved
+between them. The Dhauli/Jaugada-to-Ujjayini/Takshashila routes are
+different in kind: the First Separate Rock Edict itself, at both findspots,
+orders an inspecting officer to be sent from Ujjayini and from Takshashila on
+a fixed schedule (five years for the first tour, then at least every three).
+That is a primary source directly attesting the journey, not merely the two
+endpoints, corroborated by Kulke & Rothermund's independent account of the
+same four-viceroyalty system. This satisfies the tier table's "Strongly
+Supported: several independent sources agree, at least one grounded in
+primary evidence" more literally than the earlier inferred entries did, so I
+tiered it accordingly rather than defaulting to the conservative `Probable`
+used above.
+
+`route-cuttack-sambalpur-river` is `Strongly Supported` for a similar reason:
+all three sources (Stirling 1825, Hunter 1872, the Imperial Gazetteer)
+describe actual two-way traffic on this corridor - salt, spices and pots
+going up; diamonds, iron, tasar silk, sal timber and grain coming down - not
+merely two places that both happen to exist on the Mahanadi.
+
+Four near-duplicate entries (Dhauli and Jaugada each to both Ujjayini and
+Takshashila) were written rather than one, because both inscriptions
+genuinely carry the same edict clause, addressed to two different sets of
+provincial officials (Tosali at Dhauli, Samapa at Jaugada); collapsing them
+into one entry per western city would have hidden that the rule was
+inscribed, and presumably applied, at both Kalinga findspots.
+
+**Still blocked, per the coordinator's confirmation:** the Maldives and
+Arakan cowrie-trade legs - no port/site entity exists for either, and
+Rangoon cannot stand in for Arakan (the source gazetteer explicitly
+distinguishes them).
+
+**Rejected-sources caution acknowledged:** none of the four JSON files in
+`additinal_sources_needs_review/` (per `docs/research/rejected-sources-2026-09-16.md`)
+were consulted or cited anywhere in this file; every source used in every
+routes.json entry, old and new, was already present in `src/data/sources.json`
+with `approved_by_human: true`.
+
+A second validator run after this batch:
+```
+Kalinga Atlas data validation
+  sources: 44  periods: 11
+  ports:         32 (draft 2, reviewed 0, published 30)
+  routes:        32 (draft 5, reviewed 0, published 27)
+  goods:         27 (draft 0, reviewed 0, published 27)
+  sites:         9 (draft 0, reviewed 0, published 9)
+  inscriptions:  5 (draft 0, reviewed 0, published 5)
+  facts:         14 (draft 0, reviewed 0, published 14)
+OK: data valid
+```
+(Two schema errors were hit first, both `caveats` or a `note` exceeding the
+400/600-character schema limits, from my own initial drafts - fixed by
+trimming the text, not by removing content.)
+
+No OpenRouter call was made for this addendum: both the `sambalpur` and
+`ujjayini`/`takshashila` entries were short enough to read and reuse directly,
+and no new long source document was fetched.
+
 ## Open questions for the human reviewer
 
 1. Should `sambalpur` be added as a site so the well-documented Mahanadi

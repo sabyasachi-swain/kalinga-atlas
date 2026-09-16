@@ -1376,5 +1376,264 @@
     ],
     "goods": [],
     "kid_line": "Yijing's ship sailed past the Nicobar Islands on its way to the great port of Tamralipti."
+  },
+  {
+    "id": "route-cuttack-sambalpur-river",
+    "name": "Cuttack to Sambalpur along the Mahanadi",
+    "summary": "Boats went far up the Mahanadi river from the coast to Sambalpur. They carried salt, spices and pots inland, and came back loaded with diamonds, iron, silk and grain.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "pp. 194, 218",
+        "note": "'Formerly salt was an important article of export by way of the great road leading along the Mahanadi to Sembelpur and Berar ... more than three lacs of maunds being exported annually.'"
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, Appendix III, p. 74",
+        "note": "Mahanadi river towns 'carry salt, spices, cocoa-nuts, and brass utensils up to Sambalpur ... bringing thence, in exchange, cotton, wheat, oil-seeds, clarified butter, oil, molasses, iron, turmeric, tasar cloth, rice.'"
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "vol. XXII, pp. 12-13 (Sambalpur District)",
+        "note": "Diamonds worked at Hirakud 'when Sambalpur was under native rule'; salt 'now brought by rail instead of river as formerly' - implying the river itself carried it before the railway."
+      }
+    ],
+    "periods": [
+      "mughal-maratha",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Sambalpur is roughly 300 km inland; this corridor never reached the sea, and Cuttack stands in as the nearest major river hub, as in the 'sambalpur' port entry. All three sources describe actual two-way traffic (salt, spices, pots up; diamonds, iron, silk, grain down), not just two places that exist, so this sits above the inferred land routes elsewhere here. None gives a vessel type, a date, or a surveyed course; the line is schematic. Stirling's 'formerly' and the Gazetteer's 'now brought by rail instead of river' both suggest the river trade predated the railway.",
+    "mode": "river",
+    "from": "cuttack",
+    "to": "sambalpur",
+    "waypoints": [
+      {
+        "lat": 20.4833,
+        "lng": 85.8667
+      },
+      {
+        "lat": 20.6,
+        "lng": 85.3
+      },
+      {
+        "lat": 20.85,
+        "lng": 84.9
+      },
+      {
+        "lat": 21.1,
+        "lng": 84.4
+      },
+      {
+        "lat": 21.4669,
+        "lng": 83.9812
+      }
+    ],
+    "goods": [
+      "diamonds",
+      "iron",
+      "salt",
+      "sal-timber",
+      "tasar-silk"
+    ],
+    "kid_line": "Boats went far up the Mahanadi to Sambalpur, swapping coastal salt for inland diamonds and silk."
+  },
+  {
+    "id": "route-dhauli-ujjayini-road",
+    "name": "Dhauli to Ujjayini",
+    "summary": "Ashoka carved a rule at Dhauli that said an inspector must come all the way from Ujjayini, a city far to the west, every few years. This shows that officials really did travel this long road to check on Kalinga.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "Hultzsch, Corpus Inscriptionum Indicarum I (1925), First Separate Rock Edict, clause AA, p. 97; identification pp. xxxvii-xxxviii",
+        "note": "'But from Ujjayini also the prince (governor) will send out for the same purpose a person of the same description ... not (more than) three years.' The 'same purpose' is the inspection tour ordered earlier in the edict: every five years for the first tour, then at least every three."
+      },
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), p. 67",
+        "note": "'Then there were four large provinces governed by princes ... as governors or viceroys ... the viceroy of the west at Ujjain', alongside Tosali in Kalinga (east) - corroborating that Ujjayini and Kalinga were linked seats of one Mauryan administration."
+      }
+    ],
+    "periods": [
+      "mauryan"
+    ],
+    "status": "published",
+    "caveats": "The strongest evidence in this file for an inland route: the edict orders officials to travel this exact circuit on a schedule, not merely naming two related towns. Even so, no source describes the road itself - its course or stations - so the roughly 1,400 km line is schematic. The Dhauli copy is addressed to the Mahamatras of Tosali (see 'dhauli-separate-rock-edicts'); the identical clause appears on the Jaugada copy too, addressed to Samapa, hence the separate 'route-jaugada-ujjayini-road' entry.",
+    "mode": "land",
+    "from": "dhauli",
+    "to": "ujjayini",
+    "waypoints": [
+      {
+        "lat": 20.25,
+        "lng": 85.8333
+      },
+      {
+        "lat": 21.5,
+        "lng": 82.5
+      },
+      {
+        "lat": 22.5,
+        "lng": 79
+      },
+      {
+        "lat": 23.1765,
+        "lng": 75.7885
+      }
+    ],
+    "goods": [],
+    "kid_line": "Ashoka's own rules said an inspector had to travel all the way from Ujjayini to Kalinga every few years."
+  },
+  {
+    "id": "route-dhauli-takshashila-road",
+    "name": "Dhauli to Takshashila",
+    "summary": "Ashoka carved a rule at Dhauli that said an inspector must also come from Takshashila, a city near today's Pakistan, every few years. That is one of the longest journeys named in any Kalinga inscription.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "Hultzsch, Corpus Inscriptionum Indicarum I (1925), First Separate Rock Edict, clause BB, p. 97; identification pp. xxxvii-xxxviii",
+        "note": "'In the same way (an officer will be deputed) from Takshasila also' - the same five-year first tour, then at least every three years, ordered for Ujjayini in clause AA."
+      },
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), p. 67",
+        "note": "'The viceroy of the northwest resided at Taxila', one of the four Mauryan provincial capitals alongside Ujjain (west) and Tosali in Kalinga (east) - independent corroboration of the administrative link."
+      }
+    ],
+    "periods": [
+      "mauryan"
+    ],
+    "status": "published",
+    "caveats": "As with the Ujjayini route, the edict orders an actual travel schedule rather than merely describing two related places, but no source maps the road itself; the roughly 2,600 km line here is schematic. This is the longest route in the whole atlas. The Dhauli copy is addressed to the Mahamatras of Tosali; the identical clause also appears on the Jaugada copy, addressed to Samapa, hence the separate 'route-jaugada-takshashila-road' entry. Cunningham's identification of Takshashila with Shahdheri, Rawalpindi district, is the standard one and is not independently checked here.",
+    "mode": "land",
+    "from": "dhauli",
+    "to": "takshashila",
+    "waypoints": [
+      {
+        "lat": 20.25,
+        "lng": 85.8333
+      },
+      {
+        "lat": 23,
+        "lng": 82
+      },
+      {
+        "lat": 27,
+        "lng": 78
+      },
+      {
+        "lat": 30.5,
+        "lng": 75.5
+      },
+      {
+        "lat": 33.7458,
+        "lng": 72.7875
+      }
+    ],
+    "goods": [],
+    "kid_line": "An inspector had to travel all the way from Takshashila, near modern Pakistan, to check on Kalinga."
+  },
+  {
+    "id": "route-jaugada-ujjayini-road",
+    "name": "Jaugada to Ujjayini",
+    "summary": "The same rule Ashoka carved at Dhauli was carved again at Jaugada: an inspector had to come from Ujjayini every few years. Jaugada and Dhauli were the two towns that ran Ashoka's new province of Kalinga.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "Hultzsch, Corpus Inscriptionum Indicarum I (1925), First Separate Rock Edict, clause AA, p. 97 (Jaugada copy pp. 111-116); identification pp. xxxvii-xxxviii",
+        "note": "'But from Ujjayini also the prince (governor) will send out for the same purpose a person of the same description ... not (more than) three years.' This clause is part of the same edict inscribed at both Dhauli and Jaugada; the Jaugada copy is addressed to the Mahamatras of Samapa."
+      },
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), p. 67",
+        "note": "'Then there were four large provinces governed by princes ... the viceroy of the west at Ujjain', alongside Tosali in Kalinga (east) - independent corroboration of the administrative link."
+      }
+    ],
+    "periods": [
+      "mauryan"
+    ],
+    "status": "published",
+    "caveats": "As with the Dhauli entry, the edict orders a real travel schedule, but no source maps the road itself; the line is schematic. Jaugada's copy of this edict is addressed to Samapa's officials, not Tosali's, so this is recorded as a separate route from 'route-dhauli-ujjayini-road' rather than a duplicate, even though both rest on the same underlying clause of the edict.",
+    "mode": "land",
+    "from": "jaugada",
+    "to": "ujjayini",
+    "waypoints": [
+      {
+        "lat": 19.5167,
+        "lng": 84.8333
+      },
+      {
+        "lat": 20.8,
+        "lng": 81.5
+      },
+      {
+        "lat": 22,
+        "lng": 78
+      },
+      {
+        "lat": 23.1765,
+        "lng": 75.7885
+      }
+    ],
+    "goods": [],
+    "kid_line": "The same rule was carved again at Jaugada: an officer had to travel there from Ujjayini every few years."
+  },
+  {
+    "id": "route-jaugada-takshashila-road",
+    "name": "Jaugada to Takshashila",
+    "summary": "The same rule Ashoka carved at Dhauli was carved again at Jaugada: an inspector had to come from Takshashila, near today's Pakistan, every few years. It shows how far Ashoka's officials journeyed to check on Kalinga.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "Hultzsch, Corpus Inscriptionum Indicarum I (1925), First Separate Rock Edict, clause BB, p. 97 (Jaugada copy pp. 111-116); identification pp. xxxvii-xxxviii",
+        "note": "'In the same way (an officer will be deputed) from Takshasila also.' This clause is part of the same edict inscribed at both Dhauli and Jaugada; the Jaugada copy is addressed to the Mahamatras of Samapa."
+      },
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), p. 67",
+        "note": "'The viceroy of the northwest resided at Taxila', one of the four Mauryan provincial capitals alongside Ujjain (west) and Tosali in Kalinga (east) - independent corroboration of the administrative link."
+      }
+    ],
+    "periods": [
+      "mauryan"
+    ],
+    "status": "published",
+    "caveats": "As with the other three edict-based routes, the inscription orders a real travel schedule rather than merely naming two related places, but no source maps the road itself; the line is schematic. Jaugada's copy of this edict is addressed to Samapa's officials, not Tosali's, so this is kept as a separate route from 'route-dhauli-takshashila-road'. This is the longest land route in the atlas after its Dhauli counterpart.",
+    "mode": "land",
+    "from": "jaugada",
+    "to": "takshashila",
+    "waypoints": [
+      {
+        "lat": 19.5167,
+        "lng": 84.8333
+      },
+      {
+        "lat": 22.5,
+        "lng": 81
+      },
+      {
+        "lat": 26.5,
+        "lng": 77.5
+      },
+      {
+        "lat": 30.5,
+        "lng": 75
+      },
+      {
+        "lat": 33.7458,
+        "lng": 72.7875
+      }
+    ],
+    "goods": [],
+    "kid_line": "The same rule was carved again at Jaugada: an officer had to travel from Takshashila, near modern Pakistan, to check on Kalinga."
   }
 ]

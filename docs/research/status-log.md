@@ -145,3 +145,11 @@ Every promotion or demotion of an entry between draft, reviewed and published, w
 - ports:sambalpur draft -> published
 - sites:ujjayini draft -> published
 - sites:takshashila draft -> published
+
+## 2026-09-16: set published (routes)
+
+- routes:route-cuttack-sambalpur-river draft -> published
+- routes:route-dhauli-ujjayini-road draft -> published
+- routes:route-dhauli-takshashila-road draft -> published
+- routes:route-jaugada-ujjayini-road draft -> published
+- routes:route-jaugada-takshashila-road draft -> published
