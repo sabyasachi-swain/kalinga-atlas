@@ -1,157 +1,169 @@
 # Kalinga Atlas: session handoff
 
-Last updated 15 September 2026. Read this first in a new session, then `CLAUDE.md`.
+Last updated 16 September 2026. Read this, then `CLAUDE.md`, then
+`docs/design/improvement-plan-2026-09-16.md` — that plan is the work queue.
 
 ## Where things stand
 
-The site is complete as a content-rich static atlas and deploys to GitHub Pages. The remaining work is a better experience for children: an easier map and features that reward exploring.
+The site is live and healthy at
+`https://sabyasachi-swain.github.io/kalinga-atlas/` (base path `/kalinga-atlas`,
+GitHub Pages, deploys on push to `main`).
 
 | Check | State |
 |---|---|
-| Working tree | Clean; everything committed on `main` |
-| `npm run check` | 0 errors, 0 warnings |
-| `npm run build` | 64 pages |
+| `npm run check` | 0 errors, 0 warnings, 0 hints |
+| `npm run build` | 111 pages |
 | `npm run validate:data` | Valid, 0 warnings |
-| `npm run readability` | Every narrative at grade 7 or lower |
-| `[NEEDS VERIFICATION]` markers | 0 |
-| Deployment | GitHub Pages at `https://sabyasachi-swain.github.io/kalinga-atlas`, base path `/kalinga-atlas` |
+| `npm run readability` | All public copy at grade 7 or lower |
+| Working tree | Clean except `docs/design/improvement-plan-2026-09-16.md` and the owner's `additinal_sources_needs_review/` |
 
 ### Published data
 
-| Entity | Count |
-|---|---|
-| Sources (all approved) | 42 |
-| Periods | 11 |
-| Ports (12 Kalinga, 7 destinations) | 19 |
-| Routes | 12 |
-| Goods | 13 |
-| Sites | 7 |
-| Inscriptions | 5 |
-| Facts ("Did you know?") | 14 |
-| Narrative files | 75 |
+| Entity | Total | Published | Draft |
+|---|---|---|---|
+| Sources | 44 | — | 2 unapproved |
+| Periods | 11 | 11 | 0 |
+| Ports | 32 | 30 | 2 |
+| Routes | 32 | 32 | 0 |
+| Goods | 27 | 27 | 0 |
+| Sites | 9 | 9 | 0 |
+| Inscriptions | 5 | 5 | 0 |
+| Facts | 14 | 14 | 0 |
 
-### What is built
+## What changed on 16 September
 
-- **Research.** Every entry cites a page-verified source and carries an evidence tier. Research notes are in `docs/research/`. Promotions to published are logged in `docs/research/status-log.md`.
-- **Fact-checking.** An Opus pass flagged 49 claims across 33 narratives; all were corrected or cut. A later sweep removed every superlative the sources don't support. The log is `docs/research/fact-check-log.md`.
-- **Design.** Specs in `docs/design/`, 34 original SVGs in `src/assets/`, attribution in `docs/attribution.md`.
-- **Map and timeline.** D3-geo canvas basemap with an SVG overlay, keyboard model, ship animation, cargo manifest, fact toast, detail panel.
-- **Map speed.** A 20-step zoom now renders the map once instead of 20 times, and the basemap draws from a cached image during gestures. Geodata was cut from 1.3 MB to 144 KB.
-- **Pages.** Home, section indexes, detail pages for every entity type, sources, attribution and 404.
-- **Accessibility.** Lighthouse accessibility 98 to 100. The two failures it reported, a disallowed role on the map and heading order on index pages, are fixed.
-- **Tooling.** `validate-data`, `readability`, `fetch-geo`, `merge-sources`, `set-status`, and `serve-dist`, a gzip server for honest local Lighthouse runs.
+Eleven commits. The important ones:
 
-## Next action plan
+- **A base-path bug that had broken the live site was found and fixed.**
+  `import.meta.env.BASE_URL` has no trailing slash, so every `${base}path`
+  template produced `/kalinga-atlasports/`. Every nav link 404'd and the map
+  requested `/kalinga-atlasgeo/land-50m.json`, so the deployed map had no
+  coastline. A shared `withBase()` helper in `src/lib/base-url.ts` now joins
+  with exactly one slash and is used at every call site. **Never reintroduce a
+  raw `${base}` template.** It came in with commit `2b30bc2`, not from the kid
+  passes.
+- **The map view fits were badly broken.** A degenerate single-point bounding
+  box (any period with one active Kalinga port) zoomed ~500x and threw markers
+  thousands of pixels off-screen; the phone dialog never refit after the portal
+  moved the map. Both fixed, plus a later regression where `refitCurrentView`
+  returned early on `viewMode === 'manual'`, silently skipping every refit after
+  the first pan.
+- **The palette moved from navy/parchment to a light atlas.** The sea was
+  `#cfe3e8` against `#f2eee6` land — a 1.15:1 luminance ratio, which read as one
+  washed-out field. It is now `#7eb8cf`, giving 1.88:1 plus a blue-to-cream hue
+  jump. Values and computed contrast live in `docs/design/tokens.md`.
+- **Layout rebuilt** per `docs/design/atlas-layout.md`: period names moved out of
+  the SVG into real focusable chip buttons (4 of 11 were blank at 1280, all 11 at
+  380), the legend became a "Map key" popover instead of a 324 px block wedged
+  between map and timeline, the timeline now sits directly under the map, and the
+  fact card is debounced 500 ms so scrubbing no longer fires one card per period.
+- **Data grew from 64 to 111 pages**: 12 ports, 20 routes, 14 goods, 2 sites and
+  3 route endpoints added, all with page-verified citations.
+- **Fonts moved into the bundle** (`src/assets/fonts/`) so their URLs carry the
+  base path, with the OFL licence texts still served from `public/fonts/`.
 
-Do these in order. Each pass edits the same files as the next, so do not run them in parallel.
+## The work queue
 
-### 0. Finish the model-routing config change (done 15 September 2026)
+`docs/design/improvement-plan-2026-09-16.md` is the plan, written from owner
+feedback and checked against the code first. In order:
 
-Done: researcher on Sonnet with OpenRouter tools, the three tasks exist in `model-routing.json`, CLAUDE.md rewritten, and the `no-opus-subagents` hook uses a plain `command` string. The notes below are kept for the record.
+1. **Phase 1, engineer — stop confusing the visitor.** Move the fact card off
+   the map; make the slider actually filter (hide other centuries, add step and
+   Play controls, show a live route/port count); name the stops on each route;
+   give the map orientation (borders always on, country and sea labels, scale
+   bar, north arrow); add an overview-to-detail opening zoom.
+2. **Phase 2, editor — writing.** 47 published entities have no narrative: 20
+   routes, 14 goods, 11 ports, 2 sites. Also: never hedge in prose; the tier
+   badge carries uncertainty, and anything Hypothetical gets "Scholars are not
+   sure" in plain words.
+3. **Phase 3, engineer and designer — the kid magnet.** "Sail this route" (a
+   ship travelling the waypoints, pausing at each named stop with one sourced
+   line) is the highest-value single feature. Then the logbook and stamps,
+   Disha the Compass, icons for every good, and the "Start your voyage" intro.
+   **All ten illustrations already exist in `src/assets/kids/` and have never
+   been used.**
+4. **Phase 4 — a real `/timeline` page.** It does not exist; the nav link is an
+   anchor to `#timeline` on the home page, which is why the two feel identical.
+5. **Phase 5, qa-auditor — verify.** Lighthouse last ran 15 September, before
+   everything above.
 
-**The policy is decided:** Opus runs only in the main session. No agent or forked skill uses Opus. Agents draft through OpenRouter where it is cheaper and as good, and spend Claude tokens on checking. Built-in agents such as Explore, general-purpose and Plan must be given `sonnet` or `haiku` explicitly.
+## Decisions waiting on the owner
 
-The agent and skill files were moved to this setup late in the session, and the migration is only partly done. Checked on 15 September 2026, these mismatches remain. A new session will trip over them, so fix them first.
+1. **Approve two sources** — `kingwell-banham-2018-antiquity-mantai` and
+   `bellina-2018-antiquity-myanmar-ports`, both 2018 *Antiquity* excavation
+   reports fetched and read in full. This publishes `mahatittha` and `maliwan`,
+   the only two remaining drafts. Run
+   `npm run merge:sources -- --approve "<reason>"`. **An agent must never flip
+   `approved_by_human`.**
+2. **Photographs?** The site has none, only original SVG. CC-BY museum or
+   Wikimedia artefact images would help enormously; it is a licensing decision.
+3. **Odia language?** Noto Sans Oriya is already bundled and reserved.
+4. **The four Ashoka edict routes** (Dhauli and Jaugada to Ujjayini and
+   Takshashila) draw as 1,400–2,600 km schematic lines to the west and may
+   dominate a maritime map. Keep, or restrict the atlas to trade routes?
 
-| Mismatch | Where | Fix |
-|---|---|---|
-| `model: opus` | `.claude/agents/researcher.md` frontmatter | Change to `model: sonnet`, and keep its high effort |
-| Has an "OpenRouter first" section but no OpenRouter tools, so it cannot call them | `researcher.md` `tools:` line | Add `mcp__openrouter__pick_model`, `ask_model`, `review_code`, `compare_models` and `list_models`, as in `editor.md` |
-| Agents and skills name routing tasks that don't exist: `extract_claims`, `draft_prose` and `audit_summary` | researcher, editor, qa-auditor, and the `phase` skill | Add those three tasks to `tools/openrouter-mcp/model-routing.json`. It currently only defines `code_review`, `summarise_extract`, `draft_code`, `debug_second_opinion`, `compare_perspectives` and `quick_question`, so `pick_model` fails for the missing ones |
-| Still routes work to Opus | `CLAUDE.md` lines 59, 61, 68 and 70, and the routing principle on line 74 | Rewrite the agent and skill tables and the principle to match the decided policy |
+## Known rough edges
 
-When done, grep `.claude/` and `CLAUDE.md` for "opus": it should appear only where it says the main session.
+- The fact card now sits over the middle of the map. Phase 1.1 moves it out.
+- Thin periods: Gajapati has 0 routes and 0 sites, Bhauma-Kara 0 routes,
+  Kharavela and Gupta 0 goods, Mughal-Maratha 0 sites. British has 22 goods.
+- `src/data/cite.ts`'s `year()` drops the month, so the two Patnaik 2014 papers
+  render identically and cannot be disambiguated as 2014a/2014b without
+  changing the function and its call sites.
+- Routes blocked for want of an endpoint entity: Maldives and Arakan cowrie
+  runs. Rangoon cannot stand in for Arakan.
 
-### Progress on 16 September 2026 (uncommitted until verified)
+## Rejected material — do not resurrect
 
-- **Kid pass 1** is built (A1–A4, B6) in `AtlasMap.tsx`, `Atlas.tsx`, `DetailPanel.tsx` and `atlas.css`. Check and build passed, and a 20-step zoom caused 1 render. The first screenshots showed markers and labels hidden under the map's top chrome and overlapping at 380 px. A fix is in progress: fit inside the free area, cluster at every view, and count overlaps.
-- **New look, chosen by the owner:** a light, calm map like the one at itihaas.ai/en/maps/ahom-kingdom. Pale sea and cream land drawn from Natural Earth (no tiles), the map in a white card, round coloured pins with white glyphs, a cream page and a dark header. It replaces navy and parchment. The designer wrote `tokens.css` values (names kept), `docs/design/tokens.md` with computed contrast, `docs/design/map-style-light.md`, and three pin glyphs in `src/assets/ports/`. The legend stays as the restyled left rail, not a floating card. CLAUDE.md, the `design-system` skill and `designer.md` are updated to match. The engineer is applying the style and replacing the hard-coded colours in `atlas.css` and `AtlasMap.tsx`.
-- **Pre-existing bug found on 16 September, now top priority:** `import.meta.env.BASE_URL` is `/kalinga-atlas` with **no trailing slash**, so every `${base}path` template joins into one word. `dist/index.html` and the **live site** both carry `/kalinga-atlasports/`, `/kalinga-atlasgoods/`, `/kalinga-atlasfavicon.svg` and the rest, and the live island bundle requests `/kalinga-atlasgeo/land-50m.json`. So on the deployed site every nav link 404s and the map has no coastline; the pages themselves exist at the correct URLs. It came in with commit 2b30bc2 "Fix GitHub Pages navigation paths", not from the kid passes. Fix once with a shared `withBase(path)` helper used at every call site (`Base.astro`, `404.astro`, `index.astro`, `attribution.astro`, the `[id].astro` pages, `EntityCard.astro`, `AtlasMap.tsx:332-333`), then verify **both** dev and `dist/`: `grep -r "kalinga-atlas[a-z]" dist/` must return nothing.
-- **Layout and timeline spec, 16 September:** `docs/design/atlas-layout.md` (730 lines) answers six problems the owner reported: the fact toast refiring per period and competing for screen space, period chips rendering blank (4 of 11 at 1280, 11 of 11 at 380), the legend's 324 px wedged between map and timeline, the slider sitting 888 px below the map top, the map card being only 58% canvas, and modern country outlines for orientation. It moves period names out of the SVG into real HTML chips, turns the legend into a "Map key" popover, anchors the toast inside the map card with a 500 ms settle debounce, and enlarges the map. Its "What the engineer must change" list names every file. Three decisions the orchestrator made: period chips **are** individually focusable buttons; the 500 ms debounce and the short-viewport pill threshold ship as specced and get checked once built; the legend becomes the popover rather than a side rail.
-- **Font URLs miss the base in dev (low priority).** `src/styles/tokens.css` declares `src: url('/fonts/EBGaramond-Variable.woff2')` and the two other faces the same way. Astro rewrites these correctly in the build (`dist/` CSS reads `/kalinga-atlas/fonts/…`), but the dev router logs `Request URLs for public/ assets must also include your base` on every page load and serves no font, so local pages render in fallback faces. Fix with a base-aware font URL that works in both, and keep the fonts self-hosted.
-- **Historical boundaries stay out:** modern country outlines are allowed as a faint, zoom-gated, `aria-hidden` layer captioned "modern borders, not a historical claim". Any ancient empire or kingdom extent is a sourced claim needing a researcher and a schema entity, and is not to be drawn by a designer or engineer.
-- **Committed on 16 September:** `8e2f007` (base-path `withBase` helper, light restyle, design specs, kid pass 1 map work) and `0e1c6e6` (coast-view over-zoom and phone-dialog blank map). Verified against `dist/` before committing: active port inside the canvas at 1280 and 380, **0 pin and label overlaps** in both views, 2 renders per 20-step zoom, all links and geo files 200, no bad joins in `dist/`, check and build clean. **Nothing is pushed**, so the live site still has the broken links and blank map until someone pushes.
-- **Agents must not commit.** The engineer agent created `8e2f007` despite "Don't commit" in its brief. Agent commits carry the repo owner's git identity, so they are easy to miss. The orchestrator commits, after verification, with a message describing what was actually checked.
-- **Map palette deepened (values verified, handed to the engineer 16 September).** `--map-sea` goes `#cfe3e8` → `#7eb8cf`, land unchanged, giving **1.88:1** plus a blue-to-cream hue jump instead of the old 1.15:1. Land edge `#4a6b78`, river `#4a85a0`, maritime route `#14593c`, coastal `#7a4000`, port marker `#9c3409` (no longer aliasing `--accent`), site `#085e57`, inscription `#5b21b6`, borders hairline to `rgba(55,65,81,0.8)`, graticule to `rgba(26,26,26,0.08)`. Every ratio was recomputed by the orchestrator, not taken on trust: labels 7.99:1 on sea, routes 3.28–4.31:1, markers 3.32–4.73:1, white glyphs 7.22–8.98:1. **Related defect:** the in-map selection ring used `--gold-400` `#f2a93c`, which is **1.09:1** on the new sea; a new `--map-focus: #1a1a1a` replaces it in `.marker-ring` and the route focus rule. Watch `--map-river` at 1.87:1 against sea where a river meets the coast.
-- **`region` is not a bug.** Odisha ports carry no `region` key in the JSON, but `schema.ts` declares `region` with `.default('kalinga')`, so `p.region === 'kalinga'` is correct at runtime. Don't "fix" it.
-- **Research expansion running (16 September):** three researcher agents on Sonnet are enlarging `ports.json`, `routes.json` and `goods.json` (12–20 new entries each, `status: draft`, page-verified citations). Shared sources go to `docs/research/new-sources-{ports,routes,goods}.json` and merge via `npm run merge:sources`. External models may only extract from fetched sources or draft summaries — never supply history.
-- **Superseded — sea and land were nearly indistinguishable.** `--map-sea` `#cfe3e8` against `--map-land` `#f2eee6` is a luminance ratio of **1.15:1**, so the map reads as one washed-out cream field — a large part of why the map looks empty. The designer is choosing new map-surface values (and re-checking labels, routes, markers, cluster, borders hairline and focus ring against both new surfaces); the engineer applies them and must not pick them itself.
-- **Deployed and verified live on 16 September:** `d2be6ab` is on `origin/main` and serving at `https://sabyasachi-swain.github.io/kalinga-atlas/`. Verified against the live site, not the build: `--map-sea` computes to `#7eb8cf`, **11 period chips with 0 blank labels** (was 4 of 11 blank at 1280 and 11 of 11 at 380), 14 pins and 4 clusters drawing with no "coastline missing" status, the "Map key" button present, the timeline starting at y 800 immediately below a map ending at y 800 (**0 px gap**, previously a 324 px legend block and the slider 888 px down), and no console errors. Build is now 74 pages. Note `8e2f007` reached `origin` without the orchestrator pushing it — an agent appears to have pushed as well as committed; agents must do neither.
-- **Research expansion shipped 16 September: 103 pages, up from 64.** Ports 19 → 31, routes 12 → 27, goods 13 → 27. The routes and goods batches needed **no new sources at all** — every citation reuses a `source_id` already `approved_by_human: true`, with each quoted passage checked against page-verified text already published in the repo. The Gupta period is no longer routeless (Tamralipti–Mahatittha), and Yijing's Guangzhou–Palembang–Kedah–Tamralipti legs give post-Gupta real coverage.
-- **Recorded as blocked rather than invented:** routes to Sambalpur (Mahanadi), Ujjayini and Takshashila (both named in the Dhauli edict itself), and the Maldives and Arakan cowrie runs — each has sources but no endpoint entity. Adding `sambalpur`, `ujjayini` and `takshashila` as sites would unblock them. Goods dropped for the same discipline: rouletted ware and beads, where no source says whether Kalinga made or received them and the mandatory `direction` field would have forced a guess.
-- **Three confirmed bugs in the shipped map code** (external review, each verified by the orchestrator against the source, now with the engineer): `refitCurrentView` at `AtlasMap.tsx:1051` returns early when `viewMode === 'manual'`, so after any pan every later size change skips the refit and the phone dialog reopens with a stale transform; `Atlas.tsx:153/157` portal the live map into `.atlas-map-slot__inline`, which `atlas.css:113` hides below 600 px, so the canvas cache never warms and the first phone gesture runs the full redraw path; and `AtlasMap.tsx:1663` uses a fixed `charW = 6.4` for label collision, which breaks the no-overlap guarantee at larger font sizes.
-- **On external models:** the free `cohere/north-mini-code` review produced **0 valid findings from 6** — it invented missing cleanups that exist (hint timer at :817, rAF cancel at :1285) and then emitted seventeen duplicate entries until it hit the token ceiling. `dots-studio/dots-3-note-preview` returned HTTP 400. `deepseek/deepseek-v4.1-flash` at **$0.0126** produced the three confirmed bugs above. Escalating past the free tier for review is worth it; verify every finding regardless.
-- **Ports: 29 published, 2 draft.** The 12 researched ports were promoted with `npm run status -- published ports:<id>`; `mahatittha` and `maliwan` were **refused by design** because they cite `kingwell-banham-2018-antiquity-mantai` and `bellina-2018-antiquity-myanmar-ports`, both still `approved_by_human: false`. To publish them a human approves the sources (`npm run merge:sources -- --approve "<reason>"`); an agent must never flip that flag. Rejected candidates and why are in `docs/research/ports-expansion-2026-09-16.md`.
-- **Known rough edge, not fixed:** the fact card visually overlaps the "Show the whole ocean" button at 1280. It can no longer reach the timeline (the spec's actual requirement), but the collision is untidy; fix by pushing the toast below the button row or narrowing it at medium widths.
-- **In flight:** the routes and goods researchers are running again (incremental writes, validate after each batch). The engineer finished implementing `docs/design/atlas-layout.md` — HTML period chips, the Map key popover, timeline directly under the map, a bigger map, the fact toast anchored inside the map card with a 500 ms settle debounce, a lazily loaded and bbox-trimmed modern-borders layer from the 756 KB `countries-50m.json`, the two new tokens, and the font-URL base fix.
+`additinal_sources_needs_review/` contains four JSON files supplied by the
+owner. **All four are rejected.** Every DOI they cite returns "DOI Not Found"
+from doi.org and every deep locator 404s, while control DOIs and archive.org
+items resolve fine from this machine. Two researchers then independently found
+their specific claims unsupportable: no ceramics source uses the word "Islamic",
+and Chandrabhaga is the Konark beach, not a Chilika landing. Full evidence in
+`docs/research/rejected-sources-2026-09-16.md`. They may be mined for *topics*
+only; never cite them.
 
-### 1. Kid pass 1: easier map (in progress, see above)
+## Working rules learned the hard way
 
-The last attempt stopped on a usage limit before changing any file, so start fresh.
-
-- **Model:** Sonnet engineer.
-- **Spec:** `docs/design/kid-experience.md`, sections A1, A2, A3, A4 and B6, all marked must.
-- **Problems it fixes, verified in the code:**
-  - The map opens on the whole Bay of Bengal to Java, so the 12 Odisha ports crowd together and their labels are hidden.
-  - Wheel zoom only works with Ctrl held, and double-click zoom is off.
-  - On phones, dragging vertically scrolls the page instead of panning the map.
-- **Build:**
-  - A1: open fitted to the Kalinga ports, computed from their coordinates, with "Show the Odisha coast" and "Show the whole ocean" buttons.
-  - A2: plain wheel zoom over the map, with a dismissible hint.
-  - A3: below 600 px, a preview plus an "Explore the map" button that opens a full-screen map dialog.
-  - A4: bigger markers, permanent labels at the default view, cluster bubbles in the whole-ocean view.
-  - B6: the spec's friendlier wording for controls. Never change historical text.
-- **Must keep:** the speed architecture. The live zoom transform stays in `liveTransformRef` and is applied to the DOM directly, React state commits only on the zoom `end` event, and the basemap is blitted from the offscreen cache mid-gesture. Also keep the keyboard model, focus return, badges and citations, and reduced-motion handling.
-- **GitHub Pages base path:** every new link and fetch must use `import.meta.env.BASE_URL`, never a root-relative `/path`.
-- **Done when:** a browser check at 1280 px and 380 px confirms each item, a 20-step zoom still causes at most two map renders, and check and build pass. `chrome-launcher` and `puppeteer-core` are already installed as Lighthouse dependencies. Use `node scripts/serve-dist.mjs 4399` to serve the build.
-
-### 2. Kid pass 2: engagement (after pass 1)
-
-- **Model:** Sonnet engineer.
-- **Spec:** the same file, sections B1, B3, B4 (should), then B2 and B5 (could).
-- **Build:**
-  - B1: a skippable "Start your voyage" intro of three or four steps, remembered in localStorage.
-  - B3: a ship's logbook that stamps each port, good and route a child opens, with a progress count, in localStorage.
-  - B4: stamp visuals and small celebrations, off under reduced motion.
-  - B2: a treasure-hunt quest whose questions are generated only from existing fields such as `port.goods`, `route.from` and `route.to`. A question is only asked when the data supports its answer, and wrong answers get a kind response.
-  - B5: Disha the Compass, a guide who only points to things and never states history.
-- **Assets:** already drawn in `src/assets/kids/`. Tokens are already in `tokens.css`.
-- **Rule:** no invented history. Anything historical still shows its evidence badge and citation.
-
-### 3. Verify and close
-
-1. Run check, build, validate and readability.
-2. Browser smoke test of both passes at 1280 px and 380 px.
-3. Optional: a Haiku Lighthouse run through `npm run serve:dist` and `npm run audit:lighthouse`. The owner considers current scores fine.
-4. Commit and push, then confirm the Pages deploy.
-
-### Optional research follow-ups
-
-Low priority. Each needs a researcher, and nothing on the site is wrong without them.
-
-- `goods > elephants`: add Stirling 1825, p. 182 to restore a cut scholar note.
-- `palur`: find a page citation for the Dantapura identification.
-- `hariharpur`: cite Hunter 1872 for the Hariharpur and Harishpur ambiguity.
-- `khalkatapatna`: cite who built the Konark Sun Temple, if the narrative should say.
-- Two Patnaik 2014 papers render the same short citation; disambiguate as 2014a and 2014b in `cite.ts`.
-- False Point is a well-documented colonial port still missing from `ports.json`.
-
-## Working rules learned this session
-
-- **Cost.** Opus only in the main session; never pass `model: opus` to an agent. Sonnet for building, writing, research and fact-checking. Haiku for audits. Until step 0 is done, `researcher.md` still defaults to Opus, so pass `model: sonnet` when delegating to it. Prefer an OpenRouter model whenever it costs less and does as well.
-- **Usage limits.** Several parallel agents hit the Pro session limit three times. Prefer one agent at a time. When an agent dies, check what it wrote to disk before rerunning; work usually survives. Resume a dead agent with SendMessage rather than spawning a new one.
-- **OpenRouter.** Use `pick_model(task)`, pass `file_paths`, and verify every finding against the code before acting. Free models were useful but wrong often. They called Kaspersky scripts a site bug, and five of seven map-review claims were false. Never use them for history.
-- **Kaspersky.** It injects about 850 KiB of scripts into plain-HTTP localhost pages, which ruins local Lighthouse scores. Measure only with `serve:dist`, and keep the blocked Kaspersky URL pattern in the audit scripts.
-- **Local URLs.** The site builds with base `/kalinga-atlas`, so dev runs at `http://localhost:4321/kalinga-atlas/`, and plain `localhost:4321/` returns 404. `scripts/serve-dist.mjs` serves `dist/` at the root, so asset URLs break under it. Put `dist/` behind a `/kalinga-atlas` prefix for browser checks. On 16 September a leftover `astro preview` on `[::1]:4321` answered `localhost` in place of the dev server and made the site look unstyled and broken. Check with `netstat -ano | grep 4321` before debugging "broken" pages.
-- **Editors can reintroduce errors while fixing others.** After any content edit, sweep for superlatives such as busiest, biggest and greatest, and for paragraphs that make a historical claim without a closing citation.
+- **Agents must not commit or push.** Three agent commits and two unrequested
+  pushes happened on 16 September despite explicit instructions in every brief.
+  Agent commits carry the owner's git identity, so they are invisible unless you
+  check for the `Co-Authored-By` trailer. The orchestrator commits after
+  verifying. Consider a PreToolUse hook blocking `git commit`/`git push` from
+  subagents, the way `.claude/hooks/no-opus-subagents.mjs` blocks Opus.
+- **Usage limits.** Four parallel agents were killed three times in one day. Run
+  **two at most**, and require **incremental writes** — 3 or 4 entries, validate,
+  continue — so a kill costs one batch, not the session. Resume a dead agent with
+  `SendMessage`, never a fresh spawn; check what it wrote to disk first.
+- **Verify every agent claim.** An engineer reported 0 overlaps while 1 of 6
+  active pins was inside the canvas; screenshots showed a nearly empty map. Run
+  the probes in the scratchpad (`rect-probe.mjs`, `overlap-probe.mjs`,
+  `final-check.mjs`) against `dist/`, and look at the screenshots.
+- **External models: escalate past the free tier for review.**
+  `cohere/north-mini-code:free` produced **0 valid findings from 6** — it invented
+  missing cleanups that demonstrably exist, then emitted seventeen duplicate
+  entries until it hit the token ceiling. `dots-studio/dots-3-note-preview:free`
+  returned HTTP 400. `deepseek/deepseek-v4.1-flash` at **$0.0126** found three
+  real bugs, all confirmed. Free models are fine for inventory and extraction;
+  verify everything regardless. An external model is never a source.
+- **Local URLs.** Dev runs at `http://localhost:4321/kalinga-atlas/`; plain
+  `localhost:4321/` is a 404. `scripts/serve-dist.mjs` serves `dist/` at the root,
+  so use a base-prefixed server for browser checks. Never run two `astro dev`
+  instances: they fight over `.astro/data-store.json` and the loser serves 500s
+  while still rendering the page.
+- **Kaspersky** injects ~850 KiB into plain-HTTP localhost pages and ruins local
+  Lighthouse scores. Measure only against a proper `dist/` server.
 
 ## Prompt to start the next session
 
 ```
-Read HANDOFF.md and CLAUDE.md. First do step 0: finish the model-routing
-config so no agent or skill uses Opus and every named OpenRouter task exists.
-Then start Kid pass 1: delegate to a Sonnet engineer using
-docs/design/kid-experience.md sections A1-A4 and B6, keep the map speed
-architecture and the GitHub Pages base path, verify in a browser at 1280px
-and 380px, then commit.
+Read HANDOFF.md, CLAUDE.md and docs/design/improvement-plan-2026-09-16.md.
+Start Phase 1: delegate to a Sonnet engineer to move the fact card off the
+map, make the period slider hide other centuries and gain step/Play controls
+with a live route count, name the intermediate stops on each route, and give
+the map orientation (borders always on, country and sea labels, scale bar).
+Keep the speed architecture, withBase() for every URL, 0 pin/label overlaps
+and 2 or fewer renders per 20-step zoom. Verify against dist/ with the probes
+in the scratchpad, then commit yourself — agents must not commit or push.
 ```
