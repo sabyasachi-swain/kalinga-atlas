@@ -890,7 +890,12 @@
   gap: var(--space-3);
   align-items: flex-start;
   position: absolute;
-  top: var(--space-3);
+  /* Coordinator-confirmed bug fix: was a fixed `var(--space-3)`, which only
+     cleared the topbar (period label + "Show the whole ocean" etc.) by
+     coincidence at some widths/captions. `--map-chrome-top` is the topbar's
+     real measured height (see the ResizeObserver in AtlasMap.tsx); the
+     fallback keeps the old fixed offset if it's ever unset. */
+  top: calc(var(--map-chrome-top, 0px) + var(--space-2));
   right: var(--space-3);
   max-width: min(22rem, calc(100% - 2 * var(--space-3)));
   max-height: min(20rem, 55%);

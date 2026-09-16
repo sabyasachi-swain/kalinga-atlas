@@ -113,7 +113,9 @@ export default function Atlas({
   // Only one of the two hosts is ever the actual portal target at a time —
   // avoids mounting the toast twice (duplicate ids/ARIA) when both hosts
   // happen to exist in the DOM simultaneously (one just hidden by CSS).
-  const [isNarrowPreview, setIsNarrowPreview] = useState(false);
+  const [isNarrowPreview, setIsNarrowPreview] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 37.4375rem)').matches,
+  );
 
   useLayoutEffect(() => {
     setPreviewToastHost(previewToastHostRef.current);
@@ -147,15 +149,31 @@ export default function Atlas({
     return () => ro.disconnect();
   }, [mapToastHost]);
 
-  // Runs before paint so the map's first render already targets the inline
-  // host, avoiding a flash of nothing.
+  // Coordinator-confirmed bug fix: this used to always target
+  // `inlineMapHostRef` whenever the dialog was closed — but
+  // `.atlas-map-slot__inline` is `display: none` below 600px (A3's static
+  // preview replaces it there), so the live AtlasMap sat mounted inside a
+  // hidden container before "Explore the map" was ever tapped. A hidden
+  // host reports 0×0 to AtlasMap's own ResizeObserver, `size` never
+  // becomes real, `offscreenReadyRef` never turns true, and the *first*
+  // gesture once the dialog finally opens has to run AtlasMap's expensive
+  // full-redraw-per-frame path instead of the cached-bitmap one — on the
+  // weakest devices, for the very first thing a phone visitor does. Mount
+  // only when there is a genuinely visible host: the dialog when it's
+  // open, the inline host at >=600px, otherwise nowhere (`null`, so the
+  // portal — and the whole AtlasMap subtree with it — simply doesn't
+  // render until one becomes true). `isNarrowPreview` is lazily
+  // initialised from matchMedia (see above), so this already has the
+  // right answer on the very first layout effect, before paint.
   useLayoutEffect(() => {
-    setMapPortalTarget(inlineMapHostRef.current);
-  }, []);
-
-  useEffect(() => {
-    setMapPortalTarget(mapDialogOpen ? dialogMapHostRef.current : inlineMapHostRef.current);
-  }, [mapDialogOpen]);
+    if (mapDialogOpen) {
+      setMapPortalTarget(dialogMapHostRef.current);
+    } else if (!isNarrowPreview) {
+      setMapPortalTarget(inlineMapHostRef.current);
+    } else {
+      setMapPortalTarget(null);
+    }
+  }, [mapDialogOpen, isNarrowPreview]);
 
   useEffect(() => {
     const dialog = mapDialogRef.current;

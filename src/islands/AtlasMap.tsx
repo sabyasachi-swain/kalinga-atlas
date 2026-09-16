@@ -402,6 +402,13 @@ export function AtlasMap({
   const zoomColRef = useRef<HTMLDivElement | null>(null);
   const zoomRef = useRef<ZoomBehavior<HTMLDivElement, unknown> | null>(null);
   const nodeRefs = useRef<Map<string, SVGGElement>>(new Map());
+  /** Render budget fix: label placement is written straight to these DOM
+   * nodes (see the labelInfo effect below), the same "direct DOM write,
+   * commit React state at most once per gesture" pattern the live zoom
+   * transform already uses — going through `setState` here added a whole
+   * extra render per committed transform, pushing a 20-step wheel zoom's
+   * render count from 2 to 4. */
+  const labelRefs = useRef<Map<string, SVGTextElement>>(new Map());
   const routePathRefs = useRef<Map<string, SVGPathElement>>(new Map());
   const lastSelectedKey = useRef<string | null>(null);
   const rootGRef = useRef<SVGGElement | null>(null);
@@ -459,6 +466,11 @@ export function AtlasMap({
   /** A1: which of the two view buttons (if either) matches the current
    * transform. Any manually-triggered zoom/pan event clears it to 'manual'. */
   const [viewMode, setViewMode] = useState<'coast' | 'ocean' | 'manual'>('coast');
+  /** Coordinator-confirmed bug fix: the last view a button actually named
+   * (never 'manual') — survives a manual pan/zoom so a later size change
+   * still has something sensible to refit to. Updated only by
+   * showCoast/showOcean. */
+  const lastNamedViewRef = useRef<'coast' | 'ocean'>('coast');
   /** A1: both view buttons are aria-disabled for the length of a transition. */
   const [viewTransitioning, setViewTransitioning] = useState(false);
   /** A2: dismissible "scroll to zoom" hint, mouse pointers only. */
@@ -503,6 +515,27 @@ export function AtlasMap({
       );
     });
     ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // Coordinator-confirmed bug fix: the "Did you know?" toast used a fixed
+  // `top: var(--space-3)` offset from the map card's own top-right corner,
+  // which only happened to clear the topbar (period label + view-toggle
+  // buttons, wrapping onto a second line at some widths/captions) by
+  // coincidence. Measuring the topbar's real height and writing it to a CSS
+  // var — the same direct-DOM-write pattern as `--map-counter` above,
+  // so this never adds a React render — lets the toast's own CSS position
+  // itself just below the actual chrome instead of guessing a fixed gap.
+  useEffect(() => {
+    const topbar = topbarRef.current;
+    const figure = figureRef.current;
+    if (!topbar || !figure) return;
+    const apply = () => {
+      figure.style.setProperty('--map-chrome-top', `${Math.ceil(topbar.getBoundingClientRect().height)}px`);
+    };
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(topbar);
     return () => ro.disconnect();
   }, []);
 
@@ -848,6 +881,14 @@ export function AtlasMap({
       const el = stageRef.current;
       const behavior = zoomRef.current;
       if (!el || !behavior) {
+        // Investigated per the coordinator's (unverified) finding: this
+        // branch itself never sets `viewTransitioning` true, so it can't
+        // get stuck from its own call — but if a *previous* call is still
+        // mid-flight when this one bails out here, that previous call's
+        // rAF loop is never cancelled or completed by this path, so its
+        // eventual `commit()` may not run either. Clearing here removes
+        // that tail risk for free rather than relying on it not mattering.
+        setViewTransitioning(false);
         onDone?.();
         return;
       }
@@ -1020,6 +1061,7 @@ export function AtlasMap({
     const pts = coastFitPoints();
     if (pts.length === 0) return;
     setViewMode('coast');
+    lastNamedViewRef.current = 'coast';
     animateTo(fitWithHeadroom(pts, COAST_PADDING, minFitSpanPx));
   }, [coastFitPoints, fitWithHeadroom, minFitSpanPx, animateTo]);
 
@@ -1027,6 +1069,7 @@ export function AtlasMap({
     const pts = oceanFitPoints();
     if (pts.length === 0) return;
     setViewMode('ocean');
+    lastNamedViewRef.current = 'ocean';
     // A4 fix: less padding than the coast fit — the ocean view already has
     // to squeeze a much taller geographic extent into the same
     // chrome-reduced safe area, so every extra percent of padding shrinks
@@ -1036,23 +1079,32 @@ export function AtlasMap({
   }, [oceanFitPoints, fitWithHeadroom, animateTo]);
 
   /**
-   * A1/A3 fix: re-fits the *current* view (never overriding a manual
-   * pan/zoom) whenever this runs. Used both for the very first fit on
-   * mount and for every later stage-size change — the phone dialog moves
-   * this same AtlasMap instance into a differently-sized host via the
-   * portal in Atlas.tsx, and the transform fitted for the inline host's
-   * size is meaningless once the stage is a different size, leaving every
-   * marker off-screen. Goes through `animateTo` (liveTransformRef, one
-   * committed render) except the very first time, which applies instantly
-   * — there is nothing to animate *from* yet.
+   * Coordinator-confirmed bug fix: this used to bail out entirely once
+   * `viewMode === 'manual'` — but *any* real pan/zoom gesture sets that, so
+   * after a single manual interaction every later size change (opening the
+   * phone dialog, closing it, rotating, resizing) silently skipped the
+   * refit, reintroducing the blank-map bug by another path (pan once
+   * inline, then tap "Explore the map": the dialog got the old transform
+   * at the new size). Fit to the last *named* view (`lastNamedViewRef`,
+   * updated only by `showCoast`/`showOcean`) regardless of manual state —
+   * a size change is exactly the case where the previous manual framing is
+   * no longer meaningful anyway. Re-asserts `viewMode` to that named view
+   * too, since the refit really did just (re)apply it. Used both for the
+   * very first fit on mount and for every later stage-size change — the
+   * phone dialog moves this same AtlasMap instance into a
+   * differently-sized host via the portal in Atlas.tsx. Goes through
+   * `animateTo` (liveTransformRef, one committed render) except the very
+   * first time, which applies instantly — there is nothing to animate
+   * *from* yet.
    */
   const refitCurrentView = useCallback(
     (instant: boolean) => {
-      if (viewMode === 'manual') return;
-      const pts = viewMode === 'ocean' ? oceanFitPoints() : coastFitPoints();
+      const target1 = lastNamedViewRef.current;
+      const pts = target1 === 'ocean' ? oceanFitPoints() : coastFitPoints();
       if (pts.length === 0) return;
-      const padPct = viewMode === 'ocean' ? OCEAN_PADDING : COAST_PADDING;
-      const span = viewMode === 'ocean' ? 0 : minFitSpanPx;
+      const padPct = target1 === 'ocean' ? OCEAN_PADDING : COAST_PADDING;
+      const span = target1 === 'ocean' ? 0 : minFitSpanPx;
+      setViewMode(target1);
       if (instant) {
         const el = stageRef.current;
         const behavior = zoomRef.current;
@@ -1063,7 +1115,7 @@ export function AtlasMap({
         animateTo(fitWithHeadroom(pts, padPct, span));
       }
     },
-    [viewMode, oceanFitPoints, coastFitPoints, fitWithHeadroom, minFitSpanPx, animateTo],
+    [oceanFitPoints, coastFitPoints, fitWithHeadroom, minFitSpanPx, animateTo],
   );
   // The size-change effect below only needs the *latest* refit function,
   // not to re-run every time viewMode (or anything refitCurrentView
@@ -1651,7 +1703,39 @@ export function AtlasMap({
    * x/y/k, marker size and cluster set, never the live gesture ref, and on
    * a fresh read of the chrome rects), never per animation frame.
    */
-  const labelInfo = useMemo(() => {
+  // Coordinator-confirmed bug fix: a fixed `charW` estimate under-measures
+  // real text at a larger browser font size or a zoomed page, so
+  // `collidesAny` below could pass a box that genuinely overlaps — exactly
+  // for the visitors who most need it not to. Measured for real via a
+  // hidden SVG <text> probe (same `.marker-label` class, so the same
+  // computed font) and `getComputedTextLength()`, one call per marker name
+  // per pass — cheap at this marker count. Written straight to each label
+  // `<text>` node via `labelRefs` (see below) rather than through
+  // `setState`, for the same reason the live zoom transform is written
+  // straight to the DOM: a `setState` here added a whole extra React
+  // render on top of the one the committed transform already causes,
+  // which is what pushed a 20-step wheel zoom's render count from 2 to 4.
+  // Still only ever runs on the same "committed transform changed"
+  // cadence as before (same dependency list as the old render-phase
+  // useMemo this replaced), so it stays off the per-frame gesture path —
+  // it just now runs after paint, which is what makes a real
+  // `getComputedTextLength()` measurement possible at all.
+  const labelProbeRef = useRef<SVGTextElement | null>(null);
+
+  useEffect(() => {
+    const probe = labelProbeRef.current;
+    const measureWidth = (name: string): number => {
+      if (probe) {
+        probe.textContent = name;
+        try {
+          const w = probe.getComputedTextLength();
+          if (Number.isFinite(w) && w > 0) return w + 4;
+        } catch {
+          /* fall through to the estimate below */
+        }
+      }
+      return name.length * 6.4 + 4; // pre-paint / probe-unavailable fallback only
+    };
     const map = new Map<string, { show: boolean; dx: number; dy: number; anchor: 'start' | 'end' | 'middle' }>();
     const safe = getSafeRect();
     const visible = markers.filter((m) => !clusteredKeys.has(m.key));
@@ -1660,7 +1744,6 @@ export function AtlasMap({
       const bScore = (selectedKey === b.key ? 2 : 0) + (b.inactive ? 0 : 1);
       return bScore - aScore;
     });
-    const charW = 6.4;
     const lineH = 14;
     const radiusFor = (_m: MarkerDatum) => markerRadius;
 
@@ -1706,7 +1789,7 @@ export function AtlasMap({
     for (const m of priority) {
       const px = m.x * k + x;
       const py = m.y * k + y;
-      const textWidth = m.name.length * charW + 4;
+      const textWidth = measureWidth(m.name);
       const gap = radiusFor(m) + MARKER_VISUAL_PAD;
       // kid-experience.md A1/A4: every Kalinga port keeps a *permanent*
       // label at the coast view — never hidden, only routed around. A
@@ -1764,7 +1847,18 @@ export function AtlasMap({
       placedBoxes.push(chosenBox);
       map.set(m.key, { show: true, dx: chosen.dx, dy: chosen.dy, anchor: chosen.anchor });
     }
-    return map;
+    // Direct DOM write, no setState: see the comment above this effect.
+    for (const [key, el] of labelRefs.current) {
+      const info = map.get(key);
+      if (!info || !info.show) {
+        el.style.display = 'none';
+        continue;
+      }
+      el.style.display = '';
+      el.setAttribute('x', String(info.dx));
+      el.setAttribute('y', String(info.dy));
+      el.setAttribute('text-anchor', info.anchor);
+    }
   }, [markers, k, x, y, selectedKey, markerRadius, clusters, clusteredKeys, viewMode, getSafeRect]);
 
   const periodYears = period ? `${formatYear(period.start_year)} – ${formatYear(period.end_year)}` : '';
@@ -1839,6 +1933,14 @@ export function AtlasMap({
             </symbol>
           </defs>
 
+          {/* Hidden measuring probe for label placement (see the labelInfo
+              effect) — same .marker-label class so its computed font
+              matches the real labels exactly; getComputedTextLength() on
+              this element is what replaces the old fixed-charW estimate.
+              Never visible: 0-opacity and outside the counter-scaled root
+              group, so it never affects layout or hit-testing. */}
+          <text ref={labelProbeRef} className="marker-label" aria-hidden="true" style={{ opacity: 0 }} x={-9999} y={-9999} />
+
           <g ref={rootGRef} transform={rootTransform}>
             <g className="routes">
               {routeData.map((r) => (
@@ -1877,7 +1979,6 @@ export function AtlasMap({
             <g className="markers">
               {markers.map((m) => {
                 if (clusteredKeys.has(m.key)) return null;
-                const label = labelInfo.get(m.key);
                 const selected = selectedKey === m.key;
                 // map-style-light.md: a site marker is the same footprint as
                 // a port at whichever view is active — only the shape
@@ -1961,16 +2062,24 @@ export function AtlasMap({
                           )}
                         </>
                       )}
-                      {label?.show && (
-                        <text
-                          className="marker-label"
-                          x={label.dx}
-                          y={label.dy}
-                          textAnchor={label.anchor}
-                        >
-                          {m.name}
-                        </text>
-                      )}
+                      {/* Always rendered; the labelInfo effect writes
+                          x/y/text-anchor/display straight to this node
+                          (labelRefs) rather than through React state — see
+                          the comment on that effect. Starts hidden so
+                          nothing flashes at the default 11,4 position
+                          before the first measurement pass runs. */}
+                      <text
+                        ref={(el) => {
+                          if (el) labelRefs.current.set(m.key, el);
+                          else labelRefs.current.delete(m.key);
+                        }}
+                        className="marker-label"
+                        x={11}
+                        y={4}
+                        style={{ display: 'none' }}
+                      >
+                        {m.name}
+                      </text>
                     </g>
                   </g>
                 );

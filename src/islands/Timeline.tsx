@@ -126,10 +126,28 @@ export function Timeline({ periods, activePeriod, onChange }: TimelineProps) {
         lastX = px;
       }
     }
+    // Coordinator-confirmed bug fix: the final boundary must always show
+    // (a timeline that doesn't label its own end reads wrong), but simply
+    // overwriting the last *kept* tick's year with it — the previous
+    // behaviour — only worked if that tick happened to already sit far
+    // enough from the one before it. It doesn't: the thinning loop above
+    // only ever checked spacing between ticks it actually chose, never
+    // against a value forced in afterwards, so a short final period could
+    // still put the forced-in boundary within TICK_MIN_GAP_PX of its new
+    // neighbour, overlapping their labels. Pop any trailing kept ticks that
+    // the real final boundary would now sit too close to, then add it —
+    // preserves the same minimum gap invariant for every consecutive pair,
+    // including this last one.
     const lastBoundary = boundaries[boundaries.length - 1];
-    if (lastBoundary !== undefined && kept[kept.length - 1] !== lastBoundary) {
-      if (kept.length > 0) kept[kept.length - 1] = lastBoundary;
-      else kept.push(lastBoundary);
+    if (lastBoundary !== undefined) {
+      const lastPx = s(lastBoundary);
+      while (kept.length > 0) {
+        const prevTick = kept[kept.length - 1]!;
+        if (prevTick === lastBoundary) break;
+        if (lastPx - s(prevTick) < TICK_MIN_GAP_PX) kept.pop();
+        else break;
+      }
+      if (kept[kept.length - 1] !== lastBoundary) kept.push(lastBoundary);
     }
 
     return { bands: laid, lanes: Math.max(laneEnds.length, 1), ticks: kept, scale: s };
