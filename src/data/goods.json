@@ -420,5 +420,357 @@
     "status": "published",
     "caveats": "Both sources are 19th century. Neither says lac or wax was shipped overseas: Stirling's list is of goods on which duty was paid on leaving the district, and Hunter's is of inland traffic. Do not upgrade to a maritime export without a customs return or a factory record.",
     "icon": "lac-and-beeswax.svg"
+  },
+  {
+    "id": "coconuts",
+    "name": "Coconuts",
+    "summary": "Ships from the Maldive Islands brought coconuts to the Odisha coast every year, along with cowrie shells, coral and dried fish. River boats then carried some coconuts further inland, up the Mahanadi towards Sambalpur.",
+    "category": "foodstuff",
+    "direction": "import",
+    "kid_line": "Maldive ships brought coconuts to Balasore and Dhamra every year, and boats carried them on up the Mahanadi.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'a small supply of couris, cocoanuts, coral, and dried fish is obtained from the few Maldive vessels, which resort annually to Balasore and Dhamra, to take on board cargoes of rice and earthen pots.'"
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II Appendix III, p. 74",
+        "note": "Mahanadi river towns 'carry salt, spices, cocoa-nuts, and brass utensils up to Sambalpur... bringing thence, in exchange, cotton, wheat, oil-seeds, clarified butter, oil, molasses, iron, turmeric, tasar cloth, rice'."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Stirling names the Maldive Islands as the source of the coconuts landed at Balasore and Dhamra. Hunter's coconuts are recorded moving further inland from the coast to Sambalpur and do not state where they first came from, so they may include coconuts grown on the Odisha coast itself rather than imported ones; the two sources are read together as evidence that coconuts were a documented trade good on this coast, not as two independent proofs of the same import route.",
+    "icon": "coconuts.svg"
+  },
+  {
+    "id": "coral",
+    "name": "Coral",
+    "summary": "An 1825 British survey says a small amount of coral reached the Odisha coast on ships from the Maldive Islands. It arrived together with cowrie shells, coconuts and dried fish.",
+    "category": "gem",
+    "direction": "import",
+    "kid_line": "Maldive ships carried coral to Balasore and Dhamra, alongside cowrie shells and coconuts.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'a small supply of couris, cocoanuts, coral, and dried fish is obtained from the few Maldive vessels, which resort annually to Balasore and Dhamra'."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only one source documents this: Stirling's 1825 survey. No quantity or price is given beyond 'a small supply'. No source says what the coral was used for once it reached Odisha.",
+    "icon": "coral.svg"
+  },
+  {
+    "id": "dried-fish",
+    "name": "Fish and dried fish",
+    "summary": "Ships from the Maldive Islands brought dried fish to Balasore and Dhamra every year. Many years later, fish caught in Chilika lake were sent out by train from the town of Balugaon.",
+    "category": "foodstuff",
+    "direction": "both",
+    "kid_line": "Dried fish arrived on Maldive ships in the 1820s, and fresh Chilika fish left by train about a century later.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'a small supply of couris, cocoanuts, coral, and dried fish is obtained from the few Maldive vessels, which resort annually to Balasore and Dhamra'."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley & Mansfield, Bihar and Orissa District Gazetteers: Puri (1929), pp. 204-205",
+        "note": "'From Balugaon and Kalupara Ghat the greater part of the traffic is the export of fish and grain'; the District Fishery Officer's headquarters had recently moved from Puri to Balugaon on Chilika lake."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "The two records describe different things a century apart: Stirling's dried fish is a small import carried by Maldive ships in the 1820s; the 1929 Puri Gazetteer's fish is a lake catch sent out by rail from Chilika, with no stated overseas destination. They are combined here because both are page-verified records of fish moving as cargo through this coast, not because they describe the same trade route.",
+    "icon": "dried-fish.svg"
+  },
+  {
+    "id": "silk",
+    "name": "Silk cloth from Bengal",
+    "summary": "An 1825 British survey says silk cloth was brought into Cuttack from nearby districts of Bengal. This is a different, finer cloth from Odisha's own rough tasar silk, which travelled the other way.",
+    "category": "textile",
+    "direction": "import",
+    "kid_line": "Fine Bengal silk arrived in Cuttack, while Odisha's own rough tasar silk went the other way.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'Piece goods, silk, good tobacco, and every thing in the shape of a luxury, are imported from the adjoining districts of Bengal'."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only one source documents this import. Stirling does not say what kind of silk this was or how much arrived. Do not confuse this with the tasar-silk entry, which is Odisha's own wild silk moving in the opposite direction.",
+    "icon": "silk.svg"
+  },
+  {
+    "id": "tobacco",
+    "name": "Tobacco",
+    "summary": "An 1825 British survey says good tobacco was brought into Cuttack from nearby districts of Bengal. It arrived together with cloth and silk as a luxury good.",
+    "category": "other",
+    "direction": "import",
+    "kid_line": "Good tobacco travelled into Cuttack from Bengal, alongside cloth and silk.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "'Piece goods, silk, good tobacco, and every thing in the shape of a luxury, are imported from the adjoining districts of Bengal'."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only one source documents this import, and no quantity is given.",
+    "icon": "tobacco.svg"
+  },
+  {
+    "id": "turmeric",
+    "name": "Turmeric",
+    "summary": "Boats brought turmeric down the Mahanadi river from Sambalpur to the coast, swapping it for salt, spices, coconuts and brass utensils carried the other way. An 1872 book says turmeric was one of the everyday goods the inland Tributary States traded.",
+    "category": "other",
+    "direction": "export",
+    "kid_line": "Bright yellow turmeric floated down the Mahanadi on boats, headed for the coast.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II Appendix III, p. 74",
+        "note": "Mahanadi river towns carry goods up to Sambalpur, 'bringing thence, in exchange, cotton, wheat, oil-seeds, clarified butter, oil, molasses, iron, turmeric, tasar cloth, rice'."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II, p. 102",
+        "note": "'The trade of the Tributary States consists of rice, sugar-cane, oil seeds, clarified butter, cotton, coarse cereals, timber, lac, turmeric, beeswax, and other jungle products.'"
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Both references are from the same book (Hunter 1872), so only one distinct source supports this entry and the tier stops at Probable. Neither passage says turmeric reached the sea or left India; both describe river and inland trade only.",
+    "icon": "turmeric.svg"
+  },
+  {
+    "id": "oilseeds-and-oil",
+    "name": "Oilseeds and vegetable oil",
+    "summary": "River boats carried oil-seeds and oil down the Mahanadi from Sambalpur to the Odisha coast. An 1872 book also lists oil-seeds among the everyday goods traded by the inland Tributary States.",
+    "category": "other",
+    "direction": "export",
+    "kid_line": "Boats loaded with oil-seeds and oil floated down the Mahanadi towards the coast.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II Appendix III, p. 74",
+        "note": "Mahanadi river towns carry goods up to Sambalpur, 'bringing thence, in exchange, cotton, wheat, oil-seeds, clarified butter, oil, molasses, iron, turmeric, tasar cloth, rice'."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II, p. 102",
+        "note": "'The trade of the Tributary States consists of rice, sugar-cane, oil seeds, clarified butter, cotton, coarse cereals, timber, lac, turmeric, beeswax, and other jungle products.'"
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Both references are from the same book (Hunter 1872), so only one distinct source supports this entry and the tier stops at Probable. Neither passage says the oil-seeds or oil left India; both describe river and inland trade only.",
+    "icon": "oilseeds-and-oil.svg"
+  },
+  {
+    "id": "ghee",
+    "name": "Ghee (clarified butter)",
+    "summary": "Boats carried clarified butter, called ghee, down the Mahanadi river from Sambalpur to the coast. An 1872 book also names ghee as part of the everyday trade of the inland Tributary States.",
+    "category": "foodstuff",
+    "direction": "export",
+    "kid_line": "Pots of ghee travelled down the Mahanadi by boat, on their way to the coast.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II Appendix III, p. 74",
+        "note": "Mahanadi river towns carry goods up to Sambalpur, 'bringing thence, in exchange, cotton, wheat, oil-seeds, clarified butter, oil, molasses, iron, turmeric, tasar cloth, rice'."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II, p. 102",
+        "note": "'The trade of the Tributary States consists of rice, sugar-cane, oil seeds, clarified butter, cotton, coarse cereals, timber, lac, turmeric, beeswax, and other jungle products.'"
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Both references are from the same book (Hunter 1872), so only one distinct source supports this entry and the tier stops at Probable. Neither passage says the ghee reached the sea or left India.",
+    "icon": "ghee.svg"
+  },
+  {
+    "id": "molasses",
+    "name": "Molasses",
+    "summary": "An 1872 book says molasses was one of the goods river boats brought down the Mahanadi from Sambalpur to the coast. Boats swapped it for salt and other goods carried the other way.",
+    "category": "foodstuff",
+    "direction": "export",
+    "kid_line": "Sticky molasses travelled down the Mahanadi river, swapped for salt going the other way.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II Appendix III, p. 74",
+        "note": "Mahanadi river towns carry salt and other goods up to Sambalpur, 'bringing thence, in exchange, cotton, wheat, oil-seeds, clarified butter, oil, molasses, iron, turmeric, tasar cloth, rice'."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only one source documents this, so the tier stops at Probable. The passage describes river and inland trade only; no source says molasses reached the sea or left India.",
+    "icon": "molasses.svg"
+  },
+  {
+    "id": "brass-utensils",
+    "name": "Brass utensils",
+    "summary": "An 1872 book says river towns carried brass pots and pans from the Odisha coast up the Mahanadi river to Sambalpur. They travelled together with salt, spices and coconuts.",
+    "category": "metal",
+    "direction": "import",
+    "kid_line": "Brass pots and pans rode up the Mahanadi river on the same boats as salt and coconuts.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. II Appendix III, p. 74",
+        "note": "Mahanadi river towns 'carry salt, spices, cocoa-nuts, and brass utensils up to Sambalpur'."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only one source documents this, so the tier stops at Probable. Hunter does not say where the brass utensils were made; they moved from the coast inland, but nothing here proves they were manufactured in Odisha or shows a sea route.",
+    "icon": "brass-utensils.svg"
+  },
+  {
+    "id": "earthenware",
+    "name": "Earthen pots",
+    "summary": "An 1825 British survey says ships from the Maldive Islands loaded up on rice and earthen clay pots every time they visited the Odisha coast. They picked up their cargo at the ports of Balasore and Dhamra.",
+    "category": "ceramic",
+    "direction": "export",
+    "kid_line": "Maldive ships filled their holds with Odisha rice and clay pots before sailing home.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "Maldive vessels 'resort annually to Balasore and Dhamra, to take on board cargoes of rice and earthen pots'."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only one source documents this, so the tier stops at Probable. Stirling does not describe the pots (size, shape or use) or say where in Odisha they were made.",
+    "icon": "earthenware.svg"
+  },
+  {
+    "id": "catechu",
+    "name": "Catechu (kutha)",
+    "summary": "An 1825 British survey lists 'kutha' among the goods taxed when they left Cuttack. The survey explains that kutha is the thick, dried juice of the khair tree, used for tanning leather and for dyeing.",
+    "category": "other",
+    "direction": "export",
+    "kid_line": "Kutha, a thick juice squeezed from the khair tree, was taxed as it left Cuttack for tanning leather.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "Exports liable to duty include \"kut'h (the inspissated juice of the khayar or mimosa chadira)\", alongside bees wax, iron, oil, lac, stone plates and sal timber."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only one source documents this, so the tier stops at Probable. Stirling's list is of goods taxed on leaving Cuttack district, which is not the same as proof of a maritime export.",
+    "icon": "catechu.svg"
+  },
+  {
+    "id": "stone-plates",
+    "name": "Stone plates",
+    "summary": "An 1825 British survey lists stone plates among the goods taxed when they left Cuttack, alongside sal timber and other forest goods. The survey does not say what kind of stone they were carved from.",
+    "category": "other",
+    "direction": "export",
+    "kid_line": "Stone plates were taxed on their way out of Cuttack, right alongside sal timber.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "p. 194",
+        "note": "Exports liable to duty: 'Piece goods, bees wax, iron, kut'h..., oil, lac, stone plates, sal timber, congni wood, karbeli, shirbeli and petty articles.'"
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only one source documents this, so the tier stops at Probable. Stirling names 'stone plates' but does not say what stone, where it was quarried, or what the plates were used for; do not assume soapstone or a specific craft tradition without a further source.",
+    "icon": "stone-plates.svg"
+  },
+  {
+    "id": "roman-coins",
+    "name": "Roman coins",
+    "summary": "Roman coins have turned up in two places on the old Kalinga coast. One writer reports gold Roman coins found in the Mayurbhanj hills, probably carried inland through the port of Tamralipti, and another reports Roman coins found at the ruined port of Kalingapatnam.",
+    "category": "metal",
+    "direction": "import",
+    "kid_line": "Real Roman coins have been dug up both at Kalingapatnam and in the Mayurbhanj hills.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "'Roman gold coins from Bamanghati in Mayurbhanj' are 'argued to have arrived through Tamluk' (Tamralipti), alongside large quantities of rouletted ware from the port."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 122-123",
+        "note": "At Kalingapatnam, on the Vamsadhara mouth: an excavation in 1928 found pottery, brick walls and glazed tiles, and ASI work of 1977-79 dated settlement to 300 BCE; Roman coins are reported from the site."
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "Both accounts I could read are by Benudhar Patra (one co-authored), so they are not fully independent works; the tier is held at Probable for that reason, following the same judgement already made for the roman-amphorae entry. Bamanghati (Mayurbhanj) is in Odisha, but the coins are argued to have arrived overland from the Bengal port of Tamralipti, not directly by sea into Kalinga. No coin type, ruler or date is given by either source beyond 'Roman'.",
+    "icon": "roman-coins.svg"
   }
 ]

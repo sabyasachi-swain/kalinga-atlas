@@ -710,5 +710,671 @@
       "salt"
     ],
     "kid_line": "The road was built for pilgrims, and in 1827 a rich Bengali paid for rest-houses and bridges all along it."
+  },
+  {
+    "id": "route-dhauli-jaugada-road",
+    "name": "Dhauli to Jaugada",
+    "summary": "Ashoka had his officers carve the very same orders on rocks at Dhauli and at Jaugada. The two towns ran his new province of Kalinga together, so people must have travelled between them.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "Hultzsch, Corpus Inscriptionum Indicarum I (1925), pp. xiii-xv, xxxvii-xxxviii",
+        "note": "Both sites carry the same two Separate Rock Edicts, addressed respectively to the Mahamatras of Tosali (Dhauli) and of Samapa (Jaugada); Hultzsch treats the two as the administrative centres of one Mauryan province, Kalinga."
+      },
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), pp. 63-64",
+        "note": "Describes the edicts at Dhauli and Jaugada together, with the governor seated at Tosali - both sites presented as seats of one Mauryan provincial administration."
+      }
+    ],
+    "periods": [
+      "mauryan"
+    ],
+    "status": "published",
+    "caveats": "No source read here describes an actual road or a specific journey between the two sites; the connection drawn is administrative inference - both towns carried the same imperial edicts and belonged to one province governed from Tosali. The distance (about 100 km) and the line are schematic, read off a modern map, not a surveyed route. Do not raise this tier without a source describing real travel between them.",
+    "mode": "land",
+    "from": "dhauli",
+    "to": "jaugada",
+    "waypoints": [
+      {
+        "lat": 20.25,
+        "lng": 85.8333
+      },
+      {
+        "lat": 20,
+        "lng": 85.6
+      },
+      {
+        "lat": 19.75,
+        "lng": 85.3
+      },
+      {
+        "lat": 19.5167,
+        "lng": 84.8333
+      }
+    ],
+    "goods": [],
+    "kid_line": "Ashoka's officers had to visit both Dhauli and Jaugada, the two towns that ran his new province of Kalinga."
+  },
+  {
+    "id": "route-udayagiri-khandagiri-pithunda-road",
+    "name": "Udayagiri-Khandagiri to Pithunda",
+    "summary": "King Kharavela's own carved message says he destroyed a market town called Pithunda. His army must have marched there from his capital, near the Udayagiri and Khandagiri caves.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "hathigumpha-inscription",
+        "page": "Jayaswal & Banerji, Epigraphia Indica XX (1929-30), line 11, translation p. 88",
+        "note": "'And the market-town (?) Pithumda founded by the Ava King he ploughs down with a plough of asses' - Kharavela's own record of destroying Pithunda in his eleventh regnal year."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 113",
+        "note": "'The very location of the Asokan Edicts at Jaugarh, a place far away from the actual scene of the war i.e. Dhauli is an indication of its association with the port of Palur' - the authors read Kharavela's campaign as directed down this same southern coastal corridor towards Pithunda."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 123",
+        "note": "Pithunda 'could be located somewhere near Chicacole region of modern Andhra Pradesh', south of Palur along the same coast."
+      }
+    ],
+    "periods": [
+      "kharavela"
+    ],
+    "status": "published",
+    "caveats": "The inscription records the destruction of Pithunda, not the route the army took to reach it. Pithunda has never been excavated or located on the ground; the endpoint here is the same regional marker used in the pithunda port entry (centre of the Chicacole/Srikakulam region, read off a modern map), not a site position. Two of the three refs share an author (Benudhar Patra). The line is a schematic coastal corridor, not an attested march route.",
+    "mode": "land",
+    "from": "udayagiri-khandagiri",
+    "to": "pithunda",
+    "waypoints": [
+      {
+        "lat": 20.2667,
+        "lng": 85.7833
+      },
+      {
+        "lat": 19.8,
+        "lng": 85.3
+      },
+      {
+        "lat": 19.5167,
+        "lng": 84.8333
+      },
+      {
+        "lat": 18.9,
+        "lng": 84.3
+      },
+      {
+        "lat": 18.3,
+        "lng": 83.9
+      }
+    ],
+    "goods": [],
+    "kid_line": "Kharavela's own rock-cut message boasts that he 'ploughed down' the market town of Pithunda with a plough pulled by donkeys."
+  },
+  {
+    "id": "route-sisupalgarh-manikapatna-road",
+    "name": "Sisupalgarh to Manikapatna",
+    "summary": "Sisupalgarh was a huge walled city a little way inland, and Manikapatna was a port on Chilika lake not far away. The very same kind of patterned pottery has been found in both places.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "Rouletted ware from Sisupalagarh, Manikpatna and Radhanagara in Orissa is listed together with the same ware from sites across the Bay of Bengal, read by the authors as evidence of one shared trade network."
+      },
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 118",
+        "note": "'people from different parts used to come by land and river route to the nearest port, then made a coastal voyage to different big ports' - the general model of inland centres feeding the nearest port."
+      }
+    ],
+    "periods": [
+      "kharavela",
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "No source read here records a journey or road between the two places; the link is inferred from the shared pottery style and from Patra's general model of inland cities using the nearest port. Sisupalgarh lies roughly 70 km inland of Chilika by the shortest line; no bridging site or riverine link was checked. Line schematic.",
+    "mode": "land",
+    "from": "sisupalgarh",
+    "to": "manikapatna",
+    "waypoints": [
+      {
+        "lat": 20.225,
+        "lng": 85.8583
+      },
+      {
+        "lat": 20,
+        "lng": 85.75
+      },
+      {
+        "lat": 19.85,
+        "lng": 85.6
+      },
+      {
+        "lat": 19.7317,
+        "lng": 85.5539
+      }
+    ],
+    "goods": [],
+    "kid_line": "The same fine, dotted pottery has been dug up at big walled Sisupalgarh and at the little port of Manikapatna."
+  },
+  {
+    "id": "route-palur-sonapur-coast",
+    "name": "Palur to Sonapur",
+    "summary": "Palur and Sonapur were both old ports on the south Odisha coast, a short sail apart. Ships likely worked their way down the coast from one to the next.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 118, 121-122",
+        "note": "p. 118 sets out the general model of short coastal hops between neighbouring ports. Palur (p. 121) and Sonapur (pp. 121-122, 'where river Bahuda enters into the Bay of Bengal ... 20 km away from Berhampur') are treated in sequence as ports of ancient Odisha along the same stretch of coast."
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "No voyage or record between these two named ports was found; the route is inferred from their proximity (about 55 km apart) and from Patra's general model of coastal hopping. Sonapur's own dating rests only on the paper's general framing of 'ports of ancient Odisha', not an excavation or inscription. Line schematic, drawn along the modern coast.",
+    "mode": "coastal",
+    "from": "palur",
+    "to": "sonapur",
+    "waypoints": [
+      {
+        "lat": 19.45,
+        "lng": 85.1833
+      },
+      {
+        "lat": 19.3,
+        "lng": 85
+      },
+      {
+        "lat": 19.1,
+        "lng": 84.78
+      }
+    ],
+    "goods": [],
+    "kid_line": "Palur and Sonapur sit on the same short stretch of coast, close enough for a boat to hop between them in a day."
+  },
+  {
+    "id": "route-sonapur-barua-coast",
+    "name": "Sonapur to Barua",
+    "summary": "Sonapur and Barua were both small ports further south along the same old coast. A Greek geographer wrote about places like these long ago.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 118, 121-123",
+        "note": "p. 118 sets out the general model of short coastal hops. Sonapur (pp. 121-122) and Barua ('Barua or Barwah ... from the accounts of Ptolemy ... one of the important trade centres', p. 123) are treated as neighbouring ports on the same ancient coast."
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "No voyage or record between these two specific ports was found; inferred from proximity (about 35 km) and Patra's general coastal-hop model. Both identifications ultimately rest on Maltby's 1918 Ganjam District Manual, not read directly in this session. Line schematic.",
+    "mode": "coastal",
+    "from": "sonapur",
+    "to": "barua",
+    "waypoints": [
+      {
+        "lat": 19.1,
+        "lng": 84.78
+      },
+      {
+        "lat": 18.97,
+        "lng": 84.68
+      },
+      {
+        "lat": 18.85,
+        "lng": 84.58
+      }
+    ],
+    "goods": [],
+    "kid_line": "Barua is named in a very old Greek book about India, alongside other little ports along this same coast."
+  },
+  {
+    "id": "route-barua-kalingapatnam-coast",
+    "name": "Barua to Kalingapatnam",
+    "summary": "Barua and Kalingapatnam both sat where small rivers meet the sea. Kalingapatnam was the bigger of the two, and its name means 'town of the Kalinga people'.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 118, 123",
+        "note": "p. 118 sets out the general model of short coastal hops. Barua ('now in Andhra Pradesh, 6 km from Sompeta', p. 123) and Kalingapatnam, at the Vamsadhara mouth, are discussed together as neighbouring ancient ports on the same stretch of coast."
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "No voyage or record between these two ports was found; inferred from proximity (about 75 km) and Patra's coastal-hop model. Line schematic, drawn along the modern coast.",
+    "mode": "coastal",
+    "from": "barua",
+    "to": "kalingapatnam",
+    "waypoints": [
+      {
+        "lat": 18.85,
+        "lng": 84.58
+      },
+      {
+        "lat": 18.6,
+        "lng": 84.35
+      },
+      {
+        "lat": 18.3333,
+        "lng": 84.1333
+      }
+    ],
+    "goods": [],
+    "kid_line": "Kalingapatnam's own name means 'town of the Kalinga people' - a reminder of how far this coast carried the Kalinga name."
+  },
+  {
+    "id": "route-dhamra-chandbali-river",
+    "name": "Dhamra to Chandbali",
+    "summary": "Dhamra was the older port on this river mouth, made official in 1858. Chandbali grew up a little further inland and took over most of Dhamra's trade.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, Appendix IV, pp. 107-108",
+        "note": "The Dhamra estuary 'was declared a port by Government Notification, No. 877, of the 18th May 1858 ... As a port for native shippers, it ranks next to that of Balasor among the Orissa harbours.'"
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), p. 8",
+        "note": "'The Dhamra ... is a fine estuary formed by the junction of the Brahmani and Baitarani rivers.' 'Chandbali ... absorbed the trade of the old port of Dhamra.'"
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Both quotations describe an administrative and commercial succession - Dhamra declared a port in 1858, then its trade drawn away by Chandbali, 20 miles further up the same estuary - not a description of boats plying between the two named points, so the drawn line and any specific cargo are schematic. Neither source gives a date for when the shift was complete.",
+    "mode": "river",
+    "from": "dhamra",
+    "to": "chandbali",
+    "waypoints": [
+      {
+        "lat": 20.79,
+        "lng": 86.95
+      },
+      {
+        "lat": 20.785,
+        "lng": 86.85
+      },
+      {
+        "lat": 20.7833,
+        "lng": 86.75
+      }
+    ],
+    "goods": [],
+    "kid_line": "Dhamra used to be the busy port here, until the newer port of Chandbali, just up the river, took its trade away."
+  },
+  {
+    "id": "route-cuttack-false-point-canal",
+    "name": "Cuttack to False Point by canal",
+    "summary": "False Point was the spot where the Mahanadi river reached the open sea. A canal linked it to Cuttack, so goods could travel between the inland city and ocean-going ships.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XI, pp. 92, 98",
+        "note": "p. 92: 'the chief trade centres are Cuttack city, False Point port, and Chandbali'; p. 98: Cuttack City is 'connected by canal with Chandbali and False Point.'"
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley & Cousins, Bihar and Orissa District Gazetteers: Cuttack, 2nd edn (1933), pp. 7-8",
+        "note": "p. 7: 'False Point ... constitutes the only anchorage on the coast.' p. 8: a silting, exposed anchorage at the Mahanadi mouth - the sea end of the same canal system the Imperial Gazetteer names."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Neither gazetteer maps the canal itself; the drawn line is schematic, following the Mahanadi distributaries on a modern map. No cargo specific to this leg was found in the two sources read, so goods is left empty rather than copied from the parallel Cuttack-Chandbali canal entry. False Point's own entry describes a silting, exposed roadstead, not a sheltered harbour.",
+    "mode": "river",
+    "from": "cuttack",
+    "to": "false-point",
+    "waypoints": [
+      {
+        "lat": 20.4833,
+        "lng": 85.8667
+      },
+      {
+        "lat": 20.45,
+        "lng": 86.1
+      },
+      {
+        "lat": 20.4,
+        "lng": 86.45
+      },
+      {
+        "lat": 20.35,
+        "lng": 86.79
+      }
+    ],
+    "goods": [],
+    "kid_line": "A canal carried goods from inland Cuttack all the way out to the sea at False Point."
+  },
+  {
+    "id": "route-balugaon-puri-chilika",
+    "name": "Balugaon to Puri across Chilika",
+    "summary": "Balugaon was a fishing and grain town on the edge of Chilika lake. Boats and, later, trains carried its fish and grain on towards Puri and beyond.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley & Mansfield, Bihar and Orissa District Gazetteers: Puri (1929), pp. 204-205, 212-213",
+        "note": "'From Balugaon and Kalupara Ghat the greater part of the traffic is the export of fish and grain'; the District Fishery Officer's headquarters were 'shifted to Balugaon on the Chilka lake.'"
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only one source was read, so the tier stops at Probable. The gazetteer documents Balugaon's fish and grain traffic and its later rail link, not a specific boat route to Puri; the line across Chilika and along the coastal strip is schematic, following the same lake-and-strip corridor as the existing Gopalpur-Puri-Chilika entry. No specific good in goods.json matches 'fish', and 'grain' is not tied to a named good in the source, so goods is left empty.",
+    "mode": "river",
+    "from": "balugaon",
+    "to": "puri",
+    "waypoints": [
+      {
+        "lat": 19.75,
+        "lng": 85.21
+      },
+      {
+        "lat": 19.72,
+        "lng": 85.4
+      },
+      {
+        "lat": 19.7,
+        "lng": 85.6
+      },
+      {
+        "lat": 19.8,
+        "lng": 85.8167
+      }
+    ],
+    "goods": [],
+    "kid_line": "Fishing boats at Balugaon brought in the day's catch, and grain from the villages went out the same way."
+  },
+  {
+    "id": "route-manikapatna-khalkatapatna-coast",
+    "name": "Manikapatna to Khalkatapatna",
+    "summary": "Manikapatna and Khalkatapatna were both busy ports on the Odisha coast about 800 years ago. Chinese plates and coins have turned up at both places.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 119-120",
+        "note": "Both sites are described with Chinese ceramics: Khalkatapatna's excavation (pp. 119-120) yielded Chinese celadon and porcelain with blue floral design, c. 12th-14th century CE; Manikapatna (p. 120) yielded rouletted ware, amphora and, in its later phase, Chinese wares."
+      },
+      {
+        "source_id": "patnaik-2014-odisha-review",
+        "page": "p. 105",
+        "note": "Khalkatapatna excavation finds include 'Chinese Celadonware, Chinese porcelain'; Manikapatna's finds list (pp. 104-105) likewise includes Chinese celadon, porcelain and a Chinese coin."
+      }
+    ],
+    "periods": [
+      "somavamshi",
+      "eastern-ganga"
+    ],
+    "status": "published",
+    "caveats": "The tie between the two ports is shared Chinese ceramic finds, not a documented voyage between them, so the tier stops at Probable (matching the precedent of the existing Manikapatna-Arikamedu entry). The two sites are about 50 km apart along the coast; the line is schematic, drawn along the modern shore. Khalkatapatna's Chinese material is dated c. 12th-14th century CE by most sources read, which fits the Eastern Ganga and early Gajapati era rather than the whole Somavamshi period; the somavamshi tag follows Khalkatapatna's own period list in sites.json.",
+    "mode": "coastal",
+    "from": "manikapatna",
+    "to": "khalkatapatna",
+    "waypoints": [
+      {
+        "lat": 19.7317,
+        "lng": 85.5539
+      },
+      {
+        "lat": 19.78,
+        "lng": 85.75
+      },
+      {
+        "lat": 19.82,
+        "lng": 85.9
+      },
+      {
+        "lat": 19.8536,
+        "lng": 86.0444
+      }
+    ],
+    "goods": [
+      "chinese-ceramics"
+    ],
+    "kid_line": "Diggers found the same kind of Chinese plates and coins at both Manikapatna and Khalkatapatna."
+  },
+  {
+    "id": "route-pipli-balasore-coast",
+    "name": "Pipli to Balasore",
+    "summary": "Pipli was once the busiest port on the Orissa coast. When sand blocked its river, traders and English merchants moved their business down the coast to Balasore instead.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, pp. 37-40",
+        "note": "p. 37: about 1514 the Portuguese founded a colony at 'Pippli, now a ruined and silt-locked village ... but then a fine harbour.' p. 40: silting of the Subarnarekha moved the Pippli factory to Balasore."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), pp. 9, 204",
+        "note": "p. 204: 'Pipli was once the most important port on the Orissa coast ... By the beginning of the 18th century the silting up of its mouth had ruined Pipli.' p. 9 ties this decline to Balasore's later rise as 'the only port of which Orissa could boast.'"
+      }
+    ],
+    "periods": [
+      "mughal-maratha"
+    ],
+    "status": "published",
+    "caveats": "Both sources describe a shift of trade from Pipli to Balasore as the Subarnarekha silted up, not a description of ships sailing this specific short hop, so the drawn line is schematic. The two sources give different dates for the Portuguese arrival at Pipli (Hunter: c. 1514; the Balasore gazetteer p. 204: 1599) and disagree on whether the English ever had a factory there at all (gazetteer p. 34 n., quoting Wilson's Early Annals) - see the caveats on the 'pipli' port entry itself.",
+    "mode": "coastal",
+    "from": "pipli",
+    "to": "balasore",
+    "waypoints": [
+      {
+        "lat": 21.6,
+        "lng": 87.42
+      },
+      {
+        "lat": 21.56,
+        "lng": 87.2
+      },
+      {
+        "lat": 21.5,
+        "lng": 86.9333
+      }
+    ],
+    "goods": [],
+    "kid_line": "When sand blocked the river at Pipli, traders picked up and moved their business down the coast to Balasore."
+  },
+  {
+    "id": "route-tamralipti-mahatittha-sea",
+    "name": "Tamralipti to Mahatittha",
+    "summary": "A 5th-century Buddhist book says ships often sailed between Tamralipti and Mahatittha, a great port in Sri Lanka. Both were busy stops for monks and merchants crossing the Bay of Bengal.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 24",
+        "note": "The 5th-century Samantapasadika, Buddhaghosa's commentary, 'refers to ships often travelling between Tamralipti and Mahatittha.'"
+      }
+    ],
+    "periods": [
+      "gupta"
+    ],
+    "status": "published",
+    "caveats": "Only one source was read, so the tier stops at Probable; the claim is Dayalan's paraphrase of the Pali commentary via a secondary chain, not an independent reading of the Samantapasadika itself or of Buddhaghosa scholarship. No cargo is named. The sea lane is a schematic great-circle-ish line down the Bay of Bengal and across to north-western Sri Lanka, not a plotted sailing course.",
+    "mode": "maritime",
+    "from": "tamralipti",
+    "to": "mahatittha",
+    "waypoints": [
+      {
+        "lat": 22.2833,
+        "lng": 87.95
+      },
+      {
+        "lat": 19.5,
+        "lng": 85.5
+      },
+      {
+        "lat": 15.5,
+        "lng": 82
+      },
+      {
+        "lat": 12,
+        "lng": 80.5
+      },
+      {
+        "lat": 9.5,
+        "lng": 80
+      },
+      {
+        "lat": 8.9894,
+        "lng": 79.9981
+      }
+    ],
+    "goods": [],
+    "kid_line": "A 1,500-year-old Buddhist book says ships often sailed back and forth between Tamralipti and Sri Lanka's great port of Mahatittha."
+  },
+  {
+    "id": "route-guangzhou-palembang-sea",
+    "name": "Guangzhou to Palembang",
+    "summary": "The Chinese monk Yijing sailed from the port of Guangzhou to Palembang on his way to study in India. He wrote down his own journey, stop by stop.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 27",
+        "note": "'Yi-Jing, who took the maritime route to India, left the Guang-Zhou region in China and visited Fo-che, Mo-lo-yu and Sumatra ...' Dayalan cites Chavannes's 1894 translation of Yijing's account."
+      }
+    ],
+    "periods": [
+      "post-gupta"
+    ],
+    "status": "published",
+    "caveats": "Only one source was read, so the tier stops at Probable; this rests on Dayalan's paraphrase of Chavannes's 1894 French translation of Yijing, not an independent reading of a primary translation such as Takakusu 1896. No cargo is named - this was a monk's pilgrimage voyage. The sea lane is schematic.",
+    "mode": "maritime",
+    "from": "guangzhou",
+    "to": "palembang",
+    "waypoints": [
+      {
+        "lat": 23.13,
+        "lng": 113.26
+      },
+      {
+        "lat": 15,
+        "lng": 110
+      },
+      {
+        "lat": 5,
+        "lng": 107
+      },
+      {
+        "lat": -2.9761,
+        "lng": 104.7754
+      }
+    ],
+    "goods": [],
+    "kid_line": "The monk Yijing wrote down his own voyage from Guangzhou to Palembang on his way to study in India."
+  },
+  {
+    "id": "route-palembang-kedah-sea",
+    "name": "Palembang to Kedah",
+    "summary": "After Palembang, the monk Yijing's ship carried him on to Kedah on the Malay Peninsula. From there he waited for the winds to carry him further west.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 27",
+        "note": "'... visited Fo-che, Mo-lo-yu and Sumatra ... proceeded northwest to Kie-tcha.' Dayalan cites Chavannes's 1894 translation of Yijing's account; Kie-tcha is read as Kedah."
+      }
+    ],
+    "periods": [
+      "post-gupta"
+    ],
+    "status": "published",
+    "caveats": "Only one source was read, so the tier stops at Probable; this rests on Dayalan's paraphrase of Chavannes's 1894 translation, not an independent primary reading. Yijing's account also names stops at Mo-lo-yu and in Sumatra between Fo-che and Kie-tcha that are not modelled as separate ports here, so this line skips them. The sea lane is schematic.",
+    "mode": "maritime",
+    "from": "palembang",
+    "to": "kedah",
+    "waypoints": [
+      {
+        "lat": -2.9761,
+        "lng": 104.7754
+      },
+      {
+        "lat": 0,
+        "lng": 102
+      },
+      {
+        "lat": 5.75,
+        "lng": 100.4
+      }
+    ],
+    "goods": [],
+    "kid_line": "Yijing's ship called at Palembang, then sailed on to Kedah on the Malay Peninsula."
+  },
+  {
+    "id": "route-kedah-tamralipti-sea",
+    "name": "Kedah to Tamralipti",
+    "summary": "From Kedah, Yijing's ship sailed past the Nicobar Islands and on to Tamralipti, the great port at the top of the Bay of Bengal. He later sailed the same route home again.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 27",
+        "note": "'Then, he proceeded east and reached the Nicobar Islands ... Proceeding northwest from these islands, Yi-Jing reached Tamralipti.' Returning to China 'he took the same route, landing again at Kie-tcha and Fo-che.' Dayalan cites Chavannes's 1894 translation of Yijing's account."
+      }
+    ],
+    "periods": [
+      "post-gupta"
+    ],
+    "status": "published",
+    "caveats": "Only one source was read, so the tier stops at Probable; this rests on Dayalan's paraphrase of Chavannes's 1894 translation, not an independent primary reading. The Nicobar Islands are not modelled as a port here, so the waypoint there is schematic, read off a modern map. Yijing made the same voyage in reverse on his way home; this single entry stands for both directions.",
+    "mode": "maritime",
+    "from": "kedah",
+    "to": "tamralipti",
+    "waypoints": [
+      {
+        "lat": 5.75,
+        "lng": 100.4
+      },
+      {
+        "lat": 7,
+        "lng": 93.7
+      },
+      {
+        "lat": 12,
+        "lng": 90
+      },
+      {
+        "lat": 18,
+        "lng": 89
+      },
+      {
+        "lat": 22.2833,
+        "lng": 87.95
+      }
+    ],
+    "goods": [],
+    "kid_line": "Yijing's ship sailed past the Nicobar Islands on its way to the great port of Tamralipti."
   }
 ]

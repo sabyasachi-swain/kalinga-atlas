@@ -285,3 +285,142 @@ out, deliberately:
 `patra-2014-odisha-review-ports` and `mccrindle-ptolemy-1927`, which live in
 `docs/research/new-sources-goods.json` until a human merges them into `src/data/sources.json`, plus
 the pre-existing warnings for the inscriptions agent's two sources.
+
+## Session 2026-09-16 — 14 more `good` entries, all `status: "draft"`
+
+By this session, `patra-2014-odisha-review-ports` and `mccrindle-ptolemy-1927` had already been
+merged into `src/data/sources.json` with `approved_by_human: true` (dated "approved under delegation
+2026-09-14"), so the warning above no longer applies. A parallel ports session had also added 12 new
+ports (`false-point`, `dhamra`, `sonapur`, `barua`, `balugaon`, `mahatittha`, `maliwan`, `palembang`,
+`kedah`, `alagankulam`, `nagapattinam`, `guangzhou`); none of the goods below were linked to them,
+because editing `ports.json` was out of scope for this session.
+
+This session added 14 entries, all `status: "draft"`, and used **zero new sources** — every citation
+reuses a `source_id` already `approved_by_human: true` in `src/data/sources.json` before this session
+started. No line was added to `flagged-sources.md` and `docs/research/new-sources-goods.json` was not
+created, because there was nothing to flag.
+
+| id | category | direction | tier | distinct sources | periods |
+|---|---|---|---|---|---|
+| `coconuts` | foodstuff | import | Strongly Supported | 2 | british |
+| `coral` | gem | import | Probable | 1 | british |
+| `dried-fish` | foodstuff | both | Strongly Supported | 2 | british |
+| `silk` | textile | import | Probable | 1 | british |
+| `tobacco` | other | import | Probable | 1 | british |
+| `turmeric` | other | export | Probable | 1 | british |
+| `oilseeds-and-oil` | other | export | Probable | 1 | british |
+| `ghee` | foodstuff | export | Probable | 1 | british |
+| `molasses` | foodstuff | export | Probable | 1 | british |
+| `brass-utensils` | metal | import | Probable | 1 | british |
+| `earthenware` | ceramic | export | Probable | 1 | british |
+| `catechu` | other | export | Probable | 1 | british |
+| `stone-plates` | other | export | Probable | 1 | british |
+| `roman-coins` | metal | import | Probable | 1 (2 ids, shared author) | early-historic |
+
+### Method: reused already-verified quotes instead of re-fetching
+
+The previous (2026-09-14) goods session read Hunter 1872 and Stirling 1825 through a page-attribution
+script cross-checked against OCR running heads, and its exact quotes are already embedded, verbatim,
+in the currently `published` entries `cowrie-shells`, `rice`, `iron`, `lac-and-beeswax` and
+`cotton-textiles`. Rather than re-fetching and re-OCR'ing the same archive.org scans, this session
+mined those same already-verified sentences for the additional commodities they name but that had not
+yet been turned into their own entries:
+
+- **Stirling 1825, p. 194** (already quoted in full in `cowrie-shells`/`rice`): the single sentence
+  "Piece goods, silk, good tobacco... are imported from the adjoining districts of Bengal, and a small
+  supply of couris, cocoanuts, coral, and dried fish is obtained from the few Maldive vessels, which
+  resort annually to Balasore and Dhamra, to take on board cargoes of rice and earthen pots" was mined
+  for `coconuts`, `coral`, `dried-fish`, `silk`, `tobacco` and `earthenware`.
+- **Stirling 1825, p. 194** (the dutiable-exports sentence, already quoted in `iron`/`sal-timber`):
+  "Piece goods, bees wax, iron, kut'h (the inspissated juice of the khayar or mimosa chadira), oil,
+  lac, stone plates, sal timber, congni wood, karbeli, shirbeli and petty articles" was mined for
+  `catechu` and `stone-plates`. `congni wood`, `karbeli` and `shirbeli` are left out again: nothing
+  read identifies what they are.
+- **Hunter 1872, vol. II Appendix III, p. 74** (already quoted in `iron`): "carry salt, spices,
+  cocoa-nuts, and brass utensils up to Sambalpur... bringing thence, in exchange, cotton, wheat,
+  oil-seeds, clarified butter, oil, molasses, iron, turmeric, tasar cloth, rice" was mined for
+  `coconuts` (second source), `brass-utensils`, `turmeric`, `oilseeds-and-oil`, `ghee` and `molasses`.
+  `cotton` and `wheat` and generic `spices` are deliberately left out: cotton and tasar cloth already
+  have their own entries, generic `spices` was already rejected in the 2026-09-14 session for
+  vagueness, and a `wheat` entry would add nothing a reader could not infer from the others.
+- **Hunter 1872, vol. II, p. 102** (already quoted in `lac-and-beeswax`): "The trade of the Tributary
+  States consists of rice, sugar-cane, oil seeds, clarified butter, cotton, coarse cereals, timber,
+  lac, turmeric, beeswax, and other jungle products" corroborates `turmeric`, `oilseeds-and-oil` and
+  `ghee` from within the *same* book as the Appendix III quote, so it does **not** raise any of them
+  past Probable (one distinct `source_id`, per H2).
+- **District Gazetteers (Balasore/Puri), already quoted in the `balugaon` port entry**: O'Malley &
+  Mansfield, *Bihar and Orissa District Gazetteers: Puri* (1929), pp. 204-205, "From Balugaon and
+  Kalupara Ghat the greater part of the traffic is the export of fish and grain" gave `dried-fish` its
+  second, independent source (a different volume and decade from Stirling's Maldive-fish note), hence
+  `direction: "both"`.
+- **`patra-patra-ohrj-maritime-archaeology`, p. 110** (already quoted in the `tamralipti` port entry):
+  "Roman gold coins from Bamanghati in Mayurbhanj argued to have arrived through Tamluk", combined with
+  **`patra-2014-odisha-review-ports`, pp. 122-123** (already quoted in the `kalingapatnam` port entry)
+  reporting Roman coins from the Kalingapatnam excavations, gave `roman-coins` two source ids — but
+  both are Benudhar Patra's own writing (one co-authored), so, following the precedent already set for
+  `roman-amphorae`, the tier is held at Probable rather than raised to Strongly Supported.
+
+Every quote above was checked against the text already sitting in this repository (the `source_refs`
+of the five published entries named, and the `patra-2014-odisha-review-ports`/`patra-patra-ohrj`
+citations already embedded in `ports.json`) before being reused; none was re-derived from a fresh
+OCR read in this session. Direct re-fetches of Hunter's Vol. II and Stirling's article via WebFetch
+were attempted first (to check for further commodities such as betel, gold, pearls or beads) but the
+tool returned truncated or wrong sections of both very long public-domain scans, so no new claims were
+built on those failed fetches — see "Candidates checked and rejected again" below.
+
+### An entry considered and deliberately left out: rouletted ware
+
+Rouletted ware (the stamped pottery found at Sisupalgarh, Manikapatna, Palur and Radhanagar, and also
+at Arikamedu, Kaveripattinam, Anuradhapura and Sembiran — all already documented in `ports.json`) was
+drafted and then dropped. The `Good` schema requires a `direction` (`export`/`import`/`both`), but no
+source read in either session states whether Kalinga's ports made this pottery and sent it outward, or
+received it from further south (Arikamedu is the usual candidate origin in the literature). Forcing a
+direction here would be a guess dressed as a citation, which is exactly what the schema's `direction`
+field must not do. The existing `arikamedu`, `kaveripattinam`, `sembiran` and `anuradhapura` **port**
+entries already describe the shared rouletted-ware network in their own `caveats` without asserting a
+direction; a reviewer who finds a source naming Kalinga's east coast (rather than Arikamedu, Tamil
+Nadu) as the ware's origin could add this good directly, citing this note.
+
+### Candidates checked and rejected again
+
+Beads (Manikapatna's terracotta/agate/soft-stone/bone beads and glass/faience/conch-shell bangles,
+`patra-patra-ohrj-maritime-archaeology` p. 112, compared with the Don Ta Phet, Thailand parallel on
+pp. 112-113) were reconsidered, because the ports researcher's session added a `maliwan` port entry
+citing `dayalan-2019-acta-via-serica` for "carnelian beads, glass beads... of Indian origin" reaching
+southern Myanmar. Combining the two looked tempting but was rejected: Dayalan's claim is about beads of
+generic "Indian origin" reaching Myanmar, not about beads made in or exported from Kalinga specifically,
+so pairing it with the Manikapatna finds would manufacture a Kalinga-to-Myanmar link neither source
+actually states. This is the same reasoning as the rouletted-ware rejection above and is left as the
+same open question for a reviewer with a source that ties a specific bead type to an Odisha workshop.
+
+Betel nut and betel leaf were checked again via `nanda-2019-odisha-review` (the Bali Yatra source
+already `approved_by_human: true`), which describes the modern Boita Bandana festival's miniature paper
+boats carrying betel leaf, betel nut and a lit oil lamp as "the memory of these expeditions" — but this
+is evidence about the festival re-enactment, not a citable record of betel nut or leaf as actual
+historical export cargo, so no entry was made. A WebFetch of the source PDF to check for a stronger
+statement failed on this attempt (expired TLS certificate on the government host); a reviewer could
+retry with `curl -k`, as the 2026-09-14 session did for a different Odisha Review PDF.
+
+### OpenRouter usage
+
+`pick_model` for task `extract_claims` was not used this session: no long new source text was
+fetched (the two WebFetch attempts against archive.org, aimed at finding further commodities, both
+failed — one returned an unrelated part of the book, the other hit a session limit — and nothing from
+them was used), and every claim actually entered was mined from short quotations already sitting,
+page-verified, inside this repository's own `goods.json`/`ports.json`, which does not need a
+long-document extraction pass.
+
+`pick_model` for task `draft_prose` was used once: candidate `dots-studio/dots-3-note-preview:free`
+(free tier) was given the exact facts above (no invented figures) for all 14 planned entries and asked
+for a two-sentence `summary` and a `kid_line` for each. Cost: $0.00 (1,111 to 877 tokens, 9.9s). Output
+quality was mixed — most were usable near-verbatim, but a few ran to three sentences, one had a typo
+("wildentar silk"), and several repeated the ungainly phrase "this happened before 1872" — so every
+summary and kid_line in `goods.json` was rewritten by hand against the source quotations rather than
+pasted in; none of the model's wording was used unchecked.
+
+### Validator
+
+`npm run validate:data` after this session's four incremental batches: all green, `OK: data valid`.
+`goods.json` now has 27 entries: 13 `published` (untouched) + 14 new `draft`. One schema error was
+caught and fixed along the way (`coconuts`' first `source_refs` note exceeded the 300-character limit
+before trimming).

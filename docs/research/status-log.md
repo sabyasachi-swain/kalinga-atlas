@@ -104,3 +104,38 @@ Every promotion or demotion of an entry between draft, reviewed and published, w
 - ports:alagankulam draft -> published
 - ports:nagapattinam draft -> published
 - ports:guangzhou draft -> published
+
+## 2026-09-16: set published (goods)
+
+- goods:coconuts draft -> published
+- goods:coral draft -> published
+- goods:dried-fish draft -> published
+- goods:silk draft -> published
+- goods:tobacco draft -> published
+- goods:turmeric draft -> published
+- goods:oilseeds-and-oil draft -> published
+- goods:ghee draft -> published
+- goods:molasses draft -> published
+- goods:brass-utensils draft -> published
+- goods:earthenware draft -> published
+- goods:catechu draft -> published
+- goods:stone-plates draft -> published
+- goods:roman-coins draft -> published
+
+## 2026-09-16: set published (routes)
+
+- routes:route-dhauli-jaugada-road draft -> published
+- routes:route-udayagiri-khandagiri-pithunda-road draft -> published
+- routes:route-sisupalgarh-manikapatna-road draft -> published
+- routes:route-palur-sonapur-coast draft -> published
+- routes:route-sonapur-barua-coast draft -> published
+- routes:route-barua-kalingapatnam-coast draft -> published
+- routes:route-dhamra-chandbali-river draft -> published
+- routes:route-cuttack-false-point-canal draft -> published
+- routes:route-balugaon-puri-chilika draft -> published
+- routes:route-manikapatna-khalkatapatna-coast draft -> published
+- routes:route-pipli-balasore-coast draft -> published
+- routes:route-tamralipti-mahatittha-sea draft -> published
+- routes:route-guangzhou-palembang-sea draft -> published
+- routes:route-palembang-kedah-sea draft -> published
+- routes:route-kedah-tamralipti-sea draft -> published
