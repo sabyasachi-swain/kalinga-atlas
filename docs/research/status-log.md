@@ -139,3 +139,9 @@ Every promotion or demotion of an entry between draft, reviewed and published, w
 - routes:route-guangzhou-palembang-sea draft -> published
 - routes:route-palembang-kedah-sea draft -> published
 - routes:route-kedah-tamralipti-sea draft -> published
+
+## 2026-09-16: set published (ports sites)
+
+- ports:sambalpur draft -> published
+- sites:ujjayini draft -> published
+- sites:takshashila draft -> published

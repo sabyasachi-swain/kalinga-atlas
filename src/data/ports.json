@@ -24,7 +24,7 @@
       {
         "source_id": "tripati-2022-scientific-reports",
         "page": "Introduction; Sci. Rep. 12:13559",
-        "note": "Confirms OIMSEAS excavations 1989-1993 and a Deccan College, Pune campaign in 2010; the same two phases; a broken Indo-Arabian stone anchor recovered near the mosque during 2018-19 exploration."
+        "note": "Confirms OIMSEAS 1989-1993 and Deccan College 2010 excavations, same two phases; a stone anchor near the mosque, 2018-19. Also: 'Chinese ceramic sherds ... of the 13th to 14th century CE ... produced in Fujian and Zhejiang Provinces of China' (pers. comm. Ran Zhang)."
       },
       {
         "source_id": "patra-2014-odisha-review-ports",
@@ -49,7 +49,7 @@
       "british"
     ],
     "status": "published",
-    "caveats": "Excavated by OIMSEAS, Bhubaneswar, in 1989-93 and by Deccan College, Pune, in 2010 - not by the ASI. Whether the ASI's Indian Archaeology: A Review ever reported the site is unchecked. Identification with Xuanzang's Che-li-ta-lo is a proposal, not settled; Cunningham placed that port at Puri, others at Citrotpola. Coordinates were replaced in this session with the published figure in Patra 2014 p. 120 (19 deg 43' 54\" N, 85 deg 33' 14\" E), corroborated by Dayalan 2019; the earlier value 19.68/85.47 was an estimate. Goods: salt is inferred from the Abul Fazl salt-tax notice, not from a find.",
+    "caveats": "Excavated by OIMSEAS (1989-93) and Deccan College, Pune (2010), not the ASI. Che-li-ta-lo identification unsettled; Cunningham favoured Puri, others Citrotpola or Chandrabhaga near Konarak - Patra 2014 p. 119 calls that last reading 'feeble ... tenuous', and Chandrabhaga is a sea beach, not a Chilika landing, so not entered here. Coordinates follow Patra 2014 p. 120. Salt is inferred, not a find. Checked and rejected: no source names 'Islamic' glazed ware or Tang material; firmest Chinese date is Tripati 2022's 13th-14th c. Fujian/Zhejiang sherds, mostly after the Song dynasty (960-1279).",
     "coordinates": {
       "lat": 19.7317,
       "lng": 85.5539
@@ -81,7 +81,7 @@
       {
         "source_id": "patra-2014-odisha-review-ports",
         "page": "p. 121",
-        "note": "Gerini identified Ptolemy's Paloura with modern Palur, Chatrapur subdivision, Ganjam district, 'at Lat. 19 deg 27' N and Long. 85 deg 11' E, just above the mouth of Rushikulya'. Palur named as a maritime emporium in the Nagarjunikonda inscription of Virapurushadatta, later 3rd century CE."
+        "note": "Gerini: Ptolemy's Paloura = modern Palur, 'at Lat. 19 deg 27' N and Long. 85 deg 11' E, just above the mouth of Rushikulya'. Same page: 'On linguistic grounds, S. Levi identifies Dantapura ... and Dandagula of Pliny with Paloura of Ptolemy', citing Indian Antiquary LV (1926), pp. 98-99."
       },
       {
         "source_id": "dayalan-2019-acta-via-serica",
@@ -93,7 +93,7 @@
       "early-historic"
     ],
     "status": "published",
-    "caveats": "The equation of Ptolemy's 'Paloura' with modern Palur is Gerini's proposal, repeated by later writers; it is not proved. S. Levi's further equation of Palur with the Dantapura of the Buddhist Jatakas and the Dathavamsa is a philological argument only, so 'Dantapura' is listed as a proposal, not a fact. No excavation report was read: the Kantigarh finds are known only from exploration summaries, and the Chinese celadon among them is undated in every source consulted, so no medieval period is claimed here. Goods: the Palur celadon is undated in every source read, so no period is claimed for it.",
+    "caveats": "Ptolemy's 'Paloura' = modern Palur is Gerini's proposal, not proved. S. Levi's further equation with the Dantapura of the Jatakas and Dathavamsa (Indian Antiquary LV, 1926, pp. 98-99, via Patra 2014 p. 121) rests on the philology of the word Paloura, not excavation; Levi's own paper was not read directly. 'Dantapura' stays a proposal. No excavation report was read: the Kantigarh finds are exploration summaries only; the Chinese celadon there is undated, so no medieval period is claimed. Goods: the Palur celadon is undated, so no period is claimed for it.",
     "coordinates": {
       "lat": 19.45,
       "lng": 85.1833
@@ -444,13 +444,18 @@
         "source_id": "dayalan-2019-acta-via-serica",
         "page": "offprint p. 23",
         "note": "Lists Harishpur among the Odisha seaports with active British, Danish, Dutch, French and Portuguese trade contacts in the 16th-18th centuries. Journal pagination not verified."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, Appendix IV, p. 156",
+        "note": "Cuttack district fiscal-division table lists them as two separate units: '(32) Hariharpur (Jagatsinhpur), 65.37 square miles ... (33) Harishpur Kila, 62.09 square miles.' Confirms they are distinct parganas, not a spelling variant."
       }
     ],
     "periods": [
       "mughal-maratha"
     ],
     "status": "published",
-    "caveats": "Hariharpur and Harishpur may or may not be the same place: the Balasore gazetteer uses both spellings within two pages, but Hunter 1872 vol. ii lists 'Hariharpur (Jagatsinhpur)' and 'Harishpur' as two separate fiscal divisions of Cuttack district. This entry follows the gazetteer's narrative and should be checked against the Cuttack district gazetteer and the East India Company factory records before promotion. No published coordinate was found; the position is read off a modern map near Jagatsinghpur, in the delta channel country the gazetteer describes, and is approximate.",
+    "caveats": "Hariharpur and Harishpur are not the same place: Hunter 1872, vol. ii, App. IV, p. 156, lists 'Hariharpur (Jagatsinhpur)' and 'Harishpur Kila' as two separate parganas of Cuttack district, with different areas. The Balasore gazetteer's pp. 34-35 narrative uses both spellings for one factory site; this entry follows that narrative for the factory but the two names should not be assumed interchangeable elsewhere. No coordinate was found; position is read off a modern map near Jagatsinghpur.",
     "coordinates": {
       "lat": 20.25,
       "lng": 86.17
@@ -1205,5 +1210,48 @@
       "Guang-Zhou (Yijing's transliteration)"
     ],
     "goods": []
+  },
+  {
+    "id": "sambalpur",
+    "name": "Sambalpur",
+    "summary": "Sambalpur is a town far up the Mahanadi river, deep inland. Boats carried salt, spices and pots up to Sambalpur and came back loaded with diamonds, iron, silk and grain.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "stirling-1825",
+        "page": "pp. 194, 218",
+        "note": "'Formerly salt was an important article of export by way of the great road leading along the Mahanadi to Sembelpur and Berar ... more than three lacs of maunds being exported annually.' p. 218: the salt monopoly's revenue exceeded all the land rents."
+      },
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, Appendix III, p. 74",
+        "note": "Mahanadi river towns 'carry salt, spices, cocoa-nuts, and brass utensils up to Sambalpur ... bringing thence, in exchange, cotton, wheat, oil-seeds, clarified butter, oil, molasses, iron, turmeric, tasar cloth, rice.'"
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "vol. XXII, pp. 12-13 (Sambalpur District)",
+        "note": "Diamonds worked at Hirakud 'when Sambalpur was under native rule'; '160 native furnaces' making iron; sal forest of 238 sq. miles; tasar silk-weaving 'an important industry'; salt now 'brought by rail instead of river as formerly.'"
+      }
+    ],
+    "periods": [
+      "mughal-maratha",
+      "british"
+    ],
+    "status": "published",
+    "caveats": "A river and land trade node about 300 km inland, never a sea port; included on the Cuttack precedent already in this file. The diamond-working is dated only to 'native rule' (the pre-British Chauhan state of Sambalpur), so it is tagged mughal-maratha; the furnace, forest and rail figures are British-period gazetteer statistics. No printed town coordinate was found in any of the three sources; position is read off a modern map.",
+    "coordinates": {
+      "lat": 21.4669,
+      "lng": 83.9812
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Sambalpur, Odisha",
+    "goods": [
+      "diamonds",
+      "iron",
+      "salt",
+      "sal-timber",
+      "tasar-silk"
+    ]
   }
 ]

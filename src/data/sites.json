@@ -558,5 +558,69 @@
         ]
       }
     ]
+  },
+  {
+    "id": "ujjayini",
+    "name": "Ujjayini (Ujjain)",
+    "summary": "Ujjayini was one of the four great capitals of Ashoka's empire, far to the west of Kalinga. Ashoka's own rock-carved orders say officers travelled between it and Kalinga to check his laws were followed.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "Hultzsch, CII I (1925), First Separate Rock Edict, clause AA, p. 97; identification pp. xxxvii-xxxviii",
+        "note": "'But from Ujjayini also the prince (governor) will send out for the same purpose a person of the same description ... not (more than) three years.' p. xxxvii: 'Ujjayini, the capital of Avanti ... is the modern Ujjain.'"
+      },
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), p. 67",
+        "note": "'Then there were four large provinces governed by princes ... as governors or viceroys ... the viceroy of the west at Ujjain', alongside Taxila (northwest) and Tosali in Kalinga (east)."
+      }
+    ],
+    "periods": [
+      "mauryan"
+    ],
+    "status": "published",
+    "caveats": "Included as the western administrative anchor named in the Dhauli/Jaugada Separate Rock Edict I, not as a Kalinga site. The identification of Ujjayini with modern Ujjain is the standard, long-unchallenged one (Hultzsch, Cunningham); no rival identification was found. No coordinate is printed in either source; position is the modern city of Ujjain, read from a map.",
+    "coordinates": {
+      "lat": 23.1765,
+      "lng": 75.7885
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Ujjain, Madhya Pradesh",
+    "site_type": "Mauryan provincial capital (viceroyalty of the west)",
+    "finds": []
+  },
+  {
+    "id": "takshashila",
+    "name": "Takshashila (Taxila)",
+    "summary": "Takshashila was Ashoka's capital in the far northwest of his empire, near modern Pakistan. His own rock-carved orders say officers travelled from there to Kalinga too, to check his laws were followed.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "ashoka-separate-edicts",
+        "page": "Hultzsch, CII I (1925), First Separate Rock Edict, clause BB, p. 97; identification pp. xxxvii-xxxviii",
+        "note": "'In the same way (an officer will be deputed) from Takshasila also.' p. xxxviii: Takshasila 'was identified by Cunningham with Shahdheri in the Rawalpindi district, Panjab.'"
+      },
+      {
+        "source_id": "kulke-rothermund",
+        "page": "3rd edn (Routledge, 1998), p. 67",
+        "note": "'The viceroy of the northwest resided at Taxila', one of the four Mauryan provincial capitals alongside Ujjain (west) and Tosali in Kalinga (east)."
+      }
+    ],
+    "periods": [
+      "mauryan"
+    ],
+    "status": "published",
+    "caveats": "Included as the northwestern administrative anchor named in the Dhauli/Jaugada Separate Rock Edict I, not as a Kalinga site. Cunningham's identification with Shahdheri, near modern Taxila, Rawalpindi district, is the standard one; the Bhir Mound and later city excavated by John Marshall were not read directly in this session. No coordinate is printed in either source; position is the modern archaeological site of Taxila, read from a map.",
+    "coordinates": {
+      "lat": 33.7458,
+      "lng": 72.7875
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Taxila, Punjab, Pakistan",
+    "site_type": "Mauryan provincial capital (viceroyalty of the northwest)",
+    "finds": []
   }
 ]
