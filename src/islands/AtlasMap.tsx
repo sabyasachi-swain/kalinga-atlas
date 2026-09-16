@@ -1439,7 +1439,7 @@ export function AtlasMap({
    * recomputed only when the committed transform, marker size or view mode
    * change, never per animation frame.
    */
-  const clusters = useMemo(() => {
+  const clustersResult = useMemo(() => {
     type Point = { key: string; id: string; x: number; y: number };
     type Node = { points: Point[] };
     // A4 fix: true single-linkage on *original* marker positions, not on a
@@ -1466,9 +1466,18 @@ export function AtlasMap({
       viewMode === 'coast' ? markers.filter((m) => m.shape === 'port' && !m.inactive).map((m) => m.key) : [],
     );
 
-    let nodes: Node[] = markers
-      .filter((m) => !protectedKeys.has(m.key))
-      .map((m) => ({ points: [{ key: m.key, id: m.id, x: m.x, y: m.y }] }));
+    // Protected markers still take part in the proximity check — an
+    // inactive marker sitting right on top of one would otherwise stay an
+    // unmerged singleton and overlap it — but a merge involving a
+    // protected marker never turns it into a bubble; it silently absorbs
+    // the other (non-protected) marker instead, hiding the redundant one
+    // rather than showing two overlapping dots. Two protected markers
+    // never merge with each other: both always stay individually visible.
+    type MergeNode = Node & { protectedMember: boolean };
+    let nodes: MergeNode[] = markers.map((m) => ({
+      points: [{ key: m.key, id: m.id, x: m.x, y: m.y }],
+      protectedMember: protectedKeys.has(m.key),
+    }));
 
     const closeEnough = (a: Node, b: Node) => {
       for (const p of a.points) {
@@ -1488,10 +1497,12 @@ export function AtlasMap({
       merged = false;
       outer: for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
-          if (closeEnough(nodes[i]!, nodes[j]!)) {
-            const points = [...nodes[i]!.points, ...nodes[j]!.points];
+          const a = nodes[i]!;
+          const b = nodes[j]!;
+          if (a.protectedMember && b.protectedMember) continue; // both stay individual
+          if (closeEnough(a, b)) {
             nodes.splice(j, 1);
-            nodes.splice(i, 1, { points });
+            nodes.splice(i, 1, { points: [...a.points, ...b.points], protectedMember: a.protectedMember || b.protectedMember });
             merged = true;
             break outer;
           }
@@ -1499,8 +1510,8 @@ export function AtlasMap({
       }
     }
 
-    return nodes
-      .filter((n) => n.points.length > 1)
+    const bubbleClusters = nodes
+      .filter((n) => !n.protectedMember && n.points.length > 1)
       .map((n) => ({
         key: `cluster:${n.points.map((p) => p.key).join('-')}`,
         x: n.points.reduce((s, p) => s + p.x, 0) / n.points.length,
@@ -1508,9 +1519,23 @@ export function AtlasMap({
         keys: n.points.map((p) => p.key),
         ids: n.points.map((p) => p.id),
       }));
+
+    // A protected node that absorbed one or more other markers renders as
+    // just the protected marker — the absorbed ones are hidden (they never
+    // get their own bubble, since the protected marker already occupies
+    // that spot), never as a group the protected marker is folded into.
+    const hidden = nodes
+      .filter((n) => n.protectedMember && n.points.length > 1)
+      .flatMap((n) => n.points.filter((p) => !protectedKeys.has(p.key)).map((p) => p.key));
+
+    return { bubbles: bubbleClusters, hiddenKeys: hidden };
   }, [markers, k, x, y, markerRadius, viewMode]);
 
-  const clusteredKeys = useMemo(() => new Set(clusters.flatMap((c) => c.keys)), [clusters]);
+  const clusters = clustersResult.bubbles;
+  const clusteredKeys = useMemo(
+    () => new Set([...clusters.flatMap((c) => c.keys), ...clustersResult.hiddenKeys]),
+    [clusters, clustersResult.hiddenKeys],
+  );
 
   /** A4: activating a cluster zooms to fit it, then focuses the first marker. */
   const activateCluster = useCallback(
