@@ -1,7 +1,6 @@
 ---
 import Base from '@layouts/Base.astro';
-
-const base = import.meta.env.BASE_URL;
+import { withBase } from '@lib/base-url';
 ---
 
 <Base title="Page not found" description="This page does not exist on Kalinga: Ancient Trade Routes.">
@@ -12,12 +11,12 @@ const base = import.meta.env.BASE_URL;
       sections below.
     </p>
     <ul class="links">
-      <li><a href={base}>Home &amp; atlas</a></li>
-      <li><a href={`${base}routes/`}>Trade routes</a></li>
-      <li><a href={`${base}ports/`}>Ancient ports</a></li>
-      <li><a href={`${base}goods/`}>Goods &amp; commodities</a></li>
-      <li><a href={`${base}evidence/`}>Archaeological evidence</a></li>
-      <li><a href={`${base}sources/`}>Sources</a></li>
+      <li><a href={withBase('/')}>Home &amp; atlas</a></li>
+      <li><a href={withBase('routes/')}>Trade routes</a></li>
+      <li><a href={withBase('ports/')}>Ancient ports</a></li>
+      <li><a href={withBase('goods/')}>Goods &amp; commodities</a></li>
+      <li><a href={withBase('evidence/')}>Archaeological evidence</a></li>
+      <li><a href={withBase('sources/')}>Sources</a></li>
     </ul>
   </article>
 </Base>

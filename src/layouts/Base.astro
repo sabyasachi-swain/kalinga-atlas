@@ -4,6 +4,7 @@
  * Content pages ship zero JavaScript; islands opt in with client:visible.
  */
 import '@styles/tokens.css';
+import { withBase } from '@lib/base-url';
 
 interface Props {
   title: string;
@@ -14,7 +15,6 @@ interface Props {
 
 const { title, description, surface = 'page' } = Astro.props;
 const fullTitle = title === 'Kalinga: Ancient Trade Routes' ? title : `${title} · Kalinga: Ancient Trade Routes`;
-const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -25,19 +25,19 @@ const base = import.meta.env.BASE_URL;
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light" />
-    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-      <a class="brand" href={base}>Kalinga <span>Ancient Trade Routes</span></a>
+      <a class="brand" href={withBase('/')}>Kalinga <span>Ancient Trade Routes</span></a>
       <nav aria-label="Sections">
-        <a href={`${base}routes/`}>Routes</a>
-        <a href={`${base}ports/`}>Ports</a>
-        <a href={`${base}goods/`}>Goods</a>
-        <a href={`${base}evidence/`}>Evidence</a>
-        <a href={`${base}sources/`}>Sources</a>
-        <a href={`${base}#timeline`}>Timeline</a>
+        <a href={withBase('routes/')}>Routes</a>
+        <a href={withBase('ports/')}>Ports</a>
+        <a href={withBase('goods/')}>Goods</a>
+        <a href={withBase('evidence/')}>Evidence</a>
+        <a href={withBase('sources/')}>Sources</a>
+        <a href={withBase('#timeline')}>Timeline</a>
       </nav>
     </header>
     <main id="main" tabindex="-1">
@@ -47,8 +47,8 @@ const base = import.meta.env.BASE_URL;
       <p>
         Map data: <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain).
         Illustrations are original works, CC BY-SA 4.0. Code is MIT.
-        Every historical claim on this site cites a published source; see <a href={`${base}sources/`}>Sources</a>
-        and <a href={`${base}attribution/`}>Attribution</a>.
+        Every historical claim on this site cites a published source; see <a href={withBase('sources/')}>Sources</a>
+        and <a href={withBase('attribution/')}>Attribution</a>.
       </p>
     </footer>
   </body>
@@ -67,32 +67,41 @@ const base = import.meta.env.BASE_URL;
   }
   .skip-link:focus { top: var(--space-4); }
 
+  /* map-style-light.md "Header": dark bar, white text, a thin accent rule
+     underneath — the same on every page now, not just the map surface. */
   .site-header {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     gap: var(--space-4) var(--space-8);
     padding: var(--space-4) var(--gutter);
-    border-bottom: 1px solid var(--rule);
-    background: var(--bg-elevated);
+    border-bottom: 3px solid var(--header-accent);
+    background: var(--header-bg);
   }
   .brand {
     font-family: var(--font-heading);
     font-size: var(--text-xl);
-    color: var(--fg);
+    color: var(--header-fg);
     text-decoration: none;
   }
   .brand span {
     font-size: var(--text-sm);
     font-family: var(--font-body);
-    color: var(--fg-muted);
+    color: var(--header-fg);
+    opacity: 0.75;
     margin-left: var(--space-2);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
   nav { display: flex; flex-wrap: wrap; gap: var(--space-4); }
-  nav a { color: var(--fg); text-decoration: none; padding: var(--space-1) 0; border-bottom: 2px solid transparent; }
-  nav a:hover { border-bottom-color: var(--highlight); }
+  nav a {
+    color: var(--header-fg);
+    text-decoration: none;
+    padding: var(--space-1) 0;
+    border-bottom: 2px solid transparent;
+  }
+  nav a:hover,
+  nav a:focus-visible { border-bottom-color: var(--header-accent); }
 
   main { min-height: 60vh; }
   main:focus { outline: none; }
@@ -103,9 +112,4 @@ const base = import.meta.env.BASE_URL;
     color: var(--fg-muted);
     font-size: var(--text-sm);
   }
-
-  [data-surface='map'] .site-header { background: var(--navy-800); border-color: var(--navy-600); }
-  [data-surface='map'] .brand,
-  [data-surface='map'] nav a { color: var(--parchment-100); }
-  [data-surface='map'] .brand span { color: var(--parchment-400); }
 </style>

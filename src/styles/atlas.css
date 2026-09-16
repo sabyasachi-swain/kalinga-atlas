@@ -51,8 +51,10 @@
   --atlas-map-ratio: 16 / 10;        /* map figure aspect ratio on wide screens */
   --atlas-map-ratio-narrow: 4 / 5;   /* taller on phones so the Bay of Bengal still fits */
   /* Faint graticule + inactive-layer opacity. Not in tokens.css; both are map
-     rendering constants read by AtlasMap.tsx via getComputedStyle. */
-  --map-graticule: rgba(217, 201, 163, 0.14);
+     rendering constants read by AtlasMap.tsx via getComputedStyle.
+     map-style-light.md: retuned for the pale sea — a muted river-blue tint
+     instead of the old warm-tan tuned for a dark sea. */
+  --map-graticule: rgba(111, 168, 192, 0.25);
   --map-inactive-opacity: 0.4;
 
   display: block;
@@ -90,13 +92,144 @@
    Map figure
    -------------------------------------------------------------------------- */
 
+/* --------------------------------------------------------------------------
+   A3: phone full-screen map (docs/design/kid-experience.md)
+   -------------------------------------------------------------------------- */
+
+.atlas-map-slot__inline { display: contents; }
+.atlas-map-slot__preview,
+.atlas-map-slot__caption,
+.atlas-map-slot__explore { display: none; }
+
+@media (max-width: 37.4375rem) {
+  .atlas-map-slot__inline { display: none; }
+
+  .atlas-map-slot__preview {
+    display: block;
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid var(--navy-600);
+    border-radius: var(--radius-md);
+    background: var(--map-sea);
+    box-shadow: var(--shadow-card);
+    pointer-events: none;
+  }
+  .atlas-map-slot__preview-art {
+    position: absolute;
+    inset: 0;
+    opacity: 0.9;
+    background-image:
+      radial-gradient(3px 3px at 28% 38%, var(--gold-400) 100%, transparent 100%),
+      radial-gradient(3px 3px at 52% 30%, var(--gold-400) 100%, transparent 100%),
+      radial-gradient(3px 3px at 42% 58%, var(--gold-400) 100%, transparent 100%),
+      radial-gradient(3px 3px at 64% 52%, var(--gold-400) 100%, transparent 100%),
+      radial-gradient(3px 3px at 36% 70%, var(--gold-400) 100%, transparent 100%),
+      linear-gradient(180deg, transparent 55%, var(--map-land) 55%);
+  }
+  .atlas-map-slot__caption {
+    display: block;
+    margin: var(--space-2) 0 0;
+    font-family: var(--font-heading);
+    font-size: var(--text-md);
+    color: var(--fg);
+  }
+  .atlas-map-slot__explore {
+    display: flex;
+    width: 100%;
+    min-height: 52px;
+    margin-top: var(--space-2);
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    background: var(--accent);
+    color: var(--white);
+    font: inherit;
+    font-weight: 600;
+    font-size: var(--text-md);
+    cursor: pointer;
+  }
+  .atlas-map-slot__explore:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+}
+
+.atlas-map-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100dvw;
+  height: 100dvh;
+  max-width: 100dvw;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--map-sea);
+  z-index: var(--z-popover);
+}
+.atlas-map-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.atlas-map-dialog::backdrop { background: var(--scrim); }
+.atlas-map-dialog__host {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+.atlas-map-dialog__host .atlas-map {
+  flex: 1;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.atlas-map-dialog__host .atlas-map__stage {
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 0;
+}
+.atlas-map-dialog__close {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  z-index: var(--z-popover);
+  width: var(--hit-min);
+  height: var(--hit-min);
+  border: none;
+  border-radius: var(--radius-lg);
+  background: var(--control-bg);
+  box-shadow: var(--control-shadow);
+  color: var(--control-fg);
+  font-size: var(--text-lg);
+  line-height: 1;
+  cursor: pointer;
+}
+.atlas-map-dialog__close:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.atlas-map-dialog__timeline {
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-elevated);
+  max-height: 42dvh;
+  overflow: auto;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .atlas-map-dialog[open] { animation: atlas-map-dialog-in var(--dur-base) var(--ease-page) both; }
+}
+@keyframes atlas-map-dialog-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* map-style-light.md: the whole figure is a white card; the pale
+   sea/land basemap paints inside it (on the canvas), not the card itself. */
 .atlas-map {
   position: relative;
   margin: 0;
-  background: var(--map-sea);
+  background: var(--card-bg);
   color: var(--map-label);
-  border: 1px solid var(--navy-600);
-  border-radius: var(--radius-md);
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
   overflow: hidden;
   font-family: var(--font-body);
 }
@@ -232,56 +365,110 @@
   stroke: none;
 }
 .marker:focus-visible .marker-hit {
-  fill: rgba(201, 162, 39, 0.12);
-  stroke: var(--gold-400);
+  fill: color-mix(in srgb, var(--accent) 12%, transparent);
+  stroke: var(--accent);
   stroke-width: 2;
   stroke-dasharray: 4 3;
   vector-effect: non-scaling-stroke;
 }
 .marker-glow {
-  fill: var(--map-port-glow);
+  fill: var(--marker-glow);
   opacity: 0;
   transition: opacity var(--dur-page) var(--ease-page);
 }
 .marker[data-inactive='false'] .marker-glow { opacity: 1; }
-.marker[data-selected='true'] .marker-glow { opacity: 1; r: 15; }
+.marker[data-selected='true'] .marker-glow { opacity: 1; }
 
-.marker-shape {
+/*
+ * map-style-light.md marker anatomy, back to front: glow (above) → outline
+ * (dark hairline) → ring (white) → fill (kind colour) → glyph (white icon).
+ * The outline/ring/fill are three concentric filled shapes rather than
+ * stroked circles — simpler than layering strokes, and it's what the A4
+ * fix's overlap math (AtlasMap.tsx `MARKER_VISUAL_PAD`) already assumes.
+ * 28px (coast) / 22px (ocean) diameters come from the `r`/`d` attributes
+ * AtlasMap.tsx sets per view, not from CSS.
+ */
+.marker-outline { fill: var(--marker-outline); }
+.marker-ring { fill: var(--marker-ring); }
+.marker-fill { fill: var(--marker-port); }
+.marker[data-kind='site'] .marker-fill { fill: var(--marker-site); }
+.marker-glyph { color: var(--white); pointer-events: none; }
+
+/* Destination: "unfilled concentric rings", deliberately plainer than a
+   Kalinga place — kept as strokes, no glyph, no ring/outline layers. */
+.marker[data-kind='destination'] .marker-shape {
   fill: none;
-  stroke: var(--map-port);
+  stroke: var(--marker-destination);
   stroke-width: 2;
   vector-effect: non-scaling-stroke;
 }
-.marker-core { fill: var(--map-port); stroke: none; }
-.marker[data-kind='site'] .marker-shape { fill: var(--verdigris-300); stroke: var(--navy-900); }
-.marker[data-kind='destination'] .marker-shape { stroke: var(--parchment-400); }
-.marker[data-kind='destination'] .marker-core { fill: none; stroke: var(--parchment-400); stroke-width: 2; vector-effect: non-scaling-stroke; }
-.marker[data-selected='true'] .marker-shape { stroke: var(--white); stroke-width: 3; }
+.marker[data-kind='destination'] .marker-core {
+  fill: none;
+  stroke: var(--marker-destination);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+/* kid-experience.md A4: selected state is a 3px ring, 6px outside the
+   marker edge — map-style-light.md moves its colour to --accent so
+   hover/focus/select share one "you are here" language. */
+.marker-select-ring {
+  stroke: var(--accent);
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
 
 .marker-label {
   font-family: var(--font-heading);
   font-size: 13px;
   fill: var(--map-label);
-  stroke: var(--map-sea);
+  stroke: var(--map-label-halo);
   stroke-width: 3.5px;
   paint-order: stroke fill;
   stroke-linejoin: round;
   pointer-events: none;
   user-select: none;
 }
-.marker[data-kind='destination'] .marker-label { font-style: italic; fill: var(--parchment-400); }
+.marker[data-kind='destination'] .marker-label { font-style: italic; fill: var(--map-label); }
 
 .ship-glyph { fill: var(--white); }
 
+/* ---- Cluster bubbles (kid-experience.md A4, every view) ------------------- */
+
+.cluster { cursor: pointer; }
+.cluster:focus { outline: none; }
+.cluster-hit { fill: transparent; stroke: none; }
+.cluster:focus-visible .cluster-hit {
+  fill: color-mix(in srgb, var(--accent) 12%, transparent);
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+  vector-effect: non-scaling-stroke;
+}
+.cluster-outline { fill: var(--marker-outline); }
+.cluster-ring { fill: var(--marker-ring); }
+.cluster-bubble { fill: var(--marker-cluster); }
+.cluster-count {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  fill: var(--white);
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+}
+
 /* ---- Overlays: period label, controls, legend ---------------------------- */
 
+/* map-style-light.md: the dark scrim gradient is gone — dark-ink text
+   (--map-label = --fg) reads fine directly on the pale sea/land basemap,
+   so the period label and caveat no longer need a chrome backdrop. */
 .atlas-map__topbar {
   position: absolute;
   inset: 0 0 auto 0;
   padding: var(--space-2) var(--space-3);
   pointer-events: none;
   z-index: var(--z-popover);
-  background: linear-gradient(to bottom, rgba(7, 21, 40, 0.85), rgba(7, 21, 40, 0));
 }
 .atlas-map__period {
   margin: 0;
@@ -289,18 +476,116 @@
   font-size: var(--text-lg);
   line-height: var(--leading-tight);
   color: var(--map-label);
+  text-shadow: 0 0 6px var(--map-label-halo), 0 0 10px var(--map-label-halo);
   transition: opacity var(--dur-page) var(--ease-page);
 }
-.atlas-map__years { color: var(--parchment-400); font-size: var(--text-md); }
+.atlas-map__years { color: var(--fg-muted); font-size: var(--text-md); }
+/* A1 fix: always a <details>, so the caption can collapse behind a summary
+   below 600px (shortening the top chrome a view fit has to avoid) without
+   ever changing its wording. Above 600px `caveatOpen` defaults to true and
+   the summary marker is hidden, so it reads exactly like the old plain
+   paragraph. */
 .atlas-map__caveat {
+  pointer-events: auto;
   margin: var(--space-1) 0 0;
   max-width: 46rem;
   font-size: var(--text-xs);
-  line-height: 1.35;
   color: var(--map-label);
+}
+.atlas-map__caveat-summary {
+  cursor: pointer;
+  list-style: none;
+  opacity: 0.8;
+  line-height: 1.35;
+}
+.atlas-map__caveat-summary::-webkit-details-marker { display: none; }
+.atlas-map__caveat-summary:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.atlas-map__caveat-text {
+  margin: 0;
+  line-height: 1.35;
   opacity: 0.8;
 }
+@media (min-width: 37.5rem) {
+  /* Reads as plain text again: no toggle affordance once there's room. */
+  .atlas-map__caveat-summary { display: none; }
+}
 .atlas-island[data-turning='true'] .atlas-map__period { opacity: 0.35; }
+
+/* ---- A1: view toggle (Odisha coast / whole ocean) ------------------------ */
+
+.atlas-map__views {
+  pointer-events: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+}
+/* map-style-light.md: control chip — white, radius-lg, control-shadow. */
+.view-btn {
+  min-height: var(--hit-min);
+  padding: 0 var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  border: none;
+  border-radius: var(--radius-lg);
+  background: var(--control-bg);
+  box-shadow: var(--control-shadow);
+  color: var(--control-fg);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.view-btn:hover { background: var(--card-bg); }
+.view-btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.view-btn[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--white);
+  font-weight: 600;
+}
+.view-btn[aria-disabled='true'] { opacity: 0.6; cursor: default; }
+
+/* A1 fix: tighter (not reworded — copy is unchanged) at narrow widths, so
+   the two pills are more likely to sit on one row and the top chrome a
+   view fit has to avoid stays short. */
+@media (max-width: 37.4375rem) {
+  .atlas-map__views { gap: var(--space-1); }
+  .view-btn { padding: 0 var(--space-2); font-size: var(--text-xs); gap: 0.3em; }
+}
+
+/* ---- A2: "scroll to zoom" hint -------------------------------------------- */
+
+.atlas-map__hint {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: max-content;
+  height: max-content;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+  background: var(--control-bg);
+  color: var(--control-fg);
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--control-shadow);
+  z-index: var(--z-popover);
+  pointer-events: auto;
+}
+.atlas-map__hint p { margin: 0; font-size: var(--text-sm); line-height: 1.5; }
+.atlas-map__hint-close {
+  min-width: var(--hit-min);
+  min-height: var(--hit-min);
+  margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-2)) 0 0;
+  background: none;
+  border: none;
+  color: var(--control-fg);
+  font-size: var(--text-lg);
+  line-height: 1;
+  cursor: pointer;
+}
+.atlas-map__hint-close:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 
 .atlas-map__zoom {
   position: absolute;
@@ -318,6 +603,8 @@
   z-index: var(--z-popover);
 }
 
+/* map-style-light.md: control chip — white, radius-lg, control-shadow,
+   dark-ink glyph, no more hard-coded dark-navy translucency. */
 .atlas-map__ctl {
   width: var(--hit-min);
   height: var(--hit-min);
@@ -325,16 +612,17 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  border: 1px solid var(--navy-600);
-  border-radius: var(--radius-sm);
-  background: rgba(11, 31, 58, 0.85); /* --navy-800 at 85%, per atlas-map.md */
-  color: var(--gold-400);
+  border: none;
+  border-radius: var(--radius-lg);
+  background: var(--control-bg);
+  box-shadow: var(--control-shadow);
+  color: var(--control-fg);
   font: inherit;
   font-size: var(--text-lg);
   line-height: 1;
   cursor: pointer;
 }
-.atlas-map__ctl:hover { background: var(--navy-900); }
+.atlas-map__ctl:hover { background: var(--card-bg); }
 .atlas-map__ctl:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 .atlas-map__ctl[aria-disabled='true'] { opacity: 0.4; cursor: default; }
 
@@ -343,25 +631,25 @@
   inset: auto var(--space-4) calc(var(--hit-min) + var(--space-6)) var(--space-4);
   margin: 0;
   padding: var(--space-3) var(--space-4);
-  background: var(--navy-800);
-  border: 1px solid var(--navy-600);
-  border-radius: var(--radius-sm);
-  color: var(--parchment-100);
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  color: var(--fg);
   font-size: var(--text-sm);
   z-index: var(--z-popover);
 }
 .atlas-map__status code {
   font-family: var(--font-mono);
-  background: var(--navy-900);
+  background: var(--bg);
   padding: 0 var(--space-1);
   border-radius: 2px;
 }
 
 .atlas-map__legend {
   padding: 0 var(--space-4) var(--space-3);
-  background: var(--navy-800);
-  border-top: 1px solid var(--navy-600);
-  color: var(--parchment-100);
+  background: var(--card-bg);
+  border-top: 1px solid var(--rule);
+  color: var(--fg);
   font-size: var(--text-sm);
 }
 .atlas-map__legend > summary {
@@ -383,7 +671,7 @@
   font-size: var(--text-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--parchment-400);
+  color: var(--fg-muted);
 }
 .legend-dl {
   margin: 0;
@@ -403,20 +691,23 @@
   font-family: var(--font-mono);
   font-weight: 700;
 }
-.legend-glyph.tier-confirmed { color: var(--verdigris-300); }
-.legend-glyph.tier-strong { color: var(--gold-400); }
-.legend-glyph.tier-probable { color: var(--route-terracotta-400); }
-.legend-glyph.tier-hypothetical { color: var(--parchment-400); }
-.legend-glyph.tier-unverified { color: var(--route-terracotta-400); }
-.legend-glyph.type-archaeological { color: var(--verdigris-300); }
-.legend-glyph.type-scholarly { color: var(--route-river-300); }
-.legend-glyph.type-traditional { color: var(--route-terracotta-400); }
+/* map-style-light.md: the legend is a white card now, not dark chrome — so the
+   glyphs reuse the badge's own tier and type tokens (already AA on light
+   surfaces), not the old light-on-dark route/parchment tones. */
+.legend-glyph.tier-confirmed { color: var(--tier-confirmed); }
+.legend-glyph.tier-strong { color: var(--tier-strong); }
+.legend-glyph.tier-probable { color: var(--tier-probable); }
+.legend-glyph.tier-hypothetical { color: var(--tier-hypothetical); }
+.legend-glyph.tier-unverified { color: var(--tier-unverified); }
+.legend-glyph.type-archaeological { color: var(--type-archaeological); }
+.legend-glyph.type-scholarly { color: var(--type-scholarly); }
+.legend-glyph.type-traditional { color: var(--type-traditional); }
 .legend-swatch { display: block; width: 2rem; height: 3px; border-radius: 2px; }
 .legend-swatch[data-mode='maritime'] { background: repeating-linear-gradient(to right, var(--map-route-maritime) 0 20px, transparent 20px 23px); }
 .legend-swatch[data-mode='coastal'] { background: repeating-linear-gradient(to right, var(--map-route-coastal) 0 5px, transparent 5px 8px); }
 .legend-swatch[data-mode='river'] { background: repeating-linear-gradient(to right, var(--map-route-river) 0 2px, transparent 2px 4px); }
 .legend-swatch[data-mode='land'] { background: repeating-linear-gradient(to right, var(--map-route-land) 0 4px, transparent 4px 6px, var(--map-route-land) 6px 7px, transparent 7px 9px); }
-.legend-note { margin: var(--space-2) 0 0; font-size: var(--text-xs); color: var(--parchment-400); }
+.legend-note { margin: var(--space-2) 0 0; font-size: var(--text-xs); color: var(--fg-muted); }
 
 /* ---- Sheets (keyboard shortcuts, cargo manifest) ------------------------- */
 

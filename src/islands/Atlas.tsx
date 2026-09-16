@@ -8,7 +8,15 @@
  *   panel (Esc or close button)   → selection cleared → focus returns to the
  *                                   marker via AtlasMap's focusReturnToken.
  */
-import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type KeyboardEvent as ReactKeyboardEvent,
+} from 'react';
+import { createPortal } from 'react-dom';
 import type { Fact, Good, Period, Port, Route, Site, Source } from '@data/schema';
 import { AtlasMap, type MapSelection } from './AtlasMap';
 import { Timeline } from './Timeline';
@@ -61,6 +69,41 @@ export default function Atlas({
 
   const rootRef = useRef<HTMLElement | null>(null);
   const firstRender = useRef(true);
+
+  // -- A3: phone full-screen map (docs/design/kid-experience.md) -----------
+  //
+  // AtlasMap is a single React element, portalled between an inline host
+  // (normal page flow, visible >= 600px) and a host inside a native
+  // <dialog> (full screen, phones only). Only one D3 zoom instance ever
+  // exists — moving the portal target relocates its DOM subtree instead of
+  // unmounting and remounting the island.
+  const inlineMapHostRef = useRef<HTMLDivElement | null>(null);
+  const dialogMapHostRef = useRef<HTMLDivElement | null>(null);
+  const mapDialogRef = useRef<HTMLDialogElement | null>(null);
+  const exploreMapBtnRef = useRef<HTMLButtonElement | null>(null);
+  const mapCloseBtnRef = useRef<HTMLButtonElement | null>(null);
+  const [mapDialogOpen, setMapDialogOpen] = useState(false);
+  const [mapPortalTarget, setMapPortalTarget] = useState<HTMLElement | null>(null);
+
+  // Runs before paint so the map's first render already targets the inline
+  // host, avoiding a flash of nothing.
+  useLayoutEffect(() => {
+    setMapPortalTarget(inlineMapHostRef.current);
+  }, []);
+
+  useEffect(() => {
+    setMapPortalTarget(mapDialogOpen ? dialogMapHostRef.current : inlineMapHostRef.current);
+  }, [mapDialogOpen]);
+
+  useEffect(() => {
+    const dialog = mapDialogRef.current;
+    if (!dialog) return;
+    if (mapDialogOpen && !dialog.open && typeof dialog.showModal === 'function') {
+      dialog.showModal();
+      mapCloseBtnRef.current?.focus();
+    }
+    if (!mapDialogOpen && dialog.open) dialog.close();
+  }, [mapDialogOpen]);
 
   // Manuscript page turn: flag the wrapper for --dur-page; the animation is
   // pure CSS (see .atlas-island[data-turning] in atlas.css).
@@ -154,17 +197,72 @@ export default function Atlas({
 
       <div className="atlas__grid">
         <div className="atlas__main">
-          <AtlasMap
-            ports={ports}
-            routes={routes}
-            sites={sites}
-            periods={periods}
-            activePeriod={activePeriod}
-            selection={selection}
-            onSelect={setSelection}
-            onClear={closePanel}
-            focusReturnToken={focusReturnToken}
-          />
+          {/* kid-experience.md A3: below 600px this slot shows an inert
+              preview and an "Explore the map" button instead of the live
+              map; at 600px and above the inline host is what's visible and
+              the preview/button are hidden by CSS. */}
+          <div className="atlas-map-slot">
+            <div className="atlas-map-slot__inline" ref={inlineMapHostRef} />
+            <div className="atlas-map-slot__preview" aria-hidden="true">
+              <div className="atlas-map-slot__preview-art" />
+            </div>
+            <p className="atlas-map-slot__caption">The map of Kalinga's ports</p>
+            <button
+              type="button"
+              className="atlas-map-slot__explore"
+              ref={exploreMapBtnRef}
+              aria-label="Explore the map of Kalinga's ports, full screen"
+              onClick={() => setMapDialogOpen(true)}
+            >
+              <span aria-hidden="true">🗺</span> Explore the map
+            </button>
+          </div>
+
+          {mapPortalTarget &&
+            createPortal(
+              <AtlasMap
+                ports={ports}
+                routes={routes}
+                sites={sites}
+                periods={periods}
+                activePeriod={activePeriod}
+                selection={selection}
+                onSelect={setSelection}
+                onClear={closePanel}
+                focusReturnToken={focusReturnToken}
+                fullscreen={mapDialogOpen}
+              />,
+              mapPortalTarget,
+            )}
+
+          {/* kid-experience.md A3: full-screen dialog, phone-only trigger.
+              Docks its own Timeline at the bottom, since period switching
+              doesn't need a separate screen. */}
+          <dialog
+            className="atlas-map-dialog"
+            ref={mapDialogRef}
+            aria-label="Map of Kalinga's ports"
+            onClose={() => {
+              setMapDialogOpen(false);
+              exploreMapBtnRef.current?.focus();
+            }}
+          >
+            <button
+              type="button"
+              className="atlas-map-dialog__close"
+              ref={mapCloseBtnRef}
+              onClick={() => setMapDialogOpen(false)}
+              aria-label="Close map"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+            <div className="atlas-map-dialog__host" ref={dialogMapHostRef} />
+            {mapDialogOpen && (
+              <div className="atlas-map-dialog__timeline">
+                <Timeline periods={periods} activePeriod={activePeriod} onChange={setActivePeriod} />
+              </div>
+            )}
+          </dialog>
 
           <div id="timeline">
             <Timeline periods={periods} activePeriod={activePeriod} onChange={setActivePeriod} />

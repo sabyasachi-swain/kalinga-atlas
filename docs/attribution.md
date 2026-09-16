@@ -24,6 +24,9 @@ for what it depicts and whether it is a generic artistic reconstruction.
 | `src/assets/ports/port-marker.svg` | Original for this project | CC BY-SA 4.0 | Circle-with-inner-dot glyph for a Kalinga port. |
 | `src/assets/ports/site-marker.svg` | Original for this project | CC BY-SA 4.0 | Diamond glyph for an archaeological or inscription site. |
 | `src/assets/ports/destination-marker.svg` | Original for this project | CC BY-SA 4.0 | Concentric-ring glyph for a foreign trading destination outside Kalinga. |
+| `src/assets/ports/port-glyph.svg` | Original for this project | CC BY-SA 4.0 | Generic anchor icon, the white glyph drawn inside a port map marker (docs/design/map-style-light.md). |
+| `src/assets/ports/site-glyph.svg` | Original for this project | CC BY-SA 4.0 | Generic stepped-and-domed monument silhouette, the white glyph drawn inside a site map marker. Artistic reconstruction — not a specific structure. |
+| `src/assets/ports/inscription-glyph.svg` | Original for this project | CC BY-SA 4.0 | Generic stone-tablet (stele) icon, the white glyph drawn inside an inscription map marker. |
 | `src/assets/ornament/compass-rose.svg` | Original for this project | CC BY-SA 4.0 | Decorative eight-point compass rose in a hand-drawn-chart style. |
 | `src/assets/ornament/wave-divider.svg` | Original for this project | CC BY-SA 4.0 | Decorative repeating wave rule used between page sections. |
 | `src/assets/ornament/manuscript-corner.svg` | Original for this project | CC BY-SA 4.0 | Decorative corner flourish referencing Odisha palm-leaf manuscript (pothi) border ornament. |

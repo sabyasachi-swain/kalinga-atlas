@@ -1,28 +1,27 @@
 # Token summary
 
-Canonical file: `src/styles/tokens.css`. Contrast ratios below are for the listed pairs; recheck if you change a value.
+Canonical values: `src/styles/tokens.css`. Values, old-to-new history and **computed** contrast ratios: `docs/design/tokens.md`. Map rules: `docs/design/map-style-light.md`. Recheck contrast whenever you change a value.
 
-## Palette
+## Palette roles (light atlas)
 
-| Token | Hex | Role | AA pairs (ratio) |
-|---|---|---|---|
-| `--navy-900` | #071528 | map sea | with `--parchment-200` text 15.9:1 |
-| `--navy-800` | #0b1f3a | deep ocean navy | with `--parchment-100` 14.6:1 |
-| `--navy-600` | #1d3557 | mid sea, scholarly type badge | with `--white` 10.4:1 |
-| `--parchment-100` | #f7f0df | page background | with `--ink-900` 15.7:1 |
-| `--parchment-200` | #f3e9d2 | cards | with `--ink-900` 14.6:1 |
-| `--parchment-400` | #d9c9a3 | rules, edges | decorative only |
-| `--laterite-700` | #7a2e24 | accent, links, unverified tier | on parchment-100 7.9:1 |
-| `--laterite-500` | #8b3a2f | traditional type badge | on parchment-100 6.4:1 |
-| `--verdigris-700` | #2f6f62 | confirmed tier, archaeological type | white text 5.4:1 |
-| `--verdigris-500` | #3e8a7a | secondary accent | large text only on white |
-| `--verdigris-300` | #7fc4b3 | routes on navy | on navy-900 9.1:1 |
-| `--gold-600` | #a8861b | strong tier (ink text) | ink-900 text 5.6:1 |
-| `--gold-400` | #c9a227 | ports, focus ring on dark | on navy-900 8.2:1 |
-| `--ochre-600` | #9a5b1f | probable tier | white text 5.0:1 |
-| `--slate-600` | #5b6470 | hypothetical tier | white text 5.6:1 |
-| `--ink-900` | #17120c | text on parchment | |
-| `--ink-600` | #4a4036 | secondary text | on parchment-100 8.0:1 |
+Raw palette names such as `--navy-*`, `--parchment-*`, `--laterite-*`, `--verdigris-*` and `--gold-*` were kept for compatibility, but their values now belong to the light palette. Use the semantic tokens below in components.
+
+| Token | Role | Rule |
+|---|---|---|
+| `--bg` | warm-cream page | body text `--fg` ≥ 4.5:1 |
+| `--card-bg`, `--card-shadow`, `--radius-lg` | white cards: map frame, panels, legend | |
+| `--fg`, `--fg-muted` | dark ink text | |
+| `--header-bg`, `--header-fg`, `--header-accent` | dark site header | |
+| `--map-sea`, `--map-land`, `--map-land-edge`, `--map-river`, `--map-graticule` | pale basemap | no tiles |
+| `--map-label`, `--map-label-halo` | dark place names with a white halo | |
+| `--map-route-maritime` / `-coastal` / `-river` / `-land` | route lines | ≥ 3:1 on sea and land; dash pattern also differs |
+| `--marker-port` / `-site` / `-inscription` / `-destination` / `-cluster` | round pin fills | ≥ 3:1 on sea and land; white glyph inside, never colour alone |
+| `--marker-ring`, `--marker-outline`, `--marker-glow` | pin anatomy | |
+| `--control-bg`, `--control-fg`, `--control-shadow` | zoom, reset, view toggle, hint, dialog close | |
+| `--accent` | orange: active states, focus, text-safe accent | ≥ 4.5:1 on white |
+| `--highlight` | decorative only: borders, underlines | < 3:1 on white; never the only signal on a control or text |
+| `--tier-*`, `--type-*` | evidence badges | colour + glyph + text |
+| `--progress-*`, `--stamp-*` | kid logbook and stamps | |
 
 ## Type scale
 

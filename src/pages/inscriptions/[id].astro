@@ -8,6 +8,7 @@ import Narrative from '@components/Narrative.astro';
 import { getInscriptions, getPeriods, getSources } from '@data/load';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
+import { withBase } from '@lib/base-url';
 
 export const getStaticPaths = (async () => {
   const inscriptions = getInscriptions();
@@ -21,12 +22,11 @@ const periods = getPeriods().filter((p) => inscription.periods.includes(p.id));
 
 const narrativeEntries = await getCollection('inscriptions');
 const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === inscription.id);
-const base = import.meta.env.BASE_URL;
 ---
 
 <Base title={inscription.name} description={inscription.summary}>
   <article class="entity-page">
-    <p class="back"><a href={`${base}#evidence`}>&larr; Back to the atlas</a></p>
+    <p class="back"><a href={withBase('#evidence')}>&larr; Back to the atlas</a></p>
 
     <h1>{inscription.name}</h1>
     <div class="badges">

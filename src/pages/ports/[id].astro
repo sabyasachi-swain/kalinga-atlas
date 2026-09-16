@@ -9,6 +9,7 @@ import EntityCard from '@components/EntityCard.astro';
 import { getPorts, getRoutes, getGoods, getPeriods, getSources } from '@data/load';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
+import { withBase } from '@lib/base-url';
 
 export const getStaticPaths = (async () => {
   const ports = getPorts();
@@ -27,12 +28,11 @@ const narrativeEntries = await getCollection('ports');
 const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === port.id);
 
 const coordinateSource = sources.find((s) => s.id === port.coordinate_source);
-const base = import.meta.env.BASE_URL;
 ---
 
 <Base title={port.name} description={port.summary}>
   <article class="entity-page">
-    <p class="back"><a href={`${base}#ports`}>&larr; Back to the atlas</a></p>
+    <p class="back"><a href={withBase('#ports')}>&larr; Back to the atlas</a></p>
 
     <h1>{port.name}</h1>
     <div class="badges">

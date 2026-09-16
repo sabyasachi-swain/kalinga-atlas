@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. -->
+  <title id="title">Inscription glyph</title>
+  <desc id="desc">A rounded stone tablet (stele) with three carved lines of generic script marks, drawn as a filled silhouette with the lines as negative space, for use as the white icon inside an inscription map marker. Generic tablet shape, not a specific inscription.</desc>
+  <path
+    fill="currentColor"
+    fill-rule="evenodd"
+    d="M20,16 Q20,10 26,10 L38,10 Q44,10 44,16 L44,52 Q44,56 40,56 L24,56 Q20,56 20,52 Z
+       M24,22 L40,22 L40,26 L24,26 Z
+       M24,32 L40,32 L40,36 L24,36 Z
+       M24,42 L36,42 L36,46 L24,46 Z"
+  />
+</svg>

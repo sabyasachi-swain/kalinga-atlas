@@ -8,11 +8,11 @@
 import Base from '@layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
 import licenseText from '../../LICENSE?raw';
+import { withBase } from '@lib/base-url';
 
 const docs = await getCollection('docs');
 const attributionEntry = docs.find((e) => e.id === 'attribution');
 const { Content } = attributionEntry ? await render(attributionEntry) : { Content: undefined };
-const base = import.meta.env.BASE_URL;
 ---
 
 <Base
@@ -40,7 +40,7 @@ const base = import.meta.env.BASE_URL;
       <ul class="licence-list">
         <li><strong>Code:</strong> MIT.</li>
         <li><strong>Original illustrations and icons</strong> (<code>src/assets/</code>): Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0), unless a file states otherwise.</li>
-        <li><strong>Historical data</strong> (<code>src/data/</code>): Creative Commons Attribution 4.0 (CC BY 4.0); every fact cites its published source, listed in full on the <a href={`${base}sources/`}>Sources</a> page.</li>
+        <li><strong>Historical data</strong> (<code>src/data/</code>): Creative Commons Attribution 4.0 (CC BY 4.0); every fact cites its published source, listed in full on the <a href={withBase('sources/')}>Sources</a> page.</li>
         <li><strong>Fonts:</strong> EB Garamond, Source Sans 3 and Noto Sans Oriya, all SIL Open Font Licence, self-hosted from <code>public/fonts/</code>.</li>
         <li><strong>Map data:</strong> <a href="https://www.naturalearthdata.com/">Natural Earth</a>, public domain.</li>
       </ul>

@@ -48,7 +48,7 @@ WCAG 2.1 AA · keyboard-navigable map and timeline · Lighthouse ≥ 90 in all f
 
 ## Design in one line
 
-Nautical charts + palm-leaf manuscripts + inscription rubbings under museum light. Navy sea, parchment land, laterite and verdigris accents, gold highlights. EB Garamond headings, Source Sans 3 body. Tokens only, in `src/styles/tokens.css`. Badges are colour + glyph + text, never colour alone.
+Calm, light atlas: pale blue-grey sea and cream land drawn from Natural Earth vectors (no tiles), the map in a white card, round coloured pins with white glyphs, dark ink text on a warm-cream page under a dark header. Orange, teal and violet accents. EB Garamond headings, Source Sans 3 body. Tokens only, in `src/styles/tokens.css`; values and contrast in `docs/design/tokens.md`, map rules in `docs/design/map-style-light.md`. Badges are colour + glyph + text, never colour alone.
 
 ## Agents, skills, and which model does what
 

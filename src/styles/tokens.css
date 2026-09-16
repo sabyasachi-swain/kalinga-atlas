@@ -1,34 +1,45 @@
 /*
  * Design tokens — Kalinga: Ancient Trade Routes
  *
- * Inspiration: nautical charts, palm-leaf manuscripts, inscription rubbings,
- * museum exhibit lighting. Not the generic "cream + terracotta" default.
+ * Light map style: a restyle of our own Natural Earth vector map borrowing
+ * the calm, pale-basemap + white-card feel of Voyager-style reference maps
+ * (see docs/design/map-style-light.md). No tiles, no third-party map brand.
+ * Raw palette names below are kept for stability (components reference them
+ * by name everywhere) even where the hue no longer matches the old name —
+ * each such case has its own comment.
  *
- * Every colour below has been chosen so text pairs meet WCAG 2.1 AA (4.5:1).
- * Evidence badges never rely on colour alone: each tier also has a glyph and
- * a text label (see EvidenceBadge.astro).
+ * Every colour below has been chosen so text pairs meet WCAG 2.1 AA (4.5:1)
+ * and every graphic/UI pair meets 3:1; ratios are computed with the
+ * standard WCAG relative-luminance formula and recorded in
+ * docs/design/tokens.md. Evidence badges never rely on colour alone: each
+ * tier also has a glyph and a text label (see EvidenceBadge.astro).
  */
 
 :root {
   /* ---- Palette ---------------------------------------------------------- */
-  --navy-900: #071528;   /* deepest sea, page background in map mode */
-  --navy-800: #0b1f3a;   /* deep ocean navy, primary dark */
-  --navy-600: #1d3557;   /* mid sea, panels on dark */
-  --parchment-100: #f7f0df; /* aged parchment, light page background */
-  --parchment-200: #f3e9d2; /* parchment cards */
-  --parchment-400: #d9c9a3; /* parchment edge / rules */
-  --laterite-700: #7a2e24; /* laterite red-brown, accents on light */
-  --laterite-500: #8b3a2f;
-  --verdigris-700: #2f6f62; /* verdigris green, deep */
-  --verdigris-500: #3e8a7a;
-  --verdigris-300: #7fc4b3; /* luminous route lines on navy */
-  --gold-600: #a8861b;   /* gold foil on light backgrounds */
-  --gold-400: #c9a227;   /* gold foil on dark backgrounds */
-  --ochre-600: #9a5b1f;
-  --slate-600: #5b6470;
-  --ink-900: #17120c;    /* text on parchment */
-  --ink-600: #4a4036;    /* secondary text on parchment */
-  --white: #fbf8f1;
+  /* navy-* : now the dark-ink / header family, not "deep sea" (the sea is
+     pale in this style). Kept the name for stability. */
+  --navy-900: #111827;   /* header background, darkest ink accents */
+  --navy-800: #1f2937;   /* dark slate; borders/emphasis on light surfaces */
+  --navy-600: #6b7280;   /* mid grey; hairline borders, --type-scholarly text (4.83:1 on white) */
+  --parchment-100: #fff8ee; /* warm cream page background (was aged-parchment; same warm family) */
+  --parchment-200: #ffffff; /* white card background */
+  --parchment-400: #e3dacb; /* light warm rule/hairline tone (decorative only, no text sits on it now) */
+  --laterite-700: #c2410c; /* accent orange, darkened for AA text/fills: 5.18:1 on white, 3.9:1 on --map-sea, 4.48:1 on --map-land */
+  --laterite-500: #f97316; /* bright orange, decorative/large-scale only (2.80:1 on white — never body text) */
+  --verdigris-700: #1a6b49; /* deep leaf green (route/badge use): 4.88:1 on --map-sea, 5.60:1 on --map-land, 6.48:1 on white */
+  --verdigris-500: #2e9e6a; /* mid leaf green, decorative/large-scale only */
+  --verdigris-300: #8fe0bc; /* light mint, decorative accents only */
+  --teal-700: #0b7a70;   /* new: darkened secondary teal for chips/links/site markers, 5.21:1 on white */
+  --teal-500: #0d9488;   /* new: owner's bright secondary teal, decorative/large-scale only */
+  --gold-600: #f2a93c;   /* amber highlight fill; pairs with dark ink text, 8.72:1 */
+  --gold-400: #f2a93c;   /* kept as an alias of gold-600 in this light-map wave (no separate dark-chrome shade needed) */
+  --ochre-600: #9a5b1f;  /* unchanged: 5.40:1 white text */
+  --slate-600: #5b6470;  /* unchanged: 5.99:1 white text */
+  --ink-900: #1a1a1a;    /* primary text ink */
+  --ink-600: #374151;    /* secondary text ink: 9.77:1 on --bg, 10.31:1 on --bg-elevated */
+  --white: #ffffff;
+  --violet-700: #6d28d9; /* new: --marker-inscription, 7.11:1 white glyph, 5.35:1 on --map-sea, 6.14:1 on --map-land */
 
   /* ---- Semantic ---------------------------------------------------------- */
   --bg: var(--parchment-100);
@@ -36,47 +47,79 @@
   --fg: var(--ink-900);
   --fg-muted: var(--ink-600);
   --accent: var(--laterite-700);
-  --accent-2: var(--verdigris-700);
-  --highlight: var(--gold-600);
+  --accent-2: var(--teal-700);
+  --highlight: var(--laterite-500);
   --rule: var(--parchment-400);
-  --focus-ring: 0 0 0 3px var(--gold-400), 0 0 0 5px var(--navy-800);
+  /* Single accent ring (darkened orange) reads >=3:1 on every surface this
+     ring appears on — white card 5.18:1, cream --bg ~5:1, --map-sea 3.90:1,
+     --map-land 4.48:1, --header-bg 3.43:1 — plus a decorative card-colour
+     separator ring (no ratio required, it's a spacer, not the contrast
+     carrier). See tokens.md "Focus ring" row. */
+  --focus-ring: 0 0 0 3px var(--accent), 0 0 0 5px var(--card-bg);
 
-  /* Map surface (always dark, regardless of page theme) */
-  --map-sea: var(--navy-900);
-  --map-land: #2a2418;
-  --map-land-edge: #5a4b2e;
-  --map-river: #244a63;
-  --map-route: var(--verdigris-300);
-  --map-route-glow: rgba(127, 196, 179, 0.35);
-  --map-port: var(--gold-400);
-  --map-port-glow: rgba(201, 162, 39, 0.45);
-  --map-label: var(--parchment-200);
+  /* ---- Cards & controls (docs/design/map-style-light.md) ------------------ */
+  --card-bg: var(--parchment-200);
+  --card-shadow: 0 1px 2px rgba(17, 24, 39, 0.08), 0 8px 24px rgba(17, 24, 39, 0.10);
+  --control-bg: rgba(255, 255, 255, 0.95);
+  --control-fg: var(--fg);
+  --control-shadow: var(--card-shadow);
+  --radius-lg: 0.75rem; /* 12px: map frame, controls, legend card, per owner's reference */
+
+  /* ---- Header ------------------------------------------------------------ */
+  --header-bg: var(--navy-900);
+  --header-fg: var(--white);
+  --header-accent: var(--laterite-500);
+
+  /* Map surface (pale basemap, calm Voyager-style palette) */
+  --map-sea: #cfe3e8;
+  --map-land: #f2eee6;
+  --map-land-edge: #d9cdb8;
+  --map-river: #6fa8c0;
+  --map-route: var(--verdigris-700);
+  --map-route-glow: rgba(26, 107, 73, 0.35);
+  --map-port: var(--laterite-700);
+  --map-port-glow: rgba(194, 65, 12, 0.35);
+  --map-label: var(--fg);
+  --map-label-halo: var(--card-bg); /* dark ink text needs a *light* halo now — see map-style-light.md */
+
+  /* Marker family (docs/design/map-style-light.md): solid fill + white ring +
+     dark outline + soft glow halo, never colour alone (paired with a glyph
+     and the EvidenceBadge on the card). */
+  --marker-port: var(--laterite-700);       /* 3.90:1 on --map-sea, 4.48:1 on --map-land, 5.18:1 white glyph */
+  --marker-site: var(--teal-700);           /* 3.92:1 on --map-sea, 4.50:1 on --map-land, 5.21:1 white glyph */
+  --marker-inscription: var(--violet-700);  /* 5.35:1 on --map-sea, 6.14:1 on --map-land, 7.11:1 white glyph */
+  --marker-destination: var(--ink-600);     /* unfilled concentric rings: 7.76:1 on --map-sea, 8.91:1 on --map-land */
+  --marker-cluster: var(--navy-900);        /* 13.35:1 on --map-sea, 15.33:1 on --map-land, 17.74:1 white count text */
+  --marker-ring: var(--white);              /* 2–3px ring between fill and outline, decorative */
+  --marker-outline: var(--fg);              /* 1.25–1.5px hairline that carries the guaranteed >=3:1, see tokens.md */
+  --marker-glow: rgba(26, 26, 26, 0.12);    /* soft decorative halo underlay, no ratio required */
 
   /* Route colours by travel mode (route-styles.md). Paired with a distinct
-     dash pattern and a legend glyph per mode — never colour alone. Ratios
-     computed with the standard WCAG relative-luminance formula. */
-  --route-amber-400: #e0a23c;      /* coastal: 8.20:1 on --navy-900, 6.89:1 on --map-land */
-  --route-river-300: #8fc7e0;      /* river: 9.95:1 on --navy-900, 8.37:1 on --map-land, 5.11:1 on --map-river fill */
-  --route-terracotta-400: #e0876a; /* land/caravan: 6.84:1 on --navy-900, 5.75:1 on --map-land */
-  --map-route-maritime: var(--map-route);          /* alias; 9.1:1 on --navy-900 (see tokens.md) */
+     dash pattern and a legend glyph per mode — never colour alone. All four
+     were darkened from the original "start" hues to clear 3:1 against the
+     new pale --map-sea/--map-land (see docs/design/tokens.md). */
+  --route-amber-400: #8a4a00;      /* coastal: 5.17:1 on --map-sea, 5.93:1 on --map-land (was a lighter amber) */
+  --route-river-300: #1f5c87;      /* river: 5.37:1 on --map-sea, 6.17:1 on --map-land (was a light blue; name kept) */
+  --route-terracotta-400: #5c4033; /* land/caravan: 7.07:1 on --map-sea, 8.11:1 on --map-land (deep umber, name kept) */
+  --map-route-maritime: var(--map-route);          /* alias; 4.88:1 on --map-sea, 5.60:1 on --map-land */
   --map-route-coastal: var(--route-amber-400);
   --map-route-river: var(--route-river-300);
   --map-route-land: var(--route-terracotta-400);
   --map-route-glow-maritime: var(--map-route-glow); /* alias */
-  --map-route-glow-coastal: rgba(224, 162, 60, 0.35);
-  --map-route-glow-river: rgba(143, 199, 224, 0.35);
-  --map-route-glow-land: rgba(224, 135, 106, 0.35);
+  --map-route-glow-coastal: rgba(138, 74, 0, 0.35);
+  --map-route-glow-river: rgba(31, 92, 135, 0.35);
+  --map-route-glow-land: rgba(92, 64, 51, 0.35);
 
   /* Modal/sheet backdrop. Sits behind an opaque panel, so no text-contrast
      ratio applies (decorative dimming layer only). */
-  --scrim: rgba(7, 21, 40, 0.6);
+  --scrim: rgba(26, 26, 26, 0.5);
 
   /* ---- Kid experience (docs/design/kid-experience.md) ---------------------
      All four derive from existing hues; no new palette is introduced. */
   --progress-track: var(--parchment-400);
-  --progress-fill: var(--verdigris-700);   /* 3.59:1 vs --progress-track: meets WCAG 2.1 AA 3:1 non-text/UI minimum */
-  --stamp-ink: var(--laterite-700);        /* 7.75:1 vs --parchment-200 (stamp card bg): exceeds 4.5:1 */
-  --stamp-glow: rgba(168, 134, 27, 0.35);  /* derived from --gold-600; decorative glow underlay only, no ratio required */
+  --progress-fill: var(--teal-700);        /* 3.76:1 vs --progress-track: meets WCAG 2.1 AA 3:1 non-text/UI minimum */
+  --stamp-ink: var(--laterite-700);        /* 5.18:1 vs --parchment-200 (stamp card bg): exceeds 4.5:1 */
+  --stamp-glow: rgba(194, 65, 12, 0.3);    /* derived from --laterite-700; decorative glow underlay only, no ratio required */
 
   /* ---- Evidence tiers (colour + glyph + label, never colour alone) --------- */
   --tier-confirmed: var(--verdigris-700);
@@ -86,9 +129,9 @@
   --tier-unverified: var(--laterite-700);
 
   /* ---- Evidence types (distinct shape glyphs, see EvidenceBadge) ----------- */
-  --type-archaeological: var(--verdigris-700); /* ◆ */
-  --type-scholarly: var(--navy-600);           /* ■ */
-  --type-traditional: var(--laterite-500);     /* ● */
+  --type-archaeological: var(--verdigris-700); /* ◆ 6.48:1 on white */
+  --type-scholarly: var(--navy-600);           /* ■ 4.83:1 on white */
+  --type-traditional: var(--laterite-700);     /* ● 5.18:1 on white (was --laterite-500, which fails at 2.80:1) */
 
   /* ---- Typography -------------------------------------------------------- */
   --font-heading: 'EB Garamond', Georgia, 'Times New Roman', serif;

@@ -9,7 +9,8 @@
       "@components/*": ["src/components/*"],
       "@islands/*": ["src/islands/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@lib/*": ["src/lib/*"]
     },
     "resolveJsonModule": true,
     "noUncheckedIndexedAccess": true

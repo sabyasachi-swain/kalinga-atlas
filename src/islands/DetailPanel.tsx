@@ -181,7 +181,7 @@ export function DetailPanel({ selected, sources, goods, periods, onClose }: Deta
             Details
           </h3>
           <p className="atlas-panel__hint">
-            Select a port, route or site to learn more — with the mouse, or with Tab and Enter.
+            Tap a dot on the map to find out its story. You can also use Tab and Enter.
           </p>
         </>
       ) : (

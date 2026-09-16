@@ -6,7 +6,7 @@ user-invocable: false
 
 # Kalinga Atlas design system
 
-**Feeling:** walking through a museum of ancient nautical charts and palm-leaf manuscripts, lit for exhibition. Reverential, luminous, inviting to a ten-year-old. Never a textbook, never the generic "warm cream + terracotta" template.
+**Feeling:** a calm, bright atlas a ten-year-old wants to tap: pale sea and cream land, white cards, big friendly pins. Museum-grade care for evidence, never a textbook, never cluttered.
 
 ## Sources of the look (all open or original)
 
@@ -19,11 +19,11 @@ Reference real artefacts by name in your notes, but every drawing is **original*
 
 ## Tokens
 
-The canonical values live in `src/styles/tokens.css`. Summary in `${CLAUDE_SKILL_DIR}/tokens.md`. Rules:
+The canonical values live in `src/styles/tokens.css`. Values and computed contrast in `docs/design/tokens.md`; map rules (pins, labels, card, controls, clusters, routes) in `docs/design/map-style-light.md`. Rules:
 
 - Use tokens, never raw hex, in components.
-- Page surfaces are parchment; the map surface is always navy, whatever the page.
-- Gold is an accent for focus, highlights and port glows. It is never a background for body text.
+- Pages are warm cream with white cards. The map is a light basemap (pale blue-grey sea, cream land) inside a white card, drawn from Natural Earth vectors. No dark map chrome, no tiles.
+- Orange `--accent` marks pins, focus and active states. `--highlight` is decorative only (borders, underlines): it is under 3:1 on white, so it never carries a UI control or text on its own.
 - Every text/background pair must reach WCAG 2.1 AA (4.5:1 body, 3:1 large). Check before proposing a new pair.
 
 ## Typography

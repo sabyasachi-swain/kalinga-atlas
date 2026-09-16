@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <!-- Original illustration for Kalinga: Ancient Trade Routes. CC BY-SA 4.0. Artistic reconstruction — not a historical document. -->
+  <title id="title">Site glyph</title>
+  <desc id="desc">Artistic reconstruction, not a historical document; a generic stepped-and-domed monument silhouette (tiered base, dome, finial), not any specific structure. For use as the white icon inside an archaeological-site map marker.</desc>
+  <path fill="currentColor" d="M14,54 L50,54 L50,50 L14,50 Z" />
+  <path fill="currentColor" d="M18,50 L46,50 L46,44 L18,44 Z" />
+  <path fill="currentColor" d="M22,44 Q22,28 32,24 Q42,28 42,44 Z" />
+  <path fill="currentColor" d="M29,24 L35,24 L35,16 L29,16 Z" />
+  <path fill="currentColor" d="M32,7 L36,16 L28,16 Z" />
+</svg>

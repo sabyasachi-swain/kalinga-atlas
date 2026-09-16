@@ -8,6 +8,7 @@
 import type { Port, Route, Good, Site, Inscription, Source } from '@data/schema';
 import EvidenceBadge from './EvidenceBadge.astro';
 import SourcePopover from './SourcePopover.astro';
+import { withBase } from '@lib/base-url';
 
 type Kind = 'port' | 'route' | 'good' | 'site' | 'inscription';
 type Entity = Port | Route | Good | Site | Inscription;
@@ -28,7 +29,7 @@ const PATH: Record<Kind, string> = {
   inscription: 'inscriptions',
 };
 
-const href = `${import.meta.env.BASE_URL}${PATH[kind]}/${entity.id}/`;
+const href = withBase(`${PATH[kind]}/${entity.id}/`);
 const description = kind === 'good' ? (entity as Good).kid_line : entity.summary;
 ---
 

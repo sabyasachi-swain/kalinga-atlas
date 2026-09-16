@@ -8,6 +8,7 @@ import EntityCard from '@components/EntityCard.astro';
 import { getRoutes, getPorts, getSites, getGoods, getPeriods, getSources } from '@data/load';
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
+import { withBase } from '@lib/base-url';
 
 export const getStaticPaths = (async () => {
   const routes = getRoutes();
@@ -24,9 +25,9 @@ const sites = getSites();
 
 function resolveEndpoint(id: string): { name: string; href: string } | null {
   const port = ports.find((p) => p.id === id);
-  if (port) return { name: port.name, href: `${import.meta.env.BASE_URL}ports/${port.id}/` };
+  if (port) return { name: port.name, href: withBase(`ports/${port.id}/`) };
   const site = sites.find((s) => s.id === id);
-  if (site) return { name: site.name, href: `${import.meta.env.BASE_URL}sites/${site.id}/` };
+  if (site) return { name: site.name, href: withBase(`sites/${site.id}/`) };
   return null;
 }
 
@@ -38,7 +39,6 @@ const relatedGoods = getGoods().filter((g) => route.goods.includes(g.id));
 
 const narrativeEntries = await getCollection('routes');
 const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === route.id);
-const base = import.meta.env.BASE_URL;
 
 const MODE_LABEL: Record<string, string> = {
   maritime: 'Maritime (open sea)',
@@ -50,7 +50,7 @@ const MODE_LABEL: Record<string, string> = {
 
 <Base title={route.name} description={route.summary}>
   <article class="entity-page">
-    <p class="back"><a href={`${base}#routes`}>&larr; Back to the atlas</a></p>
+    <p class="back"><a href={withBase('#routes')}>&larr; Back to the atlas</a></p>
 
     <h1>{route.name}</h1>
     <div class="badges">
