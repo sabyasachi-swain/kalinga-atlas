@@ -70,43 +70,56 @@
   --header-fg: var(--white);
   --header-accent: var(--laterite-500);
 
-  /* Map surface (pale basemap, calm Voyager-style palette) */
-  --map-sea: #cfe3e8;
+  /* Map surface (pale basemap, calm Voyager-style palette). Values below
+     are the coordinator-verified set (recomputed independently, 19/20
+     ratios matched exactly) — apply as given, do not re-derive. */
+  --map-sea: #7eb8cf;
   --map-land: #f2eee6;
-  --map-land-edge: #d9cdb8;
-  --map-river: #6fa8c0;
+  --map-land-edge: #4a6b78; /* stroke width 1–1.25px, see AtlasMap.tsx paintVector */
+  --map-river: #4a85a0;
   --map-route: var(--verdigris-700);
   --map-route-glow: rgba(26, 107, 73, 0.35);
   --map-port: var(--laterite-700);
   --map-port-glow: rgba(194, 65, 12, 0.35);
   --map-label: var(--fg);
   --map-label-halo: var(--card-bg); /* dark ink text needs a *light* halo now — see map-style-light.md */
+  /* atlas-layout.md §6: modern political-border hairline, orientation only,
+     never a historical claim. Coordinator-verified value: 0.35 alpha failed
+     at 1.6–1.9:1 against the new sea/land, so alpha is raised to 0.8; if
+     that reads too heavy, cut stroke-width instead of lowering alpha again. */
+  --map-border-modern: rgba(55, 65, 81, 0.8);
+  /* In-map selection/focus stroke. --gold-400 measured 1.09:1 on the new sea
+     and 1.73:1 on land — effectively invisible — so the map's own focus/
+     selection rings use this instead (7.99:1 on sea, 15.04:1 on land). The
+     page-level --focus-ring is untouched; it never renders on the canvas. */
+  --map-focus: #1a1a1a;
 
   /* Marker family (docs/design/map-style-light.md): solid fill + white ring +
      dark outline + soft glow halo, never colour alone (paired with a glyph
-     and the EvidenceBadge on the card). */
-  --marker-port: var(--laterite-700);       /* 3.90:1 on --map-sea, 4.48:1 on --map-land, 5.18:1 white glyph */
-  --marker-site: var(--teal-700);           /* 3.92:1 on --map-sea, 4.50:1 on --map-land, 5.21:1 white glyph */
-  --marker-inscription: var(--violet-700);  /* 5.35:1 on --map-sea, 6.14:1 on --map-land, 7.11:1 white glyph */
-  --marker-destination: var(--ink-600);     /* unfilled concentric rings: 7.76:1 on --map-sea, 8.91:1 on --map-land */
-  --marker-cluster: var(--navy-900);        /* 13.35:1 on --map-sea, 15.33:1 on --map-land, 17.74:1 white count text */
+     and the EvidenceBadge on the card). Coordinator-verified fills: all
+     3.32–4.73:1 on --map-sea, white glyphs 7.22–8.98:1 on their fills,
+     cluster 8.15:1. */
+  --marker-port: #9c3409;                   /* own value now — no longer aliases --accent/--laterite-700 */
+  --marker-site: #085e57;
+  --marker-inscription: #5b21b6;
+  --marker-destination: var(--ink-600);     /* unchanged: unfilled concentric rings */
+  --marker-cluster: var(--navy-900);        /* unchanged: 8.15:1 on the new sea per coordinator */
   --marker-ring: var(--white);              /* 2–3px ring between fill and outline, decorative */
   --marker-outline: var(--fg);              /* 1.25–1.5px hairline that carries the guaranteed >=3:1, see tokens.md */
   --marker-glow: rgba(26, 26, 26, 0.12);    /* soft decorative halo underlay, no ratio required */
 
   /* Route colours by travel mode (route-styles.md). Paired with a distinct
-     dash pattern and a legend glyph per mode — never colour alone. All four
-     were darkened from the original "start" hues to clear 3:1 against the
-     new pale --map-sea/--map-land (see docs/design/tokens.md). */
-  --route-amber-400: #8a4a00;      /* coastal: 5.17:1 on --map-sea, 5.93:1 on --map-land (was a lighter amber) */
-  --route-river-300: #1f5c87;      /* river: 5.37:1 on --map-sea, 6.17:1 on --map-land (was a light blue; name kept) */
-  --route-terracotta-400: #5c4033; /* land/caravan: 7.07:1 on --map-sea, 8.11:1 on --map-land (deep umber, name kept) */
-  --map-route-maritime: var(--map-route);          /* alias; 4.88:1 on --map-sea, 5.60:1 on --map-land */
+     dash pattern and a legend glyph per mode — never colour alone.
+     Coordinator-verified: all four 3.28–4.31:1 on the new --map-sea. */
+  --route-amber-400: #7a4000;      /* coastal */
+  --route-river-300: #1f5c87;      /* river: unchanged */
+  --route-terracotta-400: #5c4033; /* land/caravan: unchanged */
+  --map-route-maritime: #14593c;   /* maritime: own value now (was aliased to --map-route/--verdigris-700) */
   --map-route-coastal: var(--route-amber-400);
   --map-route-river: var(--route-river-300);
   --map-route-land: var(--route-terracotta-400);
   --map-route-glow-maritime: var(--map-route-glow); /* alias */
-  --map-route-glow-coastal: rgba(138, 74, 0, 0.35);
+  --map-route-glow-coastal: rgba(122, 64, 0, 0.35);
   --map-route-glow-river: rgba(31, 92, 135, 0.35);
   --map-route-glow-land: rgba(92, 64, 51, 0.35);
 
@@ -183,6 +196,10 @@
   --dur-page: 700ms;
   --dur-sail: 6000ms; /* ship travels one route */
   --dur-flow: 2400ms; /* ambient route dash-offset "flow" loop, independent of --dur-sail */
+  /* atlas-layout.md §1: the "Did you know?" toast's settle debounce after a
+     timeline drag — an interaction delay, not an animation, so it is
+     deliberately *not* zeroed by prefers-reduced-motion below. */
+  --dur-toast-settle: 500ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -195,24 +212,28 @@
   }
 }
 
-/* Self-hosted OFL fonts. Drop the .woff2 files into public/fonts/ (see public/fonts/README.md).
-   If they are missing the fallback stacks above take over. */
+/* Self-hosted OFL fonts, in src/assets/fonts/ (see public/fonts/README.md
+   for why they moved out of public/). A src/-relative url() here goes
+   through Vite's normal asset pipeline, which resolves and hashes it
+   correctly in both `npm run dev` and the build — a `/fonts/...` absolute
+   path worked only after the production build rewrote it and 404'd in dev,
+   since CSS url() can't read import.meta.env.BASE_URL the way JS can. */
 @font-face {
   font-family: 'EB Garamond';
-  src: url('/fonts/EBGaramond-Variable.woff2') format('woff2');
+  src: url('../assets/fonts/EBGaramond-Variable.woff2') format('woff2');
   font-weight: 400 700;
   font-display: swap;
 }
 @font-face {
   font-family: 'Source Sans 3';
-  src: url('/fonts/SourceSans3-Variable.woff2') format('woff2');
+  src: url('../assets/fonts/SourceSans3-Variable.woff2') format('woff2');
   font-weight: 300 700;
   font-display: swap;
 }
 /* Reserved for Phase 2 Odia UI. Only downloaded when an element uses --font-odia. */
 @font-face {
   font-family: 'Noto Sans Oriya';
-  src: url('/fonts/NotoSansOriya-Variable.woff2') format('woff2');
+  src: url('../assets/fonts/NotoSansOriya-Variable.woff2') format('woff2');
   font-weight: 100 900;
   font-display: swap;
   unicode-range: U+0B00-0B7F;

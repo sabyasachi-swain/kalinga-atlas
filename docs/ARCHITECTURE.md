@@ -50,7 +50,7 @@ flowchart LR
 | `src/assets/` | Original SVG illustrations (CC BY-SA). |
 | `scripts/` | `validate-data.ts`, `readability.ts`, `fetch-geo.ts`. |
 | `public/geo/` | Generated Natural Earth TopoJSON (gitignored). |
-| `public/fonts/` | Self-hosted OFL fonts. |
+| `src/assets/fonts/` | Self-hosted OFL fonts. |
 | `docs/` | This file, design specs, research notes, audit reports. |
 | `.claude/` | Agents, skills and path-scoped rules for Claude Code. |
 

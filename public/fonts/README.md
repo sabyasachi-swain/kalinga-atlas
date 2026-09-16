@@ -1,11 +1,25 @@
-# Self-hosted fonts
+# Self-hosted fonts — split location
 
-All fonts are SIL Open Font License 1.1. Download the variable `.woff2` builds and place them here; `src/styles/tokens.css` already declares the `@font-face` rules. Until the files exist, the fallback stacks (Georgia / system sans) are used.
+The `.woff2` files live in `src/assets/fonts/`, not here — see that
+decision's rationale below. The **licence texts stay in this folder**
+(`public/fonts/*-OFL.txt`) so they are served at the site root
+(`/kalinga-atlas/fonts/EBGaramond-OFL.txt` and so on) and reach the
+deployed site alongside the fonts they cover, as the SIL Open Font License
+requires. `docs/attribution.md` and `src/pages/attribution.astro` link to
+these served copies.
 
-| File expected | Family | Source |
-|---|---|---|
-| `EBGaramond-Variable.woff2` | EB Garamond (headings) | https://github.com/octaviopardo/EBGaramond12 or Google Fonts |
-| `SourceSans3-Variable.woff2` | Source Sans 3 (body) | https://github.com/adobe-fonts/source-sans |
-| `NotoSansOriya-Variable.woff2` | Noto Sans Oriya (Phase 2, Odia UI) | https://github.com/notofonts/oriya |
+## Why the `.woff2` files moved out of here
 
-Copy each font's `OFL.txt` alongside it. The attribution page lists them.
+Fonts referenced from `public/` are served at the site root with **no**
+`import.meta.env.BASE_URL` prefix applied by Vite's dev server, and CSS
+`url()` can't call `import.meta.env.BASE_URL` the way JS can — so a plain
+`url('/fonts/...')` in `src/styles/tokens.css` worked once the production
+build rewrote every asset path, but 404'd in `npm run dev` under the
+`/kalinga-atlas` base (`Request URLs for public/ assets must also include
+your base`). Referencing the fonts as a `src/`-relative path from
+`tokens.css` instead routes them through Vite's normal asset pipeline,
+which resolves and hashes them correctly in both dev and the build — no
+base-path special-casing needed. Plain text licence files don't need that
+pipeline, so they stay here where they're simplest to serve as-is.
+
+All fonts are SIL Open Font License 1.1. See `docs/attribution.md`.

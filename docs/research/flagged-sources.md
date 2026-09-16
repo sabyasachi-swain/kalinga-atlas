@@ -41,3 +41,13 @@ session and is defined in `docs/research/new-sources-goods.json` — do not add 
 This single entry replaces the two non-existent ids `nanda-2019-odisha-review` (undefined) and
 `nanda-2019-odisha-review-baliyatra` (undefined). `docs/research/new-sources-facts.json`, referenced
 in the old `fact-bali-jatra-paper-boats` caveats, was never written and is not needed.
+
+## Added 2026-09-16 by the ports-expansion session
+
+Object definitions for these two ids are in `docs/research/new-sources-ports.json` (not in
+`src/data/sources.json`, because the routes and goods researchers may still be editing that file).
+
+| Date | source_id | Full reference | Why needed | Supports (entry ids) | Approved? |
+|---|---|---|---|---|---|
+| 2026-09-16 | `bellina-2018-antiquity-myanmar-ports` | Bellina, B. et al. "Myanmar's earliest Maritime Silk Road port-settlements revealed." *Antiquity* 92(366), e6 (2018): 1-5. DOI 10.15184/aqy.2018.247. | Open-access "Project Gallery" report by the excavators themselves (Franco-Myanmar CNRS/Ministry of Religious Affairs project), on the first season at Maliwan and Aw Gyi. Peer-reviewed journal already used elsewhere in this registry (Antiquity, via `ardika-bellwood-1991-antiquity`). Read in full via direct PDF fetch. | `maliwan` | No |
+| 2026-09-16 | `kingwell-banham-2018-antiquity-mantai` | Kingwell-Banham, E. et al. "Spice and rice: pepper, cloves and everyday cereal foods at the ancient port of Mantai, Sri Lanka." *Antiquity* 92(366) (2018): 1552-1570. DOI 10.15184/aqy.2018.168. | Peer-reviewed excavation/archaeobotany report on the 2009-2010 Mantai field season. Same first author as the already-registered `kingwell-banham-2018-ancient-asia`, but a different paper in a different journal, so a separate id. Read in full via direct PDF fetch. | `mahatittha` | No |

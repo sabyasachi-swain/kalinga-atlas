@@ -91,3 +91,16 @@ Every promotion or demotion of an entry between draft, reviewed and published, w
 - facts:fact-maldive-boats-at-balasore draft -> published
 - facts:fact-salt-up-the-mahanadi draft -> published
 - facts:fact-bali-jatra-paper-boats draft -> published
+
+## 2026-09-16: set published (ports:false-point ports:dhamra ports:sonapur ports:barua ports:mahatittha ports:maliwan ports:palembang ports:kedah ports:balugaon ports:alagankulam ports:nagapattinam ports:guangzhou)
+
+- ports:false-point draft -> published
+- ports:dhamra draft -> published
+- ports:sonapur draft -> published
+- ports:barua draft -> published
+- ports:palembang draft -> published
+- ports:kedah draft -> published
+- ports:balugaon draft -> published
+- ports:alagankulam draft -> published
+- ports:nagapattinam draft -> published
+- ports:guangzhou draft -> published

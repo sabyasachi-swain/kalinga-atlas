@@ -1,14 +1,18 @@
 /**
- * Timeline island — period selector. Spec: docs/design/timeline.md
+ * Timeline island — period selector. Spec: docs/design/timeline.md,
+ * docs/design/atlas-layout.md §2 (period chips).
  *
  * The control is a native <input type="range">, so keyboard, touch and
  * screen-reader semantics (arrows, Home/End, aria-valuetext) come for free.
- * A D3-scaled SVG axis is drawn above it: ticks at period boundaries and one
- * band per period, laid out in lanes because periods overlap. The axis is a
- * decorative duplicate of the range input, so it is aria-hidden; clicking a
- * band goes through the same onChange path as an arrow key.
+ * A D3-scaled SVG axis is drawn above it: an unlabelled proportional ruler
+ * with tick marks — period *names* live in a separate, ordinary HTML chip
+ * row above the ruler (atlas-layout.md §2), because trying to fit prose
+ * inside a fixed-width SVG <rect> was what produced the "blank chip" bug
+ * (a label was dropped entirely below a width threshold, rather than
+ * truncated). Chips are real, individually focusable buttons; clicking a
+ * band or a chip goes through the same onChange path as an arrow key.
  */
-import { useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { scaleLinear } from 'd3-scale';
 import type { Period } from '@data/schema';
 
@@ -19,12 +23,18 @@ export interface TimelineProps {
 }
 
 const AXIS_PAD = 8;
-const BAND_H = 20;
+/** atlas-layout.md §2: bands no longer need room for text, so they can be
+ * far shorter — was 20px. */
+const BAND_H = 10;
 const LANE_GAP = 4;
 const TICK_H = 18;
 const LANE_MIN_GAP_PX = 3;
 /** Minimum horizontal room a year label needs before the next one is dropped. */
 const TICK_MIN_GAP_PX = 52;
+/** atlas-layout.md §2: invisible click/tap target height for a band, same
+ * as --hit-min (44px) for any interactive element — independent of the
+ * band's own (now much shorter) visual height. */
+const BAND_HIT_H = 44;
 
 export function formatYear(y: number): string {
   return y < 0 ? `${Math.abs(y)} BCE` : `${y} CE`;
@@ -41,7 +51,17 @@ interface Band {
 export function Timeline({ periods, activePeriod, onChange }: TimelineProps) {
   const id = useId();
   const wrapRef = useRef<HTMLDivElement | null>(null);
+  const chipsRef = useRef<HTMLUListElement | null>(null);
   const [width, setWidth] = useState(720);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const apply = () => setReducedMotion(mq.matches);
+    apply();
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
+  }, []);
 
   // useLayoutEffect (not useEffect): the real width is almost always narrower
   // than the SSR default, and changing it re-packs periods into lanes that
@@ -82,7 +102,8 @@ export function Timeline({ periods, activePeriod, onChange }: TimelineProps) {
     const byStart = [...ordered].sort((a, b) => a.start_year - b.start_year);
     byStart.forEach((p, i) => {
       const x = s(p.start_year);
-      const w = Math.max(s(p.end_year) - x, 2);
+      // atlas-layout.md §2: 12px minimum visual width (was tied to label fit).
+      const w = Math.max(s(p.end_year) - x, 12);
       let lane = laneEnds.findIndex((end) => x >= end + LANE_MIN_GAP_PX);
       if (lane === -1) {
         lane = laneEnds.length;
@@ -118,11 +139,49 @@ export function Timeline({ periods, activePeriod, onChange }: TimelineProps) {
   const axisY = lanes * (BAND_H + LANE_GAP);
   const currentBand = bands.find((b) => b.period.id === activePeriod);
 
+  // atlas-layout.md §2: auto-scroll the current chip into view on settle
+  // (mirrors the toast's settle-debounce concept, so a fast drag doesn't
+  // thrash the scroll position) — a convenience, not required for
+  // correctness, since the callout below always shows the full name too.
+  useEffect(() => {
+    const list = chipsRef.current;
+    if (!list || !current) return;
+    const timer = window.setTimeout(() => {
+      const btn = list.querySelector<HTMLElement>(`[data-period-id="${CSS.escape(current.id)}"]`);
+      btn?.scrollIntoView({ inline: 'center', block: 'nearest', behavior: reducedMotion ? 'auto' : 'smooth' });
+    }, 500);
+    return () => window.clearTimeout(timer);
+  }, [current, reducedMotion]);
+
   return (
     <div className="atlas-timeline" ref={wrapRef}>
       <label className="atlas-timeline__label" htmlFor={id}>
         Explore the timeline
       </label>
+
+      {/* atlas-layout.md §2: real HTML chips carry the period names — the
+          SVG axis below is an unlabelled, decorative proportional ruler. */}
+      <ul className="atlas-timeline__chips" role="list" ref={chipsRef}>
+        {ordered.map((p) => {
+          const isCurrent = p.id === activePeriod;
+          const fullLabel = `${p.label} · ${formatYear(p.start_year)} – ${formatYear(p.end_year)}`;
+          return (
+            <li key={p.id}>
+              <button
+                type="button"
+                className="atlas-timeline__chip"
+                data-period-id={p.id}
+                aria-pressed={isCurrent}
+                title={fullLabel}
+                aria-label={fullLabel}
+                onClick={() => onChange?.(p.id)}
+              >
+                {p.label}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
 
       {scale !== null && (
         <svg
@@ -136,7 +195,6 @@ export function Timeline({ periods, activePeriod, onChange }: TimelineProps) {
           {bands.map((b) => {
             const isCurrent = b.period.id === activePeriod;
             const y = b.lane * (BAND_H + LANE_GAP);
-            const showLabel = b.width > 54;
             return (
               <g
                 key={b.period.id}
@@ -147,13 +205,16 @@ export function Timeline({ periods, activePeriod, onChange }: TimelineProps) {
               >
                 <title>{`${b.period.label}: ${formatYear(b.period.start_year)} to ${formatYear(b.period.end_year)}`}</title>
                 <rect className="tl-band-rect" x={b.x} y={y} width={b.width} height={BAND_H} />
-                {showLabel && (
-                  <text className="tl-band-label" x={b.x + 5} y={y + BAND_H - 6}>
-                    {b.period.label.length * 6.4 > b.width - 10
-                      ? `${b.period.label.slice(0, Math.max(Math.floor((b.width - 14) / 6.4), 1))}…`
-                      : b.period.label}
-                  </text>
-                )}
+                {/* Invisible 44px-tall hit target, independent of the
+                    band's own short visual height (atlas-layout.md §2). */}
+                <rect
+                  className="tl-band-hit"
+                  x={b.x}
+                  y={y + BAND_H / 2 - BAND_HIT_H / 2}
+                  width={b.width}
+                  height={BAND_HIT_H}
+                  fill="transparent"
+                />
               </g>
             );
           })}

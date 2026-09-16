@@ -59,13 +59,18 @@ for what it depicts and whether it is a generic artistic reconstruction.
 
 ## Fonts
 
-All self-hosted under `public/fonts/`, none loaded from a third-party CDN.
+Self-hosted, none loaded from a third-party CDN. The `.woff2` files live in
+`src/assets/fonts/` (bundled by Vite so both `npm run dev` and the build
+resolve them under the `/kalinga-atlas` base — see
+`public/fonts/README.md`); each licence text is served as-is from
+`public/fonts/` so it reaches the deployed site alongside the font it
+covers, per the SIL Open Font License's redistribution requirement.
 
 | Font | Author | Licence | Notes |
 |---|---|---|---|
-| EB Garamond (headings, place names) | The EB Garamond project (Georg Duffner and contributors) | SIL Open Font License 1.1 | `public/fonts/EBGaramond-Variable.woff2`, `EBGaramond-OFL.txt`. |
-| Source Sans 3 (body, UI) | Adobe (Paul D. Hunt and contributors) | SIL Open Font License 1.1 | `public/fonts/SourceSans3-Variable.woff2`, `SourceSans3-OFL.txt`. |
-| Noto Sans Oriya (reserved for Phase 2 Odia UI) | Google Noto Fonts project | SIL Open Font License 1.1 | `public/fonts/NotoSansOriya-Variable.woff2`, `NotoSansOriya-OFL.txt`. Only downloaded by the browser when an element uses `--font-odia`. |
+| EB Garamond (headings, place names) | The EB Garamond project (Georg Duffner and contributors) | [SIL Open Font License 1.1](../fonts/EBGaramond-OFL.txt) | `src/assets/fonts/EBGaramond-Variable.woff2`; licence text at `public/fonts/EBGaramond-OFL.txt`. |
+| Source Sans 3 (body, UI) | Adobe (Paul D. Hunt and contributors) | [SIL Open Font License 1.1](../fonts/SourceSans3-OFL.txt) | `src/assets/fonts/SourceSans3-Variable.woff2`; licence text at `public/fonts/SourceSans3-OFL.txt`. |
+| Noto Sans Oriya (reserved for Phase 2 Odia UI) | Google Noto Fonts project | [SIL Open Font License 1.1](../fonts/NotoSansOriya-OFL.txt) | `src/assets/fonts/NotoSansOriya-Variable.woff2`; licence text at `public/fonts/NotoSansOriya-OFL.txt`. Only downloaded by the browser when an element uses `--font-odia`. |
 
 ## Map data
 

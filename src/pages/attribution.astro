@@ -41,7 +41,13 @@ const { Content } = attributionEntry ? await render(attributionEntry) : { Conten
         <li><strong>Code:</strong> MIT.</li>
         <li><strong>Original illustrations and icons</strong> (<code>src/assets/</code>): Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0), unless a file states otherwise.</li>
         <li><strong>Historical data</strong> (<code>src/data/</code>): Creative Commons Attribution 4.0 (CC BY 4.0); every fact cites its published source, listed in full on the <a href={withBase('sources/')}>Sources</a> page.</li>
-        <li><strong>Fonts:</strong> EB Garamond, Source Sans 3 and Noto Sans Oriya, all SIL Open Font Licence, self-hosted from <code>public/fonts/</code>.</li>
+        <li>
+          <strong>Fonts:</strong> EB Garamond, Source Sans 3 and Noto Sans Oriya, self-hosted from <code>src/assets/fonts/</code>,
+          each under the SIL Open Font Licence 1.1
+          (<a href={withBase('fonts/EBGaramond-OFL.txt')}>EB Garamond licence</a>,
+          <a href={withBase('fonts/SourceSans3-OFL.txt')}>Source Sans 3 licence</a>,
+          <a href={withBase('fonts/NotoSansOriya-OFL.txt')}>Noto Sans Oriya licence</a>).
+        </li>
         <li><strong>Map data:</strong> <a href="https://www.naturalearthdata.com/">Natural Earth</a>, public domain.</li>
       </ul>
       <details class="full-licence">

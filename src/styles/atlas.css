@@ -46,15 +46,23 @@
   /* ---- Locally defined values ------------------------------------------ */
   /* Island-local layout constants. Not global tokens: they describe this one
      composition (map + timeline + side panel) and nothing else on the site. */
-  --atlas-panel-w: 22rem;            /* right column width at >= 900px */
+  /* atlas-layout.md §5: bigger map, narrower side column — the freed 2rem
+     goes to the map column. */
+  --atlas-panel-w: 20rem;            /* right column width at >= 900px */
   --atlas-breakpoint: 56.25rem;         /* documented here; media queries repeat it literally */
-  --atlas-map-ratio: 16 / 10;        /* map figure aspect ratio on wide screens */
-  --atlas-map-ratio-narrow: 4 / 5;   /* taller on phones so the Bay of Bengal still fits */
+  --atlas-map-ratio: 16 / 9;         /* map figure aspect ratio on wide screens (was 16/10) */
+  --atlas-map-ratio-narrow: 3 / 4;   /* taller on phones (was 4/5) */
+  --atlas-map-min-h-wide: 30rem;     /* new: ≥900px min-height, ratio-driven only before */
+  --atlas-map-max-h: min(46rem, 62dvh); /* new: caps the card on tall/short viewports alike */
+  /* atlas-layout.md §2: timeline period chips. */
+  --timeline-chip-min-w: 7rem;
+  --timeline-chip-max-w: 12rem;
   /* Faint graticule + inactive-layer opacity. Not in tokens.css; both are map
      rendering constants read by AtlasMap.tsx via getComputedStyle.
-     map-style-light.md: retuned for the pale sea — a muted river-blue tint
-     instead of the old warm-tan tuned for a dark sea. */
-  --map-graticule: rgba(111, 168, 192, 0.25);
+     Coordinator-verified value: the earlier warm-tan-derived tint went
+     muddy over the new blue sea; a near-neutral dark at low alpha reads
+     as a faint grid line regardless of what's under it. */
+  --map-graticule: rgba(26, 26, 26, 0.08);
   --map-inactive-opacity: 0.4;
 
   display: block;
@@ -242,14 +250,18 @@
   position: relative;
   width: 100%;
   aspect-ratio: var(--atlas-map-ratio-narrow);
-  min-height: 20rem;
+  min-height: 26rem; /* atlas-layout.md §5: was 20rem */
+  max-height: var(--atlas-map-max-h);
   z-index: var(--z-map);
   cursor: grab;
 }
 .atlas-map__stage:active { cursor: grabbing; }
 
 @media (min-width: 640px) {
-  .atlas-map__stage { aspect-ratio: var(--atlas-map-ratio); }
+  .atlas-map__stage {
+    aspect-ratio: var(--atlas-map-ratio);
+    min-height: var(--atlas-map-min-h-wide);
+  }
 }
 
 .atlas-map__canvas,
@@ -322,7 +334,9 @@
 .route:focus-visible .route-glow,
 .route[data-selected='true'] .route-glow { stroke-width: 9; }
 .route:focus-visible .route-hit {
-  stroke: var(--gold-400);
+  /* --map-focus, not --gold-400: gold measures ~1.1:1 on the map's own
+     surface colours and is effectively invisible there. */
+  stroke: var(--map-focus);
   stroke-dasharray: 4 4;
   vector-effect: non-scaling-stroke;
 }
@@ -410,10 +424,14 @@
 }
 
 /* kid-experience.md A4: selected state is a 3px ring, 6px outside the
-   marker edge — map-style-light.md moves its colour to --accent so
-   hover/focus/select share one "you are here" language. */
+   marker edge. Coordinator-verified: --accent measures too close in hue/
+   value to reliably separate from the new sea/land at a glance, same
+   family of problem as --gold-400's ~1.1–1.7:1 failure on the map surface
+   — --map-focus (7.99:1 on sea, 15.04:1 on land) is used for every in-map
+   selection/focus indicator instead. The page-level --focus-ring (used
+   everywhere off the map canvas) is unaffected. */
 .marker-select-ring {
-  stroke: var(--accent);
+  stroke: var(--map-focus);
   vector-effect: non-scaling-stroke;
   pointer-events: none;
 }
@@ -555,6 +573,13 @@
 
 /* ---- A2: "scroll to zoom" hint -------------------------------------------- */
 
+/* atlas-layout.md §1: an empty, zero-size positioning anchor — the actual
+   toast markup (portalled in from Atlas.tsx) is absolutely positioned
+   relative to this element's own containing block ancestor
+   (`.atlas-map`/`.atlas-map-slot`/`.atlas-map-dialog__host`, all
+   `position: relative`), not to this div itself. */
+.atlas-map__toast-host { position: absolute; inset: 0; pointer-events: none; z-index: var(--z-toast); }
+
 .atlas-map__hint {
   position: absolute;
   inset: 0;
@@ -645,24 +670,13 @@
   border-radius: 2px;
 }
 
+/* atlas-layout.md §3+4: "Map key" is a popover now (.keys-sheet's own
+   dialog styling applies via the shared class) — this rule only adds the
+   legend-specific scroll/width tweak on top of it. */
 .atlas-map__legend {
-  padding: 0 var(--space-4) var(--space-3);
-  background: var(--card-bg);
-  border-top: 1px solid var(--rule);
-  color: var(--fg);
-  font-size: var(--text-sm);
+  max-height: 80dvh;
+  overflow: auto;
 }
-.atlas-map__legend > summary {
-  cursor: pointer;
-  font-family: var(--font-heading);
-  font-size: var(--text-md);
-  min-height: var(--hit-min);
-  display: flex;
-  align-items: center;
-  margin: 0 calc(-1 * var(--space-4));
-  padding: 0 var(--space-4);
-}
-.atlas-map__legend > summary:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 
 .legend-group { margin: var(--space-3) 0 0; }
 .legend-group > h4 {
@@ -707,6 +721,9 @@
 .legend-swatch[data-mode='coastal'] { background: repeating-linear-gradient(to right, var(--map-route-coastal) 0 5px, transparent 5px 8px); }
 .legend-swatch[data-mode='river'] { background: repeating-linear-gradient(to right, var(--map-route-river) 0 2px, transparent 2px 4px); }
 .legend-swatch[data-mode='land'] { background: repeating-linear-gradient(to right, var(--map-route-land) 0 4px, transparent 4px 6px, var(--map-route-land) 6px 7px, transparent 7px 9px); }
+/* atlas-layout.md §6: a thin grey line, not a colour used anywhere else in
+   the legend, matching the borders layer's own plain hairline treatment. */
+.legend-swatch--border-modern { height: 1px; background: var(--map-border-modern); }
 .legend-note { margin: var(--space-2) 0 0; font-size: var(--text-xs); color: var(--fg-muted); }
 
 /* ---- Sheets (keyboard shortcuts, cargo manifest) ------------------------- */
@@ -742,6 +759,49 @@
   font-size: var(--text-lg);
   margin-bottom: var(--space-2);
 }
+
+/* atlas-layout.md §2: period names, moved out of the SVG axis into real
+   HTML chips — a fixed-width SVG <rect> either fit the text or dropped it
+   entirely (the "blank chip" bug); ordinary text overflow never does that.
+   --timeline-chip-min-w/max-w are declared on .atlas-island (below). */
+.atlas-timeline__chips {
+  list-style: none;
+  margin: 0 0 var(--space-2);
+  padding: 0 0 var(--space-1);
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+.atlas-timeline__chips > li { flex: none; scroll-snap-align: start; }
+.atlas-timeline__chip {
+  min-width: var(--timeline-chip-min-w);
+  max-width: var(--timeline-chip-max-w);
+  min-height: var(--hit-min);
+  padding: 0 var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  color: var(--fg);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.atlas-timeline__chip:hover { background: var(--parchment-400); }
+.atlas-timeline__chip:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.atlas-timeline__chip[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+  font-weight: 600;
+}
+
 .atlas-timeline__axis { display: block; width: 100%; overflow: visible; }
 
 .tl-band { cursor: pointer; }
@@ -750,8 +810,6 @@
 .tl-band[data-alt='1'] .tl-band-rect { fill: var(--bg); }
 .tl-band:hover .tl-band-rect { fill: var(--parchment-400); }
 .tl-band[data-current='true'] .tl-band-rect { fill: var(--highlight); stroke: var(--ink-900); }
-.tl-band-label { font-size: 11px; font-family: var(--font-body); fill: var(--ink-900); pointer-events: none; }
-.tl-band[data-current='true'] .tl-band-label { font-weight: 700; }
 
 /* Slides from the previous band to the new one; no re-layout. */
 .tl-marker {
@@ -767,7 +825,9 @@
 .atlas-timeline__range {
   width: 100%;
   min-height: var(--hit-min);
-  accent-color: var(--highlight);
+  /* --accent, not --highlight: the thumb is a UI control and --highlight
+     measures ~2.8:1, under the 3:1 non-text/UI gate. */
+  accent-color: var(--accent);
   background: transparent;
 }
 .atlas-timeline__range:focus-visible { outline: none; box-shadow: var(--focus-ring); }
@@ -778,7 +838,7 @@
   width: var(--hit-min);
   height: var(--hit-min);
   border-radius: 50%;
-  background: var(--highlight);
+  background: var(--accent);
   border: 3px solid var(--white);
   box-shadow: var(--shadow-card);
   cursor: pointer;
@@ -793,7 +853,7 @@
   width: var(--hit-min);
   height: var(--hit-min);
   border-radius: 50%;
-  background: var(--highlight);
+  background: var(--accent);
   border: 3px solid var(--white);
   cursor: pointer;
 }
@@ -819,15 +879,21 @@
    the map (in-flow on narrow screens) was a measured CLS source, since it
    renders after the map's own async geodata/hydration settle. Fixed
    positioning at every width means it can never shift anything else. */
+/* atlas-layout.md §1: the toast's containing block is the map's own box
+   (`.atlas-map__toast-host`, `position: absolute; inset: 0` on the map
+   figure) — never the viewport. This is a structural fix, not a z-index
+   one: since the timeline is always a document-flow sibling starting only
+   after the map card plus a fixed gap, the toast's rectangle geometrically
+   cannot reach it, at any viewport height. */
 .atlas-fact {
   display: flex;
   gap: var(--space-3);
   align-items: flex-start;
-  position: fixed;
-  left: var(--space-4);
-  right: var(--space-4);
-  bottom: var(--space-4);
-  width: auto;
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  max-width: min(22rem, calc(100% - 2 * var(--space-3)));
+  max-height: min(20rem, 55%);
   margin-top: 0;
   padding: var(--space-3) var(--space-4);
   background: var(--bg-elevated);
@@ -835,23 +901,41 @@
   border-top: 3px solid transparent;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
+  pointer-events: auto;
   z-index: var(--z-toast);
   animation: fact-in var(--dur-base) var(--ease-page) both;
 }
+.atlas-fact__body { overflow-y: auto; }
 @keyframes fact-in {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
 }
 /* "This is holding" cue while hovered or focused. */
 .atlas-fact:hover,
-.atlas-fact:focus-within { border-top-color: var(--gold-400); }
+.atlas-fact:focus-within { border-top-color: var(--accent); }
 
-@media (min-width: 37.5rem) {
-  .atlas-fact {
-    left: auto;
-    width: min(24rem, calc(100vw - 2 * var(--space-4)));
-  }
+/* atlas-layout.md §1: collapsed pill on a short map box (< 24rem tall) —
+   expands to a popover on activation, confined to the same map box. */
+.atlas-fact--pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--hit-min);
+  height: var(--hit-min);
+  padding: 0;
+  max-width: none;
+  max-height: none;
+  border-radius: 50%;
+  font-size: var(--text-lg);
+  cursor: pointer;
 }
+.atlas-fact--pill:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.atlas-fact-popover {
+  position: absolute;
+  top: calc(var(--hit-min) + var(--space-2));
+  right: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .atlas-fact { animation: none; }
 }

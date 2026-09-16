@@ -209,19 +209,64 @@ async function processRivers(): Promise<void> {
   console.log(`  clipped + rounded -> ${kb(outText)} (${kept.length}/${collection.features.length} features kept)`);
 }
 
-async function processPassthrough(name: string): Promise<void> {
-  const url = FILES[name];
-  if (!url) return;
-  process.stdout.write(`fetching ${name} ... `);
+/**
+ * atlas-layout.md §6: a faint modern-borders context layer. Trimmed the
+ * same way as land — clip to the map's bbox (+margin), simplify, rebuild a
+ * topology — so the 756 KB upstream file doesn't sit in the page-weight
+ * budget just for an optional orientation hairline. `AtlasMap.tsx` draws
+ * this with `topojson-client`'s `mesh()`, which needs the rebuilt topology
+ * (not a plain GeoJSON passthrough) to find shared country-to-country arcs.
+ */
+async function processCountries(): Promise<void> {
+  const url = FILES['countries-50m.json'];
+  if (!url) throw new Error('countries-50m.json url missing');
+  process.stdout.write('fetching countries-50m.json ... ');
   const res = await fetch(url);
-  if (!res.ok) {
-    console.error(`failed: ${res.status} ${res.statusText}`);
-    process.exitCode = 1;
-    return;
+  if (!res.ok) throw new Error(`${url} -> ${res.status} ${res.statusText}`);
+  const beforeText = await res.text();
+  console.log(kb(beforeText));
+
+  const topo = JSON.parse(beforeText) as Topology;
+  const countriesObject = topo.objects['countries'];
+  if (!countriesObject) throw new Error('countries-50m.json has no "countries" object');
+
+  const geo = topoFeature(topo, countriesObject as GeometryCollection) as
+    | Feature<Geometry, GeoJsonProperties>
+    | FeatureCollection<Geometry, GeoJsonProperties>;
+  const source: Feature<Geometry, GeoJsonProperties>[] = geo.type === 'FeatureCollection' ? geo.features : [geo];
+
+  const features: Feature<MultiPolygon, GeoJsonProperties>[] = [];
+  for (const f of source) {
+    if (f.geometry.type === 'MultiPolygon') {
+      const clipped = filterMultiPolygon(f.geometry);
+      if (clipped.coordinates.length > 0) features.push({ ...f, geometry: clipped });
+    } else if (f.geometry.type === 'Polygon') {
+      const clipped = filterPolygon(f.geometry);
+      if (clipped.coordinates.length > 0) features.push({ ...f, geometry: clipped });
+    }
   }
-  const text = await res.text();
-  writeFileSync(resolve(OUT, name), text);
-  console.log(kb(text));
+
+  const clippedCollection: FeatureCollection<MultiPolygon, Record<string, never>> = {
+    type: 'FeatureCollection',
+    features: features.map((f) => ({ ...f, properties: {} }) as Feature<MultiPolygon, Record<string, never>>),
+  };
+
+  const initial = topology({ countries: clippedCollection }, 1e6) as Topology<Objects<Record<string, never>>>;
+  const weighted = presimplify(initial);
+  // Same 0.3 keep-fraction as land — a border hairline needs even less
+  // detail than the coastline it sits just above.
+  const threshold = quantile(weighted, 0.3) ?? 0;
+  const simplified = simplify(weighted, threshold);
+  const simplifiedGeo = topoFeature(simplified, simplified.objects['countries'] as GeometryCollection) as
+    | Feature<Geometry, GeoJsonProperties>
+    | FeatureCollection<Geometry, GeoJsonProperties>;
+  const simplifiedCollection: FeatureCollection<Geometry, GeoJsonProperties> =
+    simplifiedGeo.type === 'FeatureCollection' ? simplifiedGeo : { type: 'FeatureCollection', features: [simplifiedGeo] };
+  const rebuilt = topology({ countries: simplifiedCollection }, 1e4) as Topology;
+
+  const outText = `${JSON.stringify(rebuilt)}\n`;
+  writeFileSync(resolve(OUT, 'countries-50m.json'), outText);
+  console.log(`  clipped + simplified -> ${kb(outText)}`);
 }
 
 mkdirSync(OUT, { recursive: true });
@@ -229,7 +274,7 @@ mkdirSync(OUT, { recursive: true });
 try {
   await processLand();
   await processRivers();
-  await processPassthrough('countries-50m.json');
+  await processCountries();
 } catch (err) {
   console.error(`fetch:geo failed: ${err instanceof Error ? err.message : String(err)}`);
   process.exitCode = 1;

@@ -25,7 +25,7 @@ import {
 import { geoBounds, geoGraticule10, geoMercator, geoPath } from 'd3-geo';
 import { select } from 'd3-selection';
 import { zoom as d3Zoom, zoomIdentity, type D3ZoomEvent, type ZoomBehavior } from 'd3-zoom';
-import { feature as topoFeature } from 'topojson-client';
+import { feature as topoFeature, mesh as topoMesh } from 'topojson-client';
 import type { GeometryCollection, Topology } from 'topojson-specification';
 import type { Feature, FeatureCollection, GeoJsonProperties, Geometry } from 'geojson';
 import type { EvidenceLevel, EvidenceType, Period, Port, Route, Site } from '@data/schema';
@@ -48,6 +48,9 @@ export interface AtlasMapProps {
   /** Path to the TopoJSON land file, relative to Astro's configured base URL. */
   landUrl?: string;
   riversUrl?: string;
+  /** atlas-layout.md §6: fetched lazily, only once the borders layer's own
+   * zoom threshold is first crossed — never on first paint. */
+  countriesUrl?: string;
   onSelect?: (selection: MapSelection) => void;
   /** Currently selected entity, owned by Atlas.tsx. */
   selection?: MapSelection | null;
@@ -67,6 +70,12 @@ export interface AtlasMapProps {
    * and the dialog rather than mounting a second one.
    */
   fullscreen?: boolean;
+  /**
+   * atlas-layout.md §1: a ref callback for the map's own toast-host slot —
+   * Atlas.tsx portals the "Did you know?" toast into it so the toast's
+   * containing block is always the map figure, never the viewport.
+   */
+  onToastHost?: (el: HTMLDivElement | null) => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -123,8 +132,6 @@ const HIT_RADIUS = 22;
  * Keyboard users reach every route directly with Tab, so nothing depends on
  * the hit band being large.
  */
-/** Wide screens show the legend expanded (atlas-map.md, 56.25rem boundary). */
-const WIDE_QUERY = '(min-width: 56.25rem)';
 /** A1 fix: below this, the map caption collapses to keep the top chrome
  * short — same 600px boundary A3 uses for the phone full-screen mode. */
 const NARROW_CHROME_QUERY = '(max-width: 37.4375rem)';
@@ -369,11 +376,13 @@ export function AtlasMap({
   activePeriod,
   landUrl = withBase('geo/land-50m.json'),
   riversUrl = withBase('geo/rivers-50m.json'),
+  countriesUrl = withBase('geo/countries-50m.json'),
   onSelect,
   selection = null,
   onClear,
   focusReturnToken = 0,
   fullscreen = false,
+  onToastHost,
 }: AtlasMapProps) {
   const uid = useId().replace(/[^a-zA-Z0-9-]/g, '');
   const figureRef = useRef<HTMLDivElement | null>(null);
@@ -383,6 +392,11 @@ export function AtlasMap({
   const keysDialogRef = useRef<HTMLDialogElement | null>(null);
   const keysButtonRef = useRef<HTMLButtonElement | null>(null);
   const keysCloseRef = useRef<HTMLButtonElement | null>(null);
+  /** atlas-layout.md §3+4: "Map key" popover — same mechanics as the keys
+   * dialog above. */
+  const legendDialogRef = useRef<HTMLDialogElement | null>(null);
+  const legendButtonRef = useRef<HTMLButtonElement | null>(null);
+  const legendCloseRef = useRef<HTMLButtonElement | null>(null);
   /** A1 fix: measured to exclude the overlay chrome from every view fit. */
   const topbarRef = useRef<HTMLDivElement | null>(null);
   const zoomColRef = useRef<HTMLDivElement | null>(null);
@@ -431,9 +445,16 @@ export function AtlasMap({
   const [size, setSize] = useState({ width: SSR_WIDTH, height: SSR_HEIGHT });
   const [transform, setTransform] = useState({ k: 1, x: 0, y: 0 });
   const [geo, setGeo] = useState<GeoData>({ land: null, rivers: [] });
+  /** atlas-layout.md §6: modern-borders mesh, fetched lazily — see the
+   * effect below. */
+  const [borders, setBorders] = useState<Feature<Geometry, GeoJsonProperties> | null>(null);
+  const bordersFetchedRef = useRef(false);
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [showKeys, setShowKeys] = useState(false);
-  const [legendOpen, setLegendOpen] = useState(false);
+  /** atlas-layout.md §3+4: "Map key" is now a popover (same pattern as the
+   * keyboard-shortcuts dialog), not a persistent in-figure legend, so it
+   * no longer needs a width-driven open state. */
+  const [showLegend, setShowLegend] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   /** A1: which of the two view buttons (if either) matches the current
    * transform. Any manually-triggered zoom/pan event clears it to 'manual'. */
@@ -453,20 +474,15 @@ export function AtlasMap({
   // -- Media queries -------------------------------------------------------
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const wide = window.matchMedia(WIDE_QUERY);
     const narrow = window.matchMedia(NARROW_CHROME_QUERY);
     const applyMotion = () => setReducedMotion(motion.matches);
-    const applyWide = () => setLegendOpen(wide.matches);
     const applyNarrow = () => setCaveatOpen(!narrow.matches);
     applyMotion();
-    applyWide();
     applyNarrow();
     motion.addEventListener('change', applyMotion);
-    wide.addEventListener('change', applyWide);
     narrow.addEventListener('change', applyNarrow);
     return () => {
       motion.removeEventListener('change', applyMotion);
-      wide.removeEventListener('change', applyWide);
       narrow.removeEventListener('change', applyNarrow);
     };
   }, []);
@@ -530,6 +546,39 @@ export function AtlasMap({
       cancelled = true;
     };
   }, [landUrl, riversUrl]);
+
+  // -- Country borders (atlas-layout.md §6) ---------------------------------
+  // Lazy: fetched only the first time the borders layer's own zoom threshold
+  // is crossed (viewMode === 'ocean', the same state AtlasMap already uses
+  // to switch marker sizing between the coast and whole-ocean views), never
+  // on first paint — the trimmed file is still ~67KB, not worth first-paint
+  // weight for an optional orientation layer most visitors never zoom out
+  // far enough to see.
+  useEffect(() => {
+    if (viewMode !== 'ocean' || bordersFetchedRef.current) return;
+    bordersFetchedRef.current = true;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(countriesUrl);
+        if (!res.ok) throw new Error(`countries ${res.status}`);
+        const topology = (await res.json()) as Topology;
+        const countriesObject = topology.objects['countries'];
+        if (!countriesObject) throw new Error('countries-50m.json has no "countries" object');
+        // mesh(), not feature(): a country-to-country shared-arc line, not
+        // filled polygons — (a, b) => a !== b keeps only interior borders,
+        // excluding the outer coastal edge the land layer already draws.
+        const meshed = topoMesh(topology, countriesObject as GeometryCollection, (a, b) => a !== b);
+        if (cancelled) return;
+        setBorders({ type: 'Feature', properties: {}, geometry: meshed });
+      } catch {
+        // Orientation-only decoration; the map is still fully usable without it.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [viewMode, countriesUrl]);
 
   // -- Projection ----------------------------------------------------------
   const projection = useMemo(() => {
@@ -1071,10 +1120,11 @@ export function AtlasMap({
   // map-style-light.md: fallbacks match the light basemap tokens now
   // (pale sea/land), not the old dark-navy map.
   const readColours = useCallback((figure: Element | null) => ({
-    graticule: readVar(figure, '--map-graticule', 'rgba(111,168,192,0.25)'),
+    graticule: readVar(figure, '--map-graticule', 'rgba(26,26,26,0.08)'),
     land: readVar(figure, '--map-land', '#f2eee6'),
-    edge: readVar(figure, '--map-land-edge', '#d9cdb8'),
-    river: readVar(figure, '--map-river', '#6fa8c0'),
+    edge: readVar(figure, '--map-land-edge', '#4a6b78'),
+    river: readVar(figure, '--map-river', '#4a85a0'),
+    borderModern: readVar(figure, '--map-border-modern', 'rgba(55,65,81,0.8)'),
   }), []);
 
   const sizeCanvas = useCallback((canvas: HTMLCanvasElement, width: number, height: number, dpr: number) => {
@@ -1088,7 +1138,7 @@ export function AtlasMap({
     (ctx: CanvasRenderingContext2D, dpr: number, k: number, x: number, y: number) => {
       const { width, height } = size;
       const figure = figureRef.current;
-      const { graticule, land, edge, river } = readColours(figure);
+      const { graticule, land, edge, river, borderModern } = readColours(figure);
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, width, height);
@@ -1107,8 +1157,22 @@ export function AtlasMap({
         p(geo.land);
         ctx.fillStyle = land;
         ctx.fill();
-        ctx.lineWidth = 0.9 / k;
+        ctx.lineWidth = 1.1 / k; // coordinator-verified --map-land-edge: 1–1.25px
         ctx.strokeStyle = edge;
+        ctx.stroke();
+      }
+
+      // atlas-layout.md §6: modern borders — behind rivers/routes/markers,
+      // above land/graticule; zoom-gated to the whole-ocean view, the same
+      // state that already switches marker sizing, so it never clutters
+      // the calm coast-view default. aria-hidden (decorative orientation,
+      // no historical claim); the visible caption below adds a sentence
+      // whenever this layer is showing.
+      if (borders && viewMode === 'ocean') {
+        ctx.beginPath();
+        p(borders);
+        ctx.lineWidth = 0.5 / k;
+        ctx.strokeStyle = borderModern;
         ctx.stroke();
       }
 
@@ -1122,7 +1186,7 @@ export function AtlasMap({
 
       ctx.setTransform(1, 0, 0, 1, 0, 0);
     },
-    [geo, projection, size, readColours],
+    [geo, borders, viewMode, projection, size, readColours],
   );
 
   /** Full-quality redraw of the visible canvas at an arbitrary transform. */
@@ -1300,11 +1364,27 @@ export function AtlasMap({
     const dialog = keysDialogRef.current;
     if (!dialog) return;
     if (showKeys && !dialog.open && typeof dialog.showModal === 'function') {
+      if (showLegend) setShowLegend(false);
       dialog.showModal();
       keysCloseRef.current?.focus();
     }
     if (!showKeys && dialog.open) dialog.close();
-  }, [showKeys]);
+  }, [showKeys, showLegend]);
+
+  // -- "Map key" popover (atlas-layout.md §3+4) ----------------------------
+  // Mutually exclusive with the keys dialog by convention (both are modal
+  // dialogs sharing --z-popover, so only the topmost is ever meaningfully
+  // open) — opening one closes the other rather than stacking two dialogs.
+  useEffect(() => {
+    const dialog = legendDialogRef.current;
+    if (!dialog) return;
+    if (showLegend && !dialog.open && typeof dialog.showModal === 'function') {
+      if (showKeys) setShowKeys(false);
+      dialog.showModal();
+      legendCloseRef.current?.focus();
+    }
+    if (!showLegend && dialog.open) dialog.close();
+  }, [showLegend, showKeys]);
 
   // -- Keyboard on the figure ---------------------------------------------
   const onFigureKeyDown = useCallback(
@@ -1397,6 +1477,7 @@ export function AtlasMap({
    */
   const mapCounterStyle = { '--map-counter': 1 / k } as CSSProperties;
   const keysTitleId = `atlas-keys-title-${uid}`;
+  const legendTitleId = `atlas-legend-title-${uid}`;
   const descId = `atlas-map-desc-${uid}`;
   const activeMarkers = markers.filter((m) => !m.inactive);
   const activeRoutes = routeData.filter((r) => !r.inactive);
@@ -1998,9 +2079,22 @@ export function AtlasMap({
               {showReconstructionCaveat
                 ? ' Approximate reconstruction — coastlines and some routes are drawn from historical and scholarly sources, not satellite survey.'
                 : ''}
+              {viewMode === 'ocean' && borders
+                ? ' Country outlines are present-day borders, shown for orientation — Kalinga had no fixed national boundaries in this period.'
+                : ''}
             </p>
           </details>
         </div>
+
+        {/* atlas-layout.md §1: the "Did you know?" toast's containing block
+            — Atlas.tsx portals the toast in here so its positioning context
+            is always the map's own box, never the viewport. Placed inside
+            the same figure the whole-figure portal in Atlas.tsx relocates
+            between the inline host and the phone dialog, so the toast
+            follows automatically: inside the dialog it lands in
+            `.atlas-map-dialog__host`, never able to reach the docked
+            timeline strip below it. */}
+        <div className="atlas-map__toast-host" ref={onToastHost} />
 
         {hintVisible && (
           <div className="atlas-map__hint" role="status" aria-live="polite">
@@ -2036,6 +2130,18 @@ export function AtlasMap({
           </button>
           <button type="button" className="atlas-map__ctl" onClick={resetView} aria-label="Reset view">
             <span aria-hidden="true">⟲</span>
+          </button>
+          {/* atlas-layout.md §3+4: replaces the in-figure legend. */}
+          <button
+            type="button"
+            className="atlas-map__ctl"
+            ref={legendButtonRef}
+            onClick={() => setShowLegend(true)}
+            aria-label="Map key"
+            aria-haspopup="dialog"
+            aria-expanded={showLegend}
+          >
+            <span aria-hidden="true">🗝</span>
           </button>
         </div>
 
@@ -2125,12 +2231,29 @@ export function AtlasMap({
         </dl>
       </dialog>
 
-      <details
-        className="atlas-map__legend"
-        open={legendOpen}
-        onToggle={(e) => setLegendOpen(e.currentTarget.open)}
+      <dialog
+        className="keys-sheet atlas-map__legend"
+        ref={legendDialogRef}
+        aria-labelledby={legendTitleId}
+        onClose={() => {
+          setShowLegend(false);
+          legendButtonRef.current?.focus();
+        }}
       >
-        <summary>What do the colours mean?</summary>
+        <div className="sheet__head">
+          <h3 className="sheet__title" id={legendTitleId}>
+            What do the colours mean?
+          </h3>
+          <button
+            type="button"
+            className="atlas-panel__close"
+            ref={legendCloseRef}
+            onClick={() => setShowLegend(false)}
+          >
+            <span aria-hidden="true">×</span>
+            <span className="visually-hidden">Close the map key</span>
+          </button>
+        </div>
 
         <div className="legend-group">
           <h4>Places</h4>
@@ -2213,7 +2336,21 @@ export function AtlasMap({
             ))}
           </dl>
         </div>
-      </details>
+
+        {/* atlas-layout.md §6: modern borders are context, not a historical
+            claim — a separate group, grey swatch not used anywhere else. */}
+        <div className="legend-group">
+          <h4>Orientation</h4>
+          <dl className="legend-dl">
+            <div className="legend-row">
+              <dt aria-hidden="true">
+                <span className="legend-swatch legend-swatch--border-modern" />
+              </dt>
+              <dd>Modern country borders — shown for orientation only, not a historical boundary.</dd>
+            </div>
+          </dl>
+        </div>
+      </dialog>
 
       <p id={descId} className="visually-hidden">
         {`Interactive map of the Bay of Bengal and the eastern Indian Ocean, from the Arabian Sea to Java. Land is drawn from modern Natural Earth outlines. It shows ${plural(

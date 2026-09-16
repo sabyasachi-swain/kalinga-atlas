@@ -928,5 +928,131 @@
     "public_domain": false,
     "approved_by_human": true,
     "note": "approved under delegation 2026-09-14: Government of Odisha publication. Read in full from the official PDF (5 pp., journal pages 41-45, ISSN 0970-8669), downloaded 2026-09-15. Verified in the text: p. 41 defines Baliyatra, 'popularly known as the Boita Bandana Yatra', held at Cuttack at Gadagadia Ghata from Kartika Purnima, marking the day the Sadhaba mariners sailed for Bali, Java, Sumatra, Borneo and Sri Lanka. p. 42 describes miniature boats of coloured paper, dried banana bark and cork carrying betel leaf, betel nut and a lit oil lamp, and states 'The memory of these expeditions is kept alive in the festival of Boita Bandana'. p. 44 groups the rouletted ware of Sembiran in north-east Bali with Sisupalgarh, Manikpatna and Tamluk. Caution: the author is a professor of management, the article carries no footnotes, and its reading list (p. 45) has six items. It is a government-published popular account - good evidence for the festival as practised, weak for dating anything."
+  },
+  {
+    "id": "bellina-2018-antiquity-myanmar-ports",
+    "type": "article-journal",
+    "title": "Myanmar's earliest Maritime Silk Road port-settlements revealed",
+    "author": [
+      {
+        "family": "Bellina",
+        "given": "Berenice"
+      },
+      {
+        "family": "Sun Win",
+        "given": "Maung"
+      },
+      {
+        "family": "Myat Htwe",
+        "given": "Kalayar Myat"
+      },
+      {
+        "family": "Myat Thu",
+        "given": "Htet"
+      },
+      {
+        "family": "Castillo",
+        "given": "Cristina"
+      },
+      {
+        "family": "Colonna",
+        "given": "Camille"
+      },
+      {
+        "family": "Dussubieux",
+        "given": "Laure"
+      },
+      {
+        "family": "Favereau",
+        "given": "Aude"
+      },
+      {
+        "family": "Miyama",
+        "given": "Emiri"
+      },
+      {
+        "family": "Pradier",
+        "given": "Baptiste"
+      },
+      {
+        "family": "Pryce",
+        "given": "Thomas Oliver"
+      },
+      {
+        "family": "Srikanlaya",
+        "given": "Sachipan"
+      },
+      {
+        "family": "Triviere",
+        "given": "Elisabeth"
+      }
+    ],
+    "container-title": "Antiquity",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "volume": "92",
+    "page": "e6, 1-5",
+    "URL": "https://doi.org/10.15184/aqy.2018.247",
+    "DOI": "10.15184/aqy.2018.247",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "Open-access 'Project Gallery' report in Antiquity 92(366) on the first (2018) excavation season at Maliwan and Aw Gyi, southern Myanmar, by the Franco-Myanmar 'Thanintharyi and the Maritime Silk Roads' project. The excavators' own primary report; peer-reviewed. Read in full from the publisher's open PDF via curl. Needed for the 'maliwan' port entry. Flagged for human approval; not yet in the registry."
+  },
+  {
+    "id": "kingwell-banham-2018-antiquity-mantai",
+    "type": "article-journal",
+    "title": "Spice and rice: pepper, cloves and everyday cereal foods at the ancient port of Mantai, Sri Lanka",
+    "author": [
+      {
+        "family": "Kingwell-Banham",
+        "given": "Eleanor"
+      },
+      {
+        "family": "Bohingamuwa",
+        "given": "Wijerathne"
+      },
+      {
+        "family": "Perera",
+        "given": "Nimal"
+      },
+      {
+        "family": "Adikari",
+        "given": "Gamini"
+      },
+      {
+        "family": "Crowther",
+        "given": "Alison"
+      },
+      {
+        "family": "Fuller",
+        "given": "Dorian Q."
+      },
+      {
+        "family": "Boivin",
+        "given": "Nicole"
+      }
+    ],
+    "container-title": "Antiquity",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "volume": "92",
+    "page": "1552-1570",
+    "URL": "https://doi.org/10.15184/aqy.2018.168",
+    "DOI": "10.15184/aqy.2018.168",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": false,
+    "note": "Peer-reviewed excavation/archaeobotany report in Antiquity 92(366), on the 2009-2010 field season at Mantai (Mahatittha), Sri Lanka. Same first author as the already-registered kingwell-banham-2018-ancient-asia, but a different paper in a different journal, hence a separate id. Read in full from the publisher PDF via curl. Needed for the 'mahatittha' port entry. Flagged for human approval; not yet in the registry."
   }
 ]

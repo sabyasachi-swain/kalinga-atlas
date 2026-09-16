@@ -826,5 +826,384 @@
       "Yangon"
     ],
     "goods": []
+  },
+  {
+    "id": "false-point",
+    "name": "False Point",
+    "summary": "False Point is a spot on the Odisha coast where the Mahanadi river reaches the sea. Ships anchored here in an open roadstead because it was the only real anchorage along this stretch of coast.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley & Cousins, Bihar and Orissa District Gazetteers: Cuttack, 2nd edn (1933), pp. 7-8",
+        "note": "p. 7: 'False Point ... constitutes the only anchorage on the coast.' p. 8: 'a comparatively exposed anchorage, now rapidly silting up'; Mahanadi mouth 'debouches ... south of the False Point lighthouse'. Read from archive.org OCR, item PARI.bihar-and-orissa-district-gazetteers-cuttack."
+      },
+      {
+        "source_id": "imperial-gazetteer-orissa",
+        "page": "Imperial Gazetteer of India, vol. XI, pp. 92, 98",
+        "note": "Already cited under the 'cuttack' port entry: p. 92, 'the chief trade centres are Cuttack city, False Point port, and Chandbali'; p. 98, Cuttack connected by canal 'with Chandbali and False Point.' Confirms it as a named trade centre, independently of the Cuttack gazetteer."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Both sources describe an exposed, silting roadstead, not a sheltered harbour, and neither gives an opening date. Popular accounts (from the 1911 Encyclopaedia Britannica) say it opened in 1860 and was called 'the best harbour ... from the Hooghly to Bombay' by 1867 famine commissioners, shipping rice and oil-seeds to Mauritius; that wording was not found in the two gazetteers read here, so it is not asserted. No printed coordinate was found; position is read off a modern map at the False Point mouth, Kendrapara district.",
+    "coordinates": {
+      "lat": 20.35,
+      "lng": 86.79
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "False Point (Batighar), Kendrapara district, Odisha",
+    "goods": []
+  },
+  {
+    "id": "dhamra",
+    "name": "Dhamra",
+    "summary": "Dhamra is a port where two big rivers, the Brahmani and the Baitarani, join and flow into the sea. A government order made it an official port in 1858, even though a sandbank at its mouth made the entrance tricky.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "hunter-1872",
+        "page": "vol. ii, Appendix IV, pp. 107-108",
+        "note": "The Dhamra estuary 'was declared a port by Government Notification, No. 877, of the 18th May 1858 ... it ranks next to that of Balasor among the Orissa harbours.' Same quote already used for 'chandbali', cited here as it describes Dhamra itself, before Chandbali existed."
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley, Bengal District Gazetteers: Balasore (1907), p. 8",
+        "note": "'The Dhamra ... is a fine estuary formed by the junction of the Brahmani and Baitarani rivers.' 'A dangerous bar ... vessels drawing 18 feet can pass in with safety.' 'Chandbali ... absorbed the trade of the old port of Dhamra'. From archive.org OCR, PARI.bengal-district-gazetteers-balasore."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Dhamra's trade was later absorbed by Chandbali, 20 miles further up the same estuary (Balasore Gazetteer 1907, p. 8), which is why this atlas's 'chandbali' entry calls Dhamra the older port. No source read here documents Dhamra before the 1858 notification, so only the British period is tagged; earlier river trade at this mouth is plausible but unverified. Neither gazetteer prints a coordinate for the port itself; position is read off a modern map at the Dhamra river mouth, Bhadrak district.",
+    "coordinates": {
+      "lat": 20.79,
+      "lng": 86.95
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Dhamra, Bhadrak district, Odisha",
+    "goods": []
+  },
+  {
+    "id": "sonapur",
+    "name": "Sonapur",
+    "summary": "Sonapur was an old port where the Bahuda river meets the sea in south Odisha. Ships loaded up on oysters here until sand banks blocked the way in.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "pp. 121-122",
+        "note": "'Sonapur ... lies in Lat. 19 deg 6' N and Long. 84 deg 47' E ... where river Bahuda enters into the Bay of Bengal 20 km away from Berhampur.' Sand bars later 'offered obstruction to shipping and the port lost its importance.' Cites Maltby, Ganjam District Manual (1918), p. 34."
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "Only one source was read, so the tier stops at Probable. Patra gives no inscription, text or excavation date specifically for Sonapur (unlike Palur or Barua, tied to Ptolemy); the 'early-historic' tag follows the paper's general framing of these as ports of 'ancient Odisha' and is not independently dated. Ultimate source is Maltby's 1918 Ganjam District Manual, not read directly. Exact modern site position beyond the Bahuda mouth is not given.",
+    "coordinates": {
+      "lat": 19.1,
+      "lng": 84.78
+    },
+    "coordinate_source": "patra-2014-odisha-review-ports",
+    "modern_name": "Near the Bahuda river mouth, Ganjam district, Odisha",
+    "also_known_as": [
+      "Sonepur"
+    ],
+    "goods": []
+  },
+  {
+    "id": "barua",
+    "name": "Barua",
+    "summary": "Barua was a port the Greek geographer Ptolemy wrote about long ago. It stood where a small river reaches the sea, in what is now Andhra Pradesh.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "patra-2014-odisha-review-ports",
+        "page": "p. 123",
+        "note": "'Barua or Barwah ... lies in Lat. 18 deg 51' N and Long. 84 deg 35' E ... 33 miles south of Berhampur ... now in Andhra Pradesh, 6 km from Sompeta.' 'From the accounts of Ptolemy ... the port-town of Barua was one of the important trade centres ... during the ancient period.'"
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "caveats": "Only one source was read, capping the tier at Probable. The Ptolemy identification behind the 'early-historic' tag is Patra's summary, not independently checked against a Ptolemy edition. Ultimate source is Maltby's 1918 Ganjam District Manual, cited by Patra but not read directly in this session.",
+    "coordinates": {
+      "lat": 18.85,
+      "lng": 84.58
+    },
+    "coordinate_source": "patra-2014-odisha-review-ports",
+    "modern_name": "Near Sompeta, Srikakulam district, Andhra Pradesh",
+    "also_known_as": [
+      "Barwah"
+    ],
+    "goods": []
+  },
+  {
+    "id": "mahatittha",
+    "name": "Mahatittha (Mantai)",
+    "summary": "Mahatittha was ancient Sri Lanka's biggest sea port, where island ships met traders from India. Diggers found rice, spices and pots from far away lands buried there.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "kingwell-banham-2018-antiquity-mantai",
+        "page": "Antiquity 92(366), 2018, pp. 1552-1553",
+        "note": "'Mantai thus drew trade and served as the main seaport of the Anuradhapura kingdom for nearly two millennia.' Its 'ideal locale at a key geographic point of transhipment meant that Mantai came to have a large, urban and multicultural population.'"
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint pp. 17, 24",
+        "note": "p. 24: the 5th-century Samantapasadika 'refers to ships often travelling between Tamralipti and Mahatittha.' p. 17: beads from Ridiyagama and Mantai in Sri Lanka, alongside sites in Thailand, Vietnam and Malaysia, 'appear to have been imported from India.'"
+      }
+    ],
+    "periods": [
+      "kharavela",
+      "early-historic",
+      "gupta"
+    ],
+    "status": "draft",
+    "caveats": "Not a Kalinga port; included as a documented Bay of Bengal trading partner. The Tamralipti-Mahatittha ship record is Dayalan's paraphrase of Buddhaghosa's Samantapasadika via a French/English secondary chain, not independently checked against a primary translation. No printed coordinate was found in either source; position follows the modern-day identification of Mantai near Mannar, read from a gazetteer map, not an excavation grid reference.",
+    "coordinates": {
+      "lat": 8.9894,
+      "lng": 79.9981
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Mantai, Mannar District, Sri Lanka",
+    "region": "sri-lanka",
+    "also_known_as": [
+      "Mantai",
+      "Manthai"
+    ],
+    "goods": []
+  },
+  {
+    "id": "maliwan",
+    "name": "Maliwan",
+    "summary": "Maliwan is a very old port town in southern Myanmar, next to a river close to the sea. Diggers there found beads and pottery that had travelled all the way from India.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "bellina-2018-antiquity-myanmar-ports",
+        "page": "Antiquity 92(366), e6 (2018), pp. 3, 5",
+        "note": "p. 3: 'Maliwan is a large settlement ... on gently sloping hills ... west of a tributary of the Kraburi River ... radiocarbon dates ... suggest occupation from the fourth to second centuries BC.' p. 5: 'Aw Gyi is situated approximately 15km west of Maliwan, facing the Bay of Bengal.'"
+      },
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 23",
+        "note": "'Maliwan and Aw Gyi, the notable ancient port cities in southern Myanmar, have yielded lots of materials of Indian origin such as carnelian beads, glass beads ... fine grey pottery, terracotta figurines of Maurya-Sunga style.'"
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "kharavela"
+    ],
+    "status": "draft",
+    "caveats": "Not a Kalinga port; included as a documented Bay of Bengal maritime-network partner. Bellina et al. 2018 is a preliminary 'Project Gallery' report on the first excavation season; dates rest on two radiocarbon determinations. The 4th-2nd century BCE range starts earlier than this atlas's 'mauryan' period (from 300 BCE); tags are an approximate fit. No coordinate is printed in the article; position given is the modern village of Maliwan, read from a map, not the excavation trench.",
+    "coordinates": {
+      "lat": 10.2445,
+      "lng": 98.6042
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Maliwan, Kawthaung Township, Tanintharyi Region, Myanmar",
+    "region": "southeast-asia",
+    "also_known_as": [
+      "Aw Gyi (nearby satellite site)"
+    ],
+    "goods": []
+  },
+  {
+    "id": "palembang",
+    "name": "Palembang (Fo-che)",
+    "summary": "Palembang was the great capital of the Srivijaya sea kingdom in Sumatra. A Chinese monk sailed there on his way to and from India, thirteen hundred years ago.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 27",
+        "note": "Yijing 'left the Guang-Zhou region ... visited Fo-che, Mo-lo-yu and Sumatra ... proceeded northwest to Kie-tcha ... reached the Nicobar Islands ... Tamralipti.' Returning, 'landing again at Kie-tcha and Fo-che.' Citing Chavannes's 1894 translation."
+      }
+    ],
+    "periods": [
+      "post-gupta"
+    ],
+    "status": "published",
+    "caveats": "Fo-che is the standard identification of Yijing's transliteration with Srivijaya's capital, usually placed at modern Palembang; this entry follows Dayalan's paraphrase of Chavannes's 1894 French translation of Yijing, not a primary reading of the Chinese or French text. Only one source was read, so the tier stops at Probable. No coordinate is given in the source; position is the modern city of Palembang, read from a map.",
+    "coordinates": {
+      "lat": -2.9761,
+      "lng": 104.7754
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Palembang, South Sumatra, Indonesia",
+    "region": "southeast-asia",
+    "also_known_as": [
+      "Fo-che (Yijing's transliteration)",
+      "Srivijaya (kingdom)"
+    ],
+    "goods": []
+  },
+  {
+    "id": "kedah",
+    "name": "Kedah (Kataha)",
+    "summary": "Kedah was a stopping place on the Malay Peninsula where old sailing ships waited for the right winds. A Chinese monk passed through it twice on his voyage to India and back.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 27",
+        "note": "Yijing 'proceeded northwest to Kie-tcha. Then, he proceeded east and reached the Nicobar Islands ... Proceeding northwest from these islands, Yi-Jing reached Tamralipti.' Returning to China 'he took the same route, landing again at Kie-tcha and Fo-che.' Citing Chavannes's 1894 translation."
+      }
+    ],
+    "periods": [
+      "post-gupta"
+    ],
+    "status": "published",
+    "caveats": "Kie-tcha (also read Kataha/Kedah) is usually identified with the Bujang Valley / Merbok estuary region of Kedah, Malaysia; this follows Dayalan's paraphrase of Chavannes's 1894 translation of Yijing, not a primary reading. Only one source was read, so the tier stops at Probable. No coordinate is given in the source; position approximates the Bujang Valley archaeological area, read from a map.",
+    "coordinates": {
+      "lat": 5.75,
+      "lng": 100.4
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Bujang Valley area, Kedah, Malaysia",
+    "region": "southeast-asia",
+    "also_known_as": [
+      "Kie-tcha (Yijing's transliteration)",
+      "Kataha"
+    ],
+    "goods": []
+  },
+  {
+    "id": "balugaon",
+    "name": "Balugaon",
+    "summary": "Balugaon is a town on the shore of Chilika lake where boats brought in fish and grain. A train station here let goods travel on to faraway markets.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "O'Malley & Mansfield, Bihar and Orissa District Gazetteers: Puri (1929), pp. 204-205, 212-213",
+        "note": "The District Fishery Officer's headquarters 'were at Puri, but were recently shifted to Balugaon on the Chilka lake.' 'From Balugaon and Kalupara Ghat the greater part of the traffic is the export of fish and grain.'"
+      },
+      {
+        "source_id": "district-gazetteers-odisha",
+        "page": "same, p. 220",
+        "note": "On the Bengal-Nagpur Railway main line: stations 'most important ... in point of passenger traffic' include Balugaon, and it is also named among the busiest 'in point of goods traffic'."
+      }
+    ],
+    "periods": [
+      "british"
+    ],
+    "status": "published",
+    "caveats": "Only one source (the 1929 Puri Gazetteer) was read, so the tier stops at Probable. The gazetteer documents Balugaon as a fishery-office and railway-goods point on Chilika, not as a sea-going harbour; its trade was lake and rail-borne. No pre-20th-century record of Balugaon was found in this session. No printed coordinate was found for the town; position is read off a modern map, matching the modern railway station.",
+    "coordinates": {
+      "lat": 19.75,
+      "lng": 85.21
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Balugaon, Khordha district, Odisha",
+    "goods": []
+  },
+  {
+    "id": "alagankulam",
+    "name": "Alagankulam",
+    "summary": "Alagankulam is a very old port on the Vaigai river in Tamil Nadu, close to the sea. Diggers found broken Roman jars and real Roman coins buried there.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 6, section 'Alagankulam'",
+        "note": "'Alagankulam (09 deg 21' N; 78 deg 58' E) is an ancient seaport ... on the banks of the Vaigai River ... Excavations ... brought to light ... amphorae, a large quantity of rouletted ware sherds, stamped pottery and Roman coins of Vallentine, Theodosius I and Arcadius I.'"
+      }
+    ],
+    "periods": [
+      "early-historic",
+      "gupta"
+    ],
+    "status": "published",
+    "caveats": "Only one source was read, so the tier stops at Probable; the excavation reports themselves (Nagaswamy 1991; Tamil Nadu Dept. of Archaeology 2005) were not read directly. The identification with Ptolemy's Salour and the Sangam port Caliyur are proposals Dayalan reports, not settled facts. Not a Kalinga port; included as a documented Bay of Bengal trading partner with directly dated Roman coin finds.",
+    "coordinates": {
+      "lat": 9.35,
+      "lng": 78.9667
+    },
+    "coordinate_source": "dayalan-2019-acta-via-serica",
+    "modern_name": "Alagankulam, Ramanathapuram district, Tamil Nadu",
+    "region": "south-india",
+    "also_known_as": [
+      "Salour (proposed identification, Ptolemy)",
+      "Caliyur (proposed Sangam-age name)"
+    ],
+    "goods": []
+  },
+  {
+    "id": "nagapattinam",
+    "name": "Nagapattinam",
+    "summary": "Nagapattinam is an old port town on the Tamil Nadu coast. Kings from faraway Sumatra and Java paid to build Buddhist temples there for the traders who visited.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint pp. 7-8, section 'Nagappattinam'",
+        "note": "'Nagappattinam (10 deg 47' N; 79 deg 50' E) ...' Diggings 1856-1934 'yielded as many as 350 Buddhist bronze images ranging from the 9th ... to the 16th-17th centuries CE.' Leyden copper plates record a vihara built by the Srivijaya king there, permitted by Rajaraja Chola I."
+      }
+    ],
+    "periods": [
+      "bhauma-kara",
+      "somavamshi",
+      "eastern-ganga"
+    ],
+    "status": "published",
+    "caveats": "Only one source was read, so the tier stops at Probable; the Leyden copper-plate inscriptions (Epigraphia Indica XXII, 1933-34) are known here only through Dayalan's summary, not an independent reading of the edition. Not a Kalinga port; included as a documented Bay of Bengal / Srivijaya trading partner. The bronze-image date range (9th-17th century CE) is broad and only partly matches the tagged periods.",
+    "coordinates": {
+      "lat": 10.7833,
+      "lng": 79.8333
+    },
+    "coordinate_source": "dayalan-2019-acta-via-serica",
+    "modern_name": "Nagapattinam, Tamil Nadu",
+    "region": "south-india",
+    "goods": []
+  },
+  {
+    "id": "guangzhou",
+    "name": "Guangzhou (Canton)",
+    "summary": "Guangzhou is a great port city in south China. A Chinese Buddhist monk sailed from here all the way to India, more than a thousand years ago.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "dayalan-2019-acta-via-serica",
+        "page": "offprint p. 27",
+        "note": "'Yi-Jing, who took the maritime route to India, left the Guang-Zhou region in China and visited Fo-che, Mo-lo-yu and Sumatra ... While returning to China, he took the same route.' Citing Chavannes's 1894 translation of Yijing."
+      }
+    ],
+    "periods": [
+      "post-gupta"
+    ],
+    "status": "published",
+    "caveats": "Only a single passing mention was read (Yijing's departure point), not a description of the port itself, so this entry rests on very thin evidence and the tier stops at Probable. No coordinate is given in the source; position is the modern city of Guangzhou, read from a map. Included as the Chinese end of the Bay of Bengal / Indian Ocean pilgrim route documented for Tamralipti and other ports in this atlas.",
+    "coordinates": {
+      "lat": 23.13,
+      "lng": 113.26
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Guangzhou, Guangdong, China",
+    "region": "east-asia",
+    "also_known_as": [
+      "Canton",
+      "Guang-Zhou (Yijing's transliteration)"
+    ],
+    "goods": []
   }
 ]
