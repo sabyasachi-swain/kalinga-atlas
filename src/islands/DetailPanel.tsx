@@ -7,9 +7,10 @@
  * EvidenceBadge.astro + SourcePopover.astro do on static pages. Citation
  * strings come from @data/cite so there is one formatting implementation.
  */
-import { useEffect, useId, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
+import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import type { Good, Period, Port, Route, Site, Source, SourceRef } from '@data/schema';
 import { formatFull, formatShort } from '@data/cite';
+import { getRouteStops } from '@lib/route-stops';
 import { Badge } from './Badge';
 
 export type SelectedEntity =
@@ -23,6 +24,17 @@ export interface DetailPanelProps {
   goods: Good[];
   periods: Period[];
   onClose: () => void;
+  /** improvement-plan-2026-09-16.md §1.2b(b): "Show only this route" — true
+   * when the selected route is the one the map is currently isolating.
+   * State lives in Atlas.tsx (shared with AtlasMap, which does the actual
+   * filtering) since it must survive this panel re-rendering. */
+  showOnlyRoute?: boolean;
+  onToggleShowOnlyRoute?: () => void;
+  /** improvement-plan §1.3: needed to match a route's waypoints against
+   * published places for the ordered stop list — see @lib/route-stops. */
+  ports: Port[];
+  sites: Site[];
+  onSelectEntity?: (kind: 'port' | 'site', id: string) => void;
 }
 
 const KIND_WORD: Record<SelectedEntity['kind'], string> = {
@@ -84,17 +96,25 @@ export function Sources({
   const byId = new Map(sources.map((s) => [s.id, s]));
   return (
     <details className="panel-sources" onToggle={(e) => onToggle?.(e.currentTarget.open)}>
+      {/* Coordinator-confirmed fix: `summary` is `display: flex` (to
+          vertically-centre its min-height touch target), which used to make
+          every `.short` span its own flex item — in a narrow column that
+          rendered as ragged side-by-side text instead of one wrapping line.
+          A single wrapping span here means the summary has only one flex
+          item, so the citation text wraps normally regardless of width. */}
       <summary>
         <span className="visually-hidden">Sources: </span>
-        {refs.map((r, i) => {
-          const s = byId.get(r.source_id);
-          return (
-            <span className="short" key={`${r.source_id}-${i}`}>
-              {s ? formatShort(s, r) : `[unknown source ${r.source_id}]`}
-              {i < refs.length - 1 ? '; ' : ''}
-            </span>
-          );
-        })}
+        <span className="panel-sources__short-wrap">
+          {refs.map((r, i) => {
+            const s = byId.get(r.source_id);
+            return (
+              <span className="short" key={`${r.source_id}-${i}`}>
+                {s ? formatShort(s, r) : `[unknown source ${r.source_id}]`}
+                {i < refs.length - 1 ? '; ' : ''}
+              </span>
+            );
+          })}
+        </span>
       </summary>
       <ol>
         {refs.map((r, i) => {
@@ -112,7 +132,18 @@ export function Sources({
   );
 }
 
-export function DetailPanel({ selected, sources, goods, periods, onClose }: DetailPanelProps) {
+export function DetailPanel({
+  selected,
+  sources,
+  goods,
+  periods,
+  onClose,
+  showOnlyRoute = false,
+  onToggleShowOnlyRoute,
+  ports,
+  sites,
+  onSelectEntity,
+}: DetailPanelProps) {
   const uid = useId();
   const headingId = `panel-title-${uid}`;
   const cargoTitleId = `cargo-title-${uid}`;
@@ -165,6 +196,14 @@ export function DetailPanel({ selected, sources, goods, periods, onClose }: Deta
         .filter((p): p is Period => p !== undefined)
     : [];
 
+  // improvement-plan §1.3: "Manikapatna → Palur → Kalingapatnam → …" — only
+  // attested stops (endpoints plus any intermediate waypoint matched to a
+  // published port/site), never a named geometric bend.
+  const routeStops = useMemo(
+    () => (selected?.kind === 'route' ? getRouteStops(selected.entity, ports, sites) : null),
+    [selected, ports, sites],
+  );
+
   return (
     <aside
       ref={panelRef}
@@ -213,6 +252,53 @@ export function DetailPanel({ selected, sources, goods, periods, onClose }: Deta
 
           {selected.kind === 'route' && selected.entity.kid_line && (
             <p className="atlas-panel__summary">{selected.entity.summary}</p>
+          )}
+
+          {/* improvement-plan §1.2b(b): plain-words label, direct answer to
+              "too many lines overlapping". */}
+          {selected.kind === 'route' && (
+            <p className="atlas-panel__action">
+              <button type="button" className="atlas-btn" onClick={onToggleShowOnlyRoute} aria-pressed={showOnlyRoute}>
+                {showOnlyRoute ? 'Show the others again' : 'Show only this route'}
+              </button>
+            </p>
+          )}
+
+          {/* Coordinator-confirmed sourcing fix (16 Sept, third round):
+              named only where the line genuinely passes near a published
+              place — never presented as evidence a ship stopped there —
+              and the heading/note now say something true in *both* cases:
+              with a named intermediate, this is "places the line passes
+              near" (a geometry statement, no evidence badge needed); with
+              endpoints only (today, every one of the 32 routes), the list
+              is just the two sourced termini, so it reads as "Route" with
+              a note about the *course between them*, not about invented
+              waypoints. */}
+          {selected.kind === 'route' && routeStops && routeStops.stops.length > 0 && (
+            <div className="atlas-panel__section">
+              <h4>{routeStops.hasNamedIntermediate ? 'Places along the way' : 'Route'}</h4>
+              <ol className="atlas-panel__stops">
+                {routeStops.stops.map((s, i) => (
+                  <li key={`${s.kind}:${s.id}`}>
+                    <button
+                      type="button"
+                      className="atlas-panel__stop-btn"
+                      onClick={() => onSelectEntity?.(s.kind, s.id)}
+                    >
+                      {s.name}
+                    </button>
+                    {i < routeStops.stops.length - 1 && <span aria-hidden="true"> → </span>}
+                  </li>
+                ))}
+              </ol>
+              {routeStops.hasBend && (
+                <p className="atlas-panel__note">
+                  {routeStops.hasNamedIntermediate
+                    ? 'The drawn course is approximate. These are places the line passes near.'
+                    : 'The drawn course between them is approximate.'}
+                </p>
+              )}
+            </div>
           )}
 
           {activeIn.length > 0 && (

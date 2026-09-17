@@ -20,6 +20,13 @@ export interface TimelineProps {
   periods: Period[];
   activePeriod: string;
   onChange?: (periodId: string) => void;
+  /** improvement-plan-2026-09-16.md §1.2: Play/Pause — state and the
+   * stepping timer live in Atlas.tsx (it has to stop on *any* manual
+   * interaction, including ones this component doesn't know about, like
+   * selecting a marker). Timeline only renders the button and the step
+   * controls that flank the slider. */
+  isPlaying?: boolean;
+  onTogglePlay?: () => void;
 }
 
 const AXIS_PAD = 8;
@@ -48,7 +55,7 @@ interface Band {
   alt: number;
 }
 
-export function Timeline({ periods, activePeriod, onChange }: TimelineProps) {
+export function Timeline({ periods, activePeriod, onChange, isPlaying = false, onTogglePlay }: TimelineProps) {
   const id = useId();
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const chipsRef = useRef<HTMLUListElement | null>(null);
@@ -261,22 +268,65 @@ export function Timeline({ periods, activePeriod, onChange }: TimelineProps) {
         </svg>
       )}
 
-      <input
-        id={id}
-        className="atlas-timeline__range"
-        type="range"
-        min={0}
-        max={Math.max(0, ordered.length - 1)}
-        step={1}
-        value={index}
-        aria-valuetext={
-          current ? `${current.label}, ${formatYear(current.start_year)} to ${formatYear(current.end_year)}` : ''
-        }
-        onChange={(e) => {
-          const next = ordered[Number(e.currentTarget.value)];
-          if (next) onChange?.(next.id);
-        }}
-      />
+      {/* improvement-plan §1.2: step controls either side of the slider,
+          plus Play/Pause. The range input itself is unchanged — still
+          index-based, so it only ever snaps to a period boundary, never an
+          arbitrary year. */}
+      <div className="atlas-timeline__controls">
+        <button
+          type="button"
+          className="atlas-timeline__step"
+          aria-label="Previous period"
+          disabled={index <= 0}
+          onClick={() => {
+            const prev = ordered[index - 1];
+            if (prev) onChange?.(prev.id);
+          }}
+        >
+          <span aria-hidden="true">‹</span>
+        </button>
+
+        <input
+          id={id}
+          className="atlas-timeline__range"
+          type="range"
+          min={0}
+          max={Math.max(0, ordered.length - 1)}
+          step={1}
+          value={index}
+          aria-valuetext={
+            current ? `${current.label}, ${formatYear(current.start_year)} to ${formatYear(current.end_year)}` : ''
+          }
+          onChange={(e) => {
+            const next = ordered[Number(e.currentTarget.value)];
+            if (next) onChange?.(next.id);
+          }}
+        />
+
+        <button
+          type="button"
+          className="atlas-timeline__step"
+          aria-label="Next period"
+          disabled={index >= ordered.length - 1}
+          onClick={() => {
+            const next = ordered[index + 1];
+            if (next) onChange?.(next.id);
+          }}
+        >
+          <span aria-hidden="true">›</span>
+        </button>
+
+        <button
+          type="button"
+          className="atlas-timeline__play"
+          aria-pressed={isPlaying}
+          aria-label={isPlaying ? 'Pause' : 'Play through the periods in order'}
+          disabled={ordered.length <= 1}
+          onClick={onTogglePlay}
+        >
+          <span aria-hidden="true">{isPlaying ? '⏸' : '▶'}</span> {isPlaying ? 'Pause' : 'Play'}
+        </button>
+      </div>
 
       <div className="atlas-timeline__now" aria-live="polite">
         {current ? (

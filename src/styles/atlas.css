@@ -64,6 +64,12 @@
      as a faint grid line regardless of what's under it. */
   --map-graticule: rgba(26, 26, 26, 0.08);
   --map-inactive-opacity: 0.4;
+  /* improvement-plan-2026-09-16.md §1.2b(a): "focus-on-select" — other
+     routes fade (not hide) once one is selected, so the visitor can still
+     see and reach them. Deliberately different from --map-inactive-opacity
+     so a route that is both dimmed and period-inactive doesn't read as
+     "gone". */
+  --map-dim-opacity: 0.3;
 
   display: block;
   container-type: inline-size;
@@ -89,6 +95,16 @@
   align-items: start;
 }
 .atlas__main { min-width: 0; }
+
+/* improvement-plan-2026-09-16.md §1.1: the right-hand column at
+   >= 56.25rem holds the fact card (when it's the live portal target) above
+   the detail panel, both in normal document flow. */
+.atlas__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
 
 @media (min-width: 56.25rem) {
   .atlas__grid {
@@ -214,6 +230,28 @@
   cursor: pointer;
 }
 .atlas-map-dialog__close:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+/* Coordinator-confirmed fix: uncapped, the fact card (307px measured) grew
+   taller than the map canvas (187px) inside a dialog whose whole purpose is
+   a full-screen map. Capped and internally scrollable here — this variant
+   only, so the wide/narrow inline cards (fixed above) stay free to grow to
+   fit their own content. */
+.atlas-map-dialog .atlas-fact-slot--dialog {
+  flex: none;
+  max-height: 20dvh;
+  overflow: hidden;
+}
+/* Coordinator-confirmed fix, second pass: capping `.atlas-fact` itself
+   (a *row* flex container: icon/body left, close button right) with
+   max-height + overflow-y did not actually clip — `align-items: flex-start`
+   means each flex item's cross-axis (height) size is its own hug-content
+   height, so the container's scroll region never got established the way
+   it would on a plain block box. Capping `.atlas-fact__body` instead (an
+   ordinary block-formatting-context div, not itself a flex container) is
+   the reliable version of the same idea: the icon/title/text/citation/
+   action stack scrolls as one unit inside its own box, which is what
+   actually keeps the whole card within the dialog's reserved 20dvh. */
+.atlas-map-dialog .atlas-fact-slot--dialog .atlas-fact { max-height: 20dvh; overflow: hidden; }
+.atlas-map-dialog .atlas-fact-slot--dialog .atlas-fact__body { max-height: 20dvh; overflow-y: auto; }
 .atlas-map-dialog__timeline {
   padding: var(--space-2) var(--space-3);
   background: var(--bg-elevated);
@@ -344,6 +382,9 @@
 .route[data-inactive='true'],
 .marker[data-inactive='true'] { opacity: var(--map-inactive-opacity); }
 .route[data-inactive='true'] .route-line { animation-play-state: paused; }
+/* improvement-plan §1.2b(a): focus-on-select. Comes after the inactive rule
+   so a route that is both period-inactive and dimmed still reads dimmed. */
+.route[data-dimmed='true'] { opacity: var(--map-dim-opacity); }
 
 @media (prefers-reduced-motion: reduce) {
   .route-line { animation: none; }
@@ -449,6 +490,51 @@
 }
 .marker[data-kind='destination'] .marker-label { font-style: italic; fill: var(--map-label); }
 
+/* improvement-plan §1.3: named stops on the selected route. An attested
+   stop is a visibly bigger, filled dot; a bend is a small hollow one — the
+   size/fill difference is never the only signal, since a bend is never
+   labelled at all (colour/shape alone would fail a colour-blind reading,
+   but "has a name next to it or doesn't" does not depend on colour). */
+.route-stop {
+  fill: var(--map-port);
+  stroke: var(--white);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+.route-stop--bend {
+  fill: none;
+  stroke: var(--map-label);
+  opacity: 0.6;
+}
+.route-stop-label {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-style: italic;
+  fill: var(--map-label);
+  stroke: var(--map-label-halo);
+  stroke-width: 3px;
+  paint-order: stroke fill;
+  stroke-linejoin: round;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* improvement-plan §1.4: economical orientation labels — restrained small
+   caps, muted; the sea label in a sea-appropriate (blue-leaning) tone so it
+   never reads as another place name. Never a --tier-*/--type-* colour: these
+   are not evidence-bearing claims. */
+.region-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  pointer-events: none;
+  user-select: none;
+}
+.region-label--land { fill: var(--map-label); opacity: 0.6; }
+.region-label--sea { fill: var(--map-sea-label, var(--navy-600)); opacity: 0.55; }
+
 .ship-glyph { fill: var(--white); }
 
 /* ---- Cluster bubbles (kid-experience.md A4, every view) ------------------- */
@@ -499,10 +585,18 @@
 }
 .atlas-map__years { color: var(--fg-muted); font-size: var(--text-md); }
 /* A1 fix: always a <details>, so the caption can collapse behind a summary
-   below 600px (shortening the top chrome a view fit has to avoid) without
-   ever changing its wording. Above 600px `caveatOpen` defaults to true and
-   the summary marker is hidden, so it reads exactly like the old plain
-   paragraph. */
+   (shortening the top chrome a view fit has to avoid) without ever changing
+   its wording. Coordinator-confirmed fix (16 Sept, third round):
+   `caveatOpen` now defaults to `false` at every width (§1.4's longer,
+   always-relevant caveat text made the old "open by default on wide
+   screens" behaviour wrap across the map) — so the "About this map"
+   summary must stay a visible, focusable affordance at every width too.
+   It used to be hidden above 600px on the assumption `caveatOpen` was
+   always `true` there; that assumption is gone, and hiding the only way to
+   open a `<details>` that defaults closed made the caveat (modern
+   coastline, reconstruction, present-day borders) completely unreachable
+   on desktop. Never reintroduce a width-based `display: none` on this
+   summary without also checking `caveatOpen`'s actual default. */
 .atlas-map__caveat {
   pointer-events: auto;
   margin: var(--space-1) 0 0;
@@ -518,14 +612,22 @@
 }
 .atlas-map__caveat-summary::-webkit-details-marker { display: none; }
 .atlas-map__caveat-summary:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+/* Coordinator-confirmed fix (16 Sept, third round): opened, the three-
+   sentence caveat used to sprawl the full 46rem topbar width, reading as
+   transparent text laid directly across the routes/markers underneath. A
+   self-contained card (bounded width, a real background) reads as a note
+   the visitor opened, not as text crossing the drawing. */
 .atlas-map__caveat-text {
-  margin: 0;
+  margin: var(--space-1) 0 0;
+  max-width: 22rem;
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
   line-height: 1.35;
-  opacity: 0.8;
-}
-@media (min-width: 37.5rem) {
-  /* Reads as plain text again: no toggle affordance once there's room. */
-  .atlas-map__caveat-summary { display: none; }
+  opacity: 1;
+  color: var(--fg);
 }
 .atlas-island[data-turning='true'] .atlas-map__period { opacity: 0.35; }
 
@@ -573,13 +675,6 @@
 
 /* ---- A2: "scroll to zoom" hint -------------------------------------------- */
 
-/* atlas-layout.md §1: an empty, zero-size positioning anchor — the actual
-   toast markup (portalled in from Atlas.tsx) is absolutely positioned
-   relative to this element's own containing block ancestor
-   (`.atlas-map`/`.atlas-map-slot`/`.atlas-map-dialog__host`, all
-   `position: relative`), not to this div itself. */
-.atlas-map__toast-host { position: absolute; inset: 0; pointer-events: none; z-index: var(--z-toast); }
-
 .atlas-map__hint {
   position: absolute;
   inset: 0;
@@ -621,11 +716,54 @@
   gap: var(--space-2);
   z-index: var(--z-popover);
 }
-.atlas-map__keys-btn {
+/* Coordinator-confirmed fix: the filter button moved here (bottom-right,
+   stacked above the keys button) out of `.atlas-map__zoom` (bottom-left),
+   which at 5 buttons tall overlapped the topbar on the phone dialog's short
+   stage. Same column layout as `.atlas-map__zoom`, just the other corner. */
+.atlas-map__keys-col {
   position: absolute;
   right: var(--space-3);
   bottom: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
   z-index: var(--z-popover);
+}
+
+/* improvement-plan §1.4: scale bar + north arrow, centred at the bottom of
+   the stage between the zoom column and the keys button. */
+.atlas-map__orient {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-3);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-1) var(--space-2);
+  background: var(--control-bg);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--control-shadow);
+  color: var(--control-fg);
+  font-size: var(--text-xs);
+  z-index: var(--z-popover);
+  pointer-events: none;
+}
+.atlas-map__scale { display: flex; align-items: center; gap: var(--space-1); }
+.atlas-map__scale-bar {
+  display: block;
+  height: 4px;
+  min-width: 20px;
+  background: var(--control-fg);
+  border-radius: 1px;
+}
+.atlas-map__scale-label { white-space: nowrap; }
+.atlas-map__north { display: flex; align-items: center; gap: 2px; line-height: 1; }
+@media (max-width: 23.4375rem) {
+  /* §1.4: "if the scale bar can't fit [at 380px], shrink rather than
+     hide" — smaller type/gaps, the bar itself already clamps its own
+     pixel width in scaleBarInfo. */
+  .atlas-map__orient { gap: var(--space-2); font-size: 10px; padding: 2px var(--space-1); }
 }
 
 /* map-style-light.md: control chip — white, radius-lg, control-shadow,
@@ -744,6 +882,116 @@
 .keys-sheet__list > div { display: grid; grid-template-columns: 10rem 1fr; gap: var(--space-3); }
 .keys-sheet__list dt { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--accent); }
 .keys-sheet__list dd { margin: 0; font-size: var(--text-sm); }
+
+/* Generic small action button, reused by the fact card's "Show me", the
+   cargo sheet's opener and the new filter panel (§1.2b). Not previously
+   defined anywhere in this stylesheet — every existing `.atlas-btn` render
+   was relying on bare UA button styling until now. */
+.atlas-btn {
+  min-height: var(--hit-min);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--white);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.atlas-btn:hover { filter: brightness(1.08); }
+.atlas-btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.atlas-btn--ghost { background: none; color: var(--accent); }
+
+/* ---- "Show on the map" filter (improvement-plan §1.2b) ------------------- */
+
+.atlas-map__filter { max-height: 80dvh; overflow: auto; }
+.atlas-filter__global { display: flex; gap: var(--space-2); margin: var(--space-3) 0 0; }
+.atlas-filter__faint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-sm);
+}
+.atlas-filter__group { margin: var(--space-4) 0 0; }
+.atlas-filter__group-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-2); }
+.atlas-filter__group > h4 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.atlas-filter__group-actions { margin: 0; display: flex; gap: var(--space-2); }
+.atlas-filter__link {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--accent);
+  font-size: var(--text-xs);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.atlas-filter__link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.atlas-filter__empty { margin: var(--space-1) 0 0; font-size: var(--text-sm); color: var(--fg-muted); }
+.atlas-filter__list { margin: var(--space-1) 0 0; display: grid; gap: var(--space-1); max-height: 12rem; overflow: auto; }
+.atlas-filter__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--hit-min);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.atlas-filter__row-badges { display: inline-flex; gap: 2px; }
+.atlas-filter__chips { list-style: none; margin: var(--space-1) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.atlas-filter__chip {
+  min-height: var(--hit-min);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.atlas-filter__chip[aria-pressed='true'] { border-color: var(--accent); background: var(--accent); color: var(--white); }
+.atlas-filter__chip:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+/* At phone widths, the filter is a docked sheet, not a centred popover —
+   opened non-modally (AtlasMap.tsx calls .show(), not .showModal()) so it
+   never covers the map while the visitor is ticking boxes; it renders in
+   normal flow, right after the map stage and its overlay chrome. */
+@media (max-width: 37.4375rem) {
+  .atlas-map__filter {
+    position: static;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    margin: var(--space-2) 0 0;
+    box-shadow: none;
+  }
+}
+
+/* improvement-plan §1.2b(f): the empty-map dead end. */
+.atlas-map__empty {
+  position: absolute;
+  inset: auto var(--space-3) auto var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: var(--z-popover);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+.atlas-map__empty p { margin: 0; display: flex; align-items: center; justify-content: center; gap: var(--space-2); flex-wrap: wrap; }
+
+/* improvement-plan §1.2: the live route/place count, visible next to the
+   period name (was aria-only). */
+.atlas-map__count { color: var(--fg-muted); font-size: var(--text-sm); }
 @media (max-width: 30rem) {
   .keys-sheet__list > div { grid-template-columns: 1fr; gap: 0; }
 }
@@ -822,6 +1070,32 @@
 .tl-tick { stroke: var(--rule); stroke-width: 1; }
 .tl-tick-label { font-size: 10px; fill: var(--fg-muted); text-anchor: middle; }
 
+/* improvement-plan §1.2: step controls flank the slider; Play/Pause sits
+   with them so the whole "move through time" cluster reads as one group. */
+.atlas-timeline__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.atlas-timeline__step,
+.atlas-timeline__play {
+  flex: none;
+  min-width: var(--hit-min);
+  min-height: var(--hit-min);
+  padding: 0 var(--space-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  font: inherit;
+  cursor: pointer;
+}
+.atlas-timeline__step:disabled,
+.atlas-timeline__play:disabled { opacity: 0.4; cursor: default; }
+.atlas-timeline__step:focus-visible,
+.atlas-timeline__play:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.atlas-timeline__play[aria-pressed='true'] { border-color: var(--accent); color: var(--accent); }
+.atlas-timeline__controls .atlas-timeline__range { flex: 1; }
+
 .atlas-timeline__range {
   width: 100%;
   min-height: var(--hit-min);
@@ -875,42 +1149,43 @@
    "Did you know?" toast (docs/design/did-you-know.md)
    -------------------------------------------------------------------------- */
 
-/* Always an overlay, never in normal flow: a toast that pushed layout below
-   the map (in-flow on narrow screens) was a measured CLS source, since it
-   renders after the map's own async geodata/hydration settle. Fixed
-   positioning at every width means it can never shift anything else. */
-/* atlas-layout.md §1: the toast's containing block is the map's own box
-   (`.atlas-map__toast-host`, `position: absolute; inset: 0` on the map
-   figure) — never the viewport. This is a structural fix, not a z-index
-   one: since the timeline is always a document-flow sibling starting only
-   after the map card plus a fixed gap, the toast's rectangle geometrically
-   cannot reach it, at any viewport height. */
+/* improvement-plan-2026-09-16.md §1.1: the fact card no longer overlays the
+   map. It is a document-flow sibling — Atlas.tsx portals it into exactly one
+   of three slots (right column / below the map card / docked in the phone
+   dialog), each a plain block-level host. The old short-map-box "collapse to
+   a pill" behaviour (--pill / .atlas-fact-popover) is deleted: that rule
+   existed only because the card used to fight the map figure for the same
+   box; out here in its own flow there is no box to collapse against. */
+.atlas-fact-slot {
+  display: block;
+  /* Reserves space so the card appearing/disappearing (settle debounce,
+     12s auto-dismiss, manual close) never shifts the map or timeline —
+     min-height only, so genuinely long fact text can still grow the slot
+     without being clipped. */
+  min-height: var(--atlas-fact-min-h, 7rem);
+}
+.atlas-fact-slot--dialog { min-height: var(--atlas-fact-min-h-dialog, 5.5rem); }
+
 .atlas-fact {
   display: flex;
   gap: var(--space-3);
   align-items: flex-start;
-  position: absolute;
-  /* Coordinator-confirmed bug fix: was a fixed `var(--space-3)`, which only
-     cleared the topbar (period label + "Show the whole ocean" etc.) by
-     coincidence at some widths/captions. `--map-chrome-top` is the topbar's
-     real measured height (see the ResizeObserver in AtlasMap.tsx); the
-     fallback keeps the old fixed offset if it's ever unset. */
-  top: calc(var(--map-chrome-top, 0px) + var(--space-2));
-  right: var(--space-3);
-  max-width: min(22rem, calc(100% - 2 * var(--space-3)));
-  max-height: min(20rem, 55%);
-  margin-top: 0;
+  position: relative;
+  margin: 0;
   padding: var(--space-3) var(--space-4);
   background: var(--bg-elevated);
   border: 1px solid var(--rule);
   border-top: 3px solid transparent;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
-  pointer-events: auto;
-  z-index: var(--z-toast);
   animation: fact-in var(--dur-base) var(--ease-page) both;
 }
-.atlas-fact__body { overflow-y: auto; }
+/* Coordinator-confirmed fix: the card must size to fit its own content —
+   no fixed/max height anywhere between `.atlas-fact` and this body, so the
+   "Show me" action button (the last child) can never render past the
+   card's own bottom edge. The dialog variant caps height separately, below,
+   scoped to just that context. */
+.atlas-fact__body { flex: 1; min-width: 0; }
 @keyframes fact-in {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
@@ -919,36 +1194,22 @@
 .atlas-fact:hover,
 .atlas-fact:focus-within { border-top-color: var(--accent); }
 
-/* atlas-layout.md §1: collapsed pill on a short map box (< 24rem tall) —
-   expands to a popover on activation, confined to the same map box. */
-.atlas-fact--pill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--hit-min);
-  height: var(--hit-min);
-  padding: 0;
-  max-width: none;
-  max-height: none;
-  border-radius: 50%;
-  font-size: var(--text-lg);
-  cursor: pointer;
-}
-.atlas-fact--pill:focus-visible { outline: none; box-shadow: var(--focus-ring); }
-.atlas-fact-popover {
-  position: absolute;
-  top: calc(var(--hit-min) + var(--space-2));
-  right: 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .atlas-fact { animation: none; }
 }
 
-.atlas-fact__body { flex: 1; min-width: 0; }
 .atlas-fact__title { margin: 0 0 var(--space-1); font-family: var(--font-heading); font-size: var(--text-md); }
 .atlas-fact__text { margin: 0 0 var(--space-2); }
-.atlas-fact__cite { margin: 0; font-size: var(--text-xs); color: var(--fg-muted); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); }
+/* Coordinator-confirmed fix: this was `display: flex; flex-wrap: wrap`,
+   which turned the citation `<details>` into a flex item alongside the two
+   badge spans — in the card's ~320px column that produced two narrow,
+   ragged text columns instead of the citation simply wrapping like normal
+   text. Normal block flow: the two badges sit inline with each other
+   (Badge's own spans are inline-flex), the citation `<details>` — block by
+   default — drops to its own line and wraps like ordinary text. */
+.atlas-fact__cite { margin: 0; font-size: var(--text-xs); color: var(--fg-muted); }
+.atlas-fact__cite > .badge { margin-right: var(--space-1); }
+.atlas-fact__cite > .panel-sources { margin-top: var(--space-1); }
 .atlas-fact__action { margin: var(--space-2) 0 0; }
 .atlas-fact__close {
   min-width: var(--hit-min);
@@ -1024,6 +1285,31 @@
   color: var(--fg-muted);
 }
 
+/* improvement-plan §1.3: the ordered stop list — "Manikapatna → Palur → …",
+   each name a real button (selects that port/site), the arrows decorative. */
+.atlas-panel__stops {
+  list-style: none;
+  margin: var(--space-1) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2em;
+}
+.atlas-panel__stops li { display: inline-flex; align-items: center; gap: 0.2em; }
+.atlas-panel__stop-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--accent);
+  font: inherit;
+  font-size: var(--text-sm);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.atlas-panel__stop-btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.atlas-panel__note { margin: var(--space-2) 0 0; font-size: var(--text-xs); color: var(--fg-muted); font-style: italic; }
+
 .chip-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-1); }
 .chip {
   display: inline-flex;
@@ -1041,6 +1327,7 @@
 
 .panel-sources { font-size: var(--text-sm); color: var(--fg-muted); }
 .panel-sources > summary { cursor: pointer; list-style: none; min-height: var(--hit-min); display: flex; align-items: center; }
+.panel-sources__short-wrap { flex: 1; min-width: 0; }
 .panel-sources > summary::-webkit-details-marker { display: none; }
 .panel-sources > summary:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 .panel-sources .short { text-decoration: underline dotted; text-underline-offset: 0.2em; }

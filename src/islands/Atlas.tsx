@@ -9,6 +9,7 @@
  *                                   marker via AtlasMap's focusReturnToken.
  */
 import {
+  useCallback,
   useEffect,
   useLayoutEffect,
   useMemo,
@@ -43,10 +44,14 @@ const FACT_TIMEOUT_MS = 12_000;
  * from the root, not the map figure, since the toast may not be mounted
  * yet when this is first needed. */
 const FACT_SETTLE_MS = 500;
-/** atlas-layout.md §1 open decision: the map-box height below which the
- * toast collapses to a pill. Not measured against a real short-viewport
- * device yet — a single constant to tune if it fires too early/late. */
-const TOAST_PILL_THRESHOLD_PX = 384; // 24rem at the default 16px root
+/** atlas-layout.md §5 / improvement-plan 1.1: the grid's own breakpoint
+ * (--atlas-breakpoint in atlas.css) — matched here in JS so the fact card's
+ * portal target can follow the same column-vs-stacked layout switch the
+ * CSS grid already makes. Repeated as a literal on both sides deliberately
+ * (see atlas.css's own comment on --atlas-breakpoint). */
+const WIDE_QUERY = '(min-width: 56.25rem)';
+/** improvement-plan §1.2: Play walks the periods roughly this often. */
+const PLAY_STEP_MS = 2500;
 
 function readMs(el: Element | null, name: string, fallback: number): number {
   if (!el || typeof window === 'undefined') return fallback;
@@ -76,7 +81,53 @@ export default function Atlas({
   const [dismissedFact, setDismissedFact] = useState<string | null>(null);
   const [factHeld, setFactHeld] = useState(false);
   const [factSourcesOpen, setFactSourcesOpen] = useState(false);
-  const [factExpanded, setFactExpanded] = useState(false);
+
+  // -- improvement-plan §1.2: Play/step -------------------------------------
+  // Owned here (not Timeline.tsx) because it has to stop the moment *any*
+  // manual interaction happens, including ones Timeline knows nothing about
+  // (selecting a marker/route on the map). `changePeriod` is what every
+  // manual path (chips, slider, step buttons) goes through; Play's own
+  // interval calls `setActivePeriod` directly so starting Play doesn't
+  // immediately stop itself.
+  const [isPlaying, setIsPlaying] = useState(false);
+  const changePeriod = useCallback((id: string) => {
+    setIsPlaying(false);
+    setActivePeriod(id);
+  }, []);
+  useEffect(() => {
+    if (!isPlaying) return;
+    const timer = window.setInterval(() => {
+      setActivePeriod((cur) => {
+        const idx = ordered.findIndex((p) => p.id === cur);
+        const next = ordered[idx + 1];
+        if (!next) {
+          setIsPlaying(false);
+          return cur;
+        }
+        return next.id;
+      });
+    }, PLAY_STEP_MS);
+    return () => window.clearInterval(timer);
+  }, [isPlaying, ordered]);
+
+  // -- improvement-plan §1.2b(b): "Show only this route" -------------------
+  // Shared between AtlasMap (does the actual filtering) and DetailPanel
+  // (renders the toggle) — see AtlasMap's own comment on the prop for why
+  // this is an overlay on top of the persistent filter, not a member of it.
+  const [showOnlyRouteId, setShowOnlyRouteId] = useState<string | null>(null);
+  useEffect(() => {
+    setShowOnlyRouteId((cur) => {
+      if (cur && selection?.kind === 'route' && selection.id === cur) return cur;
+      return null;
+    });
+  }, [selection, activePeriod]);
+
+  /** Any map interaction (marker/route select, or clearing) is manual and
+   * stops Play, same as changePeriod above. */
+  const selectFromMap = useCallback((sel: MapSelection) => {
+    setIsPlaying(false);
+    setSelection(sel);
+  }, []);
 
   const rootRef = useRef<HTMLElement | null>(null);
   const firstRender = useRef(true);
@@ -96,30 +147,48 @@ export default function Atlas({
   const [mapDialogOpen, setMapDialogOpen] = useState(false);
   const [mapPortalTarget, setMapPortalTarget] = useState<HTMLElement | null>(null);
 
-  // -- atlas-layout.md §1: toast containing block ---------------------------
-  //
-  // Two possible hosts, exactly one ever visible per CSS (never both — the
-  // preview card only shows below 600px, where the live map figure and its
-  // own toast-host are `display: none`): the live map figure's own
-  // toast-host (AtlasMap.tsx, used inline at >=600px and inside the phone
-  // dialog) and a host inside the static `.atlas-map-slot` preview card
-  // (this component, used below 600px before "Explore the map" is tapped).
-  // A single fact is portalled into both; only the one inside a visible
-  // ancestor actually renders on screen.
-  const [mapToastHost, setMapToastHost] = useState<HTMLDivElement | null>(null);
-  const previewToastHostRef = useRef<HTMLDivElement | null>(null);
-  const [previewToastHost, setPreviewToastHost] = useState<HTMLDivElement | null>(null);
-  const [mapBoxHeight, setMapBoxHeight] = useState(0);
-  // Only one of the two hosts is ever the actual portal target at a time —
-  // avoids mounting the toast twice (duplicate ids/ARIA) when both hosts
-  // happen to exist in the DOM simultaneously (one just hidden by CSS).
+  // -- improvement-plan-2026-09-16.md §1.1: the fact card is a document-flow
+  // sibling, never absolutely positioned over the map. Three possible hosts,
+  // exactly one ever the live portal target (never two — same single-portal
+  // discipline as `mapPortalTarget` above):
+  //   - factHostWideRef:   >= 56.25rem, stacked above DetailPanel in the
+  //                        right-hand column (read before the panel: the
+  //                        toast is transient/ambient, the panel is what the
+  //                        visitor asked for by selecting something, so the
+  //                        more deliberate content sits below the ambient one).
+  //   - factHostNarrowRef: < 56.25rem, in-flow inside .atlas__main, below the
+  //                        map card and above the timeline.
+  //   - factHostDialogRef: inside the phone full-screen dialog, docked above
+  //                        that dialog's own Timeline copy.
+  const factHostWideRef = useRef<HTMLDivElement | null>(null);
+  const factHostNarrowRef = useRef<HTMLDivElement | null>(null);
+  const factHostDialogRef = useRef<HTMLDivElement | null>(null);
+  const [factPortalTarget, setFactPortalTarget] = useState<HTMLElement | null>(null);
+  const [isWideGrid, setIsWideGrid] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(WIDE_QUERY).matches,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(WIDE_QUERY);
+    const apply = () => setIsWideGrid(mq.matches);
+    apply();
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (mapDialogOpen) {
+      setFactPortalTarget(factHostDialogRef.current);
+    } else if (isWideGrid) {
+      setFactPortalTarget(factHostWideRef.current);
+    } else {
+      setFactPortalTarget(factHostNarrowRef.current);
+    }
+  }, [mapDialogOpen, isWideGrid]);
+
   const [isNarrowPreview, setIsNarrowPreview] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(max-width: 37.4375rem)').matches,
   );
-
-  useLayoutEffect(() => {
-    setPreviewToastHost(previewToastHostRef.current);
-  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 37.4375rem)');
@@ -128,26 +197,6 @@ export default function Atlas({
     mq.addEventListener('change', apply);
     return () => mq.removeEventListener('change', apply);
   }, []);
-
-  // Measures the map figure's own box (the toast-host's parent) for the
-  // collapsed-pill threshold — the same ResizeObserver pattern AtlasMap.tsx
-  // already uses for --map-counter, just one level up.
-  useEffect(() => {
-    const host = mapToastHost;
-    const box = host?.parentElement ?? null;
-    if (!box) {
-      setMapBoxHeight(0);
-      return;
-    }
-    const apply = (h: number) => setMapBoxHeight((prev) => (Math.round(prev) === Math.round(h) ? prev : h));
-    apply(box.getBoundingClientRect().height);
-    const ro = new ResizeObserver((entries) => {
-      const entry = entries[0];
-      if (entry) apply(entry.contentRect.height);
-    });
-    ro.observe(box);
-    return () => ro.disconnect();
-  }, [mapToastHost]);
 
   // Coordinator-confirmed bug fix: this used to always target
   // `inlineMapHostRef` whenever the dialog was closed — but
@@ -250,7 +299,6 @@ export default function Atlas({
   }, [fact, ports, sites, routes]);
 
   const showFact = fact !== null && dismissedFact !== fact.id;
-  const isPill = mapBoxHeight > 0 && mapBoxHeight < TOAST_PILL_THRESHOLD_PX;
 
   // A new fact starts its own timer; hover, focus or an open citation holds it.
   useEffect(() => {
@@ -263,7 +311,6 @@ export default function Atlas({
   useEffect(() => {
     setFactHeld(false);
     setFactSourcesOpen(false);
-    setFactExpanded(false);
   }, [fact?.id]);
 
   const closePanel = () => {
@@ -274,11 +321,7 @@ export default function Atlas({
   const onFactKeyDown = (event: ReactKeyboardEvent<HTMLElement>) => {
     if (event.key === 'Escape' && fact) {
       event.stopPropagation();
-      if (isPill && factExpanded) {
-        setFactExpanded(false);
-      } else {
-        setDismissedFact(fact.id);
-      }
+      setDismissedFact(fact.id);
     }
   };
 
@@ -319,36 +362,21 @@ export default function Atlas({
   // atlas-layout.md §1: never calls .focus() and never traps focus — stays
   // role="status"/aria-live="polite" so a keyboard user stepping the
   // slider with arrow keys is never interrupted.
-  const factNode: ReactNode =
-    showFact && fact ? (
-      isPill && !factExpanded ? (
-        <button
-          type="button"
-          className="atlas-fact atlas-fact--pill"
-          aria-expanded={false}
-          aria-controls="fact-card-popover"
-          aria-label="Did you know?"
-          onClick={() => setFactExpanded(true)}
-        >
-          <span aria-hidden="true">ⓘ</span>
-        </button>
-      ) : (
-        <aside
-          id={isPill ? 'fact-card-popover' : undefined}
-          className={isPill ? 'atlas-fact atlas-fact-popover' : 'atlas-fact'}
-          role="status"
-          aria-live="polite"
-          aria-label="Did you know?"
-          onMouseEnter={() => setFactHeld(true)}
-          onMouseLeave={() => setFactHeld(false)}
-          onFocus={() => setFactHeld(true)}
-          onBlur={() => setFactHeld(false)}
-          onKeyDown={onFactKeyDown}
-        >
-          {factCard}
-        </aside>
-      )
-    ) : null;
+  const factNode: ReactNode = showFact && fact ? (
+    <aside
+      className="atlas-fact"
+      role="status"
+      aria-live="polite"
+      aria-label="Did you know?"
+      onMouseEnter={() => setFactHeld(true)}
+      onMouseLeave={() => setFactHeld(false)}
+      onFocus={() => setFactHeld(true)}
+      onBlur={() => setFactHeld(false)}
+      onKeyDown={onFactKeyDown}
+    >
+      {factCard}
+    </aside>
+  ) : null;
 
   return (
     <section
@@ -371,7 +399,6 @@ export default function Atlas({
             <div className="atlas-map-slot__inline" ref={inlineMapHostRef} />
             <div className="atlas-map-slot__preview" aria-hidden="true">
               <div className="atlas-map-slot__preview-art" />
-              <div className="atlas-map__toast-host" ref={previewToastHostRef} />
             </div>
             <p className="atlas-map-slot__caption">The map of Kalinga's ports</p>
             <button
@@ -394,27 +421,20 @@ export default function Atlas({
                 periods={periods}
                 activePeriod={activePeriod}
                 selection={selection}
-                onSelect={setSelection}
+                onSelect={selectFromMap}
                 onClear={closePanel}
                 focusReturnToken={focusReturnToken}
                 fullscreen={mapDialogOpen}
-                onToastHost={setMapToastHost}
+                showOnlyRouteId={showOnlyRouteId}
               />,
               mapPortalTarget,
             )}
 
-          {/* atlas-layout.md §1: the toast portals into whichever host is
-              currently inside a visible ancestor — the static preview card
-              below 600px (before "Explore the map" is tapped), the live
-              map figure otherwise (inline, or inside the phone dialog). */}
-          {(() => {
-            const target = isNarrowPreview && !mapDialogOpen ? previewToastHost : mapToastHost;
-            return target && createPortal(factNode, target);
-          })()}
-
           {/* kid-experience.md A3: full-screen dialog, phone-only trigger.
               Docks its own Timeline at the bottom, since period switching
-              doesn't need a separate screen. */}
+              doesn't need a separate screen. The fact card, when the dialog
+              is open, docks just above that timeline (improvement-plan
+              §1.1) — same portal target logic as the map itself. */}
           <dialog
             className="atlas-map-dialog"
             ref={mapDialogRef}
@@ -434,25 +454,60 @@ export default function Atlas({
               <span aria-hidden="true">×</span>
             </button>
             <div className="atlas-map-dialog__host" ref={dialogMapHostRef} />
+            <div className="atlas-fact-slot atlas-fact-slot--dialog" ref={factHostDialogRef} />
             {mapDialogOpen && (
               <div className="atlas-map-dialog__timeline">
-                <Timeline periods={periods} activePeriod={activePeriod} onChange={setActivePeriod} />
+                <Timeline
+                  periods={periods}
+                  activePeriod={activePeriod}
+                  onChange={changePeriod}
+                  isPlaying={isPlaying}
+                  onTogglePlay={() => setIsPlaying((v) => !v)}
+                />
               </div>
             )}
           </dialog>
 
+          {/* improvement-plan §1.1: below 56.25rem, the fact card lives here
+              — in normal flow, below the map card and above the timeline. */}
+          <div className="atlas-fact-slot atlas-fact-slot--narrow" ref={factHostNarrowRef} />
+
           <div id="timeline">
-            <Timeline periods={periods} activePeriod={activePeriod} onChange={setActivePeriod} />
+            <Timeline
+              periods={periods}
+              activePeriod={activePeriod}
+              onChange={changePeriod}
+              isPlaying={isPlaying}
+              onTogglePlay={() => setIsPlaying((v) => !v)}
+            />
           </div>
         </div>
 
-        <DetailPanel
-          selected={selected}
-          sources={sources}
-          goods={goods}
-          periods={periods}
-          onClose={closePanel}
-        />
+        <div className="atlas__side">
+          {/* improvement-plan §1.1: >= 56.25rem, the fact card stacks above
+              the detail panel in the right-hand column, in normal flow. */}
+          <div className="atlas-fact-slot atlas-fact-slot--wide" ref={factHostWideRef} />
+          <DetailPanel
+            selected={selected}
+            sources={sources}
+            goods={goods}
+            periods={periods}
+            ports={ports}
+            sites={sites}
+            onClose={closePanel}
+            showOnlyRoute={selected?.kind === 'route' && showOnlyRouteId === selected.entity.id}
+            onToggleShowOnlyRoute={() => {
+              if (selected?.kind !== 'route') return;
+              setShowOnlyRouteId((cur) => (cur === selected.entity.id ? null : selected.entity.id));
+            }}
+            onSelectEntity={(kind, id) => selectFromMap({ kind, id })}
+          />
+        </div>
+
+        {/* Exactly one of the three hosts above is ever the live portal
+            target (see the useLayoutEffect that sets factPortalTarget) —
+            never two mounted copies of the fact card at once. */}
+        {factPortalTarget && createPortal(factNode, factPortalTarget)}
       </div>
     </section>
   );

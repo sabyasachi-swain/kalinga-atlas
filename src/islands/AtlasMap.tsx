@@ -31,6 +31,7 @@ import type { Feature, FeatureCollection, GeoJsonProperties, Geometry } from 'ge
 import type { EvidenceLevel, EvidenceType, Period, Port, Route, Site } from '@data/schema';
 import { TIER, TYPE } from './Badge';
 import { withBase } from '@lib/base-url';
+import { classifyWaypoints, getRouteStopIds } from '@lib/route-stops';
 
 /** What the map reports upward when something is chosen. */
 export interface MapSelection {
@@ -71,11 +72,13 @@ export interface AtlasMapProps {
    */
   fullscreen?: boolean;
   /**
-   * atlas-layout.md §1: a ref callback for the map's own toast-host slot —
-   * Atlas.tsx portals the "Did you know?" toast into it so the toast's
-   * containing block is always the map figure, never the viewport.
+   * improvement-plan-2026-09-16.md §1.2b: "Show only this route" — set (in
+   * Atlas.tsx, shared with DetailPanel's toggle) to a route id to hide every
+   * other route and every marker that isn't one of that route's own stops.
+   * Cleared automatically by Atlas.tsx when the selection stops being that
+   * route.
    */
-  onToastHost?: (el: HTMLDivElement | null) => void;
+  showOnlyRouteId?: string | null;
 }
 
 // ---------------------------------------------------------------------------
@@ -132,9 +135,6 @@ const HIT_RADIUS = 22;
  * Keyboard users reach every route directly with Tab, so nothing depends on
  * the hit band being large.
  */
-/** A1 fix: below this, the map caption collapses to keep the top chrome
- * short — same 600px boundary A3 uses for the phone full-screen mode. */
-const NARROW_CHROME_QUERY = '(max-width: 37.4375rem)';
 
 // ---------------------------------------------------------------------------
 // Kid experience (docs/design/kid-experience.md) — A1 default view, A4 markers
@@ -190,6 +190,8 @@ function diamondPath(r: number): string {
 /** A2: remembers the wheel/drag hint has been dismissed. */
 const HINT_KEY = 'kalinga-map-hint-dismissed';
 const HINT_AUTO_MS = 5000;
+/** improvement-plan §1.2: "Show other centuries faintly" toggle. */
+const FAINT_KEY = 'kalinga-map-show-faint';
 
 /** An axis-aligned rectangle, in the stage's local (unzoomed) pixel space. */
 interface SafeRect {
@@ -282,6 +284,26 @@ function patternLength(dash: string): number {
   return dash.split(/\s+/).reduce((sum, n) => sum + (Number.parseFloat(n) || 0), 0);
 }
 
+/**
+ * improvement-plan §1.4: economical map orientation labels. These anchor
+ * points are cartographic placements only — chosen so the label sits inside
+ * the named country/sea on this projection at typical zooms — never a
+ * historical claim about a boundary, which is why they carry no evidence
+ * badge and are not read from any published entity. Kept to four, per the
+ * brief's "label economically".
+ */
+const REGION_LABELS: ReadonlyArray<{ id: string; text: string; lat: number; lng: number; sea: boolean }> = [
+  { id: 'india', text: 'INDIA', lat: 21, lng: 79, sea: false },
+  { id: 'sri-lanka', text: 'SRI LANKA', lat: 7.3, lng: 80.7, sea: false },
+  { id: 'myanmar', text: 'MYANMAR', lat: 21, lng: 96, sea: false },
+  { id: 'bay-of-bengal', text: 'BAY OF BENGAL', lat: 14, lng: 88, sea: true },
+];
+/** Region labels fully showing at/below this committed scale, fully faded
+ * out at/above it — broad-geography context that would only crowd the
+ * Odisha coast once a visitor has zoomed that far in. */
+const REGION_LABEL_FADE_K0 = 2.2;
+const REGION_LABEL_FADE_K1 = 4.5;
+
 /** route-styles.md: no vehicle glyph exists for overland caravans yet. */
 const SHIP_FOR_MODE: Record<Route['mode'], 'sailing' | 'river' | null> = {
   maritime: 'sailing',
@@ -300,6 +322,14 @@ function tierSlug(level: EvidenceLevel): string {
 
 function plural(n: number, one: string, many: string): string {
   return `${n} ${n === 1 ? one : many}`;
+}
+
+/** improvement-plan §1.2b(e): "6 routes" when nothing is filtered out of the
+ * period, "3 of 6 routes" the moment the manual filter hides any of them —
+ * never lets the live count disagree with what is actually drawn. */
+function countLabel(shown: number, total: number, one: string, many: string): string {
+  if (shown === total) return plural(total, one, many);
+  return `${shown} of ${plural(total, one, many)}`;
 }
 
 function formatYear(y: number): string {
@@ -382,7 +412,7 @@ export function AtlasMap({
   onClear,
   focusReturnToken = 0,
   fullscreen = false,
-  onToastHost,
+  showOnlyRouteId = null,
 }: AtlasMapProps) {
   const uid = useId().replace(/[^a-zA-Z0-9-]/g, '');
   const figureRef = useRef<HTMLDivElement | null>(null);
@@ -397,6 +427,12 @@ export function AtlasMap({
   const legendDialogRef = useRef<HTMLDialogElement | null>(null);
   const legendButtonRef = useRef<HTMLButtonElement | null>(null);
   const legendCloseRef = useRef<HTMLButtonElement | null>(null);
+  /** improvement-plan §1.2b: "Show on the map" filter popover — same
+   * mechanics as the keys/legend dialogs above, mutually exclusive with
+   * both. */
+  const filterDialogRef = useRef<HTMLDialogElement | null>(null);
+  const filterButtonRef = useRef<HTMLButtonElement | null>(null);
+  const filterCloseRef = useRef<HTMLButtonElement | null>(null);
   /** A1 fix: measured to exclude the overlay chrome from every view fit. */
   const topbarRef = useRef<HTMLDivElement | null>(null);
   const zoomColRef = useRef<HTMLDivElement | null>(null);
@@ -462,6 +498,39 @@ export function AtlasMap({
    * keyboard-shortcuts dialog), not a persistent in-figure legend, so it
    * no longer needs a width-driven open state. */
   const [showLegend, setShowLegend] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
+  /** improvement-plan §1.2: "Show other centuries faintly" — off by default
+   * (the documented timeline-slider failure mode this phase fixes), one
+   * explicit opt-in, persisted like the existing HINT_KEY. */
+  const [showFaint, setShowFaint] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      return window.localStorage.getItem(FAINT_KEY) === '1';
+    } catch {
+      return false;
+    }
+  });
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(FAINT_KEY, showFaint ? '1' : '0');
+    } catch {
+      /* storage may be unavailable (private mode); faint stays session-only */
+    }
+  }, [showFaint]);
+  /** improvement-plan §1.2b: manual "Show on the map" filter — hidden ids
+   * and hidden route modes. Deliberately NOT persisted to localStorage (per
+   * brief); reset to "all shown" whenever the period changes (§1.2b(d)), so
+   * a filter never silently survives a period switch. */
+  const [hiddenRouteIds, setHiddenRouteIds] = useState<Set<string>>(new Set());
+  const [hiddenPortIds, setHiddenPortIds] = useState<Set<string>>(new Set());
+  const [hiddenSiteIds, setHiddenSiteIds] = useState<Set<string>>(new Set());
+  const [hiddenModes, setHiddenModes] = useState<Set<Route['mode']>>(new Set());
+  useEffect(() => {
+    setHiddenRouteIds(new Set());
+    setHiddenPortIds(new Set());
+    setHiddenSiteIds(new Set());
+    setHiddenModes(new Set());
+  }, [activePeriod]);
   const [reducedMotion, setReducedMotion] = useState(false);
   /** A1: which of the two view buttons (if either) matches the current
    * transform. Any manually-triggered zoom/pan event clears it to 'manual'. */
@@ -479,23 +548,25 @@ export function AtlasMap({
    * chrome a view fit has to avoid is shorter on a phone screen; open by
    * default at wider widths. Independent of the media query after mount,
    * same pattern as `legendOpen`, so a manual toggle isn't fought back. */
-  const [caveatOpen, setCaveatOpen] = useState(true);
+  // Coordinator-confirmed fix: was `true` (open by default on wide screens).
+  // Borders now paint in both views (§1.4), so the caveat text is
+  // routinely three sentences long and, open by default, wrapped across
+  // the drawing area — India, the route lines, the "Ujjayini" label. Closed
+  // by default at every width now; a visitor who wants it clicks "About
+  // this map". Still independent of the media query after mount, same as
+  // before, so a manual toggle isn't fought by a later resize.
+  const [caveatOpen, setCaveatOpen] = useState(false);
 
   const period = periods.find((p) => p.id === activePeriod);
 
   // -- Media queries -------------------------------------------------------
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const narrow = window.matchMedia(NARROW_CHROME_QUERY);
     const applyMotion = () => setReducedMotion(motion.matches);
-    const applyNarrow = () => setCaveatOpen(!narrow.matches);
     applyMotion();
-    applyNarrow();
     motion.addEventListener('change', applyMotion);
-    narrow.addEventListener('change', applyNarrow);
     return () => {
       motion.removeEventListener('change', applyMotion);
-      narrow.removeEventListener('change', applyNarrow);
     };
   }, []);
 
@@ -580,18 +651,19 @@ export function AtlasMap({
     };
   }, [landUrl, riversUrl]);
 
-  // -- Country borders (atlas-layout.md §6) ---------------------------------
-  // Lazy: fetched only the first time the borders layer's own zoom threshold
-  // is crossed (viewMode === 'ocean', the same state AtlasMap already uses
-  // to switch marker sizing between the coast and whole-ocean views), never
-  // on first paint — the trimmed file is still ~67KB, not worth first-paint
-  // weight for an optional orientation layer most visitors never zoom out
-  // far enough to see.
+  // -- Country borders (atlas-layout.md §6 / improvement-plan §1.4) --------
+  // improvement-plan §1.4: painted in *both* views now (the "no regions"
+  // complaint), so this can no longer wait for the ocean view's own zoom
+  // threshold to be crossed. Still lazy-but-unconditional rather than
+  // blocking first paint: kicked off once, after the base map itself has
+  // painted (`status === 'ready'`), on requestIdleCallback where available
+  // — the trimmed file is still ~67KB (measured; see the report), not worth
+  // delaying FCP for.
   useEffect(() => {
-    if (viewMode !== 'ocean' || bordersFetchedRef.current) return;
+    if (status !== 'ready' || bordersFetchedRef.current) return;
     bordersFetchedRef.current = true;
     let cancelled = false;
-    (async () => {
+    const load = async () => {
       try {
         const res = await fetch(countriesUrl);
         if (!res.ok) throw new Error(`countries ${res.status}`);
@@ -607,11 +679,18 @@ export function AtlasMap({
       } catch {
         // Orientation-only decoration; the map is still fully usable without it.
       }
-    })();
+    };
+    const ric = (window as { requestIdleCallback?: (cb: () => void) => number }).requestIdleCallback;
+    const handle = ric ? ric(() => void load()) : window.setTimeout(() => void load(), 300);
     return () => {
       cancelled = true;
+      if (ric && typeof handle === 'number') {
+        (window as { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback?.(handle);
+      } else {
+        window.clearTimeout(handle as number);
+      }
     };
-  }, [viewMode, countriesUrl]);
+  }, [status, countriesUrl]);
 
   // -- Projection ----------------------------------------------------------
   const projection = useMemo(() => {
@@ -659,7 +738,12 @@ export function AtlasMap({
   }, [ports, sites]);
 
   // -- Markers, in Tab order: Kalinga ports, sites, then destinations -------
-  const markers = useMemo<MarkerDatum[]>(() => {
+  // Renamed `allMarkers`: unfiltered by the manual "Show on the map" filter
+  // (§1.2b) or the "show other centuries faintly" toggle (§1.2) — every
+  // fit/ceiling calculation that must stay stable regardless of what the
+  // visitor has manually hidden reads this array. `markers` (below) is the
+  // filtered, actually-rendered set.
+  const allMarkers = useMemo<MarkerDatum[]>(() => {
     const out: MarkerDatum[] = [];
 
     const pushPort = (p: Port, shape: MarkerShape) => {
@@ -710,7 +794,8 @@ export function AtlasMap({
     return out;
   }, [ports, sites, projection, activePeriod]);
 
-  const routeData = useMemo<RouteDatum[]>(() => {
+  // Renamed `allRouteData`, same reasoning as `allMarkers` above.
+  const allRouteData = useMemo<RouteDatum[]>(() => {
     const out: RouteDatum[] = [];
     for (const r of routes) {
       const d = pathGen({
@@ -741,6 +826,102 @@ export function AtlasMap({
     }
     return out;
   }, [routes, pathGen, activePeriod, placeNames]);
+
+  // -- improvement-plan §1.2 / §1.2b: what's actually drawn ----------------
+  //
+  // `markers`/`routeData` (below) are what every downstream consumer in this
+  // file already used before this phase — clustering, labelling, JSX,
+  // keyboard order (DOM order = tab order, so an item simply absent here is
+  // absent from the a11y tree and the tab order too, with no separate
+  // bookkeeping needed) and the live counts. Renaming the raw arrays to
+  // `allMarkers`/`allRouteData` (above) and filtering back down to these
+  // names means none of that downstream code has to change.
+  //
+  // Precedence, deliberately in this order:
+  //   1. "Show only this route" (showOnlyRouteId) — an override, not a
+  //      togglable member of the persistent filter state; turning it off
+  //      changes nothing else, so it is never written into hiddenRouteIds
+  //      etc. (§1.2b(b): "restores the filter to whatever it was").
+  //   2. The manual per-item / per-mode filter (§1.2b(c)).
+  //   3. The period filter, softened only by "show other centuries
+  //      faintly" (§1.2) — never soft by default, which is the failure
+  //      mode this phase exists to fix.
+  const showOnlyStopIds = useMemo(() => {
+    if (!showOnlyRouteId) return null;
+    const route = routes.find((r) => r.id === showOnlyRouteId);
+    if (!route) return null;
+    return getRouteStopIds(route, ports, sites);
+  }, [showOnlyRouteId, routes, ports, sites]);
+
+  const markers = useMemo<MarkerDatum[]>(() => {
+    return allMarkers.filter((m) => {
+      if (showOnlyStopIds) {
+        // deepseek/deepseek-v4.1-flash review (verified): "show only this
+        // route" is an override, so one of the route's own stops being
+        // manually hidden (or period-inactive) must not silently drop its
+        // endpoint marker while the route line itself still draws — the
+        // whole point is a clean line-plus-its-own-stops, never a line with
+        // a missing endpoint and no explanation.
+        return showOnlyStopIds.has(m.id);
+      }
+      const hiddenManually = m.kind === 'site' ? hiddenSiteIds.has(m.id) : hiddenPortIds.has(m.id);
+      if (hiddenManually) return false;
+      if (m.inactive && !showFaint) return false;
+      return true;
+    });
+  }, [allMarkers, showOnlyStopIds, hiddenSiteIds, hiddenPortIds, showFaint]);
+
+  const routeData = useMemo<RouteDatum[]>(() => {
+    return allRouteData.filter((r) => {
+      if (showOnlyRouteId) return r.id === showOnlyRouteId;
+      if (hiddenModes.has(r.mode)) return false;
+      if (hiddenRouteIds.has(r.id)) return false;
+      if (r.inactive && !showFaint) return false;
+      return true;
+    });
+  }, [allRouteData, showOnlyRouteId, hiddenModes, hiddenRouteIds, showFaint]);
+
+  /** Nothing at all is showing (§1.2b(f)): the empty-map dead end. */
+  const nothingShowing = markers.length === 0 && routeData.length === 0;
+
+  const clearAllFilters = useCallback(() => {
+    setHiddenRouteIds(new Set());
+    setHiddenPortIds(new Set());
+    setHiddenSiteIds(new Set());
+    setHiddenModes(new Set());
+  }, []);
+
+  const hideAllFilters = useCallback(() => {
+    setHiddenRouteIds(new Set(routes.map((r) => r.id)));
+    setHiddenPortIds(new Set(ports.map((p) => p.id)));
+    setHiddenSiteIds(new Set(sites.map((s) => s.id)));
+    // deepseek/deepseek-v4.1-flash review (verified): without this, "Hide
+    // all" left every route-mode chip reading pressed/on while every route
+    // was in fact hidden by id — the two mechanisms must agree.
+    setHiddenModes(new Set(Object.keys(MODE_LABEL) as Route['mode'][]));
+  }, [routes, ports, sites]);
+
+  /** improvement-plan §1.2b(c): the filter panel only ever lists what the
+   * period already shows (§1.2b(d)) — each list sorted by name so a visitor
+   * scanning it can find an entry quickly. */
+  const filterableRoutes = useMemo(
+    () => routes.filter((r) => r.periods.includes(activePeriod)).sort((a, b) => a.name.localeCompare(b.name)),
+    [routes, activePeriod],
+  );
+  const filterablePorts = useMemo(
+    () =>
+      ports
+        .filter((p) => p.periods.includes(activePeriod))
+        .sort((a, b) => a.name.localeCompare(b.name)),
+    [ports, activePeriod],
+  );
+  const filterableSites = useMemo(
+    () =>
+      sites
+        .filter((s) => s.periods.includes(activePeriod))
+        .sort((a, b) => a.name.localeCompare(b.name)),
+    [sites, activePeriod],
+  );
 
   // -- Zoom ----------------------------------------------------------------
   useEffect(() => {
@@ -997,10 +1178,12 @@ export function AtlasMap({
    */
   const declusterCeiling = useMemo(() => {
     let minDist = Infinity;
-    for (let i = 0; i < markers.length; i++) {
-      const a = markers[i]!;
-      for (let j = i + 1; j < markers.length; j++) {
-        const b = markers[j]!;
+    // Deliberately `allMarkers`, not the filtered `markers`: this ceiling
+    // must not jump around as the visitor ticks boxes in the filter panel.
+    for (let i = 0; i < allMarkers.length; i++) {
+      const a = allMarkers[i]!;
+      for (let j = i + 1; j < allMarkers.length; j++) {
+        const b = allMarkers[j]!;
         const d = Math.hypot(a.x - b.x, a.y - b.y);
         if (d > 0 && d < minDist) minDist = d;
       }
@@ -1008,7 +1191,7 @@ export function AtlasMap({
     if (!Number.isFinite(minDist) || minDist <= 0) return MAX_SCALE;
     const threshold = clusterThresholdPx(MARKER_R_COAST) * 1.5;
     return threshold / minDist;
-  }, [markers]);
+  }, [allMarkers]);
 
   /**
    * A1/A4 fix: the scale actually *applied* to a view fit is clamped to the
@@ -1050,12 +1233,15 @@ export function AtlasMap({
 
   /** A1: fit to every published Kalinga port active in the current period. */
   const coastFitPoints = useCallback(() => {
-    const active = markers.filter((m) => m.shape === 'port' && !m.inactive);
-    return active.length > 0 ? active : markers.filter((m) => m.shape === 'port');
-  }, [markers]);
+    // `allMarkers`: the default view fit is a navigation baseline driven by
+    // the period, not by what the visitor has manually filtered — filtering
+    // everything down to one route shouldn't re-centre the whole map.
+    const active = allMarkers.filter((m) => m.shape === 'port' && !m.inactive);
+    return active.length > 0 ? active : allMarkers.filter((m) => m.shape === 'port');
+  }, [allMarkers]);
 
-  /** A1: fit to every visible port, Kalinga and foreign destinations alike. */
-  const oceanFitPoints = useCallback(() => markers.filter((m) => m.kind === 'port'), [markers]);
+  /** A1: fit to every port, Kalinga and foreign destinations alike. */
+  const oceanFitPoints = useCallback(() => allMarkers.filter((m) => m.kind === 'port'), [allMarkers]);
 
   const showCoast = useCallback(() => {
     const pts = coastFitPoints();
@@ -1214,13 +1400,12 @@ export function AtlasMap({
         ctx.stroke();
       }
 
-      // atlas-layout.md §6: modern borders — behind rivers/routes/markers,
-      // above land/graticule; zoom-gated to the whole-ocean view, the same
-      // state that already switches marker sizing, so it never clutters
-      // the calm coast-view default. aria-hidden (decorative orientation,
-      // no historical claim); the visible caption below adds a sentence
-      // whenever this layer is showing.
-      if (borders && viewMode === 'ocean') {
+      // atlas-layout.md §6 / improvement-plan §1.4: modern borders — behind
+      // rivers/routes/markers, above land/graticule. Painted in both views
+      // now (a hairline, subordinate to everything drawn on top of it); the
+      // visible caption below adds a sentence whenever this layer is
+      // present, in either view, not just the ocean one.
+      if (borders) {
         ctx.beginPath();
         p(borders);
         ctx.lineWidth = 0.5 / k;
@@ -1238,7 +1423,7 @@ export function AtlasMap({
 
       ctx.setTransform(1, 0, 0, 1, 0, 0);
     },
-    [geo, borders, viewMode, projection, size, readColours],
+    [geo, borders, projection, size, readColours],
   );
 
   /** Full-quality redraw of the visible canvas at an arbitrary transform. */
@@ -1356,6 +1541,63 @@ export function AtlasMap({
     nodeRefs.current.get(key)?.focus();
   }, [focusReturnToken]);
 
+  // -- improvement-plan §1.3: named stops on the selected route ------------
+  // Only intermediate waypoints — the two endpoints are always a port/site
+  // id already drawn (and labelled) as a regular marker, so giving them a
+  // second dot here would be a duplicate, not a new stop.
+  interface StopDatum {
+    key: string;
+    x: number;
+    y: number;
+    name: string | null;
+    attested: boolean;
+  }
+  const selectedRouteStops = useMemo<StopDatum[]>(() => {
+    if (selection?.kind !== 'route') return [];
+    const route = routes.find((r) => r.id === selection.id);
+    if (!route) return [];
+    const classified = classifyWaypoints(route, ports, sites);
+    const out: StopDatum[] = [];
+    for (const w of classified) {
+      if (w.isEndpoint) continue;
+      const xy = projection([w.lng, w.lat]);
+      if (!xy) continue;
+      out.push({
+        key: `stop:${route.id}:${w.index}`,
+        x: xy[0],
+        y: xy[1],
+        name: w.place?.name ?? null,
+        attested: w.place !== null,
+      });
+    }
+    return out;
+  }, [selection, routes, ports, sites, projection]);
+  const stopLabelRefs = useRef<Map<string, SVGTextElement>>(new Map());
+  const setStopLabelRef = useCallback((key: string, el: SVGTextElement | null) => {
+    if (el) stopLabelRefs.current.set(key, el);
+    else stopLabelRefs.current.delete(key);
+  }, []);
+
+  // -- improvement-plan §1.4: orientation labels ----------------------------
+  const regionLabelPoints = useMemo(() => {
+    const out: Array<{ id: string; text: string; sea: boolean; x: number; y: number }> = [];
+    for (const r of REGION_LABELS) {
+      // deepseek/deepseek-v4.1-flash review (verified): a failed projection
+      // (outside the projection's clip extent) must drop the label, not
+      // default it to (0,0) — a valid on-screen point that would otherwise
+      // draw a stray "INDIA" in the map's top-left corner.
+      const xy = projection([r.lng, r.lat]);
+      if (!xy) continue;
+      out.push({ id: r.id, text: r.text, sea: r.sea, x: xy[0], y: xy[1] });
+    }
+    return out;
+  }, [projection]);
+  const regionLabelRefs = useRef<Map<string, SVGTextElement>>(new Map());
+  const setRegionLabelRef = useCallback((id: string, el: SVGTextElement | null) => {
+    if (el) regionLabelRefs.current.set(id, el);
+    else regionLabelRefs.current.delete(id);
+  }, []);
+
   // -- Ship along the selected route --------------------------------------
   const selectedRoute =
     selection?.kind === 'route' ? routeData.find((r) => r.id === selection.id) ?? null : null;
@@ -1417,26 +1659,52 @@ export function AtlasMap({
     if (!dialog) return;
     if (showKeys && !dialog.open && typeof dialog.showModal === 'function') {
       if (showLegend) setShowLegend(false);
+      if (showFilter) setShowFilter(false);
       dialog.showModal();
       keysCloseRef.current?.focus();
     }
     if (!showKeys && dialog.open) dialog.close();
-  }, [showKeys, showLegend]);
+  }, [showKeys, showLegend, showFilter]);
 
   // -- "Map key" popover (atlas-layout.md §3+4) ----------------------------
-  // Mutually exclusive with the keys dialog by convention (both are modal
-  // dialogs sharing --z-popover, so only the topmost is ever meaningfully
-  // open) — opening one closes the other rather than stacking two dialogs.
+  // Mutually exclusive with the keys/filter dialogs by convention (all three
+  // are modal dialogs sharing --z-popover, so only the topmost is ever
+  // meaningfully open) — opening one closes the others rather than stacking.
   useEffect(() => {
     const dialog = legendDialogRef.current;
     if (!dialog) return;
     if (showLegend && !dialog.open && typeof dialog.showModal === 'function') {
       if (showKeys) setShowKeys(false);
+      if (showFilter) setShowFilter(false);
       dialog.showModal();
       legendCloseRef.current?.focus();
     }
     if (!showLegend && dialog.open) dialog.close();
-  }, [showLegend, showKeys]);
+  }, [showLegend, showKeys, showFilter]);
+
+  // -- "Show on the map" filter popover (improvement-plan §1.2b) ----------
+  // Non-modal (`.show()`) below 37.4375rem: a modal <dialog> always covers
+  // whatever is behind it, but the brief is explicit that this panel must
+  // not cover the map while the visitor is ticking boxes at phone widths —
+  // `.atlas-map__filter`'s own narrow-width CSS docks it in normal flow
+  // below the map stage instead. Escape is handled explicitly (below) since
+  // a non-modal dialog doesn't get that for free the way showModal() does.
+  useEffect(() => {
+    const dialog = filterDialogRef.current;
+    if (!dialog) return;
+    const narrow = typeof window !== 'undefined' && window.matchMedia('(max-width: 37.4375rem)').matches;
+    if (showFilter && !dialog.open) {
+      if (narrow) {
+        dialog.show();
+      } else if (typeof dialog.showModal === 'function') {
+        if (showKeys) setShowKeys(false);
+        if (showLegend) setShowLegend(false);
+        dialog.showModal();
+      }
+      filterCloseRef.current?.focus();
+    }
+    if (!showFilter && dialog.open) dialog.close();
+  }, [showFilter, showKeys, showLegend]);
 
   // -- Keyboard on the figure ---------------------------------------------
   const onFigureKeyDown = useCallback(
@@ -1477,11 +1745,14 @@ export function AtlasMap({
           setShowKeys((v) => !v);
           break;
         case 'Escape':
-          // The keys dialog is the topmost layer and closes itself natively.
-          // A3: inside the phone full-screen dialog, stop the event so
-          // closing a selected marker's panel doesn't also close the whole
-          // dialog — only the topmost layer responds to one Escape.
-          if (!showKeys && selection) {
+          // The keys/legend dialogs are modal and close themselves natively.
+          // deepseek/deepseek-v4.1-flash review (verified): the filter
+          // dialog is non-modal below 37.4375rem (§1.2b), so an Escape with
+          // focus still on the map figure itself (not inside the open
+          // filter sheet) would otherwise fall through to here and clear
+          // the selection instead of closing the filter — guarded the same
+          // way as showKeys/showLegend.
+          if (!showKeys && !showFilter && selection) {
             event.preventDefault();
             event.stopPropagation();
             onClear?.();
@@ -1491,7 +1762,7 @@ export function AtlasMap({
           break;
       }
     },
-    [zoomBy, panBy, resetView, onClear, selection, showKeys],
+    [zoomBy, panBy, resetView, onClear, selection, showKeys, showFilter],
   );
 
   const onNodeKeyDown = useCallback(
@@ -1518,6 +1789,50 @@ export function AtlasMap({
   // -- Render --------------------------------------------------------------
   const { k, x, y } = transform;
   const rootTransform = `translate(${x},${y}) scale(${k})`;
+
+  /** improvement-plan §1.4: region labels fade with the committed zoom (not
+   * the live gesture — same cadence as every other label placement in this
+   * file), never re-triggers the offscreen-canvas redraw path. */
+  const regionLabelOpacity =
+    k <= REGION_LABEL_FADE_K0
+      ? 1
+      : k >= REGION_LABEL_FADE_K1
+        ? 0
+        : 1 - (k - REGION_LABEL_FADE_K0) / (REGION_LABEL_FADE_K1 - REGION_LABEL_FADE_K0);
+
+  /** improvement-plan §1.4: scale bar, recomputed on the committed transform
+   * only. Measures two points 100px apart at the stage's own centre and
+   * snaps to the nearest "nice" round distance. */
+  const scaleBarInfo = useMemo<{ km: number; px: number } | null>(() => {
+    const invert = projection.invert;
+    if (!invert) return null;
+    const cx = (size.width / 2 - x) / k;
+    const cy = (size.height / 2 - y) / k;
+    const g0 = invert([cx, cy]);
+    const g1 = invert([cx + 100 / k, cy]);
+    if (!g0 || !g1) return null;
+    const toRad = (deg: number) => (deg * Math.PI) / 180;
+    const R = 6371;
+    const dLat = toRad(g1[1] - g0[1]);
+    const dLng = toRad(g1[0] - g0[0]);
+    const a =
+      Math.sin(dLat / 2) ** 2 + Math.cos(toRad(g0[1])) * Math.cos(toRad(g1[1])) * Math.sin(dLng / 2) ** 2;
+    const km100px = 2 * R * Math.asin(Math.min(1, Math.sqrt(a)));
+    if (!Number.isFinite(km100px) || km100px <= 0) return null;
+    const kmPerPx = km100px / 100;
+    const niceSteps = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000];
+    let chosen = niceSteps[0]!;
+    for (const step of niceSteps) {
+      chosen = step;
+      if (step / kmPerPx >= 40) break;
+    }
+    const px = chosen / kmPerPx;
+    // improvement-plan §1.4: "if the scale bar can't fit [at 380px], shrink
+    // rather than hide" — clamped to a sane on-screen range; a very tight
+    // zoom (each px worth many km) still reads as a short, legible bar
+    // rather than being suppressed.
+    return { km: chosen, px: Math.max(20, Math.min(px, 140)) };
+  }, [projection, size, k, x, y]);
   /**
    * Counter-scale for markers/ship, as a CSS custom property rather than a
    * per-element inline `scale(...)`: it inherits from the figure down to
@@ -1530,9 +1845,21 @@ export function AtlasMap({
   const mapCounterStyle = { '--map-counter': 1 / k } as CSSProperties;
   const keysTitleId = `atlas-keys-title-${uid}`;
   const legendTitleId = `atlas-legend-title-${uid}`;
+  const filterTitleId = `atlas-filter-title-${uid}`;
   const descId = `atlas-map-desc-${uid}`;
-  const activeMarkers = markers.filter((m) => !m.inactive);
-  const activeRoutes = routeData.filter((r) => !r.inactive);
+  // Coordinator-confirmed fix: under "show only this route" a period-
+  // inactive endpoint is still forced onto the map (see the `markers` memo
+  // above), but `!m.inactive` alone excluded it from this count — the
+  // acceptance test is "the count matches what is drawn", so anything
+  // forced visible by the override must count too.
+  const activeMarkers = markers.filter((m) => !m.inactive || (showOnlyStopIds !== null && showOnlyStopIds.has(m.id)));
+  const activeRoutes = routeData.filter((r) => !r.inactive || r.id === showOnlyRouteId);
+  /** improvement-plan §1.2b(e): the period total, ignoring the manual
+   * filter — compared against `activeMarkers`/`activeRoutes` (drawn, i.e.
+   * already filtered) to render "3 of 6 routes" only when they actually
+   * differ. */
+  const periodActiveMarkers = allMarkers.filter((m) => !m.inactive);
+  const periodActiveRoutes = allRouteData.filter((r) => !r.inactive);
   // A1 fix: compare against the dynamic ceiling `fitWithHeadroom` raises,
   // not the static MAX_SCALE — otherwise "+" reads disabled right after a
   // tight coast fit lands exactly on the old, lower ceiling.
@@ -1762,6 +2089,16 @@ export function AtlasMap({
       return { x0: px - 14, y0: py - 14, x1: px + 14, y1: py + 14 };
     });
 
+    // improvement-plan §1.3: the selected route's own stop dots are also
+    // obstacles no marker/stop label may sit on — computed here so the
+    // existing marker-label loop below already avoids them.
+    const stopDotR = 5;
+    const stopBoxes = selectedRouteStops.map((s) => {
+      const px = s.x * k + x;
+      const py = s.y * k + y;
+      return { x0: px - stopDotR, y0: py - stopDotR, x1: px + stopDotR, y1: py + stopDotR };
+    });
+
     const placedBoxes: Array<{ x0: number; y0: number; x1: number; y1: number }> = [];
 
     const boxFor = (px: number, py: number, dx: number, dy: number, anchor: string, textWidth: number) => {
@@ -1780,6 +2117,7 @@ export function AtlasMap({
     const collidesAny = (b: { x0: number; y0: number; x1: number; y1: number }, selfKey: string) => {
       if (placedBoxes.some((p) => intersects(b, p))) return true;
       if (clusterBoxes.some((p) => intersects(b, p))) return true;
+      if (stopBoxes.some((p) => intersects(b, p))) return true;
       for (const [key, mb] of markerBoxes) {
         if (key !== selfKey && intersects(b, mb)) return true;
       }
@@ -1847,6 +2185,66 @@ export function AtlasMap({
       placedBoxes.push(chosenBox);
       map.set(m.key, { show: true, dx: chosen.dx, dy: chosen.dy, anchor: chosen.anchor });
     }
+
+    // improvement-plan §1.3: label the selected route's attested stops the
+    // same way — first-fit against the same obstacle set (which by now
+    // includes every placed marker label too), never forced (unlike a
+    // permanent Kalinga-port label): a stop that can't find a clear slot is
+    // suppressed rather than drawn over something else. Bends never reach
+    // this loop at all (they have no name to place — see the JSX below).
+    const stopMap = new Map<string, { show: boolean; dx: number; dy: number; anchor: 'start' | 'end' | 'middle' }>();
+    for (const s of selectedRouteStops) {
+      if (!s.attested || !s.name) continue;
+      const px = s.x * k + x;
+      const py = s.y * k + y;
+      const textWidth = measureWidth(s.name);
+      const gap = stopDotR + 6;
+      const candidates: Array<{ dx: number; dy: number; anchor: 'start' | 'end' | 'middle' }> = [
+        { dx: gap, dy: 4, anchor: 'start' },
+        { dx: -gap, dy: 4, anchor: 'end' },
+        { dx: 0, dy: -gap - 3, anchor: 'middle' },
+        { dx: 0, dy: gap + 10, anchor: 'middle' },
+      ];
+      let chosen: (typeof candidates)[number] | null = null;
+      let chosenBox: { x0: number; y0: number; x1: number; y1: number } | null = null;
+      for (const c of candidates) {
+        const b = boxFor(px, py, c.dx, c.dy, c.anchor, textWidth);
+        if (fitsChrome(b) && !collidesAny(b, s.key)) {
+          chosen = c;
+          chosenBox = b;
+          break;
+        }
+      }
+      if (!chosen || !chosenBox) {
+        stopMap.set(s.key, { show: false, dx: gap, dy: 4, anchor: 'start' });
+        continue;
+      }
+      placedBoxes.push(chosenBox);
+      stopMap.set(s.key, { show: true, dx: chosen.dx, dy: chosen.dy, anchor: chosen.anchor });
+    }
+
+    // improvement-plan §1.4: orientation labels are placed dead last and
+    // never forced — "drop any label that would collide with a pin or
+    // another label" (never the reverse: a region label must never bump a
+    // marker/stop label out of the way). Centred on their anchor point
+    // (anchor="middle"), no directional candidates to try — either the
+    // centred box is clear, or the label doesn't show this frame.
+    const regionMap = new Map<string, { show: boolean }>();
+    if (regionLabelOpacity > 0) {
+      for (const r of regionLabelPoints) {
+        const px = r.x * k + x;
+        const py = r.y * k + y;
+        const textWidth = measureWidth(r.text);
+        const b = boxFor(px, py, 0, 4, 'middle', textWidth);
+        if (fitsChrome(b) && !collidesAny(b, r.id)) {
+          placedBoxes.push(b);
+          regionMap.set(r.id, { show: true });
+        } else {
+          regionMap.set(r.id, { show: false });
+        }
+      }
+    }
+
     // Direct DOM write, no setState: see the comment above this effect.
     for (const [key, el] of labelRefs.current) {
       const info = map.get(key);
@@ -1859,7 +2257,36 @@ export function AtlasMap({
       el.setAttribute('y', String(info.dy));
       el.setAttribute('text-anchor', info.anchor);
     }
-  }, [markers, k, x, y, selectedKey, markerRadius, clusters, clusteredKeys, viewMode, getSafeRect]);
+    for (const [key, el] of stopLabelRefs.current) {
+      const info = stopMap.get(key);
+      if (!info || !info.show) {
+        el.style.display = 'none';
+        continue;
+      }
+      el.style.display = '';
+      el.setAttribute('x', String(info.dx));
+      el.setAttribute('y', String(info.dy));
+      el.setAttribute('text-anchor', info.anchor);
+    }
+    for (const [id, el] of regionLabelRefs.current) {
+      const info = regionMap.get(id);
+      el.style.display = info?.show ? '' : 'none';
+    }
+  }, [
+    markers,
+    k,
+    x,
+    y,
+    selectedKey,
+    markerRadius,
+    clusters,
+    clusteredKeys,
+    viewMode,
+    getSafeRect,
+    selectedRouteStops,
+    regionLabelPoints,
+    regionLabelOpacity,
+  ]);
 
   const periodYears = period ? `${formatYear(period.start_year)} – ${formatYear(period.end_year)}` : '';
 
@@ -1955,6 +2382,14 @@ export function AtlasMap({
                   data-tier={r.tier}
                   data-inactive={String(r.inactive)}
                   data-selected={String(selectedKey === r.key)}
+                  // improvement-plan §1.2b(a) "focus-on-select": once a route
+                  // is selected, every other route fades (but stays visible
+                  // and clickable — this is how a visitor reaches the next
+                  // route). Moot once "show only this route" is on, since
+                  // the others aren't rendered at all then.
+                  data-dimmed={String(
+                    selection?.kind === 'route' && selection.id !== r.id && !showOnlyRouteId,
+                  )}
                   style={{ '--route-pattern-length': r.patternLength } as CSSProperties}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -1972,6 +2407,28 @@ export function AtlasMap({
                     ref={(el) => setRoutePathRef(r.id, el)}
                   />
                   <path className="route-hit" d={r.d} />
+                </g>
+              ))}
+            </g>
+
+            {/* improvement-plan §1.4: economical orientation labels — never
+                a historical claim (see REGION_LABELS's own comment), so no
+                evidence badge and aria-hidden; the surrounding map already
+                has its own accessible description (figcaption below). */}
+            <g className="region-labels" aria-hidden="true" style={{ opacity: regionLabelOpacity }}>
+              {regionLabelPoints.map((r) => (
+                <g key={r.id} transform={`translate(${r.x},${r.y})`}>
+                  <g className="marker-scale">
+                    <text
+                      ref={(el) => setRegionLabelRef(r.id, el)}
+                      className={r.sea ? 'region-label region-label--sea' : 'region-label region-label--land'}
+                      x={0}
+                      y={4}
+                      textAnchor="middle"
+                    >
+                      {r.text}
+                    </text>
+                  </g>
                 </g>
               ))}
             </g>
@@ -2123,6 +2580,29 @@ export function AtlasMap({
               ))}
             </g>
 
+            {/* improvement-plan §1.3: named stops on the selected route.
+                Decorative (aria-hidden) — the route's own aria-label and the
+                panel's ordered stop list (DetailPanel) are the accessible
+                path to this same information; a dot with no text alternative
+                of its own would otherwise be silent to a screen reader. */}
+            {selectedRouteStops.length > 0 && (
+              <g className="route-stops" aria-hidden="true">
+                {selectedRouteStops.map((s) => (
+                  <g key={s.key} className="marker-scale" transform={`translate(${s.x},${s.y})`}>
+                    <circle
+                      className={s.attested ? 'route-stop route-stop--attested' : 'route-stop route-stop--bend'}
+                      r={s.attested ? 5 : 3}
+                    />
+                    {s.attested && s.name && (
+                      <text ref={(el) => setStopLabelRef(s.key, el)} className="route-stop-label" x={11} y={4}>
+                        {s.name}
+                      </text>
+                    )}
+                  </g>
+                ))}
+              </g>
+            )}
+
             {shipVisible && (
               <g className="ship" ref={shipRef} data-sailing="false" aria-hidden="true">
                 <g className="marker-scale">
@@ -2133,17 +2613,21 @@ export function AtlasMap({
           </g>
         </svg>
 
-        {/* Period label sits on the map surface (atlas-map.md). */}
+        {/* Period label sits on the map surface (atlas-map.md). improvement-
+            plan §1.2: the route/place count is now visible (not just
+            aria-only) and is the one live region for this whole cluster of
+            controls — every count-changing control below (period chips,
+            step buttons, Play, the filter panel) updates this same region,
+            never a per-control announcement. */}
         <div className="atlas-map__topbar" ref={topbarRef}>
-          <p className="atlas-map__period">
+          <p className="atlas-map__period" role="status" aria-live="polite">
             {period?.label ?? 'All periods'}
             {periodYears !== '' && <span className="atlas-map__years"> · {periodYears}</span>}
-            <span className="visually-hidden">
-              {` — ${plural(activeMarkers.length, 'place', 'places')} and ${plural(
-                activeRoutes.length,
-                'route',
-                'routes',
-              )} in this period.`}
+            <span className="atlas-map__count">
+              {' · '}
+              {countLabel(activeRoutes.length, periodActiveRoutes.length, 'route', 'routes')}
+              {', '}
+              {countLabel(activeMarkers.length, periodActiveMarkers.length, 'place', 'places')}
             </span>
           </p>
           {/* A1: default-view toggle. Neither button is pressed once the
@@ -2170,12 +2654,17 @@ export function AtlasMap({
           </div>
 
           {/*
-            A1 fix, narrow widths: the caption is the same text at every
-            width (never reworded) but is collapsed behind a summary below
-            the 600px boundary, so the top chrome the fit has to avoid is
-            shorter on a phone screen. `caveatOpen` starts from the media
-            query and is then independent of it, exactly like `legendOpen`
-            below, so toggling it by hand doesn't get fought by re-renders.
+            A1 fix: the caption is the same text at every width (never
+            reworded) but is always collapsed behind a real, visible,
+            focusable summary — coordinator-confirmed fix (16 Sept, third
+            round): `caveatOpen` defaults to `false` at every width now
+            (see this state's own comment), so the summary must never be
+            hidden by a width media query, on pain of making the caveat
+            (modern coastline, reconstruction, present-day borders)
+            unreachable on desktop, which is exactly the bug that shipped
+            once before. `caveatOpen` is independent of the media query
+            after mount, exactly like `legendOpen` below, so toggling it by
+            hand isn't fought by re-renders.
           */}
           <details
             className="atlas-map__caveat"
@@ -2188,22 +2677,12 @@ export function AtlasMap({
               {showReconstructionCaveat
                 ? ' Approximate reconstruction — coastlines and some routes are drawn from historical and scholarly sources, not satellite survey.'
                 : ''}
-              {viewMode === 'ocean' && borders
+              {borders
                 ? ' Country outlines are present-day borders, shown for orientation — Kalinga had no fixed national boundaries in this period.'
                 : ''}
             </p>
           </details>
         </div>
-
-        {/* atlas-layout.md §1: the "Did you know?" toast's containing block
-            — Atlas.tsx portals the toast in here so its positioning context
-            is always the map's own box, never the viewport. Placed inside
-            the same figure the whole-figure portal in Atlas.tsx relocates
-            between the inline host and the phone dialog, so the toast
-            follows automatically: inside the dialog it lands in
-            `.atlas-map-dialog__host`, never able to reach the docked
-            timeline strip below it. */}
-        <div className="atlas-map__toast-host" ref={onToastHost} />
 
         {hintVisible && (
           <div className="atlas-map__hint" role="status" aria-live="polite">
@@ -2217,6 +2696,25 @@ export function AtlasMap({
             </button>
           </div>
         )}
+
+        {/* improvement-plan §1.4: scale bar + north arrow — sits in the
+            already-reserved bottom chrome band (getSafeRect's bottom inset
+            already spans the stage's full width, driven by the zoom column
+            and keys button on either side of this), so no marker label ever
+            has to route around it separately. North is always screen-up:
+            this Mercator projection is never rotated. */}
+        <div className="atlas-map__orient">
+          {scaleBarInfo && (
+            <div className="atlas-map__scale">
+              <span className="atlas-map__scale-bar" aria-hidden="true" style={{ width: `${scaleBarInfo.px}px` }} />
+              <span className="atlas-map__scale-label">{scaleBarInfo.km} km</span>
+            </div>
+          )}
+          <div className="atlas-map__north" aria-label="North is up">
+            <span aria-hidden="true">▲</span>
+            <span>N</span>
+          </div>
+        </div>
 
         <div className="atlas-map__zoom" ref={zoomColRef}>
           <button
@@ -2254,15 +2752,45 @@ export function AtlasMap({
           </button>
         </div>
 
-        <button
-          type="button"
-          className="atlas-map__ctl atlas-map__keys-btn"
-          ref={keysButtonRef}
-          onClick={() => setShowKeys(true)}
-          aria-label="How to move around the map"
-        >
-          <span aria-hidden="true">?</span>
-        </button>
+        {/* Coordinator-confirmed fix: moved out of the left-hand zoom
+            column (which was 5 buttons tall — 252px — and, combined with
+            the topbar, overlapped it on the dialog's short stage) to sit
+            with the keys button on the right instead. Purely a chrome
+            layout choice; no behaviour change. */}
+        <div className="atlas-map__keys-col">
+          <button
+            type="button"
+            className="atlas-map__ctl"
+            ref={filterButtonRef}
+            onClick={() => setShowFilter(true)}
+            aria-label="Show on the map"
+            aria-haspopup="dialog"
+            aria-expanded={showFilter}
+          >
+            <span aria-hidden="true">☰</span>
+          </button>
+          <button
+            type="button"
+            className="atlas-map__ctl"
+            ref={keysButtonRef}
+            onClick={() => setShowKeys(true)}
+            aria-label="How to move around the map"
+          >
+            <span aria-hidden="true">?</span>
+          </button>
+        </div>
+
+        {/* improvement-plan §1.2b(f): never a dead-end empty map. */}
+        {nothingShowing && (
+          <div className="atlas-map__empty" role="status">
+            <p>
+              Nothing is showing.{' '}
+              <button type="button" className="atlas-btn" onClick={clearAllFilters}>
+                Show all
+              </button>
+            </p>
+          </div>
+        )}
 
         {status === 'loading' && (
           <p className="atlas-map__status" role="status">
@@ -2459,6 +2987,156 @@ export function AtlasMap({
             </div>
           </dl>
         </div>
+      </dialog>
+
+      {/* improvement-plan §1.2b(c): "Show on the map" filter panel. A sheet
+          at narrow widths (docked below the map, never covering it while
+          ticking boxes) and a popover at wide ones — same `keys-sheet`
+          mechanics/class as the other two dialogs, width behaviour handled
+          entirely by CSS. */}
+      <dialog
+        className="keys-sheet atlas-map__filter"
+        ref={filterDialogRef}
+        aria-labelledby={filterTitleId}
+        onClose={() => {
+          setShowFilter(false);
+          filterButtonRef.current?.focus();
+        }}
+        onKeyDown={(e) => {
+          // The modal (wide-width) case already closes natively on Escape
+          // via the dialog's own `cancel` event; this is what the non-modal
+          // narrow-width `.show()` case needs, since that gets no such
+          // behaviour for free. Harmless to also run in the modal case.
+          if (e.key === 'Escape') {
+            e.stopPropagation();
+            setShowFilter(false);
+            filterButtonRef.current?.focus();
+          }
+        }}
+      >
+        <div className="sheet__head">
+          <h3 className="sheet__title" id={filterTitleId}>
+            Show on the map
+          </h3>
+          <button
+            type="button"
+            className="atlas-panel__close"
+            ref={filterCloseRef}
+            onClick={() => setShowFilter(false)}
+          >
+            <span aria-hidden="true">×</span>
+            <span className="visually-hidden">Close the filter</span>
+          </button>
+        </div>
+
+        <p className="atlas-filter__global">
+          <button type="button" className="atlas-btn" onClick={clearAllFilters}>
+            Show all
+          </button>
+          <button type="button" className="atlas-btn atlas-btn--ghost" onClick={hideAllFilters}>
+            Hide all
+          </button>
+        </p>
+
+        <label className="atlas-filter__faint">
+          <input type="checkbox" checked={showFaint} onChange={(e) => setShowFaint(e.currentTarget.checked)} />
+          Show other centuries faintly
+        </label>
+
+        {/* §1.2b(c): route-mode quick chips. */}
+        <div className="atlas-filter__group">
+          <h4>How people travelled</h4>
+          <ul className="atlas-filter__chips" role="list">
+            {(Object.keys(MODE_LABEL) as Route['mode'][]).map((mode) => {
+              const on = !hiddenModes.has(mode);
+              return (
+                <li key={mode}>
+                  <button
+                    type="button"
+                    className="atlas-filter__chip"
+                    aria-pressed={on}
+                    onClick={() =>
+                      setHiddenModes((prev) => {
+                        const next = new Set(prev);
+                        if (next.has(mode)) next.delete(mode);
+                        else next.add(mode);
+                        return next;
+                      })
+                    }
+                  >
+                    {MODE_LABEL[mode]}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        {(
+          [
+            { title: 'Routes', items: filterableRoutes, hidden: hiddenRouteIds, setHidden: setHiddenRouteIds },
+            { title: 'Ports', items: filterablePorts, hidden: hiddenPortIds, setHidden: setHiddenPortIds },
+            { title: 'Sites', items: filterableSites, hidden: hiddenSiteIds, setHidden: setHiddenSiteIds },
+          ] as const
+        ).map((group) => (
+          <div className="atlas-filter__group" key={group.title}>
+            <div className="atlas-filter__group-head">
+              <h4>{group.title}</h4>
+              <p className="atlas-filter__group-actions">
+                <button
+                  type="button"
+                  className="atlas-filter__link"
+                  onClick={() => group.setHidden(new Set())}
+                >
+                  Show all
+                </button>
+                <button
+                  type="button"
+                  className="atlas-filter__link"
+                  onClick={() => group.setHidden(new Set(group.items.map((i) => i.id)))}
+                >
+                  Hide all
+                </button>
+              </p>
+            </div>
+            {group.items.length === 0 ? (
+              <p className="atlas-filter__empty">None active this period.</p>
+            ) : (
+              <ul className="atlas-filter__list" role="list">
+                {group.items.map((item) => {
+                  const checked = !group.hidden.has(item.id);
+                  return (
+                    <li key={item.id}>
+                      <label className="atlas-filter__row">
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() =>
+                            group.setHidden((prev) => {
+                              const next = new Set(prev);
+                              if (next.has(item.id)) next.delete(item.id);
+                              else next.add(item.id);
+                              return next;
+                            })
+                          }
+                        />
+                        <span className="atlas-filter__row-badges" aria-hidden="true">
+                          <span className={`legend-glyph tier-${TIER[item.evidence_level].css}`}>
+                            {TIER[item.evidence_level].glyph}
+                          </span>
+                          <span className={`legend-glyph type-${item.evidence_type}`}>
+                            {TYPE[item.evidence_type].glyph}
+                          </span>
+                        </span>
+                        {item.name}
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        ))}
       </dialog>
 
       <p id={descId} className="visually-hidden">
