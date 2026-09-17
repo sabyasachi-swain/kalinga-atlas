@@ -23,7 +23,15 @@ and [Ideum, Strategies for Using Maps in Interactive Digital Exhibits](https://i
 
 ---
 
-## Phase 1 — Stop confusing the visitor (engineer)
+## Phase 1 — Stop confusing the visitor (engineer) — DONE 17 Sept, except 1.5
+
+Commit `3b1c249`. 1.1, 1.2, 1.2b and 1.4 delivered as specified. **1.3 did not
+deliver named middle stops** — the waypoints turned out to be unsourced and 31
+of the 32 route caveats call their own line "schematic", so naming them would
+have manufactured history. Routes now list their two sourced termini and say
+the course between them is approximate; bends are unlabelled dots. Naming real
+stops is researcher work. See "The route-stops finding" in `HANDOFF.md`.
+**1.5 was not started.**
 
 ### 1.1 Move the fact card off the map
 It currently covers the map centre on desktop and mobile. Anchor it **below**

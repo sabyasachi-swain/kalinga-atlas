@@ -1,6 +1,6 @@
 # Kalinga Atlas: session handoff
 
-Last updated 16 September 2026. Read this, then `CLAUDE.md`, then
+Last updated 17 September 2026. Read this, then `CLAUDE.md`, then
 `docs/design/improvement-plan-2026-09-16.md` — that plan is the work queue.
 
 ## Where things stand
@@ -12,18 +12,18 @@ GitHub Pages, deploys on push to `main`).
 | Check | State |
 |---|---|
 | `npm run check` | 0 errors, 0 warnings, 0 hints |
-| `npm run build` | 111 pages |
+| `npm run build` | 113 pages |
 | `npm run validate:data` | Valid, 0 warnings |
 | `npm run readability` | All public copy at grade 7 or lower |
-| Working tree | Clean except `docs/design/improvement-plan-2026-09-16.md` and the owner's `additinal_sources_needs_review/` |
+| Working tree | Clean except the owner's `additinal_sources_needs_review/` |
 
 ### Published data
 
 | Entity | Total | Published | Draft |
 |---|---|---|---|
-| Sources | 44 | — | 2 unapproved |
+| Sources | 44 | — | 0 unapproved |
 | Periods | 11 | 11 | 0 |
-| Ports | 32 | 30 | 2 |
+| Ports | 32 | 32 | 0 |
 | Routes | 32 | 32 | 0 |
 | Goods | 27 | 27 | 0 |
 | Sites | 9 | 9 | 0 |
@@ -67,11 +67,13 @@ Eleven commits. The important ones:
 `docs/design/improvement-plan-2026-09-16.md` is the plan, written from owner
 feedback and checked against the code first. In order:
 
-1. **Phase 1, engineer — stop confusing the visitor.** Move the fact card off
-   the map; make the slider actually filter (hide other centuries, add step and
-   Play controls, show a live route/port count); name the stops on each route;
-   give the map orientation (borders always on, country and sea labels, scale
-   bar, north arrow); add an overview-to-detail opening zoom.
+1. ~~**Phase 1, engineer — stop confusing the visitor.**~~ **Done 17 September**
+   (commit `3b1c249`), except §1.5. Fact card off the map; the slider really
+   filters, with step, Play and a live count; focus-on-select, "Show only this
+   route" and a "Show on the map" filter (§1.2b, added from owner feedback
+   mid-phase); borders in both views, region and sea labels, scale bar, north
+   arrow. §1.3 did **not** deliver named middle stops — see "The route-stops
+   finding". §1.5 (hover states, opening zoom, hint target) is still open.
 2. **Phase 2, editor — writing.** 47 published entities have no narrative: 20
    routes, 14 goods, 11 ports, 2 sites. Also: never hedge in prose; the tier
    badge carries uncertainty, and anything Hypothetical gets "Scholars are not
@@ -87,24 +89,26 @@ feedback and checked against the code first. In order:
 5. **Phase 5, qa-auditor — verify.** Lighthouse last ran 15 September, before
    everything above.
 
-## Decisions waiting on the owner
+## Decisions — all four settled, 17 September
 
-1. **Approve two sources** — `kingwell-banham-2018-antiquity-mantai` and
-   `bellina-2018-antiquity-myanmar-ports`, both 2018 *Antiquity* excavation
-   reports fetched and read in full. This publishes `mahatittha` and `maliwan`,
-   the only two remaining drafts. Run
-   `npm run merge:sources -- --approve "<reason>"`. **An agent must never flip
-   `approved_by_human`.**
-2. **Photographs?** The site has none, only original SVG. CC-BY museum or
-   Wikimedia artefact images would help enormously; it is a licensing decision.
-3. **Odia language?** Noto Sans Oriya is already bundled and reserved.
-4. **The four Ashoka edict routes** (Dhauli and Jaugada to Ujjayini and
-   Takshashila) draw as 1,400–2,600 km schematic lines to the west and may
-   dominate a maritime map. Keep, or restrict the atlas to trade routes?
+1. **Two sources approved.** `kingwell-banham-2018-antiquity-mantai` and
+   `bellina-2018-antiquity-myanmar-ports` are `approved_by_human: true`, the
+   reason recorded in each source's `note`. `mahatittha` and `maliwan` are
+   published. **`src/data/` now has no drafts at all.** Build is 113 pages.
+2. **Photographs: no.** The atlas stays original SVG. No licensing review.
+3. **Odia: yes**, for a later phase. Noto Sans Oriya is already bundled.
+4. **The four Ashoka edict routes: keep.** The period filter and the new
+   "Show on the map" filter are what stop them dominating a maritime view.
 
 ## Known rough edges
 
-- The fact card now sits over the middle of the map. Phase 1.1 moves it out.
+- **Phase 1.5 was not built.** Pointer/hover states on every marker and route,
+  the overview-to-detail opening zoom, and the check that the first-load
+  "Tap a glowing dot" hint points at a real active marker. The default coast
+  view still opens showing only two pins and a cluster, which is exactly what
+  the opening zoom was meant to soften.
+- **No route can name a middle stop, and that is now a data problem.** See
+  "The route-stops finding" below. Do not re-attempt this in code.
 - Thin periods: Gajapati has 0 routes and 0 sites, Bhauma-Kara 0 routes,
   Kharavela and Gupta 0 goods, Mughal-Maratha 0 sites. British has 22 goods.
 - `src/data/cite.ts`'s `year()` drops the month, so the two Patnaik 2014 papers
@@ -112,6 +116,36 @@ feedback and checked against the code first. In order:
   changing the function and its call sites.
 - Routes blocked for want of an endpoint entity: Maldives and Arakan cowrie
   runs. Rangoon cannot stand in for Arakan.
+
+## The route-stops finding — read before touching §1.3 again
+
+The improvement plan said the waypoints were already there and "the fix is
+labelling, not geometry". That was wrong, and it took a near-miss to find out.
+
+`Route.waypoints` is a bare `{lat, lng}[]` with no labels and **no sourcing**.
+A first implementation matched each intermediate waypoint to any port or site
+within 25 km and listed the hits under the heading "Stops along the way". That
+put Radhanagar and the Ratnagiri/Lalitgiri Buddhist complex on
+`route-cuttack-chandbali-canal` — a 19th-century steamer canal whose own
+`caveats` field says the waypoints "were read off a modern map" — with no
+caveat shown, because the bend count was zero. It also matched intermediates to
+the route's *own* endpoints, which silently suppressed the approximate-course
+note.
+
+**The word "schematic" appears in 31 of the 32 route caveats.** Nearly every
+route on this map declares its own drawn line to be a schematic. So no route
+can honestly name an intermediate stop from the data we have.
+
+`src/lib/route-stops.ts` now matches at 5 km, never to the route's own
+`from`/`to`, and suppresses intermediate names entirely for any route whose
+caveats match `/schematic|read off a modern map|not a surveyed|inference|
+approximate/i`. Today that is all 32 routes: every panel lists its two sourced
+termini under the heading "Route" and says "The drawn course between them is
+approximate." Bends are drawn as unlabelled dots.
+
+**Naming real stops is researcher work, not engineering.** It needs sourced
+intermediate ports per route. Until that exists, leave this alone — and never
+loosen the tolerance or the caveat filter to make the feature "work".
 
 ## Rejected material — do not resurrect
 
@@ -147,6 +181,24 @@ only; never cite them.
   returned HTTP 400. `deepseek/deepseek-v4.1-flash` at **$0.0126** found three
   real bugs, all confirmed. Free models are fine for inventory and extraction;
   verify everything regardless. An external model is never a source.
+- **Measure the thing you are claiming.** An engineer reported "2 renders per
+  20-step zoom" from a React commit counter, which counts React commits, not
+  canvas repaints. Patch `stroke`/`fill`/`drawImage`/`clearRect` on both
+  `CanvasRenderingContext2D` and `OffscreenCanvasRenderingContext2D` with
+  `page.evaluateOnNewDocument` before the page loads. The real figure is 1
+  vector repaint and 20 cache blits — the conclusion was right, the method
+  didn't support it.
+- **A pin's footprint is its 22px circle, not its 44px hit box.** The
+  coordinator reported two label-over-pin overlaps that did not exist, because
+  the probe used each marker's `HIT_RADIUS` rectangle. The engineer's "could
+  not reproduce" was correct. Verify the verifier.
+- **Screenshots find what probes cannot.** Every defect in the second review
+  round — a button overflowing its card, citations splitting into two ragged
+  columns, a fact card taller than the map it explained, a caption running
+  across India — came from looking at a PNG, not from a number.
+- **Sourcing bugs hide inside working features.** The §1.3 stop-naming code
+  passed every geometric probe and still fabricated history. When a feature
+  turns data into a claim, read the data next to the rendered output.
 - **Local URLs.** Dev runs at `http://localhost:4321/kalinga-atlas/`; plain
   `localhost:4321/` is a 404. `scripts/serve-dist.mjs` serves `dist/` at the root,
   so use a base-prefixed server for browser checks. Never run two `astro dev`
@@ -158,12 +210,23 @@ only; never cite them.
 ## Prompt to start the next session
 
 ```
-Read HANDOFF.md, CLAUDE.md and docs/design/improvement-plan-2026-09-16.md.
-Start Phase 1: delegate to a Sonnet engineer to move the fact card off the
-map, make the period slider hide other centuries and gain step/Play controls
-with a live route count, name the intermediate stops on each route, and give
-the map orientation (borders always on, country and sea labels, scale bar).
-Keep the speed architecture, withBase() for every URL, 0 pin/label overlaps
-and 2 or fewer renders per 20-step zoom. Verify against dist/ with the probes
-in the scratchpad, then commit yourself — agents must not commit or push.
+Read HANDOFF.md, CLAUDE.md and docs/design/improvement-plan-2026-09-16.md,
+including "The route-stops finding" — do not re-attempt named route stops in
+code. Start Phase 2: delegate to a Sonnet editor to write the 47 missing
+narratives (20 routes, 14 goods, 11 ports, 2 sites), grade 7 or lower, one
+citation per paragraph, and to sweep existing copy for hedging where the entry
+is Confirmed or Strongly Supported. Never hedge in prose; the tier badge
+carries the uncertainty, and Hypothetical gets "Scholars are not sure" in plain
+words. Run two agents at most with incremental writes. Verify with
+npm run readability and /fact-check, then commit yourself — agents must not
+commit or push.
 ```
+
+### Also open
+
+- **§1.5**, the rest of Phase 1: pointer/hover states on markers and routes,
+  the overview-to-detail opening zoom, and checking the first-load hint points
+  at a real active marker.
+- **Sourced route geometry**, if named middle stops still matter to the owner.
+  That is a researcher task: intermediate ports per route, with citations.
+- **Phase 5 audit.** Lighthouse last ran 15 September, before everything since.
