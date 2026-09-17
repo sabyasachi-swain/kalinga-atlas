@@ -975,7 +975,7 @@
       "early-historic",
       "gupta"
     ],
-    "status": "draft",
+    "status": "published",
     "caveats": "Not a Kalinga port; included as a documented Bay of Bengal trading partner. The Tamralipti-Mahatittha ship record is Dayalan's paraphrase of Buddhaghosa's Samantapasadika via a French/English secondary chain, not independently checked against a primary translation. No printed coordinate was found in either source; position follows the modern-day identification of Mantai near Mannar, read from a gazetteer map, not an excavation grid reference.",
     "coordinates": {
       "lat": 8.9894,
@@ -1012,7 +1012,7 @@
       "mauryan",
       "kharavela"
     ],
-    "status": "draft",
+    "status": "published",
     "caveats": "Not a Kalinga port; included as a documented Bay of Bengal maritime-network partner. Bellina et al. 2018 is a preliminary 'Project Gallery' report on the first excavation season; dates rest on two radiocarbon determinations. The 4th-2nd century BCE range starts earlier than this atlas's 'mauryan' period (from 300 BCE); tags are an approximate fit. No coordinate is printed in the article; position given is the modern village of Maliwan, read from a map, not the excavation trench.",
     "coordinates": {
       "lat": 10.2445,

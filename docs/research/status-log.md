@@ -153,3 +153,8 @@ Every promotion or demotion of an entry between draft, reviewed and published, w
 - routes:route-dhauli-takshashila-road draft -> published
 - routes:route-jaugada-ujjayini-road draft -> published
 - routes:route-jaugada-takshashila-road draft -> published
+
+## 2026-09-16: set published (ports:mahatittha ports:maliwan)
+
+- ports:mahatittha draft -> published
+- ports:maliwan draft -> published

@@ -44,6 +44,28 @@ data.
   **6 routes, 11 ports**". This answers "which routes are related" directly.
 - Snap the slider to period boundaries; never to arbitrary years.
 
+### 1.2b Focus one route, and a filter
+Owner feedback, 16 September: *"if one wants to see only 1 route then he can
+select only that and other routes will be disabled ... otherwise too much lines
+overlapping. By default show all, but there should be one option to disable
+everything, and one can select the route, port or others from a filter."*
+
+- **Focus on select:** selecting a route fades the others hard. They stay
+  visible and clickable — that is how a visitor reaches the next route.
+- **"Show only this route":** a toggle in the route's panel that hides every
+  other route and every marker that is not one of its own stops.
+- **A filter panel** beside the Map key, in plain words ("Show on the map"):
+  checkbox lists for Routes, Ports and Sites limited to the current period,
+  per-group and global **Show all / Hide all**, and route-mode chips (sea,
+  coast road, river). Global "Hide all" is the "disable everything" asked for.
+- The period is the first cut, the filter the second. **The filter resets to
+  "all shown" on every period change** — a filter surviving a period change is
+  the exact confusion this phase exists to remove.
+- The live count from 1.2 reflects filters too: "3 of 6 routes".
+- Hidden means not rendered: out of the DOM, the a11y tree, the hit-test, the
+  tab order and the clusterer. Faded stays interactive.
+- Empty state: "Nothing is showing. Tick something, or press Show all."
+
 ### 1.3 Name the stops on every route
 The waypoints exist; nothing shows them.
 - Draw a small dot at each intermediate waypoint of the selected route.
@@ -144,15 +166,21 @@ since), axe-core, keyboard-only pass over map, timeline and dialogs, 380 px and
 
 ---
 
-## Needs a decision from the owner
+## Owner decisions — settled 16 September 2026
 
-1. **Approve two sources** — `kingwell-banham-2018-antiquity-mantai` and
-   `bellina-2018-antiquity-myanmar-ports`. Publishes Mahatittha and Maliwan.
-2. **Photographs?** The site has none. Museum/Wikimedia CC-BY artefact images
-   would help enormously, but it is a licensing decision.
-3. **Odia language?** Noto Sans Oriya is already bundled and reserved.
-4. **The four Ashoka edict routes** draw as very long lines to Ujjain and
-   Taxila. Keep, or restrict to trade routes only?
+1. **Approve the two sources — done.** `kingwell-banham-2018-antiquity-mantai`
+   and `bellina-2018-antiquity-myanmar-ports` are now `approved_by_human: true`
+   with the owner's approval recorded in each note. `mahatittha` and `maliwan`
+   were promoted to `published`. No drafts remain: 32 ports, 32 routes,
+   27 goods, 9 sites, 5 inscriptions, 14 facts, all published.
+2. **Photographs — no.** The atlas stays original SVG only. No licensing
+   review needed, and no third-party image pipeline to build.
+3. **Odia language — yes.** Noto Sans Oriya is already bundled. Scope it in a
+   later phase; it is not Phase 1 work.
+4. **The four Ashoka edict routes — keep them.** Dhauli and Jaugada to
+   Ujjayini and Takshashila stay on the map. They are long schematic lines
+   west, so 1.2b's filter and 1.2's period filter are what stop them
+   dominating a maritime view.
 
 ## Blocked on material the owner may be able to supply
 

@@ -1001,8 +1001,8 @@
     "DOI": "10.15184/aqy.2018.247",
     "registry_category": "site-report",
     "public_domain": false,
-    "approved_by_human": false,
-    "note": "Open-access 'Project Gallery' report in Antiquity 92(366) on the first (2018) excavation season at Maliwan and Aw Gyi, southern Myanmar, by the Franco-Myanmar 'Thanintharyi and the Maritime Silk Roads' project. The excavators' own primary report; peer-reviewed. Read in full from the publisher's open PDF via curl. Needed for the 'maliwan' port entry. Flagged for human approval; not yet in the registry."
+    "approved_by_human": true,
+    "note": "Approved by the site owner on 2026-09-16: both are peer-reviewed open-access Antiquity excavation reports, fetched and read in full from the publisher. Open-access 'Project Gallery' report in Antiquity 92(366) on the first (2018) excavation season at Maliwan and Aw Gyi, southern Myanmar, by the Franco-Myanmar 'Thanintharyi and the Maritime Silk Roads' project. The excavators' own primary report; peer-reviewed. Read in full from the publisher's open PDF via curl. Needed for the 'maliwan' port entry."
   },
   {
     "id": "kingwell-banham-2018-antiquity-mantai",
@@ -1052,7 +1052,7 @@
     "DOI": "10.15184/aqy.2018.168",
     "registry_category": "site-report",
     "public_domain": false,
-    "approved_by_human": false,
-    "note": "Peer-reviewed excavation/archaeobotany report in Antiquity 92(366), on the 2009-2010 field season at Mantai (Mahatittha), Sri Lanka. Same first author as the already-registered kingwell-banham-2018-ancient-asia, but a different paper in a different journal, hence a separate id. Read in full from the publisher PDF via curl. Needed for the 'mahatittha' port entry. Flagged for human approval; not yet in the registry."
+    "approved_by_human": true,
+    "note": "Approved by the site owner on 2026-09-16: both are peer-reviewed open-access Antiquity excavation reports, fetched and read in full from the publisher. Peer-reviewed excavation/archaeobotany report in Antiquity 92(366), on the 2009-2010 field season at Mantai (Mahatittha), Sri Lanka. Same first author as the already-registered kingwell-banham-2018-ancient-asia, but a different paper in a different journal, hence a separate id. Read in full from the publisher PDF via curl. Needed for the 'mahatittha' port entry."
   }
 ]
