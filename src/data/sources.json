@@ -7,7 +7,8 @@
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "Edition read: Hultzsch, Inscriptions of Asoka, Corpus Inscriptionum Indicarum I (1925). Cite a specific critical edition (e.g. Hultzsch, Corpus Inscriptionum Indicarum I, 1925) with page numbers before use.",
+    "URL": "https://archive.org/details/in.ernet.dli.2015.135307",
+    "note": "Edition read: Hultzsch, Inscriptions of Asoka, Corpus Inscriptionum Indicarum I (1925). Cite a specific critical edition (e.g. Hultzsch, Corpus Inscriptionum Indicarum I, 1925) with page numbers before use. URL verified: archive.org item in.ernet.dli.2015.135307 (Digital Library of India scan of this exact 1925 CII I edition), HTTP 200, 18 September 2026.",
     "editor": [
       {
         "family": "Hultzsch",
@@ -30,7 +31,8 @@
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "Edition read: Jayaswal & Banerji, Epigraphia Indica XX (1929-30), pp. 71-89. Cite the published edition used (e.g. Epigraphia Indica XX) with line and page references before use.",
+    "URL": "https://archive.org/details/in.ernet.dli.2015.69982",
+    "note": "Edition read: Jayaswal & Banerji, Epigraphia Indica XX (1929-30), pp. 71-89. Cite the published edition used (e.g. Epigraphia Indica XX) with line and page references before use. URL verified: archive.org item in.ernet.dli.2015.69982, the exact cited volume (Epigraphia Indica Vol. XX, 1929-30), HTTP 200, 18 September 2026.",
     "editor": [
       {
         "family": "Jayaswal",
@@ -56,7 +58,8 @@
     "publisher": "Archaeological Survey of India",
     "registry_category": "primary",
     "approved_by_human": true,
-    "note": "Series. Every reference must give volume, inscription title and page."
+    "URL": "https://asi.nic.in/epigraphia-indica/",
+    "note": "Series. Every reference must give volume, inscription title and page. This URL is the Archaeological Survey of India's own series landing page (not a single cited volume); it links out to individual volume PDFs. URL verified: HTTP 200, asi.nic.in, 18 September 2026."
   },
   {
     "id": "periplus-casson-1989",
@@ -83,7 +86,9 @@
     },
     "original_date_text": "1st century CE",
     "registry_category": "primary",
-    "approved_by_human": true
+    "approved_by_human": true,
+    "DOI": "10.1515/9781400843206",
+    "note": "In-copyright Princeton University Press translation and commentary; no legitimate free full text found. DOI is for the Princeton Legacy Library reissue (De Gruyter, 2012) of this same 1989 Casson text, verified via https://api.crossref.org/works/10.1515/9781400843206: title 'The Periplus Maris Erythraei', author Lionel Casson, publisher Princeton University Press, HTTP 200, 18 September 2026. The linked resource is paywalled (De Gruyter); do not link a pirated scan or a different translation (e.g. Schoff 1912) in its place."
   },
   {
     "id": "ptolemy-geographia",
@@ -99,7 +104,7 @@
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "References to Palura and Dosarene. Cite a specific edition or translation with book/chapter before use."
+    "note": "References to Palura and Dosarene. Cite a specific edition or translation with book/chapter before use. No entry in this atlas currently cites this source (checked src/data/*.json, 18 September 2026), so no translation has been settled yet; public-domain English translations exist (e.g. E. L. Stevenson, 1932) but none is linked here because linking one now would risk pointing at a different edition than whatever gets cited later. Note that mccrindle-ptolemy-1927 is a separate, already-sourced entry for McCrindle's annotated translation/commentary, not this one."
   },
   {
     "id": "arthashastra",
@@ -113,7 +118,8 @@
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "Cite a specific translation (e.g. Kangle or Olivelle) with book/chapter/section before use."
+    "URL": "https://archive.org/details/in.ernet.dli.2015.102722",
+    "note": "Cite a specific translation (e.g. Kangle or Olivelle) with book/chapter/section before use. This is the edition actually cited in this atlas (goods.json, 'elephants'): R. Shamasastry's translation, Mysore Printing and Publishing House. URL verified: archive.org item in.ernet.dli.2015.102722, HTTP 200, 18 September 2026."
   },
   {
     "id": "jataka-tales",
@@ -122,7 +128,7 @@
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "Cite the specific Jataka number and the translation used before use. Traditional narrative: evidence_type is normally 'traditional'."
+    "note": "Cite the specific Jataka number and the translation used before use. Traditional narrative: evidence_type is normally 'traditional'. No entry in this atlas currently cites this source (checked src/data/*.json, 18 September 2026), and the note names no specific translation, so no URL is added: the standard public-domain English translation is Cowell (ed.), The Jataka, 6 vols, Cambridge University Press, 1895-1907 (on archive.org), but linking one volume now would risk pointing at the wrong Jataka number and volume once a specific tale is actually cited."
   },
   {
     "id": "xuanzang-travels",
@@ -137,7 +143,8 @@
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "Cite the translation used (e.g. Beal 1884, Watters 1904–05) with page numbers before use."
+    "URL": "https://archive.org/details/siyukibuddhistre02hsuoft",
+    "note": "Cite the translation used (e.g. Beal 1884, Watters 1904–05) with page numbers before use. This atlas's actual citations (goods.json 'elephants' and 'salt'; routes.json Charitra/Che-li-ta-lo) all name Beal 1884, and the Kalinga/Kongoda/Charitra material falls in Vol. II of Beal's 2-volume Si-Yu-Ki. URL verified: archive.org item siyukibuddhistre02hsuoft (Si-yu-ki, Buddhist Records of the Western World, vol. 2, tr. Beal), HTTP 200, 18 September 2026."
   },
   {
     "id": "yijing-record",
@@ -152,7 +159,8 @@
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "Cite the translation used (e.g. Takakusu 1896) with page numbers before use."
+    "URL": "https://archive.org/details/recordbuddhistre00itsi",
+    "note": "Cite the translation used (e.g. Takakusu 1896) with page numbers before use. No entry in this atlas currently cites this source (checked src/data/*.json, 18 September 2026); the note's own suggested edition is linked. URL verified: archive.org item recordbuddhistre00itsi (A Record of the Buddhist Religion as Practised in India and the Malay Archipelago, tr. J. Takakusu, Clarendon Press, 1896), HTTP 200, 18 September 2026."
   },
   {
     "id": "behera-2000",
@@ -174,7 +182,8 @@
       ]
     },
     "registry_category": "secondary",
-    "approved_by_human": true
+    "approved_by_human": true,
+    "note": "In-copyright edited volume, Aryan Books International, New Delhi. No free full text found on archive.org, Google Books (full view), or elsewhere; searched 18 September 2026. No DOI exists (checked https://api.crossref.org/works?query.bibliographic=Maritime+Heritage+of+India+Behera, no matching record for this book, HTTP 200). Left with no URL and no DOI."
   },
   {
     "id": "behera-orissa-review",
@@ -189,7 +198,7 @@
     "container-title": "Orissa Review",
     "registry_category": "secondary",
     "approved_by_human": true,
-    "note": "Year, issue and pages must be confirmed by the researcher before use."
+    "note": "Year, issue and pages must be confirmed by the researcher before use. No URL added: searched magazines.odisha.gov.in and the open web (18 September 2026) for this exact article title and could not locate the specific issue, so no candidate PDF could be verified as the right one. Do not link the Orissa Review homepage or a different Behera article in its place."
   },
   {
     "id": "kulke-rothermund",
@@ -208,7 +217,7 @@
     "publisher": "Routledge",
     "registry_category": "secondary",
     "approved_by_human": true,
-    "note": "3rd edition (Routledge, 1998) is the one read for this project. Multiple editions. State the edition and year in each source_ref.note.",
+    "note": "3rd edition (Routledge, 1998) is the one read for this project. Multiple editions. State the edition and year in each source_ref.note. No URL or DOI added: the only DOI found (10.4324/9780203391266, checked via https://api.crossref.org/works/10.4324/9780203391266, HTTP 200) is Routledge's ebook of a later, 4th edition (published online 2004-08-26), not the cited 3rd edition of 1998 - pagination would not match, so it is deliberately not used. In-copyright textbook; no free full text of the 1998 3rd edition was found.",
     "issued": {
       "date-parts": [
         [
@@ -236,7 +245,8 @@
       ]
     },
     "registry_category": "secondary",
-    "approved_by_human": true
+    "approved_by_human": true,
+    "note": "In-copyright Cambridge University Press monograph. No free full text found on archive.org or elsewhere; searched 18 September 2026. No DOI exists for the print monograph (checked https://api.crossref.org/works?query.bibliographic=Archaeology+of+Seafaring+Ancient+South+Asia, no matching record, HTTP 200; Cambridge's own catalogue page for ISBN 9780521011099 lists no DOI). Left with no URL and no DOI."
   },
   {
     "id": "ray-2021",
@@ -257,7 +267,9 @@
       ]
     },
     "registry_category": "secondary",
-    "approved_by_human": true
+    "approved_by_human": true,
+    "DOI": "10.4324/9780429285233",
+    "note": "In-copyright Routledge India monograph; no free full text found. DOI verified via https://api.crossref.org/works/10.4324/9780429285233: title 'Coastal Shrines and Transnational Maritime Networks Across India and Southeast Asia', author Himanshu Prabha Ray, publisher Routledge India, HTTP 200, 18 September 2026 (online-first 2020-07-21; print issued 2021 as recorded here). Paywalled on Taylor & Francis; not linked with a URL."
   },
   {
     "id": "indian-history-congress",
@@ -265,7 +277,8 @@
     "title": "Proceedings of the Indian History Congress",
     "registry_category": "secondary",
     "approved_by_human": true,
-    "note": "Series. Every reference must give the session/volume, author, paper title and pages."
+    "URL": "https://indianhistorycongress.com/",
+    "note": "Series. Every reference must give the session/volume, author, paper title and pages. This URL is the Indian History Congress's own official site (not a single cited volume/session); individual sessions are also scattered across archive.org as separate items (e.g. in.ernet.dli.2015.99193) and JSTOR (paywalled). URL verified: HTTP 200, indianhistorycongress.com, 18 September 2026."
   },
   {
     "id": "asi-annual-reports",
@@ -274,7 +287,8 @@
     "publisher": "Archaeological Survey of India",
     "registry_category": "site-report",
     "approved_by_human": true,
-    "note": "Series. Every reference must give the year, site and page. Covers Sisupalgarh, Manikapatna, Palur, Radhanagar and others."
+    "URL": "https://asi.nic.in/pages/Publications/indianArchaelogyReports",
+    "note": "Series. Every reference must give the year, site and page. Covers Sisupalgarh, Manikapatna, Palur, Radhanagar and others. This URL is the ASI's own listing page for the series (not a single cited year's volume). URL verified: HTTP 200, asi.nic.in, 18 September 2026."
   },
   {
     "id": "haque-1980",
@@ -296,7 +310,9 @@
       ]
     },
     "registry_category": "early-modern",
-    "approved_by_human": true
+    "approved_by_human": true,
+    "URL": "https://archive.org/details/muslim-administration-in-orissa-1980",
+    "note": "URL verified: archive.org item muslim-administration-in-orissa-1980, title 'Muslim Administration in Orissa', author given in Odia script matching M. A. Haque, year 1980 matches this record exactly, full OCR text present (605 KB djvu.txt, 4.6 MB PDF), HTTP 200, 18 September 2026."
   },
   {
     "id": "ray-bc-1981",
@@ -318,7 +334,8 @@
       ]
     },
     "registry_category": "early-modern",
-    "approved_by_human": true
+    "approved_by_human": true,
+    "note": "In-copyright monograph, Punthi Pustak, Calcutta. Searched archive.org (advancedsearch API, titles 'Orissa under the Mughals' and 'Orissa Mughals Akbar Alivardi') and the open web on 18 September 2026; found only bookshop/catalogue listings (AbeBooks, Odisha State Archives catalogue record), no digitised free full text. No DOI exists for this monograph. Left with no URL and no DOI."
   },
   {
     "id": "patra-1971",
@@ -340,7 +357,9 @@
       ]
     },
     "registry_category": "early-modern",
-    "approved_by_human": true
+    "approved_by_human": true,
+    "URL": "https://archive.org/details/in.ernet.dli.2015.462722",
+    "note": "URL verified: archive.org item in.ernet.dli.2015.462722, title 'Orissa Under The East India Company', author K. M. Patra, publisher field 'Munshiram Manoharlal, New Delhi' matching this record's publisher exactly, HTTP 200, 18 September 2026. CAUTION for the reviewer: this scan's own metadata gives dc.date.citation as 1961, not the 1971 issued here; Munshiram Manoharlal's edition is usually cited as 1971, so this may be an earlier printing/thesis version with different pagination. Not fully confirmed as the identical edition - flagged for review before using page numbers from it."
   },
   {
     "id": "mahtab-history-of-orissa",
@@ -354,7 +373,7 @@
     ],
     "registry_category": "early-modern",
     "approved_by_human": true,
-    "note": "Multiple editions. State the edition and year in each source_ref.note."
+    "note": "Multiple editions. State the edition and year in each source_ref.note. No URL added: searched archive.org (advancedsearch API, by title and by creator) and the open web on 18 September 2026. The only 'History of Orissa' / 'A History of Orissa' scans located are by other authors entirely - W. W. Hunter (in.ernet.dli.2015.111088, .463246), N. K. Sahu (in.ernet.dli.2015.126160) and R. D. Banerji (in.ernet.dli.2015.45579, .32062) - and must not be confused with Harekrushna Mahtab's book of the same generic title. No confirmed free copy of Mahtab's work was found."
   },
   {
     "id": "hunter-1872",
@@ -377,7 +396,9 @@
     },
     "registry_category": "early-modern",
     "public_domain": true,
-    "approved_by_human": true
+    "approved_by_human": true,
+    "URL": "https://archive.org/details/OrissaHunter1872",
+    "note": "URL verified: archive.org item OrissaHunter1872, 'Orissa by W.W. Hunter (1872) in 2 Vols.', HTTP 200, 18 September 2026. Covers both volumes of this exact 1872 edition in one item."
   },
   {
     "id": "stirling-1825",
@@ -400,7 +421,9 @@
     },
     "registry_category": "early-modern",
     "public_domain": true,
-    "approved_by_human": true
+    "approved_by_human": true,
+    "URL": "https://archive.org/details/asiaticresearche151825cal",
+    "note": "URL verified: archive.org item asiaticresearche151825cal, metadata title 'Asiatic Researches', volume 'v.15 1825', matching this exact volume and year, HTTP 200, 18 September 2026."
   },
   {
     "id": "imperial-gazetteer-orissa",
@@ -409,7 +432,8 @@
     "registry_category": "early-modern",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "State the edition, volume and page in each source_ref."
+    "URL": "https://dsal.uchicago.edu/reference/gazetteer/",
+    "note": "State the edition, volume and page in each source_ref. This atlas actually cites three different volumes of this 26-volume series (vol. XI for Cuttack, vol. XX for Puri Town, vol. XXII for Sambalpur District), so no single volume link is right; this URL is the Digital South Asia Library's (University of Chicago) series landing page for the 1908-31 New Edition, which links out to every volume and page image. URL verified: HTTP 200, dsal.uchicago.edu, 18 September 2026."
   },
   {
     "id": "district-gazetteers-odisha",
@@ -418,7 +442,8 @@
     "registry_category": "early-modern",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "State district, edition, year and page in each source_ref."
+    "URL": "https://archive.org/details/PARI.bihar-and-orissa-district-gazetteers-cuttack",
+    "note": "State district, edition, year and page in each source_ref. This id covers at least four distinct district volumes across two series, all separately cited in this atlas: O'Malley, Bengal District Gazetteers: Balasore (1907); O'Malley, Bengal District Gazetteers: Puri (1908); O'Malley & Mansfield, Bihar and Orissa District Gazetteers: Puri (1929); O'Malley & Cousins, Bihar and Orissa District Gazetteers: Cuttack, 2nd edn (1933). The URL links the Cuttack (1933) volume specifically, because an existing source_ref (ports.json, 'false-point') already names this exact archive.org item ('archive.org OCR, item PARI.bihar-and-orissa-district-gazetteers-cuttack'). It is NOT the right link for refs citing Balasore, Puri 1908 or Puri 1929. Verified archive.org items for the others, all HTTP 200 on 18 September 2026: Balasore 1907 = PARI.bengal-district-gazetteers-balasore (already named in ports.json, 'dhamra'); Puri 1929 = PARI.bihar-and-orissa-district-gazetteers-puri; Puri 1908 = dli.ministry.07423. A reviewer may prefer to split this single source id into one id per district volume so each can carry its own correct URL."
   },
   {
     "id": "natural-earth",
@@ -449,7 +474,8 @@
     },
     "registry_category": "geospatial",
     "public_domain": true,
-    "approved_by_human": true
+    "approved_by_human": true,
+    "note": "No URL added despite a public-domain 18th-century map. Searched 18 September 2026: the Library of Congress record (g7625.ct001443) and HathiTrust both return HTTP 403 to automated requests; the David Rumsey Historical Map Collection page for 'Hindoostan by J. Rennell F.R.S. 1782' returns a reCAPTCHA 'Verify Access' interstitial, not the image, when fetched directly (the exact bot-check trap this task warned about). archive.org holds only the accompanying 'Memoir' text (a different, textual work first issued 1783) and later re-engraved derivative maps (Laurie & Whittle, 1794 and 1804; Dury, 1794) which are not this 1782 map. No confirmed direct, bot-check-free copy of the map itself was found free online."
   },
   {
     "id": "tripati-2021-current-science",
@@ -649,7 +675,7 @@
     "registry_category": "site-report",
     "public_domain": false,
     "approved_by_human": true,
-    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. The primary published report on the OIMSEAS excavations at Manikapatna, in a scholarly edited volume. Cited as the source of B. N. Mukherjee's reading of the Kharoshthi potsherd at p. 486. NOT READ BY ME: the reference and page come from Patra & Patra, OHRJ XLVII(2), p. 118, n. 28. Page not verified. Any entry citing it must stay draft until a copy is obtained."
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. The primary published report on the OIMSEAS excavations at Manikapatna, in a scholarly edited volume. Cited as the source of B. N. Mukherjee's reading of the Kharoshthi potsherd at p. 486. NOT READ BY ME: the reference and page come from Patra & Patra, OHRJ XLVII(2), p. 118, n. 28. Page not verified. Any entry citing it must stay draft until a copy is obtained. No URL added: in-copyright edited volume, Pratibha Prakashan, Delhi (ISBN 9788177020090). Searched archive.org and the open web on 18 September 2026; found only bibliographic/library-catalogue listings (WorldCat, Google Books, publisher's own sales page), no free full text of this chapter or volume. No DOI exists for it."
   },
   {
     "id": "dayalan-2019-acta-via-serica",
@@ -792,12 +818,12 @@
     },
     "volume": "9",
     "page": "1-14",
-    "URL": "https://doi.org/10.5334/aa.164",
+    "URL": "https://ancient-asia-journal.com/article/10.5334/aa.164",
     "DOI": "10.5334/aa.164",
     "registry_category": "site-report",
     "public_domain": false,
     "approved_by_human": true,
-    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Ancient Asia 9, art. 5 - peer-reviewed and open access; the journal is named in the skill registry as of acceptable calibre. Primary archaeobotanical study with AMS radiocarbon dates from Golbai Sasan. Read from the UCL Discovery open-access copy. Note: the 'Gopalpur' in this paper is a Neolithic mound in Jajpur district and is NOT the Ganjam port of the same name."
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Ancient Asia 9, art. 5 - peer-reviewed and open access; the journal is named in the skill registry as of acceptable calibre. Primary archaeobotanical study with AMS radiocarbon dates from Golbai Sasan. Read from the UCL Discovery open-access copy. Note: the 'Gopalpur' in this paper is a Neolithic mound in Jajpur district and is NOT the Ganjam port of the same name. URL corrected 18 September 2026: doi.org/10.5334/aa.164 now returns 404 because Ancient Asia moved host, though the DOI itself is still registered and correct in Crossref. Linked to the live article page instead, verified HTTP 200."
   },
   {
     "id": "ardika-bellwood-1991-antiquity",
@@ -826,7 +852,8 @@
     "registry_category": "site-report",
     "public_domain": false,
     "approved_by_human": true,
-    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Antiquity 65(247), 1991 - a leading peer-reviewed archaeology journal. The excavators' own report on Indian Rouletted Ware, an Arikamedu type-10 sherd and a Kharoshthi graffito from Sembiran, north Bali, dated c. AD 1-200. Read from a PDF hosted in the University of Pennsylvania archaeobibliography file store."
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Antiquity 65(247), 1991 - a leading peer-reviewed archaeology journal. The excavators' own report on Indian Rouletted Ware, an Arikamedu type-10 sherd and a Kharoshthi graffito from Sembiran, north Bali, dated c. AD 1-200. Read from a PDF hosted in the University of Pennsylvania archaeobibliography file store. URL verified: https://os.pennds.org/archaeobib_filestore/pdf_articles/Antiquity/1991_65_247_ArdikaBellwood.pdf, HTTP 200, 2.0 MB application/pdf, 18 September 2026 - this is the exact file the note above says was read.",
+    "URL": "https://os.pennds.org/archaeobib_filestore/pdf_articles/Antiquity/1991_65_247_ArdikaBellwood.pdf"
   },
   {
     "id": "imperial-gazetteer-india-1908",
@@ -842,7 +869,8 @@
     "registry_category": "early-modern",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Public domain. The registry already carries imperial-gazetteer-orissa for the Orissa entries; this separate id is for places OUTSIDE the Orissa Division that the atlas needs - Gopalpur, Ganjam Town, Calingapatam and Jaugada (Madras Presidency, Ganjam District), Calcutta, Rangoon. Volumes 6, 9, 11, 12, 14, 15, 20 and 21 read as archive.org OCR (identifiers imperialgazetteeNNgreauoft). Every ref gives volume and printed page. Reviewers may prefer to merge this into imperial-gazetteer-orissa and widen that entry's title instead."
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. Public domain. The registry already carries imperial-gazetteer-orissa for the Orissa entries; this separate id is for places OUTSIDE the Orissa Division that the atlas needs - Gopalpur, Ganjam Town, Calingapatam and Jaugada (Madras Presidency, Ganjam District), Calcutta, Rangoon. Volumes 6, 9, 11, 12, 14, 15, 20 and 21 read as archive.org OCR (identifiers imperialgazetteeNNgreauoft). Every ref gives volume and printed page. Reviewers may prefer to merge this into imperial-gazetteer-orissa and widen that entry's title instead. Since eight different volumes are cited, no single volume link is right; URL is the Digital South Asia Library's (University of Chicago) series landing page for this same 1908-31 New Edition (shared with imperial-gazetteer-orissa). Individually verified, all HTTP 200 on 18 September 2026: archive.org imperialgazettee06greauoft (vol. 6) and imperialgazettee20greauoft (vol. 20) both resolve to real item pages matching the note's stated identifier pattern.",
+    "URL": "https://dsal.uchicago.edu/reference/gazetteer/"
   },
   {
     "id": "patra-2014-odisha-review-ports",
@@ -899,7 +927,8 @@
     "registry_category": "primary",
     "public_domain": true,
     "approved_by_human": true,
-    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. McCrindle's annotated translation of the Indian chapters of Ptolemy's Geographia, with S. N. Majumdar Sastri's additional notes. Needed as a source distinct from `ptolemy-geographia` because the claims cited (Sambalaka = Sambalpur, the diamond district, V. Ball's objection to the Adamas identifications) are the modern editors' commentary, NOT anything Ptolemy wrote; citing them under Ptolemy would misattribute them. Read in the archive.org scan `in.ernet.dli.2015.65897`, a Today & Tomorrow's Printers and Publishers (New Delhi) reprint edited by Ramchandra Jain, whose pagination matches the 1927 Calcutta edition cited by Patra 2014, n. 6. The reprint's own imprint date is not printed; a reviewer should confirm which edition to name in the bibliography."
+    "note": "approved under delegation 2026-09-14: verified by researcher as peer-reviewed or government/university-published. McCrindle's annotated translation of the Indian chapters of Ptolemy's Geographia, with S. N. Majumdar Sastri's additional notes. Needed as a source distinct from `ptolemy-geographia` because the claims cited (Sambalaka = Sambalpur, the diamond district, V. Ball's objection to the Adamas identifications) are the modern editors' commentary, NOT anything Ptolemy wrote; citing them under Ptolemy would misattribute them. Read in the archive.org scan `in.ernet.dli.2015.65897`, a Today & Tomorrow's Printers and Publishers (New Delhi) reprint edited by Ramchandra Jain, whose pagination matches the 1927 Calcutta edition cited by Patra 2014, n. 6. The reprint's own imprint date is not printed; a reviewer should confirm which edition to name in the bibliography. URL verified: archive.org item in.ernet.dli.2015.65897, title 'Ancient India As Described By Ptolemy...', editor 'Jain Ramchandra' matching this note's 'Ramchandra Jain', HTTP 200, 18 September 2026 - the exact scan already read for this project. Coordinator check, 18 September 2026: the linked archive.org item (in.ernet.dli.2015.65897) carries metadata dating it 1910, not the 1927 edition cited here. It is a DLI scan and DLI metadata is frequently wrong, so this is more likely a metadata artefact than a different book - but McCrindle was issued in 1885 and reissued in 1927, so pagination could differ. Do not rely on a page number from this scan without checking it against the 1927 edition.",
+    "URL": "https://archive.org/details/in.ernet.dli.2015.65897"
   },
   {
     "id": "nanda-2019-odisha-review",
