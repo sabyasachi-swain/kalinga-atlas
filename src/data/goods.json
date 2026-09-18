@@ -777,5 +777,33 @@
     "status": "published",
     "caveats": "Both accounts I could read are by Benudhar Patra (one co-authored), so they are not fully independent works; the tier is held at Probable for that reason, following the same judgement already made for the roman-amphorae entry. Bamanghati (Mayurbhanj) is in Odisha, but the coins are argued to have arrived overland from the Bengal port of Tamralipti, not directly by sea into Kalinga. No coin type, ruler or date is given by either source beyond 'Roman'.",
     "icon": "roman-coins.svg"
+  },
+  {
+    "id": "semi-precious-beads",
+    "name": "Semi-precious stone beads",
+    "summary": "Diggers at the port of Palur found tiny beads made of carnelian, agate, jasper and quartz, plus glassy faience. They lay buried alongside pottery from many different centuries, so nobody yet knows exactly when the beads themselves were made.",
+    "category": "gem",
+    "direction": "both",
+    "kid_line": "At Palur, archaeologists found beads of carnelian, agate, jasper, quartz and faience, small enough to fit in your pocket but valuable enough to trade.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "sahu-2026-toi-palur",
+        "page": "Times of India, 1 August 2026",
+        "note": "'The assemblage includes beads made of carnelian, agate, jasper, quartz and faience, besides glass bangles, ivory artefacts and shell objects, pointing to Palur's participation in long-distance trade networks linking eastern India with Southeast Asia.'"
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "kharavela",
+      "early-historic",
+      "gupta",
+      "post-gupta",
+      "bhauma-kara",
+      "somavamshi"
+    ],
+    "status": "published",
+    "caveats": "One newspaper report of a still-unpublished 2023-25 excavation is the only source for this find, so the tier stays Probable. The report does not say which of the site's nine layers the beads came from, so every period in that sequence is listed here rather than guessing a narrower range. It is also not known whether the beads were made at Palur or brought in as finished ornaments, so direction is left as 'both'. Radhanagar and Jaugada have their own, separately excavated bead finds, not the same discovery."
   }
 ]

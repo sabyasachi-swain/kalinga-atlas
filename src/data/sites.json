@@ -15,6 +15,11 @@
         "source_id": "mohanty-smith-2009-sisupalgarh",
         "page": "pp. 47-48",
         "note": "'Sisupalgarh is a fortified Early Historic city ... Initially investigated by Lal (1949, 1991), the site is formally delineated by a rampart and moat enclosing over 1 km2 of ancient habitation.' The 2008 Deccan College/UCLA season cut the northern rampart and exposed 18 monolithic laterite pillars."
+      },
+      {
+        "source_id": "smith-mohanty-2025-world-archaeology",
+        "page": "abstract",
+        "note": "Abstract: 'the Early Historic city of Sisupalgarh (c. 3rd c. BCE-4th century CE), which was replaced by a new settlement 2 km away in the early Medieval period (starting c. 6th century CE), which was in turn superseded by ... Bhubaneswar 2.5 km further north in the 20th century.'"
       }
     ],
     "periods": [
@@ -590,6 +595,88 @@
     "modern_name": "Ujjain, Madhya Pradesh",
     "site_type": "Mauryan provincial capital (viceroyalty of the west)",
     "finds": []
+  },
+  {
+    "id": "salihundam",
+    "name": "Salihundam",
+    "summary": "Salihundam is a hill covered in old Buddhist buildings, beside the Vamsadhara river in Andhra Pradesh. Monks lived there for a thousand years, and diggers found five monasteries, stupas and pottery that had travelled from far away.",
+    "evidence_level": "Strongly Supported",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "subrahmanyam-1964-salihundam",
+        "page": "pp. 2-3, 8-9, 29-30",
+        "note": "p.3: '18 13' North by 84' 15' East', four miles from Kalingapatnam, 'now a defunct sea-port town'. p.9: three phases, Early (2nd-3rd c. BC-1st c. AD), Middle (1st-3rd/4th c. AD), Late (4th/5th-7th/8th c. AD). pp.29-30: 'five monasteries with kitchens and dining halls' opened."
+      },
+      {
+        "source_id": "patra-patra-ohrj-maritime-archaeology",
+        "page": "p. 110",
+        "note": "Salihundam listed with Dharanikota (Andhra), Chandraketugarh and Tamluk (Bengal), and Sisupalgarh, Manikpatna and Radhanagara (Odisha) as a find-spot of the same rouletted ware distribution, read as evidence of a shared Bay of Bengal trading network."
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "kharavela",
+      "early-historic",
+      "gupta",
+      "post-gupta"
+    ],
+    "status": "published",
+    "coordinates": {
+      "lat": 18.3232,
+      "lng": 84.0732
+    },
+    "coordinate_source": "natural-earth",
+    "modern_name": "Salihundam, Srikakulam district, Andhra Pradesh",
+    "site_type": "Buddhist stupa and monastery complex on a hill above the Vamsadhara river",
+    "excavated_by": "A. H. Longhurst (1919-20) and T. N. Ramachandran (1943-47), summarised but not independently read; R. Subrahmanyam for the Government of Andhra Pradesh (from 1954)",
+    "finds": [
+      {
+        "name": "Five Buddhist monasteries with kitchens and dining halls",
+        "significance": "Five separate monastery buildings, each with its own kitchen and dining hall, show a large community of monks lived and ate together on this hill for centuries.",
+        "source_refs": [
+          {
+            "source_id": "subrahmanyam-1964-salihundam",
+            "page": "pp. 29-30"
+          }
+        ]
+      },
+      {
+        "name": "Rouletted ware resembling Arikamedu's",
+        "significance": "A fine stamped pottery like the ware found at Arikamedu and Odisha's own ports, tying Salihundam into the same long-distance Bay of Bengal trading network.",
+        "source_refs": [
+          {
+            "source_id": "subrahmanyam-1964-salihundam",
+            "page": "pp. 8-9"
+          },
+          {
+            "source_id": "patra-patra-ohrj-maritime-archaeology",
+            "page": "p. 110"
+          }
+        ]
+      },
+      {
+        "name": "Two inscribed conch shells naming 'Salipedaka'/'Salipataka'",
+        "significance": "Two shell objects carved with a name close to Salihundam's own, hinting that this may once have been called Salipataka or Salipedaka.",
+        "source_refs": [
+          {
+            "source_id": "subrahmanyam-1964-salihundam",
+            "page": "p. 4"
+          }
+        ]
+      },
+      {
+        "name": "Roman-style clay bullae, and Roman coins reported nearby",
+        "significance": "Small clay seals copying a Roman style, plus Roman coins reported from the neighbouring port of Kalingapatnam, point to contact reaching the Mediterranean world - though the coins are described only as 'issues of later emperors', with no emperor named.",
+        "source_refs": [
+          {
+            "source_id": "subrahmanyam-1964-salihundam",
+            "page": "p. iv (preface), p. 14"
+          }
+        ]
+      }
+    ],
+    "caveats": "Coordinates are approximated from the report's own description - on the Vamsadhara's south bank, about four miles from Kalingapatnam and twelve miles from Srikakulam - plotted against Natural Earth's coastline, because the book's own printed figure (18 13' N, 84 15' E, p.3) falls in the sea. A popular claim of a Roman coin of Tiberius does not appear here: the one Roman-coin sentence (p.14) names no emperor. Four miles from published port kalingapatnam, kept separate as a monastic hill. Longhurst's and Ramachandran's digs are known only via Subrahmanyam's summary."
   },
   {
     "id": "takshashila",

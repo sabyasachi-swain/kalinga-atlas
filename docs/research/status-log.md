@@ -158,3 +158,12 @@ Every promotion or demotion of an entry between draft, reviewed and published, w
 
 - ports:mahatittha draft -> published
 - ports:maliwan draft -> published
+
+## 2026-09-18: set published (sites:salihundam goods:semi-precious-beads facts:fact-palur-2023-25-excavation facts:fact-khalkatapatna-tripati-2015 facts:fact-sisupalgarh-relocation facts:fact-salihundam-conches)
+
+- sites:salihundam draft -> published
+- goods:semi-precious-beads draft -> published
+- facts:fact-palur-2023-25-excavation draft -> published
+- facts:fact-khalkatapatna-tripati-2015 draft -> published
+- facts:fact-sisupalgarh-relocation draft -> published
+- facts:fact-salihundam-conches draft -> published

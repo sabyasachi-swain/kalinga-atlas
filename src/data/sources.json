@@ -1083,5 +1083,135 @@
     "public_domain": false,
     "approved_by_human": true,
     "note": "Approved by the site owner on 2026-09-16: both are peer-reviewed open-access Antiquity excavation reports, fetched and read in full from the publisher. Peer-reviewed excavation/archaeobotany report in Antiquity 92(366), on the 2009-2010 field season at Mantai (Mahatittha), Sri Lanka. Same first author as the already-registered kingwell-banham-2018-ancient-asia, but a different paper in a different journal, hence a separate id. Read in full from the publisher PDF via curl. Needed for the 'mahatittha' port entry."
+  },
+  {
+    "id": "sahu-2026-toi-palur",
+    "type": "document",
+    "title": "Digging at Palur reveals thriving maritime hub from pre-Mauryan era",
+    "author": [
+      {
+        "family": "Sahu",
+        "given": "Diana"
+      }
+    ],
+    "container-title": "The Times of India",
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          8,
+          1
+        ]
+      ]
+    },
+    "URL": "https://timesofindia.indiatimes.com/city/bhubaneswar/digging-at-palur-reveals-thriving-maritime-hub-from-pre-mauryan-era/articleshow/132788931.cms",
+    "registry_category": "secondary",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "2026-09-18: a Bhubaneswar-edition newspaper report of a conference talk at Utkal University, not a peer-reviewed excavation report. It is the only published account of the OIMSEAS-ASI 2023-25 Palur excavation and quotes the excavation's director, Sunil Patnaik, by name. Fetched with curl (WebFetch could not reach this domain) and read in full; type 'document' used because the Source schema has no newspaper/magazine type. One source, press-level: caps any claim it alone supports at Probable, and the underlying excavation report is still unpublished."
+  },
+  {
+    "id": "subrahmanyam-1964-salihundam",
+    "type": "book",
+    "title": "Salihundam: A Buddhist Site in Andhra Pradesh",
+    "author": [
+      {
+        "family": "Subrahmanyam",
+        "given": "R."
+      }
+    ],
+    "publisher": "Government of Andhra Pradesh",
+    "publisher-place": "Hyderabad",
+    "issued": {
+      "date-parts": [
+        [
+          1964
+        ]
+      ]
+    },
+    "registry_category": "site-report",
+    "public_domain": true,
+    "approved_by_human": true,
+    "URL": "https://archive.org/details/dli.ernet.107577",
+    "note": "2026-09-18: the excavator's own ASI/state-government report on the 1954-56 seasons at Salihundam (with earlier work by Longhurst 1919-20 and Ramachandran 1943-47 also summarised). A government of India work first published 1964, so out of copyright under the 60-year term for government works as of 2026. Read in full as OCR text via archive.org item dli.ernet.107577 (djvu.txt), which carries some OCR noise (e.g. stray periods in coordinate figures); page numbers below follow the printed pagination visible in the OCR."
+  },
+  {
+    "id": "smith-mohanty-2025-world-archaeology",
+    "type": "article-journal",
+    "title": "Deurbanization as lateral stratigraphy: Three thousand years of settlement relocation at Sisupalgarh/Bhubaneswar, India",
+    "author": [
+      {
+        "family": "Smith",
+        "given": "Monica L."
+      },
+      {
+        "family": "Mohanty",
+        "given": "Rabindra Kumar"
+      }
+    ],
+    "container-title": "World Archaeology",
+    "volume": "57",
+    "page": "14-25",
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    },
+    "DOI": "10.1080/00438243.2025.2604285",
+    "URL": "https://doi.org/10.1080/00438243.2025.2604285",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "2026-09-18: peer-reviewed, open access CC BY-NC-ND (per Crossref/OpenAlex licensing metadata), by Sisupalgarh's own excavation co-director (Mohanty) and a long-time project archaeologist (Smith). DOI and full metadata verified via Crossref and OpenAlex, 18 September 2026. FULL TEXT NOT READ: the publisher page (tandfonline.com) returns a Cloudflare bot-check to automated fetches (curl and WebFetch both blocked, HTTP 403/'Just a moment'); no open-access mirror was found on eScholarship, UCLA's anthropology department site, Semantic Scholar or OpenAlex. Only the published abstract (retrieved via the Semantic Scholar API, which mirrors the publisher's own abstract) was read and is cited below as 'abstract'. A reviewer with institutional access should fetch the full PDF and correct any page-specific citation."
+  },
+  {
+    "id": "tripati-2015-current-science-khalkatapatna",
+    "type": "article-journal",
+    "title": "Khalkattapatna port: the lost archaeological heritage of Odisha, east coast of India",
+    "author": [
+      {
+        "family": "Tripati",
+        "given": "Sila"
+      },
+      {
+        "family": "Mani Murali",
+        "given": "R."
+      },
+      {
+        "family": "Seelam",
+        "given": "Jaya Kumar"
+      },
+      {
+        "family": "Pradhan",
+        "given": "Atula Kumar"
+      },
+      {
+        "family": "Behera",
+        "given": "Rudra Prasad"
+      },
+      {
+        "family": "Choudhury",
+        "given": "Richa"
+      }
+    ],
+    "container-title": "Current Science",
+    "volume": "109",
+    "page": "372-376",
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          7,
+          25
+        ]
+      ]
+    },
+    "URL": "https://www.currentscience.ac.in/Volumes/109/02/0372.pdf",
+    "registry_category": "site-report",
+    "public_domain": false,
+    "approved_by_human": true,
+    "note": "2026-09-18: the primary peer-reviewed paper on Khalkatapatna, by CSIR-National Institute of Oceanography's marine archaeology group; Current Science is the Indian Academy of Sciences' journal, already used elsewhere in this registry (tripati-2021-current-science, tripati-2020... via the same series). Full text fetched and read from the publisher PDF (currentscience.ac.in) via curl. Reports both the ASI's 1984-85/1994-95 excavations (brick jelly floor, Chinese and Arabian glazed wares, two fragmentary + one intact Chinese copper coin) and the authors' own remote-sensing/exploration work on riverbank erosion."
   }
 ]

@@ -422,5 +422,107 @@
       "manikapatna"
     ],
     "caveats": "Festival lore, not evidence of a voyage. Nanda 2019 describes the custom and asserts that it keeps alive the memory of Sadhaba voyages, but gives no evidence for how old the festival is, and no source read here traces an unbroken line from the ancient voyages to it. The period tag follows only the article's own statement that Kalinga traded with Java and Bali in the early historical period. The author is a professor of management and the article is unfootnoted: a government-published popular account, not a study of the festival's history."
+  },
+  {
+    "id": "fact-palur-2023-25-excavation",
+    "name": "Nine layers of history at Palur",
+    "text": "Diggers at Palur found nine stacked layers of history, nearly three metres deep, from before the Mauryan age to medieval times.",
+    "summary": "Archaeologists digging at Palur between 2023 and 2025 found nine layers of earth stacked on top of each other, almost three metres deep. Each layer held pottery and beads from a different age, the oldest from before the Mauryan Empire.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "sahu-2026-toi-palur",
+        "page": "Times of India, 1 August 2026",
+        "note": "'Nine distinct cultural layers ... nearly three metres ... from the pre-Mauryan period through the Early Historic and Early Medieval phases.' Also: 363 graffiti sherds; NBPW, knobbed/red polished ware; beads; 66 nearby sites; red polished ware fired 950-1000C."
+      }
+    ],
+    "periods": [
+      "mauryan",
+      "kharavela",
+      "early-historic",
+      "gupta",
+      "post-gupta",
+      "bhauma-kara",
+      "somavamshi"
+    ],
+    "status": "published",
+    "related_ids": [
+      "palur",
+      "semi-precious-beads"
+    ],
+    "caveats": "One source only: a newspaper report of a conference talk on a still-unpublished 2023-25 excavation. Its 'Early Medieval phase' is not broken down by dynasty, so this atlas maps it to the post-Gupta, Bhauma-Kara and Somavamshi periods, the usual span of that term in Odisha history; the report itself does not make this distinction. The 'pre-Mauryan' bottom layer has no matching period here, since the earliest period in this atlas begins with Ashoka's conquest of Kalinga in 300 BCE - the same gap noted at Golbai Sasan."
+  },
+  {
+    "id": "fact-khalkatapatna-tripati-2015",
+    "name": "Khalkatapatna's pots match ports in Sumatra and Myanmar",
+    "text": "A 2015 study matched Khalkatapatna's stamped pottery to old ports in Sumatra, Malaysia and Myanmar, showing wide sea trade.",
+    "summary": "In 2015 scientists studied broken pots from Khalkatapatna closely. They found the same kind of stamped pottery at old ports in Sumatra, Malaysia and Myanmar, showing that trade reached far across the sea.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "tripati-2015-current-science-khalkatapatna",
+        "page": "pp. 373-374",
+        "note": "p.373: brick floor 'could have served as a loading and unloading platform'; 'two fragmentary and one intact Chinese copper coin ... unearthed.' p.374: ware 'comparable with Kota China... Johore Lama... Bagan'; celadon '13th century AD', Ming/Yuan sherds '14th-15th century AD'."
+      }
+    ],
+    "periods": [
+      "somavamshi",
+      "eastern-ganga"
+    ],
+    "status": "published",
+    "related_ids": [
+      "khalkatapatna"
+    ],
+    "caveats": "One source only, so Probable. It corroborates the already-published, multi-source khalkatapatna entry, and gives three Chinese coins (two fragmentary, one intact) where the older sources there count two."
+  },
+  {
+    "id": "fact-salihundam-conches",
+    "name": "Shells carved with Salihundam's old name",
+    "text": "Two carved sea shells found at Salihundam read 'Salipataka', which may be the hill's own ancient name.",
+    "summary": "Diggers at Salihundam found two conch shells with a word carved into them: Salipataka or Salipedaka. Scholars think this might be what the hill was called long ago, and it also sits only four miles from the old port of Kalingapatnam.",
+    "evidence_level": "Probable",
+    "evidence_type": "archaeological",
+    "source_refs": [
+      {
+        "source_id": "subrahmanyam-1964-salihundam",
+        "page": "p. 3-4",
+        "note": "p.3: Salihundam is 'four miles from Kalingapatnam, now a defunct sea-port town.' p.4: 'Two inscribed conches ... supply the names Salipedaka or Salipataka, which was perhaps the old name of this locality.'"
+      }
+    ],
+    "periods": [
+      "early-historic"
+    ],
+    "status": "published",
+    "related_ids": [
+      "salihundam",
+      "kalingapatnam"
+    ],
+    "caveats": "One source only (the 1964 excavation report itself), so Probable. Salihundam and Kalingapatnam remain separate entries in this atlas - a monastic hill and a port - even though they sit only four miles apart, and are not merged."
+  },
+  {
+    "id": "fact-sisupalgarh-relocation",
+    "name": "A city that moved, twice",
+    "text": "After Sisupalgarh, people built a new town 2 km away, and much later modern Bhubaneswar rose 2.5 km further north.",
+    "summary": "A 2025 study showed that Sisupalgarh was not just abandoned. Around the 6th century, people built a new town two kilometres away, and centuries later the modern city of Bhubaneswar grew two and a half kilometres further north again.",
+    "evidence_level": "Probable",
+    "evidence_type": "scholarly",
+    "source_refs": [
+      {
+        "source_id": "smith-mohanty-2025-world-archaeology",
+        "page": "abstract",
+        "note": "'the Early Historic city of Sisupalgarh (c. 3rd c. BCE-4th century CE), which was replaced by a new settlement 2 km away in the early Medieval period (starting c. 6th century CE), which was in turn superseded by the Odisha state capital of Bhubaneswar 2.5 km further north in the 20th century.'"
+      }
+    ],
+    "periods": [
+      "gupta",
+      "post-gupta"
+    ],
+    "status": "published",
+    "related_ids": [
+      "sisupalgarh"
+    ],
+    "caveats": "Only the paper's published abstract could be consulted, not the full article, so page-specific detail beyond the quote above is not yet available. One source, so Probable. Only the earlier, Sisupalgarh-to-successor-settlement stage is tagged with a period here; the 20th-century founding of Bhubaneswar falls after this atlas's 1900 CE cut-off."
   }
 ]

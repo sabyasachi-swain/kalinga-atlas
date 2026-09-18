@@ -5,6 +5,11 @@ Sentence counts exclude frontmatter and inline citation brackets.
 
 | Date | File | Sentences | Flags |
 |---|---|---|---|
+| 2026-09-18 | src/content/sites/salihundam.md | 23 | new file (data status draft; not yet published). Every finding matched to its exact source_refs note (monasteries p.29-30, rouletted ware p.8-9 + Patra p.110, conches p.4, bullae/coins p.iv+p.14). Roman coins stated as naming no emperor and the popular "Tiberius" claim explicitly denied, per data caveats. Scholars section explains the approximate map position (printed coordinates fall in the sea) exactly as instructed. |
+| 2026-09-18 | src/content/goods/semi-precious-beads.md | 13 | new file (data status draft; not yet published). Tier Probable, hedged throughout ("report", "may have"); explicitly states the dig is unpublished and the source is one newspaper account of a conference talk; does not claim a shared trade network with Radhanagar/Jaugada beyond separate finds, matching the data's caveats. |
+| 2026-09-18 | src/content/ports/palur.md | 3 (added paragraph) | added one paragraph citing sahu-2026-toi-palur (now approved_by_human: true, folded into palur's own source_refs); makes explicit this is a newspaper report of a conference talk on a still-unpublished 2023-25 excavation, not a finished dig report; existing paragraphs unchanged. |
+| 2026-09-18 | src/content/ports/khalkatapatna.md | 4 (edited paragraph) | edited the Chinese-coins sentence: previously stated "two" as settled fact; now says sources disagree (two round coins per older reports vs. three - two broken, one whole - per Tripati 2015), matching the data's caveat and the source's verbatim "two fragmentary and one intact" wording; rest of file unchanged. |
+| 2026-09-18 | src/content/sites/sisupalgarh.md | 2 (added paragraph) | added one paragraph citing smith-mohanty-2025-world-archaeology (abstract only, as noted in the source's own record); hedged as "scholars think" since this specific claim rests on one paper's abstract; states the successor settlement 2 km away from c. 6th century CE, matching the abstract quote exactly; existing paragraphs and "For scholars" section unchanged. |
 | 2026-09-14 | src/content/goods/ivory.md | 16 | none |
 | 2026-09-14 | src/content/goods/elephants.md | 14 | none |
 | 2026-09-14 | src/content/goods/cotton-textiles.md | 12 | none |

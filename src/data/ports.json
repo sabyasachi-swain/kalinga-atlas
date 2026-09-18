@@ -87,6 +87,11 @@
         "source_id": "dayalan-2019-acta-via-serica",
         "page": "offprint pp. 20-21, section 'Palur'",
         "note": "'Palur (19 deg 27' N; 85 deg 11' E), situated in the Ganjam district of Odisha, was mentioned as an important port on the eastern coast of India.' Kantigarh explorations yielded Chinese celadon, rouletted ware and Mediterranean amphora. Journal pagination not verified."
+      },
+      {
+        "source_id": "sahu-2026-toi-palur",
+        "page": "Times of India, 1 August 2026",
+        "note": "'Nine cultural layers ... nearly three metres ... from the pre-Mauryan period through the Early Historic and Early Medieval phases.' NBPW, knobbed and red polished ware; 363 graffiti sherds; beads. A conference report on the 2023-25 dig, not yet published; 'lends strong support' to Palur=Paloura."
       }
     ],
     "periods": [
@@ -135,6 +140,11 @@
         "source_id": "dayalan-2019-acta-via-serica",
         "page": "offprint p. 22, section 'Khalkattapatna'",
         "note": "Gives 19 deg 51' N; 86 deg 02' E and the same 12th-14th century CE range, citing Indian Archaeology 1985-86 - A Review, p. 56 and B. K. Sinha (1992). Journal pagination not verified."
+      },
+      {
+        "source_id": "tripati-2015-current-science-khalkatapatna",
+        "page": "pp. 373-374",
+        "note": "Confirms the brick jelly floor read as a loading platform, and Chinese celadon/porcelain. Gives three Chinese coins (two fragmentary, one intact), where older sources here count two. Parallels the stamped ware with finds at Kota China, Johore Lama and Bagan, and at Kottapatnam/Motupalli."
       }
     ],
     "periods": [
@@ -142,7 +152,7 @@
       "eastern-ganga"
     ],
     "status": "published",
-    "caveats": "Sources disagree on the excavation season: Patra 2014 and Dayalan 2019 say ASI Excavation Branch IV in 1984-85 (citing IAR 1985-86, p. 56), while Patnaik 2014 p. 105 says 1987. Neither IAR nor B. K. Sinha's site report was read directly, so the tier stops short of Confirmed. Patnaik dates the floruit to the 11th century, the other three to the 12th-14th; both brackets are listed as periods.",
+    "caveats": "Sources disagree on the excavation season: Patra 2014 and Dayalan 2019 say ASI Excavation Branch IV in 1984-85 (citing IAR 1985-86, p. 56), while Patnaik 2014 p. 105 says 1987. Neither IAR nor B. K. Sinha's site report was read directly, so the tier stops short of Confirmed. Patnaik dates the floruit to the 11th century, the other three to the 12th-14th; both brackets are listed as periods. Tripati et al. 2015 record three Chinese coins (two fragmentary, one intact), where the sources above count two.",
     "coordinates": {
       "lat": 19.8536,
       "lng": 86.0444
