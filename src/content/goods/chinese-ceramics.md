@@ -10,4 +10,4 @@ At another old port, Khalkatapatna, archaeologists found the same kinds of potte
 Historians agree this pottery crossed thousands of miles of ocean. It landed on these shores long ago. The ships that carried it are long gone [Patra, n.d., pp.111-112].
 
 ## For scholars
-The Khalkatapatna pottery dates from about the 12th to 14th century. Manikapatna's porcelain dates later, from 1368 to 1644 [Tripati, 2021, p.1212; Patra, 2014, pp.119-120]. Finding Chinese pots does not prove Chinese ships sailed here. The goods may have passed through Southeast Asian traders first. Two of the four reports used here share the same author [Patra, n.d., pp.111-112].
+The Khalkatapatna pottery dates from about the 12th to 14th century. Manikapatna's porcelain dates later, from 1368 to 1644 [Tripati, 2021, p.1212; Patra, 2014, pp.119-120]. Finding Chinese pots does not prove Chinese ships sailed here. Southeast Asian traders could have carried these goods here first. Chinese ships did not have to come directly. Two of the four reports used here share the same author [Patra, n.d., pp.111-112].
