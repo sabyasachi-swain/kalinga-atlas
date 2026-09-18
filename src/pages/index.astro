@@ -5,19 +5,25 @@ import WaveDivider from '@components/WaveDivider.astro';
 import Atlas from '@islands/Atlas';
 import { getPorts, getRoutes, getSites, getPeriods, getGoods, getSources, getFacts, getInscriptions } from '@data/load';
 import { withBase } from '@lib/base-url';
+import { sortChronological } from '@lib/sort-entities';
 
 const ports = getPorts();
-const routes = getRoutes();
-const sites = getSites();
-const inscriptions = getInscriptions();
 const periods = getPeriods();
-const goods = getGoods();
+// improvement-plan owner item 4: "Apply the same default order to the home
+// page section previews" — same chronological default as the listing pages.
+const routes = sortChronological(getRoutes(), periods);
+const sites = sortChronological(getSites(), periods);
+const inscriptions = getInscriptions();
+const goods = sortChronological(getGoods(), periods);
 const sources = getSources();
 const facts = getFacts();
 
 /** How many cards each home-page section shows before "See all". */
 const PREVIEW = 6;
-const kalingaPorts = ports.filter((p) => p.region === 'kalinga');
+const kalingaPorts = sortChronological(
+  ports.filter((p) => p.region === 'kalinga'),
+  periods,
+);
 
 const sections = [
   {
@@ -132,11 +138,27 @@ const sections = [
       Tap any citation to see the full reference, or browse the whole list on the <a href={withBase('sources/')}>Sources</a> page.
       Nothing here is invented, and where historians are unsure, the site says so.
     </p>
+    <p class="ai-note">
+      <strong>How this site was made.</strong> The research, maps and writing here were produced with
+      AI assistance. Every historical claim is tied to a published source, listed on the
+      <a href={withBase('sources/')}>Sources</a> page, and the badge beside each claim shows how strong
+      that evidence is. The illustrations are original drawings, not AI-generated images, and the site
+      uses no photographs. Mistakes are possible. If something looks wrong, check the source.
+    </p>
   </section>
 </Base>
 
 <style>
   .hero { padding: var(--space-12) var(--gutter) var(--space-6); max-width: var(--content-max); margin: 0 auto; }
+  /* Owner instruction, item 2: a genuine notice, not a buried footnote —
+     bordered like the "how to read" copy around it, not smaller or fainter. */
+  .ai-note {
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-left: 3px solid var(--accent);
+    background: var(--bg-elevated);
+    border-radius: var(--radius-sm);
+  }
   .lede { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
   .hint { max-width: 46rem; color: var(--fg-muted); font-size: var(--text-sm); }
   .atlas { padding: 0 var(--gutter); max-width: var(--content-max); margin: 0 auto; }

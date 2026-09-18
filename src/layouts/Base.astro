@@ -44,6 +44,10 @@ const fullTitle = title === 'Kalinga: Ancient Trade Routes' ? title : `${title} 
       <slot />
     </main>
     <footer class="site-footer">
+      <p class="site-footer__ai-note">
+        Built with AI assistance. Every claim is sourced — see
+        <a href={withBase('sources/')}>Sources</a>.
+      </p>
       <p>
         Map data: <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain).
         Illustrations are original works, CC BY-SA 4.0. Code is MIT.
@@ -111,5 +115,12 @@ const fullTitle = title === 'Kalinga: Ancient Trade Routes' ? title : `${title} 
     border-top: 1px solid var(--rule);
     color: var(--fg-muted);
     font-size: var(--text-sm);
+  }
+  /* Owner instruction, item 2: state plainly, not buried — first line in
+     the footer, not the smallest or last. */
+  .site-footer__ai-note {
+    margin: 0 0 var(--space-3);
+    font-weight: 600;
+    color: var(--fg);
   }
 </style>

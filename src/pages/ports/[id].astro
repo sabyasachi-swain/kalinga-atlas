@@ -1,5 +1,6 @@
 ---
 import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
 import EvidenceBadge from '@components/EvidenceBadge.astro';
 import SourcePopover from '@components/SourcePopover.astro';
 import PeriodChips from '@components/PeriodChips.astro';
@@ -32,7 +33,13 @@ const coordinateSource = sources.find((s) => s.id === port.coordinate_source);
 
 <Base title={port.name} description={port.summary}>
   <article class="entity-page">
-    <p class="back"><a href={withBase('#ports')}>&larr; Back to the atlas</a></p>
+    <Breadcrumb
+      items={[
+        { label: 'Atlas', href: withBase('/') },
+        { label: 'Ports', href: withBase('ports/') },
+        { label: port.name },
+      ]}
+    />
 
     <h1>{port.name}</h1>
     <div class="badges">
@@ -93,8 +100,6 @@ const coordinateSource = sources.find((s) => s.id === port.coordinate_source);
 
 <style>
   .entity-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
-  .back { margin-bottom: var(--space-4); }
-  .back a { color: var(--fg-muted); }
   .badges { margin-bottom: var(--space-2); }
   .summary { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
   section { margin-top: var(--space-8); }

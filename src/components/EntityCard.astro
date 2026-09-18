@@ -17,9 +17,18 @@ interface Props {
   kind: Kind;
   entity: Entity;
   sources: Source[];
+  /**
+   * improvement-plan owner item 4: sort keys for the client-side re-sort
+   * script (@lib/sort-list-client) plus a legible label so the order makes
+   * sense without reading the DOM. All optional — cards used outside a
+   * sortable listing (e.g. a detail page's "related" list) just omit them.
+   */
+  sortTime?: number;
+  sortEvidenceRank?: number;
+  earliestPeriodLabel?: string;
 }
 
-const { kind, entity, sources } = Astro.props;
+const { kind, entity, sources, sortTime, sortEvidenceRank, earliestPeriodLabel } = Astro.props;
 
 const PATH: Record<Kind, string> = {
   port: 'ports',
@@ -33,9 +42,15 @@ const href = withBase(`${PATH[kind]}/${entity.id}/`);
 const description = kind === 'good' ? (entity as Good).kid_line : entity.summary;
 ---
 
-<li class="card">
+<li
+  class="card"
+  data-sort-time={sortTime ?? ''}
+  data-sort-evidence={sortEvidenceRank ?? ''}
+  data-sort-name={entity.name.toLowerCase()}
+>
   <h3><a href={href}>{entity.name}</a></h3>
   <p>{description}</p>
+  {earliestPeriodLabel && <p class="sort-hint">Earliest: {earliestPeriodLabel}</p>}
   <div class="meta">
     <EvidenceBadge level={entity.evidence_level} type={entity.evidence_type} compact />
     <SourcePopover refs={entity.source_refs} sources={sources} />
@@ -62,6 +77,7 @@ const description = kind === 'good' ? (entity as Good).kid_line : entity.summary
     text-decoration: underline;
   }
   .card p { flex-grow: 1; }
+  .card p.sort-hint { flex-grow: 0; font-size: var(--text-xs); color: var(--fg-muted); margin: 0; }
   .meta {
     display: flex;
     flex-wrap: wrap;

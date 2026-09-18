@@ -11,7 +11,7 @@ This trade mattered to the government. The same report says the tax on salt brou
 
 Traders swapped salt for other goods too. A report says river traders traded salt for rice, wheat, oil-seeds and cotton from inland regions [Hunter, 1872, pp.159-162].
 
-Even earlier, in the 1500s, an old record names Manikapatna as a port where taxes were collected. A modern writer reports this as a place where salt tax was gathered [Patnaik, 2014, p.104].
+Even earlier, in the 1500s, an old record names Manikapatna as a port where taxes were collected. A modern writer reports this as a place where salt tax was gathered [Patnaik, 2014a, p.104].
 
 ## For scholars
-Most of the hard numbers here come from 1825 or later, under British rule. Salt was surely made and traded here much earlier. But no source with a clear page says so. The one earlier hint comes only second-hand, through a modern summary of an old record [Patnaik, 2014, p.104].
+Most of the hard numbers here come from 1825 or later, under British rule. Salt was surely made and traded here much earlier. But no source with a clear page says so. The one earlier hint comes only second-hand, through a modern summary of an old record [Patnaik, 2014a, p.104].

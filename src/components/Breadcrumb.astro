@@ -1,0 +1,79 @@
+---
+/**
+ * Breadcrumb — owner fix, item 3: every detail page used to "go back" to a
+ * home-page anchor (`#goods` etc.), not the index the visitor actually came
+ * from. This renders a real trail instead: "Atlas / Goods / Pepper", the
+ * last item plain text with aria-current="page", every earlier item a real
+ * link. Zero JS — plain static markup, so it never shifts layout on load.
+ */
+export interface BreadcrumbItem {
+  label: string;
+  /** Omit on the final (current-page) item. */
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumb">
+  <ol>
+    {
+      items.map((item, i) => {
+        const isLast = i === items.length - 1;
+        return (
+          <li>
+            {item.href && !isLast ? (
+              <a href={item.href}>{item.label}</a>
+            ) : (
+              <span aria-current="page">{item.label}</span>
+            )}
+            {!isLast && (
+              <span class="breadcrumb__sep" aria-hidden="true">
+                /
+              </span>
+            )}
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb {
+    margin-bottom: var(--space-4);
+    font-size: var(--text-sm);
+  }
+  .breadcrumb ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+  }
+  .breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+  .breadcrumb a {
+    color: var(--fg-muted);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .breadcrumb a:hover,
+  .breadcrumb a:focus-visible {
+    color: var(--fg);
+  }
+  .breadcrumb [aria-current='page'] {
+    color: var(--fg-muted);
+  }
+  .breadcrumb__sep {
+    color: var(--rule);
+    margin: 0 0.4em;
+  }
+</style>

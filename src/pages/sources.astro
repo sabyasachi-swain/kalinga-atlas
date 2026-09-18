@@ -14,13 +14,22 @@ const CATEGORY_LABEL: Record<string, string> = {
 const groups = Object.keys(CATEGORY_LABEL).map((key) => ({
   key,
   label: CATEGORY_LABEL[key],
-  items: sources.filter((s) => s.registry_category === key).sort((a, b) => formatFull(a).localeCompare(formatFull(b))),
+  items: sources
+    .filter((s) => s.registry_category === key)
+    .sort((a, b) => formatFull(a, sources).localeCompare(formatFull(b, sources))),
 }));
 ---
 
 <Base title="Sources" description="Every source cited on Kalinga: Ancient Trade Routes, grouped by type.">
   <article class="sources">
     <h1>Sources &amp; Bibliography</h1>
+    <p class="ai-note">
+      <strong>How this site was made.</strong> The research, maps and writing here were produced with
+      AI assistance. Every historical claim is tied to a published source, listed below, and the badge
+      beside each claim shows how strong that evidence is. The illustrations are original drawings, not
+      AI-generated images, and the site uses no photographs. Mistakes are possible. If something looks
+      wrong, check the source.
+    </p>
     <p class="lede">
       Every claim on this site points to one of the works below. Sources marked <em>public domain</em> may be read
       freely online; the rest are cited under fair dealing for education.
@@ -35,7 +44,7 @@ const groups = Object.keys(CATEGORY_LABEL).map((key) => ({
             <ol>
               {g.items.map((s) => (
                 <li id={`src-${s.id}`}>
-                  <span set:html={formatFull(s).replace(/\*([^*]+)\*/g, '<cite>$1</cite>')} />
+                  <span set:html={formatFull(s, sources).replace(/\*([^*]+)\*/g, '<cite>$1</cite>')} />
                   {s.URL && (
                     <>
                       {' '}
@@ -56,6 +65,13 @@ const groups = Object.keys(CATEGORY_LABEL).map((key) => ({
 <style>
   .sources { padding: var(--space-8) var(--gutter); max-width: 50rem; margin: 0 auto; }
   .lede { color: var(--fg-muted); }
+  .ai-note {
+    margin: var(--space-4) 0;
+    padding: var(--space-3) var(--space-4);
+    border-left: 3px solid var(--accent);
+    background: var(--bg-elevated);
+    border-radius: var(--radius-sm);
+  }
   ol { padding-left: var(--space-6); }
   li { margin-bottom: var(--space-3); }
   cite { font-style: italic; }

@@ -1,5 +1,6 @@
 ---
 import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
 import EvidenceBadge from '@components/EvidenceBadge.astro';
 import SourcePopover from '@components/SourcePopover.astro';
 import PeriodChips from '@components/PeriodChips.astro';
@@ -26,7 +27,13 @@ const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === inscrip
 
 <Base title={inscription.name} description={inscription.summary}>
   <article class="entity-page">
-    <p class="back"><a href={withBase('#evidence')}>&larr; Back to the atlas</a></p>
+    <Breadcrumb
+      items={[
+        { label: 'Atlas', href: withBase('/') },
+        { label: 'Evidence', href: withBase('evidence/') },
+        { label: inscription.name },
+      ]}
+    />
 
     <h1>{inscription.name}</h1>
     <div class="badges">
@@ -65,8 +72,6 @@ const narrativeEntry = narrativeEntries.find((e) => e.data.entity_id === inscrip
 
 <style>
   .entity-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
-  .back { margin-bottom: var(--space-4); }
-  .back a { color: var(--fg-muted); }
   .badges { margin-bottom: var(--space-2); }
   .summary { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
   section { margin-top: var(--space-8); }

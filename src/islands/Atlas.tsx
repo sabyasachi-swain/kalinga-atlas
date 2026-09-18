@@ -77,6 +77,20 @@ export default function Atlas({
   const [activePeriod, setActivePeriod] = useState(initialPeriod ?? first?.id ?? '');
   const [selection, setSelection] = useState<MapSelection | null>(null);
   const [focusReturnToken, setFocusReturnToken] = useState(0);
+  // Coordinator fix, 18 September: on phones the map opens in a modal
+  // <dialog> (top layer); the detail panel used to stay rendered in the page
+  // column behind it, so selecting a marker looked like it did nothing until
+  // the dialog closed. `sheetDismissed` tracks whether the visitor has
+  // collapsed the in-dialog sheet without clearing the selection — see
+  // `onDismissSheet` and the portal wiring below.
+  const [sheetDismissed, setSheetDismissed] = useState(false);
+  useEffect(() => {
+    setSheetDismissed(false);
+  }, [selection?.kind, selection?.id]);
+  const onDismissSheet = useCallback(() => {
+    setSheetDismissed(true);
+    setFocusReturnToken((n) => n + 1);
+  }, []);
   const [turning, setTurning] = useState(false);
   const [dismissedFact, setDismissedFact] = useState<string | null>(null);
   const [factHeld, setFactHeld] = useState(false);
@@ -164,6 +178,20 @@ export default function Atlas({
   const factHostNarrowRef = useRef<HTMLDivElement | null>(null);
   const factHostDialogRef = useRef<HTMLDivElement | null>(null);
   const [factPortalTarget, setFactPortalTarget] = useState<HTMLElement | null>(null);
+
+  // -- Coordinator fix, 18 September: DetailPanel follows the same
+  // single-instance portal discipline as AtlasMap and the fact card above —
+  // one mounted element moved between hosts, never a second copy (two live
+  // panels would duplicate `headingId`/ARIA). Normally it lives in the
+  // right-hand column (`panelHostSideRef`); while the phone dialog is open it
+  // moves inside the dialog (`dialogPanelHostRef`) so it renders in the same
+  // top-layer stacking context as the map, instead of behind it.
+  const panelHostSideRef = useRef<HTMLDivElement | null>(null);
+  const dialogPanelHostRef = useRef<HTMLDivElement | null>(null);
+  const [panelPortalTarget, setPanelPortalTarget] = useState<HTMLElement | null>(null);
+  useLayoutEffect(() => {
+    setPanelPortalTarget(mapDialogOpen ? dialogPanelHostRef.current : panelHostSideRef.current);
+  }, [mapDialogOpen]);
   const [isWideGrid, setIsWideGrid] = useState(
     () => typeof window !== 'undefined' && window.matchMedia(WIDE_QUERY).matches,
   );
@@ -426,6 +454,8 @@ export default function Atlas({
                 focusReturnToken={focusReturnToken}
                 fullscreen={mapDialogOpen}
                 showOnlyRouteId={showOnlyRouteId}
+                dialogSheetOpen={mapDialogOpen && selection !== null && !sheetDismissed}
+                onDismissSheet={onDismissSheet}
               />,
               mapPortalTarget,
             )}
@@ -454,6 +484,12 @@ export default function Atlas({
               <span aria-hidden="true">×</span>
             </button>
             <div className="atlas-map-dialog__host" ref={dialogMapHostRef} />
+            {/* Coordinator fix, 18 September: the detail sheet's live host
+                inside the dialog — see panelPortalTarget above. Position
+                comes from `.atlas-panel`'s existing narrow-width bottom-sheet
+                CSS (atlas.css), which is `position: fixed` and so overlays
+                correctly here regardless of where this div sits in flow. */}
+            <div className="atlas-map-dialog__panel-host" ref={dialogPanelHostRef} />
             <div className="atlas-fact-slot atlas-fact-slot--dialog" ref={factHostDialogRef} />
             {mapDialogOpen && (
               <div className="atlas-map-dialog__timeline">
@@ -487,27 +523,37 @@ export default function Atlas({
           {/* improvement-plan §1.1: >= 56.25rem, the fact card stacks above
               the detail panel in the right-hand column, in normal flow. */}
           <div className="atlas-fact-slot atlas-fact-slot--wide" ref={factHostWideRef} />
-          <DetailPanel
-            selected={selected}
-            sources={sources}
-            goods={goods}
-            periods={periods}
-            ports={ports}
-            sites={sites}
-            onClose={closePanel}
-            showOnlyRoute={selected?.kind === 'route' && showOnlyRouteId === selected.entity.id}
-            onToggleShowOnlyRoute={() => {
-              if (selected?.kind !== 'route') return;
-              setShowOnlyRouteId((cur) => (cur === selected.entity.id ? null : selected.entity.id));
-            }}
-            onSelectEntity={(kind, id) => selectFromMap({ kind, id })}
-          />
+          {/* Live host for the panel outside the dialog — see panelPortalTarget. */}
+          <div ref={panelHostSideRef} />
         </div>
 
         {/* Exactly one of the three hosts above is ever the live portal
             target (see the useLayoutEffect that sets factPortalTarget) —
-            never two mounted copies of the fact card at once. */}
+            never two mounted copies of the fact card at once. Same
+            discipline for the detail panel below (panelPortalTarget). */}
         {factPortalTarget && createPortal(factNode, factPortalTarget)}
+        {panelPortalTarget &&
+          createPortal(
+            <DetailPanel
+              selected={selected}
+              sources={sources}
+              goods={goods}
+              periods={periods}
+              ports={ports}
+              sites={sites}
+              onClose={closePanel}
+              showOnlyRoute={selected?.kind === 'route' && showOnlyRouteId === selected.entity.id}
+              onToggleShowOnlyRoute={() => {
+                if (selected?.kind !== 'route') return;
+                setShowOnlyRouteId((cur) => (cur === selected.entity.id ? null : selected.entity.id));
+              }}
+              onSelectEntity={(kind, id) => selectFromMap({ kind, id })}
+              sheetMode={mapDialogOpen}
+              sheetCollapsed={sheetDismissed}
+              onDismissSheet={onDismissSheet}
+            />,
+            panelPortalTarget,
+          )}
       </div>
     </section>
   );

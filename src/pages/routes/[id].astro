@@ -1,5 +1,6 @@
 ---
 import Base from '@layouts/Base.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
 import EvidenceBadge from '@components/EvidenceBadge.astro';
 import PeriodChips from '@components/PeriodChips.astro';
 import ScholarNotes from '@components/ScholarNotes.astro';
@@ -50,7 +51,13 @@ const MODE_LABEL: Record<string, string> = {
 
 <Base title={route.name} description={route.summary}>
   <article class="entity-page">
-    <p class="back"><a href={withBase('#routes')}>&larr; Back to the atlas</a></p>
+    <Breadcrumb
+      items={[
+        { label: 'Atlas', href: withBase('/') },
+        { label: 'Routes', href: withBase('routes/') },
+        { label: route.name },
+      ]}
+    />
 
     <h1>{route.name}</h1>
     <div class="badges">
@@ -99,8 +106,6 @@ const MODE_LABEL: Record<string, string> = {
 
 <style>
   .entity-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
-  .back { margin-bottom: var(--space-4); }
-  .back a { color: var(--fg-muted); }
   .badges { margin-bottom: var(--space-2); }
   .summary { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
   .kid-line { font-style: italic; max-width: 46rem; }

@@ -28,7 +28,7 @@ const byId = new Map(sources.map((s) => [s.id, s]));
           const s = byId.get(r.source_id);
           return (
             <li>
-              {s ? formatFull(s) : `Unresolved source id "${r.source_id}"`}
+              {s ? formatFull(s, sources) : `Unresolved source id "${r.source_id}"`}
               {r.page && <span>, {r.page}</span>}
               {r.note && <em> ({r.note})</em>}
             </li>

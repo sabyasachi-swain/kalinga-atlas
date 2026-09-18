@@ -79,6 +79,18 @@ export interface AtlasMapProps {
    * route.
    */
   showOnlyRouteId?: string | null;
+  /**
+   * True when the phone dialog's detail sheet (Atlas.tsx) is currently open
+   * over the map — i.e. `fullscreen` and a selection exists and the visitor
+   * hasn't dismissed the sheet. Escape's first press dismisses that sheet
+   * (via `onDismissSheet`) instead of clearing the selection or falling
+   * through to the native dialog close, so the two-stage Escape (sheet, then
+   * dialog) the owner asked for doesn't collide with the plain "Escape
+   * clears the selection" behaviour used outside the dialog.
+   */
+  dialogSheetOpen?: boolean;
+  /** Dismiss the phone dialog's detail sheet without clearing the selection. */
+  onDismissSheet?: () => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -190,6 +202,17 @@ function diamondPath(r: number): string {
 /** A2: remembers the wheel/drag hint has been dismissed. */
 const HINT_KEY = 'kalinga-map-hint-dismissed';
 const HINT_AUTO_MS = 5000;
+/** improvement-plan §1.5: "Tap a glowing dot" — a first-load nudge at a real
+ * marker (kid-experience.md's own suggested line), separate key from the
+ * scroll/drag hint above but the same once-per-visitor localStorage pattern. */
+const MARKER_HINT_KEY = 'kalinga-map-marker-hint-dismissed';
+const MARKER_HINT_AUTO_MS = 6000;
+/** Give the opening zoom (if any) and the initial fit time to settle before
+ * pointing at a marker — otherwise the nudge would appear mid-animation,
+ * pointing at a screen position the marker is about to leave. */
+const MARKER_HINT_DELAY_MS = 1800;
+/** improvement-plan §1.5: once-per-visitor "overview to detail" opening zoom. */
+const OPENING_ZOOM_KEY = 'kalinga-map-opening-zoom-shown';
 /** improvement-plan §1.2: "Show other centuries faintly" toggle. */
 const FAINT_KEY = 'kalinga-map-show-faint';
 
@@ -384,7 +407,23 @@ interface MarkerDatum {
   y: number;
   label: string;
   inactive: boolean;
+  /** True for a site well outside the Odisha coast (e.g. the Ashoka-edict
+   * destination sites Ujjayini and Takshashila) — unlike ports, sites carry
+   * no `region` field to tell "Kalinga" from "elsewhere" apart, so this is a
+   * generous bounding-box check (see KALINGA_COAST_BBOX). Excluded from the
+   * coast-view fit the same way a foreign port (`shape === 'destination'`)
+   * already is — see `coastFitPoints`. */
+  farFromCoast?: boolean;
 }
+
+/**
+ * Generous Odisha-coast bounding box for classifying a *site* (which has no
+ * `region` field the way a port does) as local vs. a distant edict
+ * destination, for the coast-view fit only. Comfortably contains every
+ * published Kalinga site (lat 19.5-20.7, lng 84.8-86.3) with margin; both
+ * Ujjayini (23.18, 75.79) and Takshashila (33.75, 72.79) fall well outside it.
+ */
+const KALINGA_COAST_BBOX = { latMin: 17, latMax: 23, lngMin: 82, lngMax: 88 };
 
 interface RouteDatum {
   key: string;
@@ -413,6 +452,8 @@ export function AtlasMap({
   focusReturnToken = 0,
   fullscreen = false,
   showOnlyRouteId = null,
+  dialogSheetOpen = false,
+  onDismissSheet,
 }: AtlasMapProps) {
   const uid = useId().replace(/[^a-zA-Z0-9-]/g, '');
   const figureRef = useRef<HTMLDivElement | null>(null);
@@ -484,6 +525,12 @@ export function AtlasMap({
   const dismissHintRef = useRef<() => void>(() => {});
   const hintShownRef = useRef(false);
   const hintTimerRef = useRef(0);
+  /** improvement-plan §1.5: "Tap a glowing dot" first-load nudge — own
+   * shown/timer refs, same once-per-visitor shape as the scroll hint above. */
+  const markerHintShownRef = useRef(false);
+  const markerHintTimerRef = useRef(0);
+  const markerHintDelayRef = useRef(0);
+  const [markerHintTarget, setMarkerHintTarget] = useState<{ key: string; x: number; y: number } | null>(null);
 
   const [size, setSize] = useState({ width: SSR_WIDTH, height: SSR_HEIGHT });
   const [transform, setTransform] = useState({ k: 1, x: 0, y: 0 });
@@ -774,6 +821,11 @@ export function AtlasMap({
       if (!xy) continue;
       const [x, y] = xy;
       const inactive = !s.periods.includes(activePeriod);
+      const farFromCoast =
+        s.coordinates.lat < KALINGA_COAST_BBOX.latMin ||
+        s.coordinates.lat > KALINGA_COAST_BBOX.latMax ||
+        s.coordinates.lng < KALINGA_COAST_BBOX.lngMin ||
+        s.coordinates.lng > KALINGA_COAST_BBOX.lngMax;
       out.push({
         key: `site:${s.id}`,
         kind: 'site',
@@ -786,6 +838,7 @@ export function AtlasMap({
           inactive ? ', outside the selected period' : ''
         }`,
         inactive,
+        farFromCoast,
       });
     }
 
@@ -943,6 +996,16 @@ export function AtlasMap({
         // neither view button is "pressed" any more.
         if (event.sourceEvent) {
           dismissHintRef.current();
+          dismissMarkerHintRef.current();
+          // improvement-plan §1.5: "cancel cleanly on interaction" — a real
+          // drag/wheel/pinch starting mid-flight through the opening zoom
+          // (or any other animateTo) must stop that rAF loop outright, not
+          // let it keep fighting the gesture's own per-tick DOM writes.
+          if (viewAnimRafRef.current) {
+            cancelAnimationFrame(viewAnimRafRef.current);
+            viewAnimRafRef.current = 0;
+            setViewTransitioning(false);
+          }
           setViewMode('manual');
         }
       })
@@ -1005,6 +1068,31 @@ export function AtlasMap({
     dismissHintRef.current = dismissHint;
   }, [dismissHint]);
 
+  /** improvement-plan §1.5: dismiss the "Tap a glowing dot" nudge — timeout,
+   * close button, or any map interaction (matches the opening-zoom's own
+   * "cancel cleanly on interaction" rule just below). */
+  const dismissMarkerHint = useCallback(() => {
+    window.clearTimeout(markerHintTimerRef.current);
+    window.clearTimeout(markerHintDelayRef.current);
+    setMarkerHintTarget(null);
+    try {
+      window.localStorage.setItem(MARKER_HINT_KEY, '1');
+    } catch {
+      /* storage unavailable — the nudge just reappears next visit */
+    }
+  }, []);
+  const dismissMarkerHintRef = useRef(dismissMarkerHint);
+  useEffect(() => {
+    dismissMarkerHintRef.current = dismissMarkerHint;
+  }, [dismissMarkerHint]);
+  useEffect(
+    () => () => {
+      window.clearTimeout(markerHintTimerRef.current);
+      window.clearTimeout(markerHintDelayRef.current);
+    },
+    [],
+  );
+
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
@@ -1035,6 +1123,7 @@ export function AtlasMap({
     const behavior = zoomRef.current;
     if (!el || !behavior) return;
     setViewMode('manual');
+    dismissMarkerHintRef.current();
     behavior.scaleBy(select(el), factor);
   }, []);
 
@@ -1042,6 +1131,7 @@ export function AtlasMap({
     const el = stageRef.current;
     const behavior = zoomRef.current;
     if (!el || !behavior) return;
+    dismissMarkerHintRef.current();
     // Live k, not the committed state value: correct even mid-gesture.
     const k = liveTransformRef.current.k;
     setViewMode('manual');
@@ -1231,13 +1321,24 @@ export function AtlasMap({
     [getSafeRect, declusterCeiling],
   );
 
-  /** A1: fit to every published Kalinga port active in the current period. */
+  /**
+   * Owner fix, item 5: "at first I thought it has only 2 results... there
+   * are points but no linkage". The coast fit used to include only Kalinga
+   * *ports* (`shape === 'port'`), so a period whose only active markers
+   * otherwise were sites (Dhauli, Jaugada in Mauryan Kalinga) opened on a
+   * crop that hid them, understating the period's real extent. Every active
+   * *Kalinga* marker now counts — ports and sites — but not foreign
+   * destinations (`shape === 'destination'`), which belong to the ocean
+   * view's much larger extent and would otherwise force the "coast" view to
+   * zoom out past the coast it's named for.
+   */
   const coastFitPoints = useCallback(() => {
     // `allMarkers`: the default view fit is a navigation baseline driven by
     // the period, not by what the visitor has manually filtered — filtering
     // everything down to one route shouldn't re-centre the whole map.
-    const active = allMarkers.filter((m) => m.shape === 'port' && !m.inactive);
-    return active.length > 0 ? active : allMarkers.filter((m) => m.shape === 'port');
+    const isCoastCandidate = (m: MarkerDatum) => m.shape !== 'destination' && !m.farFromCoast;
+    const active = allMarkers.filter((m) => isCoastCandidate(m) && !m.inactive);
+    return active.length > 0 ? active : allMarkers.filter(isCoastCandidate);
   }, [allMarkers]);
 
   /** A1: fit to every port, Kalinga and foreign destinations alike. */
@@ -1323,13 +1424,61 @@ export function AtlasMap({
   // gated by "first mount only" any more), so moving the map into the
   // phone dialog's differently-sized host re-fits instead of leaving the
   // inline host's stale transform in place.
+  /**
+   * improvement-plan §1.5: the one-off "overview to detail" opening zoom —
+   * silently establishes the whole-Bay-of-Bengal (ocean) transform first (no
+   * flash: matches the existing instant-fit codepath), then animates down to
+   * the real coast fit via the *same* `animateTo` this file already uses for
+   * every other view transition — no second animation system. `viewMode`/
+   * `lastNamedViewRef` are set to 'coast' up front, before the animation
+   * even starts, so anything that interrupts it (a period change, a resize,
+   * the phone dialog opening, or `animateTo`'s own cancel-on-real-gesture
+   * handling above) is already bookkept as "the coast fit is current" and
+   * lands on the *right* target rather than reintroducing the ocean one.
+   * Returns false (do nothing, caller falls back to the plain instant fit)
+   * when there's no meaningful zoom to show — no coast points, no separate
+   * ocean extent, or reduced motion, which per the brief goes instant.
+   */
+  const runOpeningZoom = useCallback(() => {
+    const el = stageRef.current;
+    const behavior = zoomRef.current;
+    if (!el || !behavior || reducedMotion) return false;
+    const coastPts = coastFitPoints();
+    const oceanPts = oceanFitPoints();
+    if (coastPts.length === 0 || oceanPts.length === 0) return false;
+    const oceanTarget = fitWithHeadroom(oceanPts, OCEAN_PADDING);
+    const coastTarget = fitWithHeadroom(coastPts, COAST_PADDING, minFitSpanPx);
+    behavior.transform(select(el), zoomIdentity.translate(oceanTarget.x, oceanTarget.y).scale(oceanTarget.k));
+    liveTransformRef.current = oceanTarget;
+    setViewMode('coast');
+    lastNamedViewRef.current = 'coast';
+    animateTo(coastTarget);
+    return true;
+  }, [coastFitPoints, oceanFitPoints, fitWithHeadroom, minFitSpanPx, reducedMotion, animateTo]);
+
   useEffect(() => {
     if (!sizeMeasuredRef.current) return;
     if (size.width < 2 || size.height < 2) return;
     const instant = !didInitialFitRef.current;
     didInitialFitRef.current = true;
+    if (instant) {
+      let openingZoomShown = true;
+      try {
+        openingZoomShown = window.localStorage.getItem(OPENING_ZOOM_KEY) === '1';
+      } catch {
+        openingZoomShown = true; // storage unavailable — skip the animation, never block the fit
+      }
+      if (!openingZoomShown && runOpeningZoom()) {
+        try {
+          window.localStorage.setItem(OPENING_ZOOM_KEY, '1');
+        } catch {
+          /* best effort only — worst case it plays again next visit */
+        }
+        return;
+      }
+    }
     refitCurrentViewRef.current(instant);
-  }, [size]);
+  }, [size, runOpeningZoom]);
 
   // A1: "reset" now means the same thing as pressing "Show the Odisha
   // coast" — the whole point of the default-view fit is that it is what a
@@ -1529,6 +1678,7 @@ export function AtlasMap({
   const handleSelect = useCallback(
     (kind: MapSelection['kind'], id: string) => {
       lastSelectedKey.current = `${kind}:${id}`;
+      dismissMarkerHintRef.current();
       onSelect?.({ kind, id });
     },
     [onSelect],
@@ -1618,7 +1768,21 @@ export function AtlasMap({
       const here = pathEl.getPointAtLength(distance);
       const ahead = pathEl.getPointAtLength(Math.min(distance + Math.max(total / 200, 0.5), total));
       const angle = (Math.atan2(ahead.y - here.y, ahead.x - here.x) * 180) / Math.PI;
-      g.setAttribute('transform', `translate(${here.x},${here.y}) rotate(${angle})`);
+      // Owner fix, item 1: the ship art is a side-view hull with the mast
+      // drawn "up" (small y). A plain `rotate(angle)` is directionally
+      // correct — the bow does point along the tangent — but past ±90°
+      // (any westward route) it also carries the mast past horizontal and
+      // down past vertical, i.e. upside down. The standard side-sprite fix:
+      // in the left half-plane, mirror the glyph about its own origin
+      // (`scale(1,-1)`) *before* the rotation instead of letting the
+      // rotation alone carry it past vertical — the two compose to put the
+      // bow at the same heading with the mast still pointing up. See the
+      // symbols' own art (mast at low y) for why "up" means small y here.
+      const flip = Math.abs(angle) > 90;
+      const transform = flip
+        ? `translate(${here.x},${here.y}) rotate(${angle}) scale(1,-1)`
+        : `translate(${here.x},${here.y}) rotate(${angle})`;
+      g.setAttribute('transform', transform);
     };
 
     const duration = readMs(figureRef.current, '--dur-sail', 6000);
@@ -1752,7 +1916,24 @@ export function AtlasMap({
           // filter sheet) would otherwise fall through to here and clear
           // the selection instead of closing the filter — guarded the same
           // way as showKeys/showLegend.
-          if (!showKeys && !showFilter && selection) {
+          if (showKeys || showFilter) break;
+          // Owner fix: inside the phone dialog, Escape is two stages — the
+          // sheet, then the dialog — so it must never collapse straight to
+          // "clear the selection" the way it does outside the dialog, and it
+          // must never fight the dialog's own native Escape-closes-it
+          // default either. First press (sheet still open) dismisses the
+          // sheet only, preventing the native dialog close. Second press
+          // (sheet already dismissed, or nothing selected) does nothing here
+          // and is left to bubble to the <dialog>'s native `cancel` handling,
+          // which Atlas.tsx's onClose already turns into setMapDialogOpen(false).
+          if (fullscreen && dialogSheetOpen) {
+            event.preventDefault();
+            event.stopPropagation();
+            onDismissSheet?.();
+            break;
+          }
+          if (fullscreen) break;
+          if (selection) {
             event.preventDefault();
             event.stopPropagation();
             onClear?.();
@@ -1762,7 +1943,18 @@ export function AtlasMap({
           break;
       }
     },
-    [zoomBy, panBy, resetView, onClear, selection, showKeys, showFilter],
+    [
+      zoomBy,
+      panBy,
+      resetView,
+      onClear,
+      selection,
+      showKeys,
+      showFilter,
+      fullscreen,
+      dialogSheetOpen,
+      onDismissSheet,
+    ],
   );
 
   const onNodeKeyDown = useCallback(
@@ -1996,6 +2188,55 @@ export function AtlasMap({
     () => new Set([...clusters.flatMap((c) => c.keys), ...clustersResult.hiddenKeys]),
     [clusters, clustersResult.hiddenKeys],
   );
+
+  // improvement-plan §1.5: "Tap a glowing dot" — a one-off first-load nudge
+  // at a *real* marker. Attempted exactly once per visitor (never re-tried
+  // on a later period change): a short delay after mount lets the opening
+  // zoom (if any) and the initial coast fit settle, then the first marker
+  // that is both active and not folded into a cluster bubble becomes the
+  // target. If nothing qualifies — everything hidden by the period or the
+  // "Show on the map" filter, or every active marker clustered away — no
+  // target is set and the hint simply never renders (see `markerHintTarget`
+  // below, `null` unless a real candidate exists).
+  useEffect(() => {
+    if (markerHintShownRef.current) return;
+    let dismissed = false;
+    try {
+      dismissed = window.localStorage.getItem(MARKER_HINT_KEY) === '1';
+    } catch {
+      dismissed = false;
+    }
+    if (dismissed) {
+      markerHintShownRef.current = true;
+      return;
+    }
+    window.clearTimeout(markerHintDelayRef.current);
+    const tryShow = () => {
+      if (markerHintShownRef.current) return;
+      // deepseek/deepseek-v3.2-exp review (verified, fixed): if the opening
+      // zoom (or any other view animation) is still running when the delay
+      // elapses, wait for it — otherwise the nudge would point at the
+      // marker's *destination* screen position while the map is still
+      // mid-flight to it, which reads as pointing at nothing.
+      if (viewAnimRafRef.current) {
+        markerHintDelayRef.current = window.setTimeout(tryShow, 250);
+        return;
+      }
+      const target = markers.find((m) => !m.inactive && !clusteredKeys.has(m.key));
+      if (!target) return; // nothing eligible right now — try again once more is available
+      markerHintShownRef.current = true;
+      setMarkerHintTarget({ key: target.key, x: target.x, y: target.y });
+      markerHintTimerRef.current = window.setTimeout(dismissMarkerHintRef.current, MARKER_HINT_AUTO_MS);
+    };
+    markerHintDelayRef.current = window.setTimeout(tryShow, MARKER_HINT_DELAY_MS);
+    return () => window.clearTimeout(markerHintDelayRef.current);
+    // Deliberately re-checks on every `markers`/`clusteredKeys` change (period
+    // switch, filter change) until it succeeds once — "not hidden by the
+    // period or filter" only has a stable answer once those are known, and a
+    // visitor's first paint may still be on a period with nothing eligible.
+    // `markerHintShownRef` (not state) makes every check after the first
+    // success a no-op, so this never re-triggers once the nudge has shown.
+  }, [markers, clusteredKeys]);
 
   /** A4: activating a cluster zooms to fit it, then focuses the first marker. */
   const activateCluster = useCallback(
@@ -2456,6 +2697,7 @@ export function AtlasMap({
                     data-kind={m.shape}
                     data-inactive={String(m.inactive)}
                     data-selected={String(selected)}
+                    data-hint={String(markerHintTarget?.key === m.key)}
                     transform={`translate(${m.x},${m.y})`}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -2692,6 +2934,27 @@ export function AtlasMap({
               Drag to look around
             </p>
             <button type="button" className="atlas-map__hint-close" onClick={dismissHint} aria-label="Close this tip">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        )}
+
+        {/* improvement-plan §1.5: "Tap a glowing dot" first-load nudge. The
+            pointer is the pulsing marker itself (data-hint on the matching
+            <g> above); this card only supplies the words, so it stays a
+            plain bottom-anchored card rather than trying to track the
+            target's screen position through every future pan/zoom. */}
+        {markerHintTarget && (
+          <div className="atlas-map__hint atlas-map__hint--marker" role="status" aria-live="polite">
+            <p>
+              <span aria-hidden="true">✨</span> Tap a glowing dot to find out what happened there.
+            </p>
+            <button
+              type="button"
+              className="atlas-map__hint-close"
+              onClick={dismissMarkerHint}
+              aria-label="Close this tip"
+            >
               <span aria-hidden="true">×</span>
             </button>
           </div>

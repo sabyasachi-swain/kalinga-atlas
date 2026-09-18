@@ -2,11 +2,17 @@
 import Base from '@layouts/Base.astro';
 import EntityCard from '@components/EntityCard.astro';
 import WaveDivider from '@components/WaveDivider.astro';
-import { getGoods, getSources } from '@data/load';
+import { getGoods, getPeriods, getSources } from '@data/load';
 import { getEntry, render } from 'astro:content';
+import { earliestPeriod, evidenceRank, sortChronological } from '@lib/sort-entities';
 
-const goods = getGoods();
+const periods = getPeriods();
+// improvement-plan owner item 4: chronological is the server-rendered
+// default (see @lib/sort-entities); the sort <select> below re-orders this
+// same list client-side without a fresh page load.
+const goods = sortChronological(getGoods(), periods);
 const sources = getSources();
+const periodsById = new Map(periods.map((p) => [p.id, p]));
 
 const intro = await getEntry('sections', 'goods');
 const { Content: IntroContent } = intro ? await render(intro) : { Content: undefined };
@@ -32,16 +38,63 @@ const { Content: IntroContent } = intro ? await render(intro) : { Content: undef
 
     <h2 class="visually-hidden">All goods</h2>
     {goods.length === 0 && <p class="empty">No published goods yet.</p>}
-    <ul class="cards">
-      {goods.map((g) => <EntityCard kind="good" entity={g} sources={sources} />)}
+    {
+      goods.length > 0 && (
+        <form class="sort-form" data-sort-form>
+          <label for="goods-sort">Sort by</label>
+          <select id="goods-sort" name="sort">
+            <option value="time" selected>
+              Time (earliest first)
+            </option>
+            <option value="evidence">Evidence (strongest first)</option>
+            <option value="az">A–Z</option>
+          </select>
+        </form>
+      )
+    }
+    <ul class="cards" data-sort-list>
+      {
+        goods.map((g) => (
+          <EntityCard
+            kind="good"
+            entity={g}
+            sources={sources}
+            sortTime={earliestPeriod(g, periodsById)?.order}
+            sortEvidenceRank={evidenceRank(g.evidence_level)}
+            earliestPeriodLabel={earliestPeriod(g, periodsById)?.label}
+          />
+        ))
+      }
     </ul>
   </article>
 </Base>
+
+<script>
+  import { initSortList } from '@lib/sort-list-client';
+  initSortList();
+</script>
 
 <style>
   .section-page { padding: var(--space-8) var(--gutter); max-width: var(--content-max); margin: 0 auto; }
   .lede, .intro { font-size: var(--text-lg); color: var(--fg-muted); max-width: 46rem; }
   .empty { color: var(--fg-muted); font-style: italic; }
+  .sort-form {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-sm);
+  }
+  .sort-form select {
+    min-height: var(--hit-min);
+    padding: var(--space-1) var(--space-2);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    color: var(--fg);
+    font: inherit;
+  }
+  .sort-form select:focus-visible { outline: none; box-shadow: var(--focus-ring); }
   .cards {
     list-style: none;
     padding: 0;

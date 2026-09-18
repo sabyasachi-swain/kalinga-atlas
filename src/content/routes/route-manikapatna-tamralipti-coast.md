@@ -8,7 +8,7 @@ Tamralipti stood at the top of the Bay of Bengal. One historian calls it "the fi
 
 The same stamped pottery has been found at Manikapatna and at Tamralipti. It is called rouletted ware. Historians think this hints that ships worked this coast, moving between the two. [Patra, n.d., p.110]
 
-Historians think ships probably moved up this coast in short hops. They went from one big port to the next. This was likely safer than sailing straight across open water. [Patnaik, 2014, p.103]
+Historians think ships probably moved up this coast in short hops. They went from one big port to the next. This was likely safer than sailing straight across open water. [Patnaik, 2014a, p.103]
 
 ## For scholars
 

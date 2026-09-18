@@ -35,6 +35,18 @@ export interface DetailPanelProps {
   ports: Port[];
   sites: Site[];
   onSelectEntity?: (kind: 'port' | 'site', id: string) => void;
+  /**
+   * True while this panel is portaled into the phone full-screen map dialog
+   * (Atlas.tsx), rendering as a bottom sheet over the map rather than the
+   * right-hand column. Changes what Escape and the panel's own dismiss do:
+   * both collapse the sheet without clearing the map's selection, instead of
+   * fully closing (`onClose`). See Atlas.tsx's `onDismissSheet`.
+   */
+  sheetMode?: boolean;
+  /** Only meaningful when `sheetMode` — true while the visitor has
+   * dismissed the sheet but the selection (and the dialog) persists. */
+  sheetCollapsed?: boolean;
+  onDismissSheet?: () => void;
 }
 
 const KIND_WORD: Record<SelectedEntity['kind'], string> = {
@@ -109,7 +121,7 @@ export function Sources({
             const s = byId.get(r.source_id);
             return (
               <span className="short" key={`${r.source_id}-${i}`}>
-                {s ? formatShort(s, r) : `[unknown source ${r.source_id}]`}
+                {s ? formatShort(s, sources, r) : `[unknown source ${r.source_id}]`}
                 {i < refs.length - 1 ? '; ' : ''}
               </span>
             );
@@ -121,7 +133,7 @@ export function Sources({
           const s = byId.get(r.source_id);
           return (
             <li key={`${r.source_id}-full-${i}`}>
-              {s ? formatFull(s) : `Unresolved source id "${r.source_id}"`}
+              {s ? formatFull(s, sources) : `Unresolved source id "${r.source_id}"`}
               {r.page && <span>, {r.page}</span>}
               {r.note && <em> ({r.note})</em>}
             </li>
@@ -143,6 +155,9 @@ export function DetailPanel({
   ports,
   sites,
   onSelectEntity,
+  sheetMode = false,
+  sheetCollapsed = false,
+  onDismissSheet,
 }: DetailPanelProps) {
   const uid = useId();
   const headingId = `panel-title-${uid}`;
@@ -179,7 +194,10 @@ export function DetailPanel({
   const onPanelKeyDown = (event: ReactKeyboardEvent<HTMLElement>) => {
     if (event.key === 'Escape' && !cargoOpen) {
       event.preventDefault();
-      onClose();
+      // In the phone dialog, Escape's first press collapses the sheet only
+      // (map selection, and the dialog itself, stay put) — see Atlas.tsx.
+      if (sheetMode) onDismissSheet?.();
+      else onClose();
     }
   };
 
@@ -210,7 +228,8 @@ export function DetailPanel({
       className="atlas-panel"
       role="complementary"
       aria-labelledby={headingId}
-      data-open={String(selected !== null)}
+      data-open={String(selected !== null && !(sheetMode && sheetCollapsed))}
+      data-sheet={String(sheetMode)}
       tabIndex={-1}
       onKeyDown={onPanelKeyDown}
     >
@@ -225,6 +244,15 @@ export function DetailPanel({
         </>
       ) : (
         <>
+          {sheetMode && (
+            <button
+              type="button"
+              className="atlas-panel__sheet-dismiss"
+              onClick={onDismissSheet}
+            >
+              <span aria-hidden="true">▾</span> Back to map
+            </button>
+          )}
           <div className="atlas-panel__head">
             <h3 className="atlas-panel__title" id={headingId}>
               <span className="atlas-panel__kind">{KIND_WORD[selected.kind]}</span>

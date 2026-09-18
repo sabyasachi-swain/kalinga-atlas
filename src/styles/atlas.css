@@ -258,6 +258,35 @@
   max-height: 42dvh;
   overflow: auto;
 }
+/* Coordinator fix, 18 September: the detail panel, portaled into this dialog
+   on phones, reuses `.atlas-panel`'s narrow-width bottom-sheet rules
+   (position: fixed, slide via transform — see below) but capped shorter:
+   roughly half the dialog, so the map stays visible and interactive above
+   it, per the owner's brief. `.atlas-map-dialog__panel-host` itself has no
+   box — it only exists as this instance's portal target. */
+.atlas-map-dialog .atlas-panel {
+  max-height: 50dvh;
+  z-index: var(--z-panel);
+}
+.atlas-panel__sheet-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  width: 100%;
+  min-height: var(--hit-min);
+  margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-4)) var(--space-2);
+  padding: var(--space-2);
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg);
+  color: var(--fg-muted);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.atlas-panel__sheet-dismiss:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.atlas-panel__sheet-dismiss:hover { color: var(--fg); }
 @media (prefers-reduced-motion: no-preference) {
   .atlas-map-dialog[open] { animation: atlas-map-dialog-in var(--dur-base) var(--ease-page) both; }
 }
@@ -314,13 +343,20 @@
 
 /* ---- Routes (docs/design/route-styles.md) -------------------------------- */
 
-.route { transition: opacity var(--dur-page) var(--ease-page); }
+.route { cursor: pointer; transition: opacity var(--dur-page) var(--ease-page); }
 .route:focus { outline: none; }
 
 .route-glow {
   fill: none;
   stroke: var(--map-route-glow);
-  stroke-width: 6;
+  /* Owner fix, item 5: "there are points but no linkage" — routes read too
+     faint to register as connections between ports. Widened from 6/2 (glow/
+     line) to 8/3, same colours (contrast ratio unchanged, still AA against
+     both the cream land and the blue sea — see docs/design/tokens.md), just
+     drawn heavier so a route reads as a line, not a hairline. Inactive
+     (--map-inactive-opacity) and dimmed (--map-dim-opacity) routes are
+     unaffected — only the opacity rules below them change those. */
+  stroke-width: 8;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
@@ -328,7 +364,7 @@
 .route-line {
   fill: none;
   stroke: var(--map-route);
-  stroke-width: 2;
+  stroke-width: 3;
   stroke-linecap: butt;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
@@ -364,13 +400,18 @@
 .route[data-tier='hypothetical'] .route-line,
 .route[data-tier='unverified'] .route-line { opacity: 0.75; }
 
-/* Hover, focus and selection all read the same: thicker line, wider glow. */
+/* Owner fix, §1.5: hover, focus and selection share the thicker-line/wider-
+   glow base (so a route reads as "live" under any of the three) but
+   `:focus-visible` layers the dashed accent line below on `.route-hit`,
+   which the plain `:hover` state never gets — the same hover-vs-focus split
+   as `.marker`/`.cluster` above, just expressed as "plus a dashed outline"
+   instead of "plus brightness" since a route has no single fill to lighten. */
 .route:hover .route-line,
 .route:focus-visible .route-line,
-.route[data-selected='true'] .route-line { stroke-width: 3; }
+.route[data-selected='true'] .route-line { stroke-width: 4; }
 .route:hover .route-glow,
 .route:focus-visible .route-glow,
-.route[data-selected='true'] .route-glow { stroke-width: 9; }
+.route[data-selected='true'] .route-glow { stroke-width: 11; }
 .route:focus-visible .route-hit {
   /* --map-focus, not --gold-400: gold measures ~1.1:1 on the map's own
      surface colours and is effectively invisible there. */
@@ -404,6 +445,16 @@
   transition: opacity var(--dur-page) var(--ease-page);
 }
 .marker:focus { outline: none; }
+/* Owner fix, §1.5: pointer already applied above; this is the missing
+   *hover* feedback — a mouse user got no signal a marker was interactive
+   until they pressed it. Deliberately not the same treatment as
+   `:focus-visible` below (a brightness lift here vs. a dashed accent ring
+   there) so the two are never confused — hover is "this is clickable",
+   focus-visible is "this is where keyboard input goes right now". */
+.marker:hover .marker-scale { filter: brightness(1.18); }
+@media (prefers-reduced-motion: no-preference) {
+  .marker-scale { transition: filter var(--dur-fast) linear; }
+}
 /* Counter-scale against the map zoom, read from a custom property set on
    .atlas-map (see AtlasMap.tsx). Keeps markers and the ship a constant
    on-screen size; --map-counter is written straight to the DOM by the
@@ -433,6 +484,18 @@
 }
 .marker[data-inactive='false'] .marker-glow { opacity: 1; }
 .marker[data-selected='true'] .marker-glow { opacity: 1; }
+/* improvement-plan §1.5: "Tap a glowing dot" — the one marker the first-load
+   nudge targets (AtlasMap.tsx's `markerHintTarget`) actually glows, so the
+   text card explaining it points at something real and visible instead of
+   describing an effect the visitor has to imagine. */
+.marker[data-hint='true'] .marker-glow { animation: marker-hint-pulse 1.4s ease-in-out infinite; }
+@keyframes marker-hint-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marker[data-hint='true'] .marker-glow { animation: none; }
+}
 
 /*
  * map-style-light.md marker anatomy, back to front: glow (above) → outline
@@ -541,6 +604,8 @@
 
 .cluster { cursor: pointer; }
 .cluster:focus { outline: none; }
+/* Owner fix, §1.5: same hover/focus split as `.marker` above. */
+.cluster:hover .marker-scale { filter: brightness(1.18); }
 .cluster-hit { fill: transparent; stroke: none; }
 .cluster:focus-visible .cluster-hit {
   fill: color-mix(in srgb, var(--accent) 12%, transparent);
@@ -694,6 +759,15 @@
   pointer-events: auto;
 }
 .atlas-map__hint p { margin: 0; font-size: var(--text-sm); line-height: 1.5; }
+/* improvement-plan §1.5: anchored near the top instead of dead-centre, so it
+   never sits on top of the "Scroll to zoom" hint (mouse-hover-triggered,
+   could in principle show at the same time) or the bottom scale bar/north
+   arrow chrome. */
+.atlas-map__hint--marker {
+  inset: var(--space-4) var(--space-4) auto auto;
+  margin: 0 0 0 auto;
+  max-width: 16rem;
+}
 .atlas-map__hint-close {
   min-width: var(--hit-min);
   min-height: var(--hit-min);
@@ -1158,11 +1232,23 @@
    box; out here in its own flow there is no box to collapse against. */
 .atlas-fact-slot {
   display: block;
-  /* Reserves space so the card appearing/disappearing (settle debounce,
-     12s auto-dismiss, manual close) never shifts the map or timeline —
-     min-height only, so genuinely long fact text can still grow the slot
-     without being clipped. */
-  min-height: var(--atlas-fact-min-h, 7rem);
+}
+/* Owner fix, item 5: three slots exist (wide column / narrow in-flow /
+   dialog), but only one is ever the live portal target at a given width
+   (Atlas.tsx's `factPortalTarget`, switched at this same 56.25rem
+   breakpoint). Reserving `min-height` unconditionally on all three — as
+   this used to — left the *unused* narrow slot holding open ~7rem (112px,
+   plus the grid's own gap either side) of dead space between the map card
+   and the timeline at >=56.25rem, the ~145px the owner measured. Each slot
+   now only reserves space in the width range where it is actually the live
+   target, so the card appearing/disappearing still never shifts the map or
+   timeline there, without holding a gap open where nothing will ever
+   render. */
+@media (min-width: 56.25rem) {
+  .atlas-fact-slot--wide { min-height: var(--atlas-fact-min-h, 7rem); }
+}
+@media (max-width: 56.24rem) {
+  .atlas-fact-slot--narrow { min-height: var(--atlas-fact-min-h, 7rem); }
 }
 .atlas-fact-slot--dialog { min-height: var(--atlas-fact-min-h-dialog, 5.5rem); }
 

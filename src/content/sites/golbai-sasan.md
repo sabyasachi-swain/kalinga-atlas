@@ -7,7 +7,7 @@ Golbai Sasan is a village mound near Chilika lake. People lived here for thousan
 
 Diggers found stone tools called adzes, used for shaping wood. They also found a copper fish hook and a bone harpoon. Scholars think the many wood tools may mean people built boats here. But no actual boat has ever turned up [Patra, n.d., p.109].
 
-Diggers also found burnt grains of rice, pulses and millet. Radiocarbon dating shows farming here goes back thousands of years [Kingwell-Banham, 2018, pp.5-9].
+Diggers also found burnt grains of rice, pulses and millet. Radiocarbon dating shows farming here goes back thousands of years [Kingwell-Banham, 2018a, pp.5-9].
 
 ## For scholars
-The site's main period of life falls before this atlas's earliest era. So only its later, Iron Age layer gets a date here. The idea that people built boats here comes from woodworking tools, not from any real boat. One coordinate in an early report was a misprint, pointing out at sea. This entry's location is fixed using a modern map instead [Patra, n.d., pp.108-109; Kingwell-Banham, 2018, pp.1-3].
+The site's main period of life falls before this atlas's earliest era. So only its later, Iron Age layer gets a date here. The idea that people built boats here comes from woodworking tools, not from any real boat. One coordinate in an early report was a misprint, pointing out at sea. This entry's location is fixed using a modern map instead [Patra, n.d., pp.108-109; Kingwell-Banham, 2018a, pp.1-3].
